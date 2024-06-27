@@ -9,11 +9,11 @@
     top: 0;
     bottom: 0;
     left: 0;
+    background-color: rgba(130, 108, 108, 0.8);
 }
 
 #admin-container main {
     flex: 1;
-    background-color: aqua;
 }
 
 #admin-container .logo {
