@@ -1,0 +1,30 @@
+#admin-container {
+    display: flex;
+}
+
+#admin-container aside {
+    flex: 0 0 20vw;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#admin-container main {
+    flex: 1;
+    background-color: aqua;
+}
+
+#admin-container .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+/* .admin-container-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+} */
