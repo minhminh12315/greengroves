@@ -2,7 +2,7 @@
     <a wire:navigate href="/">Home</a>
     <a wire:navigate href="/about">About</a>
     <a wire:navigate href="/contact">Contact</a>
-    <header class="header">
+    <header id="header">
         <div class="containerHeader">
             <div class="row align-items-center">
                 <div class="col-1 p-2 Logo">
@@ -30,7 +30,8 @@
                         <div class="wrapper-item">
                             <div class="searchContainerMiddle">
                                 <div class="iconSearchMiddle">
-                                    <i class="fa-solid fa-search middleSearchIcon"></i>
+                                    <i
+                                        class="fa-solid fa-search middleSearchIcon"></i>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +62,8 @@
                         <div class="wrapper-item">
                             <div class="cartShop-container">
                                 <div class="iconCartShop">
-                                    <i  class="fa-solid fa-cart-shopping"></i>
+                                    <i
+                                        class="fa-solid fa-cart-shopping"></i>
                                 </div>
                             </div>
                         </div>

@@ -24,6 +24,7 @@
 
 /* Thanh Cong */
 /* General styles */
+/* General styles */
 .wrapper-container {
     display: table;
     height: 100%;
@@ -34,7 +35,7 @@
     vertical-align: middle;
     text-align: center;
 }
-.header .logo-container {
+#header .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,25 +45,25 @@
     margin-left: auto;
     margin-right: auto;
 }
-.header .logo {
+#header .logo {
     border: 1px solid rgb(218, 208, 208);
     border-radius: 50%;
     width: 80px;
     height: 80px;
     overflow: hidden;
 }
-.header {
-    background-color: antiquewhite;
+#header {
+    background-color:burlywood;
 }
-.header .menuContainer {
+#header .menuContainer {
     border: 1px solid rgb(255, 255, 255);
     border-radius: 2rem;
     background-color: rgb(225, 52, 21);
 }
-.header .btnMenu {
+#header .btnMenu {
     color: aliceblue;
 }
-.header .formSearch {
+#header .formSearch {
     width: 100%;
     border-radius: 1rem;
     text-align: center;
@@ -70,25 +71,25 @@
     height: 35px;
     border: none;
 }
-.header .searchContainer {
+#header .searchContainer {
     position: relative;
     border-bottom: 1px solid black;
 }
 header .space {
     width: 10%;
 }
-.header .iconSearch {
+#header .iconSearch {
     position: absolute;
     font-size: 20px;
     padding-left: 20px;
     top: 50%;
     transform: translateY(-50%);
 }
-.header .middleSearchIcon{
+#header .middleSearchIcon{
   font-size: 20px;
   padding-left: 20px;
 }
-.header .cartShop-container {
+#header .cartShop-container {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(222, 214, 214);
     border-radius: 50%;
@@ -98,33 +99,33 @@ header .space {
     justify-content: center;
     align-items: center;
 }
-.header .btnLogin {
+#header .btnLogin {
     border: 1px solid rgb(255, 254, 254);
     border-radius: 2rem;
 }
-.header .SearchBar_Middle{
+#header .SearchBar_Middle{
     display: none;
 }
 
 /* Styles for screens larger than 768px */
 @media (min-width: 769px) {
-    .header .SearchBar {
+    #header .SearchBar {
         display: block;
     }
-    .header .SearchBar_Middle {
+    #header .SearchBar_Middle {
         display: none;
     }
 }
 
 /* Styles for screens 768px and smaller */
 @media (max-width: 768px) {
-    .header .SearchBar {
+    #header .SearchBar {
         display: none;
     }
-    .header .SearchBar_Middle {
+    #header .SearchBar_Middle {
         display: block;
     }
-    .header .row {
+    #header .row {
         flex-wrap: nowrap;
         display: flex;
         justify-content: space-between;
@@ -132,7 +133,70 @@ header .space {
     .containerHeader{
         width: 80%;
     }
-    .header .middleSearchIcon{
-
+    /*About Page*/
+    #AboutPage .hidden{
+        display: none !important;
     }
+
 }
+
+
+/* About Page */
+#AboutPage{
+    background-color: rgb(119, 204, 119);
+}
+#AboutPage .aboutUsContainer {
+    background-color:antiquewhite;
+}
+#AboutPage .section_3{
+   background-color: antiquewhite;
+}
+
+#AboutPage .card-img-top {
+    max-width: 100%;
+    height: auto; /* Đảm bảo ảnh giữ tỉ lệ và vừa với chiều rộng thẻ card */
+    object-fit: contain; /* Đảm bảo ảnh không bị cắt */
+
+}
+#AboutPage .imgBorder{
+    border:1px solid white;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+#AboutPage .detailsSection_3{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#AboutPage .detailsSection_3{
+    font-size: 1rem;
+
+}
+
+#AboutPage .centerText{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 20rem; /* Giới hạn độ rộng của các phần tử chứa text */
+    word-wrap: break-word; /* Ngắt dòng nếu cần thiết */
+
+}
+#AboutPage .firstText{
+    padding-left: 2.5rem;
+    max-width: 20rem; /* Giới hạn độ rộng của các phần tử chứa text */
+    word-wrap: break-word; /* Ngắt dòng nếu cần thiết */
+
+}
+#AboutPage .endText{
+    padding-left: 2.5rem;
+    max-width: 20rem; /* Giới hạn độ rộng của các phần tử chứa text */
+    word-wrap: break-word; /* Ngắt dòng nếu cần thiết */
+
+}
+#AboutPage .section_4 .card {
+    border-radius: none;
+}
+
+
+
+
