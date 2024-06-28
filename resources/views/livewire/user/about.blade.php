@@ -24,35 +24,35 @@
                 <div
                     class="col-md-2 d-flex justify-content-center align-items-center hidden">
                     <div class="card imgBorder" style="width: 10rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
                 <div
                     class="col-md-2  d-flex justify-content-center align-items-center hidden">
                     <div class="card imgBorder" style="width: 10rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
                 <div
                     class="col-md-2 col-4 d-flex justify-content-center align-items-center ">
                     <div class="card imgBorder" style="width: 10rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
                 <div
                     class="col-md-2 col-4 d-flex justify-content-center align-items-center ">
                     <div class="card imgBorder" style="width: 10rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
                 <div
                     class="col-md-2 col-4 d-flex justify-content-center align-items-center ">
                     <div class="card imgBorder" style="width: 10rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
@@ -78,21 +78,21 @@
                 <div
                     class="col-md-4 col-4 mt-3 d-flex justify-content-end align-items-center">
                     <div class="card imgBorder" style="width: 20rem;">
-                        <img src="./img1.jpg" class="card-img-top"
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top"
                             alt="...">
                     </div>
                 </div>
                 <div
                     class="col-md-4 col-4 mt-3 d-flex justify-content-center align-items-center">
                     <div class="card imgBorder" style="width: 20rem;">
-                        <img src="./img1.jpg" class="card-img-top"
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top"
                             alt="...">
                     </div>
                 </div>
                 <div
                     class="col-md-4 col-4 mt-3 d-flex justify-content-start   align-items-center">
                     <div class="card imgBorder" style="width: 20rem;">
-                        <img src="./img1.jpg" class="card-img-top"
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top"
                             alt="...">
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                     class="col-md-6 col-12 mt-3 d-flex justify-content-center align-items-center">
                     <div class="card imgBorder"
                         style="width:45rem;height: 25rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                     class="col-md-6 col-12 mt-3 d-flex justify-content-center align-items-center">
                     <div class="card imgBorder"
                         style="width:45rem;height: 25rem;">
-                        <img src="./img1.jpg" class="card-img-top "
+                        <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top "
                             alt="...">
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                     <div
                         class="col-12 mt-3 d-flex justify-content-center align-items-start">
                         <div class="card" style="width: 20rem;">
-                            <img src="./img1.jpg"
+                            <img src="https://dummyimage.com/600x400/000/fff888"
                                 alt="...">
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                     <div
                         class="col-12 mt-3 d-flex justify-content-center align-items-start">
                         <div class="card" style="width: 20rem;">
-                            <img src="./img1.jpg"
+                            <img src="https://dummyimage.com/600x400/000/fff888"
                                 alt="...">
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                     <div
                         class="col-12 mt-3 d-flex justify-content-center align-items-start">
                         <div class="card" style="width: 20rem;">
-                            <img src="./img1.jpg"
+                            <img src="https://dummyimage.com/600x400/000/fff888"
                                 alt="...">
                         </div>
                     </div>
