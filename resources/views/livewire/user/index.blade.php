@@ -1,7 +1,7 @@
-<div>
+<div id="web-user-container">
     <livewire:user.header />
 
-    <div>
+    <div id="user-content">
         @yield('content')
     </div>
 

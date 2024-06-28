@@ -1,4 +1,55 @@
-<<<<<<< Updated upstream
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+body,
+html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+li,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#web-user-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#web-user-container #user-content {
+    flex: 1;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+#web-user-container #user-footer{
+    border-top: 1px solid #dee2e6;
+}
+
 #admin-container {
     display: flex;
 }
@@ -137,45 +188,13 @@ header .space {
 
     }
 }
-=======
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
-body,
-html {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-}
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul,
-li,
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-    color: #333;
-}
 
 .loginRegister {
     background-color: #c9d6ff;
@@ -332,7 +351,7 @@ a {
 }
 
 .social-icons a {
-    border: 1px solid #ccc;
+    border: 1px solid #dee2e6;
     border-radius: 20%;
     display: inline-flex;
     justify-content: center;
@@ -407,4 +426,56 @@ a {
 .login-container.active .toggle-right {
     transform: translateX(200%);
 }
->>>>>>> Stashed changes
+.sub-footer{
+    padding: 10px 15px;
+    border-top: 1px solid #ccc;
+}
+#user-footer ul li a span{
+    position: relative;
+    padding: 5px;
+}
+#user-footer ul li a span::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: #252525;
+    transition: all 0.3s ease-in-out;
+}
+#user-footer ul li a:hover span::after{
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+.user-card-product{
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+}
+.user-card-product .card-img-top{
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.user-card-product:hover .card-img-top{
+    transform: scale(1.1);
+}
+
+/* .user-card-product:hover {
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(201, 201, 201, 1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(201, 201, 201, 1);
+    box-shadow: 5px 5px 5px 0px rgba(201, 201, 201, 1);
+} */
+
+.user-card-news .card-img-top{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+}
