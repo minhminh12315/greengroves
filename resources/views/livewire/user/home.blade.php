@@ -1,7 +1,6 @@
 @extends('livewire.user.index')
 @section('content')
 <div>
-<<<<<<< Updated upstream
     <!-- CAROUSEL -->
     <div class="container">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
@@ -150,8 +149,5 @@
             </div>
         </div>
     </div>
-=======
-    day la trang Home
->>>>>>> Stashed changes
 </div>
 @endsection
