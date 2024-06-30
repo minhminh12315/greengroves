@@ -1,3 +1,164 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream #admin-container {
+    display: flex;
+}
+
+#admin-container aside {
+    flex: 0 0 20vw;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(130, 108, 108, 0.8);
+}
+
+#admin-container main {
+    flex: 1;
+}
+
+#admin-container .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+/* Thanh Cong */
+/* General styles */
+.wrapper-container {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper-item {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.header .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerHeader {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header .logo {
+    border: 1px solid rgb(218, 208, 208);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.header {
+    background-color: antiquewhite;
+}
+
+.header .menuContainer {
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 2rem;
+    background-color: rgb(225, 52, 21);
+}
+
+.header .btnMenu {
+    color: aliceblue;
+}
+
+.header .formSearch {
+    width: 100%;
+    border-radius: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    height: 35px;
+    border: none;
+}
+
+.header .searchContainer {
+    position: relative;
+    border-bottom: 1px solid black;
+}
+
+header .space {
+    width: 10%;
+}
+
+.header .iconSearch {
+    position: absolute;
+    font-size: 20px;
+    padding-left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header .middleSearchIcon {
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.header .cartShop-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(222, 214, 214);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .btnLogin {
+    border: 1px solid rgb(255, 254, 254);
+    border-radius: 2rem;
+}
+
+.header .SearchBar_Middle {
+    display: none;
+}
+
+/* Styles for screens larger than 768px */
+@media (min-width: 769px) {
+    .header .SearchBar {
+        display: block;
+    }
+
+    .header .SearchBar_Middle {
+        display: none;
+    }
+}
+
+/* Styles for screens 768px and smaller */
+@media (max-width: 768px) {
+    .header .SearchBar {
+        display: none;
+    }
+
+    .header .SearchBar_Middle {
+        display: block;
+    }
+
+    .header .row {
+        flex-wrap: nowrap;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .containerHeader {
+        width: 80%;
+    }
+
+    .header .middleSearchIcon {}
+}
+
+=======
+>>>>>>> Stashed changes
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 body,
 html {
@@ -234,7 +395,9 @@ header .space {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 10px;
+
 }
 
 .login-container {
@@ -243,8 +406,8 @@ header .space {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 768px;
     min-height: 480px;
 }
 
@@ -298,7 +461,10 @@ header .space {
 .login-container .userbox {
     position: relative;
     width: 80%;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }
 
 .login-container .userbox input {
@@ -310,14 +476,18 @@ header .space {
     border-radius: 8px;
     width: 100%;
     outline: none;
+    font-weight: bold;
 }
 
 .login-container .userbox input:focus~label,
 .login-container .userbox input:valid~label {
-    top: -18px;
-    left: 0;
+    transform: translateY(-8px);
     color: #000;
-    font-size: 12px;
+    font-size: 10px;
+}
+
+.login-container .userbox input:focus {
+    border: 1px solid #000;
 }
 
 .login-container .userbox label {
@@ -331,10 +501,23 @@ header .space {
     transition: .5s;
 }
 
+.login-eye {
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    right: 0.75rem;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
 .form-container {
     position: absolute;
     top: 0;
     height: 100%;
+    width: 50%;
     transition: all 0.6s ease-in-out;
 }
 
@@ -377,6 +560,7 @@ header .space {
     }
 }
 
+<<<<<<< Updated upstream
 .social-icons {
     margin: 20px 0;
 }
@@ -392,6 +576,8 @@ header .space {
     height: 40px;
 }
 
+=======
+>>>>>>> Stashed changes
 .toggle-container {
     position: absolute;
     top: 0;
@@ -442,7 +628,7 @@ header .space {
 }
 
 .toggle-left {
-    transform: translateX(-200%);
+    transform: translateX(-100%);
 }
 
 .login-container.active .toggle-left {
@@ -455,8 +641,9 @@ header .space {
 }
 
 .login-container.active .toggle-right {
-    transform: translateX(200%);
+    transform: translateX(100%);
 }
+<<<<<<< Updated upstream
 .sub-footer{
     padding: 10px 15px;
     border-top: 1px solid #ccc;
@@ -603,3 +790,90 @@ header .space {
     }
 
 }
+=======
+
+@media screen and (max-width: 769px) {
+    .login-container {
+        border-radius: 20px;
+    }
+
+    .login-container form {
+        padding: 0 20px;
+    }
+
+    .login-container .userbox {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 438px) {
+    .login-container {
+        border-radius: 15px;
+    }
+
+    .toggle-container {
+        display: none;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+    }
+
+    .switcher {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .switcher button {
+        color: #000;
+        background-color: transparent !important;
+        text-transform: none;
+    }
+
+    .form-container {
+        animation: hideLayer .3s ease-out forwards;
+    }
+
+    .form-container.active {
+        animation: showLayer .3s ease-in forwards;
+    }
+
+    @keyframes showLayer {
+        50% {
+            z-index: 1;
+        }
+
+        100% {
+            z-index: 1;
+        }
+    }
+
+    @keyframes hideLayer {
+        0% {
+            z-index: 1;
+        }
+
+        49.999% {
+            z-index: 1;
+        }
+    }
+    
+    .login-container.active .sign-in {
+        transform: translateX(-100%);
+    }
+    .sign-up{
+        right: 0;
+        transform: translateX(100%);
+    }
+    .login-container.active .sign-up {
+        transform: translateX(0);
+    }
+}
+
+
+>>>>>>>Stashed changes
+>>>>>>> Stashed changes
