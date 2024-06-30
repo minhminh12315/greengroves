@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-1 CartShop">
+                <div class="col-1 CartShop mouse">
                     <div class="wrapper-container">
                         <div class="wrapper-item">
                             <div class="cartShop-container">

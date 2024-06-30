@@ -8,6 +8,7 @@ use App\Livewire\Login;
 use App\Livewire\User\About;
 use App\Livewire\User\Home;
 use App\Livewire\User\Index;
+use App\Livewire\User\ProductDetail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('users.home');
@@ -23,3 +24,5 @@ Route::get('/admin/list_product', ListProduct::class)->name('admin.list_product'
 Route::get('/admin/addnew', Addnew::class)->name('admin.addnew');
 
 Route::get('/admin/order', Order::class)->name('admin.order');
+
+Route::get('/product-detail', ProductDetail::class)->name('user.product-detail');

@@ -125,7 +125,6 @@ body{
 }
 #header .searchContainer {
     position: relative;
-    border-bottom: 1px solid black;
 }
 header .space {
     width: 10%;
@@ -159,38 +158,6 @@ header .space {
     display: none;
 }
 
-/* Styles for screens larger than 768px */
-@media (min-width: 769px) {
-    #header .SearchBar {
-        display: block;
-    }
-    #header .SearchBar_Middle {
-        display: none;
-    }
-}
-
-/* Styles for screens 768px and smaller */
-@media (max-width: 768px) {
-    #header .SearchBar {
-        display: none;
-    }
-    #header .SearchBar_Middle {
-        display: block;
-    }
-    #header .row {
-        flex-wrap: nowrap;
-        display: flex;
-        justify-content: space-between;
-    }
-    .containerHeader{
-        width: 80%;
-    }
-    /*About Page*/
-    #AboutPage .hidden{
-        display: none !important;
-    }
-
-}
 
 
 /* About Page */
@@ -542,4 +509,97 @@ header .space {
     object-fit: cover;
     transition: 0.3s ease-in-out;
     overflow: hidden;
+}
+
+/*Product Details */
+#productDetailsPage .productDetailContainer{
+    padding-left: 15px;
+  }
+  #productDetailsPage .slickImg{
+      width:90%;
+      height: 500px;
+      margin-left: auto;
+      margin-right: auto;
+
+  }
+
+
+  #productDetailsPage .productImageList{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+
+  }
+  #productDetailsPage .linkFont{
+   font-size: 75%;
+  }
+  #productDetailsPage .shareContainer a{
+      background-color: rgb(0, 0, 0);
+  }
+  #productDetailsPage .sizeBtn{
+      width: 40px;
+  }
+  #productDetailsPage .wasSell{
+      font-family:'Gill Sans', 'Gill Sans MT','Trebuchet MS', sans-serif;
+      font-size: 12px;
+  }
+  #productDetailsPage .price{
+      color: red;
+      font-size: 17px;
+  }
+  .mouse :hover{
+      transform: scale(1.02) !important;
+      cursor: pointer !important;
+  }
+
+  /* #productDetailsPage .currentAddress col-12 .linkHover :hover{
+      color: rgb(199, 74, 74) !important;
+      cursor: pointer !important;
+  }
+  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
+
+  */
+  #productDetailsPage .relativeProduct .card{
+      width: 10rem
+  }
+/* Styles for screens larger than 768px */
+@media (min-width: 769px) {
+    #header .SearchBar {
+        display: block;
+    }
+    #header .SearchBar_Middle {
+        display: none;
+    }
+}
+
+/* Styles for screens 768px and smaller */
+@media (max-width: 768px) {
+    #header .SearchBar {
+        display: none;
+    }
+    #header .SearchBar_Middle {
+        display: block;
+    }
+    #header .row {
+        flex-wrap: nowrap;
+        display: flex;
+        justify-content: space-between;
+    }
+    .containerHeader{
+        width: 80%;
+    }
+    /*About Page*/
+    #AboutPage .hidden{
+        display: none !important;
+    }
+    /*productDetails*/
+    #productDetailsPage .shareContainer{
+        padding-left: 5rem;
+        padding-right: 2rem
+    }
+    #productDetailsPage .relativeProduct .card{
+        width: 150px
+    }
+
 }
