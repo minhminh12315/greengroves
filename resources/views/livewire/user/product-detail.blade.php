@@ -4,7 +4,7 @@
 <section id="productDetailsPage">
     <div class="container-fluid">
         <div class="row currentAddress p-4">
-            <div class="col-12 d-flex align-items-center">
+            <div class="col-12 d-flex align-items-center textAddress">
                 <div class="me-2" style="cursor: pointer;">
                     <div onmouseover="this.style.color='red'; this.style.transform='scale(1.05)'; this.nextElementSibling.style.display='inline'" onmouseout="this.style.color='black'; this.style.transform='scale(1)'; this.nextElementSibling.style.display='none'">HOME</div>
                 </div>
@@ -32,17 +32,17 @@
                                 data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="d-block slickImg "
                                             alt="Product Image 1">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="d-block slickImg"
                                             alt="Product Image 2">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="d-block slickImg"
                                             alt="Product Image 3">
                                     </div>
@@ -75,31 +75,31 @@
                                 class="row d-flex justify-content-center align-items-center">
                                 <div class="col-2 px-1">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-2 px-1">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-2 px-1">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-2 px-1">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-2 px-1">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
+                                        <img src="https://dummyimage.com/600x400/000/fff2fd"
                                             class="img-fluid" alt>
                                     </div>
                                 </div>
@@ -133,6 +133,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div
+                            class="col-md-5 col-5 d-flex justify-content-md-center justify-content-sm-start align-content-center">
+                            <div class="likeText">
+                                <i class="fas fa-heart"></i> Đã thích
+                                (12k)
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -144,10 +151,16 @@
                     <div class="col-12">
                         <h2>Tên sản phẩm</h2>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 m-2">
                         <h4><span class="text-danger">$99.99</span></h4>
                     </div>
                     <div class="col-12">
+                        <p>Đánh giá sao: <span
+                                class="text-warning">★★★★★</span></p>
+                        <p>Đánh giá: <span>500 đánh giá</span></p>
+                        <p>Đã bán: <span>1000 sản phẩm</span></p>
+                    </div>
+                    <div class="col-12 mt-2">
                         <div class="row align-items-center">
                             <div
                                 class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">Size
@@ -249,12 +262,15 @@
         <div class="row relativeProduct flex-wrap pt-3">
             <div class="col-4 col-md-auto m-md-2">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
+                            </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
                             </div>
                         </div>
 
@@ -264,12 +280,15 @@
             </div>
             <div class="col-4 col-md-auto m-md-2">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
+                            </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
                             </div>
                         </div>
 
@@ -279,12 +298,15 @@
             </div>
             <div class="col-4 col-md-auto m-md-2">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
+                            </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
                             </div>
                         </div>
 
@@ -294,12 +316,15 @@
             </div>
             <div class="col-md-auto m-2 hidden">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
+                            </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
                             </div>
                         </div>
 
@@ -309,12 +334,15 @@
             </div>
             <div class="col-md-auto m-2 hidden">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
+                            </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
                             </div>
                         </div>
 
@@ -324,12 +352,15 @@
             </div>
             <div class="col-md-auto m-2 hidden">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
+                            </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
                             </div>
                         </div>
 
@@ -339,14 +370,18 @@
             </div>
             <div class="col-md-auto m-2 hidden">
                 <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                    <img src="https://dummyimage.com/600x400/000/fff2fd" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title p-1">Card title</h5>
                         <div class="d-flex justify-content-between align-items-center flex-container">
                             <div class="price">
                                 <span>22.99$</span>
                             </div>
+                            <div class="wasSell">
+                                Đã bán 13,8k
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
