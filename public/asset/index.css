@@ -519,8 +519,6 @@ header .space {
 }
 #CartShop .totalPrice{
     width: 200px;
-    border: 1px solid black;
-    background-color: rgb(166, 175, 175);
 }
 #CartShop .textPrice{
     font-size:1.25rem;

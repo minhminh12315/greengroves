@@ -39,7 +39,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <img src="./logo.webp" alt="Product 1" class="img-thumbnail" style="width: 160px;height: 160px;">
+                                    <img src="https://dummyimage.com/600x400/000/fff2fd" alt="Product 1" class="img-thumbnail" style="width: 160px;height: 160px;">
                                 </td>
                                 <td class="text-center">Product 1</td>
                                 <td class="text-center">$19.99</td>
@@ -60,7 +60,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <img src="./logo.webp" alt="Product 1" class="img-thumbnail" style="width: 160px;height: 160px;">
+                                    <img src="https://dummyimage.com/600x400/000/fff2fd" alt="Product 1" class="img-thumbnail" style="width: 160px;height: 150px;">
                                 </td>
                                 <td class="text-center">Product 1</td>
                                 <td class="text-center">$19.99</td>
