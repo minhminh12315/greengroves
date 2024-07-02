@@ -1,18 +1,15 @@
 <footer id="user-footer">
     <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-md-1 g-4 p-3 m-2">
         <div class="col border-top-md-none">
-            <div class="p-2">
-                <h3>GETHSEMANI</h3>
-                <a href=""></a>
-            </div>
+            <a class="logo-footer-wrapper"  href="{{ route('users.home') }}"><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448805789_999139421656083_7224066356797885216_n.png?stp=dst-png_s526x296&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGPSu_lTZpGehTE4LVS7C5qynWPWG2wpj7KdY9YbbCmPjczmzBsIJn8Wj9RQofZUSt39Hh5Arle4n4y7QlkM93E&_nc_ohc=WAQB-2oPj-4Q7kNvgFuz4DE&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QGYAFLnodceFt7AjCFTQ_6El2loL7Xl95lAxFaO66rukA&oe=66AA55F3"  alt="GreenGroves"></a>
         </div>
         <div class="col">
             <div class="d-flex flex-column gap-3 p-2">
                 <h3>INFORMATION</h3>
                 <ul class="d-flex flex-column align-items-start gap-3">
-                    <li><a href=""><span>ABOUT</span></a></li>
-                    <li><a href=""><span>CONTACT</span></a></li>
-                    <li><a href=""><span>SHOP</span></a></li>
+                    <li><a wire:navigate href="/about"><span>ABOUT</span></a></li>
+                    <li><a wire:navigate href="/contact"><span>CONTACT</span></a></li>
+                    <li><a wire:navigate href="/list-product"><span>SHOP</span></a></li>
                 </ul>
             </div>
         </div>
@@ -41,11 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="sub-footer d-flex flex-md-row flex-column justify-content-md-between align-items-center justify-content-sm-center gap-3 p-3 mt-3">
+    <div class="d-flex justify-content-md-start justify-content-sm-center align-items-center gap-3 p-3 mt-3">
         <p>�� 2021 Gethemani. All rights reserved.</p>
-        <ul class="d-flex gap-4">
-            <li><a href="" class="fw-semibold">Terms & Conditions</a></li>
-            <li><a href="" class="fw-semibold">Privacy Policy</a></li>
-        </ul>
     </div>
 </footer>
