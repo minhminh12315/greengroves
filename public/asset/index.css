@@ -1,8 +1,3 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream #admin-container {
-    display: flex;
-}
 
 #admin-container aside {
     flex: 0 0 20vw;
@@ -157,8 +152,6 @@ header .space {
     .header .middleSearchIcon {}
 }
 
-=======
->>>>>>> Stashed changes
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 body,
 html {
@@ -320,7 +313,6 @@ header .space {
 }
 
 
-
 /* About Page */
 #AboutPage{
     background-color: rgb(119, 204, 119);
@@ -377,16 +369,11 @@ header .space {
     border-radius: none;
 }
 
-
-
-
-
+/* Login Page */
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
-
 
 .loginRegister {
     background-color: #c9d6ff;
@@ -461,10 +448,6 @@ header .space {
 .login-container .userbox {
     position: relative;
     width: 80%;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 }
 
 .login-container .userbox input {
@@ -560,24 +543,8 @@ header .space {
     }
 }
 
-<<<<<<< Updated upstream
-.social-icons {
-    margin: 20px 0;
-}
 
-.social-icons a {
-    border: 1px solid #dee2e6;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
 
-=======
->>>>>>> Stashed changes
 .toggle-container {
     position: absolute;
     top: 0;
@@ -628,7 +595,7 @@ header .space {
 }
 
 .toggle-left {
-    transform: translateX(-100%);
+    transform: translateX(-200%);
 }
 
 .login-container.active .toggle-left {
@@ -641,10 +608,95 @@ header .space {
 }
 
 .login-container.active .toggle-right {
-    transform: translateX(100%);
+    transform: translateX(200%);
 }
-<<<<<<< Updated upstream
-.sub-footer{
+
+@media screen and (max-width: 768px) {
+    .login-container {
+        border-radius: 20px;
+    }
+
+    .login-container form {
+        padding: 0 20px;
+    }
+
+    .login-container .userbox {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 438px) {
+    .login-container {
+        border-radius: 15px;
+    }
+
+    .toggle-container {
+        display: none;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+    }
+
+    .switcher {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .switcher button {
+        color: #000;
+        background-color: transparent !important;
+        text-transform: none;
+    }
+
+    .form-container {
+        animation: hideLayer .3s ease-out forwards;
+    }
+
+    .form-container.active {
+        animation: showLayer .3s ease-in forwards;
+    }
+
+    @keyframes showLayer {
+        50% {
+            z-index: 1;
+        }
+
+        100% {
+            z-index: 1;
+        }
+    }
+
+    @keyframes hideLayer {
+        0% {
+            z-index: 1;
+        }
+
+        49.999% {
+            z-index: 1;
+        }
+    }
+
+    .login-container.active .sign-in {
+        transform: translateX(-100%);
+    }
+
+    .sign-up {
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    .login-container.active .sign-up {
+        transform: translateX(0);
+    }
+}
+/* End of Login */
+
+.sub-footer {
     padding: 10px 15px;
     border-top: 1px solid #ccc;
 }
@@ -765,115 +817,198 @@ header .space {
     #header .SearchBar {
         display: none;
     }
+
     #header .SearchBar_Middle {
         display: block;
     }
+
     #header .row {
         flex-wrap: nowrap;
         display: flex;
         justify-content: space-between;
     }
-    .containerHeader{
+
+    .containerHeader {
         width: 80%;
     }
+
     /*About Page*/
-    #AboutPage .hidden{
+    #AboutPage .hidden {
         display: none !important;
     }
+
     /*productDetails*/
-    #productDetailsPage .shareContainer{
+    #productDetailsPage .shareContainer {
         padding-left: 5rem;
         padding-right: 2rem
     }
-    #productDetailsPage .relativeProduct .card{
+
+    #productDetailsPage .relativeProduct .card {
         width: 150px
     }
 
 }
-=======
 
-@media screen and (max-width: 769px) {
-    .login-container {
-        border-radius: 20px;
+/* Checkout Page */
+.checkoutPage{
+    display: grid;
+    grid-template-columns: 50% 1px 50%;
+}
+
+.checkout-product-name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.form-checkout .checkout-box input {
+    border: 0.2px solid #000;
+    border-radius: 15px;
     }
 
-    .login-container form {
-        padding: 0 20px;
+.checkout-box {
+    position: relative;
+}
+
+.form-checkout .checkout-box label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 12px 30px;
+    font-size: 14px;
+    color: #000;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.form-checkout .checkout-box input:focus~label,
+.form-checkout .checkout-box input:valid~label {
+    transform: translateY(-8px);
+    color: #000;
+    font-size: 10px;
     }
 
-    .login-container .userbox {
-        width: 80%;
+.checkout-product{
+    display: grid;
+    grid-template-columns: 18% 65% 17% ;
+    }
+
+.checkout-product-image img{
+    width: 90px;
+    height: 90px;
+}
+
+.checkout-product-image{
+    position: relative;
+}
+
+.checkout-quantity{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+        text-align: center;
+    align-self: center;
+    top: -12px;
+    right: 6px;
+    }
+
+.text-small{
+    font-size: 12px;
+}
+
+@media screen and (max-width: 1380px) {
+    .checkout-product{
+        display: grid;
+        grid-template-columns: 20% 58% 22%;
+    }
+    .checkout-quantity{
+        top: -10px;
+        right: 0;
+    }    
+}
+
+@media screen and (max-width: 1200px) {
+    .checkout-product{
+        display: grid;
+        grid-template-columns: 24% 58% 18%;
+    }
+    .checkout-quantity{
+        top: -10px;
+        right: 0;
+    }    
+}
+
+@media screen and (max-width: 992px) {
+    .checkoutPage{
+        display: block;
+    }
+
+    .checkout-quantity{
+        top: -10px;
+        right: 0;
+        }
+
+    .checkout-product{
+        display: grid;
+        grid-template-columns: 16% 64% 20%;
+        }
+    }
+
+@media screen and (max-width: 768px) {
+    .checkoutPage{
+        display: block;
+    }
+
+    .checkout-quantity{
+        top: -14px;
+        right: 0;
+    }
+    
+    .checkout-product{
+        display: grid;
+        grid-template-columns: 22% 58% 20%;
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .checkoutPage{
+        display: block;
+    }
+
+    .checkout-quantity{
+        top: -14px;
+        right: 0;
+    }
+
+    .checkout-product{
+        display: grid;
+        grid-template-columns: 18% 62% 20%;
+    }
+    .checkout-product-image img{
+        width: 60px;
+        height: 60px;
     }
 }
 
 @media screen and (max-width: 438px) {
-    .login-container {
-        border-radius: 15px;
+    .checkoutPage{
+        display: block;
     }
 
-    .toggle-container {
-        display: none;
+    .checkout-product-image img{
+        width: 60px;
+        height: 60px;
     }
 
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: absolute;
-        width: 100%;
+    .checkout-quantity{
+        width: 20px;
+        height: 20px;
+        top: -8px;
+        right: 6px;
     }
 
-    .switcher {
-        text-align: center;
-        padding-bottom: 10px;
-    }
-
-    .switcher button {
-        color: #000;
-        background-color: transparent !important;
-        text-transform: none;
-    }
-
-    .form-container {
-        animation: hideLayer .3s ease-out forwards;
-    }
-
-    .form-container.active {
-        animation: showLayer .3s ease-in forwards;
-    }
-
-    @keyframes showLayer {
-        50% {
-            z-index: 1;
-        }
-
-        100% {
-            z-index: 1;
-        }
-    }
-
-    @keyframes hideLayer {
-        0% {
-            z-index: 1;
-        }
-
-        49.999% {
-            z-index: 1;
-        }
-    }
-    
-    .login-container.active .sign-in {
-        transform: translateX(-100%);
-    }
-    .sign-up{
-        right: 0;
-        transform: translateX(100%);
-    }
-    .login-container.active .sign-up {
-        transform: translateX(0);
+    .checkout-product{
+        display: grid;
+        grid-template-columns: 20% 58% 22%;
     }
 }
 
-
->>>>>>>Stashed changes
->>>>>>> Stashed changes
