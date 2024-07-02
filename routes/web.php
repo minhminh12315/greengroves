@@ -7,6 +7,7 @@ use App\Livewire\Admin\Order;
 use App\Livewire\Login;
 use App\Livewire\User\About;
 use App\Livewire\User\Checkout;
+use App\Livewire\User\CartShop;
 use App\Livewire\User\Contact;
 use App\Livewire\User\Home;
 use App\Livewire\User\Index;
@@ -29,6 +30,8 @@ Route::get('/list-product', UserListProduct::class)->name('user.list-product');
 Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');
 
 Route::get('/checkout', Checkout::class)->name('users.checkout');
+
+Route::get('/cartShop',CartShop::class)->name('user.cartShop');
 
 Route::get('/admin', AdminIndex::class)->name('admin.index');
 

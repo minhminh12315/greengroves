@@ -36,7 +36,7 @@
         <div class="d-flex flex-column gap-4">
             <h1 class="text-center">-- GARDENING TOOLS --</h1>
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 g-3">
-                <div class="col">
+                <div class="col col-md-3 col-md-4">
                     <div class="card user-card-product" style="height: 100%;">
                         <a href="">
                             <div class="overflow-hidden">
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col col-md-3 col-md-4">
                     <div class="card user-card-product" style="height: 100%;">
                         <a href="">
                             <div class="overflow-hidden">
@@ -62,7 +62,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col col-md-3 col-md-4">
                     <div class="card user-card-product" style="height: 100%;">
                         <a href="">
                             <div class="overflow-hidden">
@@ -75,20 +75,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card user-card-product" style="height: 100%;">
-                        <a href="">
-                            <div class="overflow-hidden">
-                                <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body d-flex flex-column gap-2">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">$99</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
+                <div class="col col-md-3 d-sm-none d-lg-block">
                     <div class="card user-card-product" style="height: 100%;">
                         <a href="">
                             <div class="overflow-hidden">

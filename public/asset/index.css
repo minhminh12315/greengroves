@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #admin-container aside {
     flex: 0 0 20vw;
@@ -152,7 +153,22 @@ header .space {
     .header .middleSearchIcon {}
 }
 
+=======
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.adobe.com/fonts/adapt-variable#fonts-section');
+
+@font-face {
+    font-family: 'LCSac';
+    src: url(./fonts/LCSac\ Trial-Regular.otf) format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'LCSac';
+    /* font-size: clamp(1rem, 1.2vw, 2rem); */
+}
+
 body,
 html {
     padding: 0;
@@ -164,6 +180,15 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
 }
 
 ul,
@@ -184,12 +209,14 @@ a {
     text-decoration: none;
     color: #333;
 }
-body{
+
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-#web-user-container{
+
+#web-user-container {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -200,7 +227,8 @@ body{
     padding-bottom: 20px;
     padding-top: 20px;
 }
-#web-user-container #user-footer{
+
+#web-user-container #user-footer {
     border-top: 1px solid #dee2e6;
 }
 
@@ -236,144 +264,217 @@ body{
     height: 100%;
     width: 100%;
 }
+
 .wrapper-item {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
 }
-#header .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.navbar-toggler {
+    border: none !important;
 }
-.containerHeader{
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+
+.navbar-brand {
+    margin: 0 !important;
+    padding: 0 !important;
 }
-#header .logo {
-    border: 1px solid rgb(218, 208, 208);
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-}
+
 #header {
-    background-color:burlywood;
-}
-#header .menuContainer {
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 2rem;
-    background-color: rgb(225, 52, 21);
-}
-#header .btnMenu {
-    color: aliceblue;
-}
-#header .formSearch {
     width: 100%;
-    border-radius: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    height: 35px;
-    border: none;
+    background-color: #B99470;
 }
-#header .searchContainer {
+
+#header .inp-search-container {
+    width: 100%;
+}
+
+#header .inp-search-container form {
+    width: 100%;
     position: relative;
+    background-color: #fff;
+    border-radius: 168.71px;
 }
-header .space {
-    width: 10%;
+
+#header .inp-search-container form input {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding:2px 30px;
 }
-#header .iconSearch {
+
+#header .cart-container img {
+    width: auto;
+    height: 2rem;
+}
+
+#header .cart-count-wrapper {
     position: absolute;
-    font-size: 20px;
-    padding-left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-#header .middleSearchIcon{
-  font-size: 20px;
-  padding-left: 20px;
-}
-#header .cartShop-container {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(222, 214, 214);
+    top: 6px;
+    right: -6px;
+    color: black;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #fff;
+    width: 15px;
+    height: 15px;
 }
-#header .btnLogin {
-    border: 1px solid rgb(255, 254, 254);
-    border-radius: 2rem;
+
+#header .cart-count-wrapper .cart-count {
+    position: absolute;
+    top: -3px;
+    right: 3px;
 }
-#header .SearchBar_Middle{
+
+.inp-search-mobile {
     display: none;
+    padding: 10px 15px;
+    width: 90vw;
+}
+
+.inp-search-mobile form {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    border-radius: 168.71px;
+}
+
+.inp-search-mobile form input {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding-left: 30px;
 }
 
 
+<<<<<<< HEAD
+=======
+.search-icon {
+    position: absolute;
+    left: 4px;
+    top: 2px;
+}
+#header .offcanvas ul li {
+    font-size: 1.5rem;
+}
+@media screen and (max-width:960px) {
+    .inp-search-container {
+        display: none;
+    }
+
+    .inp-search-mobile {
+        display: block;
+    }
+
+    #header .cart-container img {
+        width: auto;
+        height: 1.2rem;
+    }
+
+    #header .cart-count-wrapper .cart-count {
+        position: absolute;
+        top: -1px;
+        right: 2px;
+        font-size: 0.5rem;
+    }
+
+    #header .cart-count-wrapper {
+        position: absolute;
+        top: 4px;
+        right: -3px;
+        color: black;
+        border-radius: 50%;
+        background: #fff;
+        width: 8px;
+        height: 8px;
+    }
+
+    #header .login-container-user a {
+        font-size: 0.9rem;
+    }
+}
+
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
 /* About Page */
-#AboutPage{
+#AboutPage {
     background-color: rgb(119, 204, 119);
 }
+
 #AboutPage .aboutUsContainer {
-    background-color:antiquewhite;
+    background-color: antiquewhite;
 }
-#AboutPage .section_3{
-   background-color: antiquewhite;
+
+#AboutPage .section_3 {
+    background-color: antiquewhite;
 }
 
 #AboutPage .card-img-top {
     max-width: 100%;
-    height: auto; /* Đảm bảo ảnh giữ tỉ lệ và vừa với chiều rộng thẻ card */
-    object-fit: contain; /* Đảm bảo ảnh không bị cắt */
+    height: auto;
+    /* Đảm bảo ảnh giữ tỉ lệ và vừa với chiều rộng thẻ card */
+    object-fit: contain;
+    /* Đảm bảo ảnh không bị cắt */
 
 }
-#AboutPage .imgBorder{
-    border:1px solid white;
+
+#AboutPage .imgBorder {
+    border: 1px solid white;
     border-radius: 1rem;
     overflow: hidden;
 }
 
-#AboutPage .detailsSection_3{
+#AboutPage .detailsSection_3 {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
-#AboutPage .detailsSection_3{
+
+#AboutPage .detailsSection_3 {
     font-size: 1rem;
 
 }
 
-#AboutPage .centerText{
+#AboutPage .centerText {
     margin-left: auto;
     margin-right: auto;
-    max-width: 20rem; /* Giới hạn độ rộng của các phần tử chứa text */
-    word-wrap: break-word; /* Ngắt dòng nếu cần thiết */
+    max-width: 20rem;
+    /* Giới hạn độ rộng của các phần tử chứa text */
+    word-wrap: break-word;
+    /* Ngắt dòng nếu cần thiết */
 
 }
-#AboutPage .firstText{
+
+#AboutPage .firstText {
     padding-left: 2.5rem;
-    max-width: 20rem; /* Giới hạn độ rộng của các phần tử chứa text */
-    word-wrap: break-word; /* Ngắt dòng nếu cần thiết */
+    max-width: 20rem;
+    /* Giới hạn độ rộng của các phần tử chứa text */
+    word-wrap: break-word;
+    /* Ngắt dòng nếu cần thiết */
 
 }
-#AboutPage .endText{
+
+#AboutPage .endText {
     padding-left: 2.5rem;
-    max-width: 20rem; /* Giới hạn độ rộng của các phần tử chứa text */
-    word-wrap: break-word; /* Ngắt dòng nếu cần thiết */
+    max-width: 20rem;
+    /* Giới hạn độ rộng của các phần tử chứa text */
+    word-wrap: break-word;
+    /* Ngắt dòng nếu cần thiết */
 
 }
+
 #AboutPage .section_4 .card {
     border-radius: none;
 }
 
+<<<<<<< HEAD
 /* Login Page */
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
+=======
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
 
 .loginRegister {
     background-color: #c9d6ff;
@@ -382,9 +483,7 @@ header .space {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 100vh;
-    padding: 10px;
-
+    height: 100vh;
 }
 
 .login-container {
@@ -393,8 +492,8 @@ header .space {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
-    width: 100%;
-    max-width: 768px;
+    width: 768px;
+    max-width: 100%;
     min-height: 480px;
 }
 
@@ -448,6 +547,10 @@ header .space {
 .login-container .userbox {
     position: relative;
     width: 80%;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
 }
 
 .login-container .userbox input {
@@ -459,18 +562,14 @@ header .space {
     border-radius: 8px;
     width: 100%;
     outline: none;
-    font-weight: bold;
 }
 
 .login-container .userbox input:focus~label,
 .login-container .userbox input:valid~label {
-    transform: translateY(-8px);
+    top: -18px;
+    left: 0;
     color: #000;
-    font-size: 10px;
-}
-
-.login-container .userbox input:focus {
-    border: 1px solid #000;
+    font-size: 12px;
 }
 
 .login-container .userbox label {
@@ -484,23 +583,10 @@ header .space {
     transition: .5s;
 }
 
-.login-eye {
-    width: max-content;
-    height: max-content;
-    position: absolute;
-    right: 0.75rem;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    font-size: 1.25rem;
-    cursor: pointer;
-}
-
 .form-container {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 50%;
     transition: all 0.6s ease-in-out;
 }
 
@@ -530,6 +616,79 @@ header .space {
 
 @keyframes move {
 
+<<<<<<< HEAD
+=======
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+/*Cotact Page */
+
+#ContactPage{
+    background-color: rgb(119, 204, 119);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+#ContactPage .containerContact{
+    background-color: antiquewhite;
+}
+
+#ContactPage .detalsContainer{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#ContactPage .fontSize{
+    font-size: 20px;
+}
+#ContactPage .mapContainer{
+    background-color: antiquewhite;
+    margin-top: 1rem;
+
+}
+#ContactPage .mapDisplay {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#ContactPage .mapGoogle {
+    width: 100%;
+    height: 450px;
+}
+
+
+/*Cart Page */
+
+
+#CartShop .containerCartShop{
+    border: 1px solid black;
+    border-radius: 0.5rem;
+}
+#CartShop .totalPrice{
+    width: 200px;
+}
+#CartShop .textPrice{
+    font-size:1.25rem;
+    font-weight: bold;
+}
+#CartShop .checkOutButton{
+     width:200px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 2rem;
+}
+
+
+@keyframes show {
+>>>>>>> cb013aa101048c7e9d2729c0a76ec1c8d9d64027
     0%,
     49.99% {
         opacity: 0;
@@ -542,7 +701,26 @@ header .space {
         z-index: 5;
     }
 }
+/*Product Details */
+#productDetailsPage .productDetailContainer{
+    padding-left: 15px;
+  }
+  #productDetailsPage .textAddress{
+    font-size: 13px;
+  }
+  #productDetailsPage .slickImg{
+      width:90%;
+      height: 500px;
+      margin-left: auto;
+      margin-right: auto;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+.social-icons {
+    margin: 20px 0;
+}
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
 
 
 .toggle-container {
@@ -611,6 +789,7 @@ header .space {
     transform: translateX(200%);
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 768px) {
     .login-container {
         border-radius: 20px;
@@ -701,10 +880,14 @@ header .space {
     border-top: 1px solid #ccc;
 }
 #user-footer ul li a span{
+=======
+#user-footer ul li a span {
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
     position: relative;
     padding: 5px;
 }
-#user-footer ul li a span::after{
+
+#user-footer ul li a span::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -715,16 +898,19 @@ header .space {
     background: #252525;
     transition: all 0.3s ease-in-out;
 }
-#user-footer ul li a:hover span::after{
+
+#user-footer ul li a:hover span::after {
     left: 0;
     right: auto;
     width: 100%;
 }
-.user-card-product{
+
+.user-card-product {
     transition: 0.3s ease-in-out;
     overflow: hidden;
 }
-.user-card-product .card-img-top{
+
+.user-card-product .card-img-top {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -732,7 +918,7 @@ header .space {
     overflow: hidden;
 }
 
-.user-card-product:hover .card-img-top{
+.user-card-product:hover .card-img-top {
     transform: scale(1.1);
 }
 
@@ -742,7 +928,7 @@ header .space {
     box-shadow: 5px 5px 5px 0px rgba(201, 201, 201, 1);
 } */
 
-.user-card-news .card-img-top{
+.user-card-news .card-img-top {
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
@@ -751,15 +937,88 @@ header .space {
 }
 
 /*Product Details */
-#productDetailsPage .productDetailContainer{
+#productDetailsPage .productDetailContainer {
     padding-left: 15px;
-  }
-  #productDetailsPage .slickImg{
-      width:90%;
-      height: 500px;
-      margin-left: auto;
-      margin-right: auto;
+}
 
+#productDetailsPage .slickImg {
+    width: 90%;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+#productDetailsPage .productImageList {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#productDetailsPage .linkFont {
+    font-size: 75%;
+}
+
+#productDetailsPage .shareContainer a {
+    background-color: rgb(0, 0, 0);
+}
+
+#productDetailsPage .sizeBtn {
+    width: 40px;
+}
+
+#productDetailsPage .wasSell {
+    font-size: 12px;
+}
+
+#productDetailsPage .price {
+    color: red;
+    font-size: 17px;
+}
+
+.mouse :hover {
+    transform: scale(1.02) !important;
+    cursor: pointer !important;
+}
+
+/* #productDetailsPage .currentAddress col-12 .linkHover :hover{
+      color: rgb(199, 74, 74) !important;
+      cursor: pointer !important;
+  }
+  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
+
+  */
+#productDetailsPage .relativeProduct .card {
+    width: 10rem
+}
+
+/* Styles for screens 768px and smaller */
+@media (max-width: 768px) {
+
+    /*About Page*/
+    #AboutPage .hidden {
+        display: none !important;
+    }
+
+    /*productDetails*/
+    #productDetailsPage .shareContainer {
+        padding-left: 5rem;
+        padding-right: 2rem
+    }
+
+    #productDetailsPage .relativeProduct .card {
+        width: 150px
+    }
+
+}
+
+.logo-footer-wrapper img{
+    width: 100%;
+}
+=======
   }
 
 
@@ -802,18 +1061,26 @@ header .space {
   #productDetailsPage .relativeProduct .card{
       width: 10rem
   }
-/* Styles for screens larger than 768px */
-@media (min-width: 769px) {
-    #header .SearchBar {
-        display: block;
-    }
-    #header .SearchBar_Middle {
-        display: none;
-    }
-}
-
-/* Styles for screens 768px and smaller */
+/* Media Queries */
 @media (max-width: 768px) {
+    .containerHeader {
+        width: 100%;
+    }
+
+    #header .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    #header .btnLogin {
+        font-size: 15px;
+    }
+
+    #header .formSearch {
+        font-size: 12px;
+        height: 30px;
+    }
+
     #header .SearchBar {
         display: none;
     }
@@ -831,6 +1098,7 @@ header .space {
     .containerHeader {
         width: 80%;
     }
+<<<<<<< HEAD
 
     /*About Page*/
     #AboutPage .hidden {
@@ -839,6 +1107,14 @@ header .space {
 
     /*productDetails*/
     #productDetailsPage .shareContainer {
+=======
+     /*About Page*/
+     .hidden{
+        display: none !important;
+    }
+     /*productDetails*/
+     #productDetailsPage .shareContainer{
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
         padding-left: 5rem;
         padding-right: 2rem
     }
@@ -846,6 +1122,7 @@ header .space {
     #productDetailsPage .relativeProduct .card {
         width: 150px
     }
+<<<<<<< HEAD
 
 }
 
@@ -1012,3 +1289,12 @@ header .space {
     }
 }
 
+=======
+    .login-container {
+        width: 90%;
+        max-width: 500px;
+    }
+}
+
+>>>>>>> cb013aa101048c7e9d2729c0a76ec1c8d9d64027
+>>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
