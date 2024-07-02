@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<<<<<<< HEAD
-=======
-
->>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +20,4 @@
     <script src="{{ asset('asset/app.js') }}"></script>
     @livewireScripts
 </body>
-<<<<<<< HEAD
 </html>
-=======
-
-
-</html>
->>>>>>> 3639e7139400bfcde466a7003851b2588cf81c3e
