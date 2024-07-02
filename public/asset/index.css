@@ -445,6 +445,79 @@ body {
 
 @keyframes move {
 
+<<<<<<< HEAD
+=======
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+/*Cotact Page */
+
+#ContactPage{
+    background-color: rgb(119, 204, 119);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+#ContactPage .containerContact{
+    background-color: antiquewhite;
+}
+
+#ContactPage .detalsContainer{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#ContactPage .fontSize{
+    font-size: 20px;
+}
+#ContactPage .mapContainer{
+    background-color: antiquewhite;
+    margin-top: 1rem;
+
+}
+#ContactPage .mapDisplay {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#ContactPage .mapGoogle {
+    width: 100%;
+    height: 450px;
+}
+
+
+/*Cart Page */
+
+
+#CartShop .containerCartShop{
+    border: 1px solid black;
+    border-radius: 0.5rem;
+}
+#CartShop .totalPrice{
+    width: 200px;
+}
+#CartShop .textPrice{
+    font-size:1.25rem;
+    font-weight: bold;
+}
+#CartShop .checkOutButton{
+     width:200px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 2rem;
+}
+
+
+@keyframes show {
+>>>>>>> cb013aa101048c7e9d2729c0a76ec1c8d9d64027
     0%,
     49.99% {
         opacity: 0;
@@ -457,7 +530,20 @@ body {
         z-index: 5;
     }
 }
+/*Product Details */
+#productDetailsPage .productDetailContainer{
+    padding-left: 15px;
+  }
+  #productDetailsPage .textAddress{
+    font-size: 13px;
+  }
+  #productDetailsPage .slickImg{
+      width:90%;
+      height: 500px;
+      margin-left: auto;
+      margin-right: auto;
 
+<<<<<<< HEAD
 .social-icons {
     margin: 20px 0;
 }
@@ -675,3 +761,99 @@ body {
 .logo-footer-wrapper img{
     width: 100%;
 }
+=======
+  }
+
+
+  #productDetailsPage .productImageList{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+
+  }
+  #productDetailsPage .linkFont{
+   font-size: 75%;
+  }
+  #productDetailsPage .shareContainer a{
+      background-color: rgb(0, 0, 0);
+  }
+  #productDetailsPage .sizeBtn{
+      width: 40px;
+  }
+  #productDetailsPage .wasSell{
+      font-family:'Gill Sans', 'Gill Sans MT','Trebuchet MS', sans-serif;
+      font-size: 12px;
+  }
+  #productDetailsPage .price{
+      color: red;
+      font-size: 17px;
+  }
+  .mouse :hover{
+      transform: scale(1.02) !important;
+      cursor: pointer !important;
+  }
+
+  /* #productDetailsPage .currentAddress col-12 .linkHover :hover{
+      color: rgb(199, 74, 74) !important;
+      cursor: pointer !important;
+  }
+  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
+
+  */
+  #productDetailsPage .relativeProduct .card{
+      width: 10rem
+  }
+/* Media Queries */
+@media (max-width: 768px) {
+    .containerHeader {
+        width: 100%;
+    }
+
+    #header .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    #header .btnLogin {
+        font-size: 15px;
+    }
+
+    #header .formSearch {
+        font-size: 12px;
+        height: 30px;
+    }
+
+    #header .SearchBar {
+        display: none;
+    }
+    #header .SearchBar_Middle {
+        display: block;
+    }
+    #header .row {
+        flex-wrap: nowrap;
+        display: flex;
+        justify-content: space-between;
+    }
+    .containerHeader{
+        width: 80%;
+    }
+     /*About Page*/
+     .hidden{
+        display: none !important;
+    }
+     /*productDetails*/
+     #productDetailsPage .shareContainer{
+        padding-left: 5rem;
+        padding-right: 2rem
+    }
+    #productDetailsPage .relativeProduct .card{
+        width: 150px
+    }
+    .login-container {
+        width: 90%;
+        max-width: 500px;
+    }
+}
+
+>>>>>>> cb013aa101048c7e9d2729c0a76ec1c8d9d64027
