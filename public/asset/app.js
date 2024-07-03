@@ -1,5 +1,6 @@
 var R = {
     init: function () {
+        R.navbarStick();
         R.registerEvents();
         R.generateCombinations();
     },
@@ -21,8 +22,6 @@ var R = {
                 </div>
             `);
         });
-
-        $('')
 
         $(document).on("click", ".remove_variant", function () {
             $(this).closest(".variant-group").remove();
@@ -67,8 +66,8 @@ var R = {
                     <div class="combination-group mb-2">
                         <div class="form-group">
                             <label>Combination: ${combination.join(
-                                ", "
-                            )}</label>
+                    ", "
+                )}</label>
                             <input type="hidden" name="combinations[${index}]" value="${combination.join(
                     ", "
                 )}">
@@ -103,13 +102,12 @@ var R = {
         f([], variants);
         return result;
     },
-
     formInputProductType: () => {
-        if($("input[name=product_type]:checked").val() == "single") {
+        if ($("input[name=product_type]:checked").val() == "single") {
             $("#variants_container").empty();
             $("#combinations_container").empty();
         }
-        if($("input[name=product_type]:checked").val() == "variable") {
+        if ($("input[name=product_type]:checked").val() == "variable") {
             $("#variants_container").empty();
             $("#combinations_container").empty();
             $("#variants_container").append(`
@@ -125,6 +123,21 @@ var R = {
             `);
 
         }
-    }
+    },
+    navbarStick: () => {
+        let navbar = $('.nav-home');
+        let sticky = navbar.offset().top;
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= sticky) {
+                navbar.addClass("navbarSticky");
+                navbar.css("top", "0");
+            } else {
+                navbar.removeClass("navbarSticky");
+                navbar.css("top", "");
+            }
+        });
+    },
 };
 R.init();
+
+
