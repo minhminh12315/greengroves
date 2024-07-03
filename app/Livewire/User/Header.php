@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use Livewire\Component;
 use App\Models\Categories;
+use Illuminate\Support\Facades\Log;
 
 class Header extends Component
 {
@@ -32,10 +33,12 @@ class Header extends Component
             if (isset($this->selectedCategories[$level]) && $this->selectedCategories[$level] == $categoryId) {
                 // Nếu đang chọn lại category hiện tại, thì hủy lựa chọn và xóa các subcategory sâu hơn
                 unset($this->selectedCategories[$level]);
-                for ($i = $level + 1; $i <= count($this->subcategories) + 1; $i++) {
-                    unset($this->selectedCategories[$i]);
-                    unset($this->subcategories[$i]);
+                foreach ($this->subcategories as $key => $subcategory) {
+                    if ($key > $level) {
+                        unset($this->subcategories[$key]);
+                    }
                 }
+                
             } else {
                 // Chọn category mới
                 $this->selectedCategories[$level] = $categoryId;
@@ -48,7 +51,7 @@ class Header extends Component
                     $this->subcategories[$level + 1] = $subcategories;
                 } else {
                     // Nếu không có subcategories, xóa các subcategories ở cấp độ sâu hơn
-                    for ($i = $level + 1; $i <= count($this->subcategories) + 1; $i++) {
+                    for ($i = $level + 1; $i <= count($this->subcategories); $i++) {
                         unset($this->selectedCategories[$i]);
                         unset($this->subcategories[$i]);
                     }
