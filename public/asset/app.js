@@ -14,7 +14,7 @@ var R = {
                 <div class="variant-group mb-2" data-variant-id="${variantCount}">
                     <div class="form-group">
                         <label for="variant_name_${variantCount}">Variant Name</label>
-                        <input type="text" class="form-control variant-name" name="variant_name[]" required>
+                        <input wire:model="variantNames[]" type="text" class="form-control variant-name" name="variant_name[]" required>
                     </div>
                     <div class="variant-options-container" data-variant-id="${variantCount}"></div>
                     <button type="button" class="btn btn-info badge add_variant_option" data-variant-id="${variantCount}">Add Variant Option</button>
@@ -35,7 +35,7 @@ var R = {
                 <div class="variant-option-group">
                     <div class="form-group">
                         <label for="value_${variantId}">Option Value</label>
-                        <input type="text" class="form-control variant-value" name="value[${variantId}][]" required>
+                        <input wire:model="values[]" type="text" class="form-control variant-value" name="value[${variantId}][]" required>
                     </div>
                     <button type="button" class="btn btn-danger badge remove_variant_option">Remove Option</button>
                 </div>
@@ -74,11 +74,11 @@ var R = {
                         </div>
                         <div class="form-group">
                             <label for="quantity_${index}">Quantity</label>
-                            <input type="number" class="form-control" name="quantity[${index}]" min="0" required>
+                            <input wire:model="quantities[]" type="number" class="form-control" name="quantity[${index}]" min="0" required>
                         </div>
                         <div class="form-group">
                             <label for="price_${index}">Price</label>
-                            <input type="number" step="0.01" class="form-control" name="price[${index}]" min="0" required>
+                            <input wire:model="prices[]" type="number" step="0.01" class="form-control" name="price[${index}]" min="0" required>
                         </div>
                     </div>
                 `);
