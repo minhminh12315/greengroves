@@ -1031,8 +1031,9 @@ body {
 /* #productDetailsPage .currentAddress col-12 .linkHover :hover{
       color: rgb(199, 74, 74) !important;
       cursor: pointer !important;
+      display: inline-block !important;
   }
-  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
+  /* Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc */
 
   */
 #productDetailsPage .relativeProduct .card {
@@ -1081,9 +1082,14 @@ body {
     #AboutPage .hidden {
         display: none !important;
     }
+<<<<<<< HEAD
+    /*productDetails*/
+    #productDetailsPage .shareContainer{
+=======
 
     /*productDetails*/
     #productDetailsPage .shareContainer {
+>>>>>>> 690df8406378f081d57abc52dd0f5abc08a91179
         padding-left: 5rem;
         padding-right: 2rem
     }
@@ -1092,6 +1098,14 @@ body {
         width: 150px
     }
 
+<<<<<<< HEAD
+    #productDetailsPage .relativeProduct .card-title{
+        font-size: 15px;
+    }
+    #productDetailsPage .textItems{
+        padding:0;
+        margin: auto;
+=======
 }
 
 /* Checkout Page */
@@ -1258,6 +1272,7 @@ body {
     .checkout-product {
         display: grid;
         grid-template-columns: 20% 58% 22%;
+>>>>>>> 690df8406378f081d57abc52dd0f5abc08a91179
     }
 }
 
