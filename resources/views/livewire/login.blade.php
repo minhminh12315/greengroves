@@ -90,6 +90,5 @@
 		$registerBtn.on('click', toggleForms);
 		$loginBtn.on('click', toggleForms);
 		$switchers.on('click', switchForms);
-
 	});
 </script>
