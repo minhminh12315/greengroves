@@ -549,12 +549,10 @@ header .space {
 #productDetailsPage .productDetailContainer{
     padding-left: 15px;
   }
-  #productDetailsPage .textAddress{
-    font-size: 13px;
-  }
   #productDetailsPage .slickImg{
-      width:90%;
+      width:89%;
       height: 500px;
+      aspect-ratio: 1/1;
       margin-left: auto;
       margin-right: auto;
 
@@ -564,13 +562,19 @@ header .space {
   #productDetailsPage .productImageList{
       padding-top: 1rem;
       padding-bottom: 1rem;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
+      width: calc(90% + 16px);
+      margin: auto;
 
+  }
+  #productDetailsPage .productItems{
+      aspect-ratio: 1/1;
+      width: 20%;
   }
   #productDetailsPage .linkFont{
    font-size: 75%;
   }
+
   #productDetailsPage .shareContainer a{
       background-color: rgb(0, 0, 0);
   }
@@ -590,16 +594,51 @@ header .space {
       cursor: pointer !important;
   }
 
-  /* #productDetailsPage .currentAddress col-12 .linkHover :hover{
+  #productDetailsPage .currentAddress  .linkHover:hover{
       color: rgb(199, 74, 74) !important;
       cursor: pointer !important;
+      display: inline-block !important;
   }
-  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
+  /* Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc */
 
-  */
+
   #productDetailsPage .relativeProduct .card{
       width: 10rem
   }
+  #productDetailsPage .textItems{
+      padding:0;
+      margin: auto;
+  }
+/*list Product*/
+#listProductPage .card-title{
+    font-size: 15px;
+}
+#listProductPage .listProducts{
+    margin: auto;
+ }
+ #listProductPage{
+    background-color: antiquewhite;
+}
+#listProductPage .list_Menu{
+    border: 1px solid black;
+    background-color: rgb(196, 166, 127);
+
+}
+/* #listProductPage .searchProductContainer{
+    width: 90%;
+
+} */
+#listProductPage .wasSell{
+    font-family:'Gill Sans', 'Gill Sans MT','Trebuchet MS', sans-serif;
+    font-size: 12px;
+}
+#listProductPage .price{
+    color: red;
+    font-size: 17px;
+}
+#listProductPage .listProducts{
+    width:95%;
+}
 /* Media Queries */
 @media (max-width: 768px) {
     .containerHeader {
@@ -638,17 +677,42 @@ header .space {
      .hidden{
         display: none !important;
     }
-     /*productDetails*/
-     #productDetailsPage .shareContainer{
+    /*productDetails*/
+    #productDetailsPage .shareContainer{
         padding-left: 5rem;
         padding-right: 2rem
     }
     #productDetailsPage .relativeProduct .card{
         width: 150px
     }
-    .login-container {
-        width: 90%;
-        max-width: 500px;
+
+    #productDetailsPage .relativeProduct .card-title{
+        font-size: 15px;
+    }
+    #productDetailsPage .textItems{
+        padding:0;
+        margin: auto;
     }
 }
 
+@media (max-width:500px){
+    #productDetailsPage .relativeProduct .card{
+         width: 7rem;
+     }
+     #listProductPage .card{
+        width: 10rem;
+    }
+    #listProductPage .categoryText{
+        font-size: 12px;
+    }
+    #listProductPage .list_Menu div{
+        font-size: 12px;
+    }
+
+    #listProductPage .price{
+        font-size: 15px;
+    }
+    #listProductPage .wasSell{
+        font-size: 9px;
+    }
+ }
