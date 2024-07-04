@@ -1,5 +1,6 @@
 var R = {
     init: function () {
+        R.navbarStick();
         R.registerEvents();
         R.generateCombinations();
     },
@@ -13,7 +14,7 @@ var R = {
                 <div class="variant-group mb-2" data-variant-id="${variantCount}">
                     <div class="form-group">
                         <label for="variant_name_${variantCount}">Variant Name</label>
-                        <input type="text" class="form-control variant-name" name="variant_name[]" required>
+                        <input wire:model="variantNames[]" type="text" class="form-control variant-name" name="variant_name[]" required>
                     </div>
                     <div class="variant-options-container" data-variant-id="${variantCount}"></div>
                     <button type="button" class="btn btn-info badge add_variant_option" data-variant-id="${variantCount}">Add Variant Option</button>
@@ -21,8 +22,6 @@ var R = {
                 </div>
             `);
         });
-
-        $('')
 
         $(document).on("click", ".remove_variant", function () {
             $(this).closest(".variant-group").remove();
@@ -36,7 +35,7 @@ var R = {
                 <div class="variant-option-group">
                     <div class="form-group">
                         <label for="value_${variantId}">Option Value</label>
-                        <input type="text" class="form-control variant-value" name="value[${variantId}][]" required>
+                        <input wire:model="values[]" type="text" class="form-control variant-value" name="value[${variantId}][]" required>
                     </div>
                     <button type="button" class="btn btn-danger badge remove_variant_option">Remove Option</button>
                 </div>
@@ -67,19 +66,19 @@ var R = {
                     <div class="combination-group mb-2">
                         <div class="form-group">
                             <label>Combination: ${combination.join(
-                                ", "
-                            )}</label>
+                    ", "
+                )}</label>
                             <input type="hidden" name="combinations[${index}]" value="${combination.join(
                     ", "
                 )}">
                         </div>
                         <div class="form-group">
                             <label for="quantity_${index}">Quantity</label>
-                            <input type="number" class="form-control" name="quantity[${index}]" min="0" required>
+                            <input wire:model="quantities[]" type="number" class="form-control" name="quantity[${index}]" min="0" required>
                         </div>
                         <div class="form-group">
                             <label for="price_${index}">Price</label>
-                            <input type="number" step="0.01" class="form-control" name="price[${index}]" min="0" required>
+                            <input wire:model="prices[]" type="number" step="0.01" class="form-control" name="price[${index}]" min="0" required>
                         </div>
                     </div>
                 `);
@@ -103,13 +102,12 @@ var R = {
         f([], variants);
         return result;
     },
-
     formInputProductType: () => {
-        if($("input[name=product_type]:checked").val() == "single") {
+        if ($("input[name=product_type]:checked").val() == "single") {
             $("#variants_container").empty();
             $("#combinations_container").empty();
         }
-        if($("input[name=product_type]:checked").val() == "variable") {
+        if ($("input[name=product_type]:checked").val() == "variable") {
             $("#variants_container").empty();
             $("#combinations_container").empty();
             $("#variants_container").append(`
@@ -125,6 +123,21 @@ var R = {
             `);
 
         }
-    }
+    },
+    navbarStick: () => {
+        let navbar = $('.nav-home');
+        let sticky = navbar.offset().top;
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= sticky) {
+                navbar.addClass("navbarSticky");
+                navbar.css("top", "0");
+            } else {
+                navbar.removeClass("navbarSticky");
+                navbar.css("top", "");
+            }
+        });
+    },
 };
 R.init();
+
+
