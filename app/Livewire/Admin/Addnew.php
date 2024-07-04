@@ -41,6 +41,7 @@ class Addnew extends Component
     public $variantCombinations = [];
     public $numberOfVariants = 1;
     public $newVariantOption;
+    public $attribute_option = [];
 
     public function addVariantAttribute()
     {
@@ -54,6 +55,26 @@ class Addnew extends Component
     public function setProductType($type)
     {
         $this->product_type = $type;
+    }
+
+
+
+    public function deleteAttribute($attributeIndex)
+    {
+        // Xóa thuộc tính biến thể và tất cả các tùy chọn của nó từ mảng $variantAttributes
+        unset($this->variantAttributes[$attributeIndex]);
+
+        // Cập nhật lại kết hợp sau khi xóa
+        $this->generateCombinations();
+    }
+
+    public function deleteOption($attributeIndex, $optionIndex)
+    {
+        // Xóa tùy chọn tương ứng từ mảng $variantAttributes
+        unset($this->variantAttributes[$attributeIndex]['options'][$optionIndex]);
+
+        // Cập nhật lại kết hợp sau khi xóa
+        $this->generateCombinations();
     }
 
     public function generateCombinations()
@@ -102,64 +123,45 @@ class Addnew extends Component
         }
     }
 
-    public function deleteAttribute($attributeIndex)
-    {
-        // Xóa thuộc tính biến thể và tất cả các tùy chọn của nó từ mảng $variantAttributes
-        unset($this->variantAttributes[$attributeIndex]);
-
-        // Cập nhật lại kết hợp sau khi xóa
-        $this->generateCombinations();
-    }
-
-    public function deleteOption($attributeIndex, $optionIndex)
-    {
-        // Xóa tùy chọn tương ứng từ mảng $variantAttributes
-        unset($this->variantAttributes[$attributeIndex]['options'][$optionIndex]);
-
-        // Cập nhật lại kết hợp sau khi xóa
-        $this->generateCombinations();
-    }
-
-
-
     public function store_product()
     {
         Log::info('store_product method called', ['product_type' => $this->product_type]);
         try {
+            $this->variantNames = [];
+            $this->values = [];
+            $this->quantities = [];
+            $this->prices = [];
+
+            $product = new Product();
+            $product->name = $this->name;
+            $product->description = $this->description;
+            $product->category_id = $this->category_id;
+            $product->type = $this->product_type;
+            $product->save();
+
+            Log::info('Product saved', ['product_id' => $product->id]);
+
+            $this->name = '';
+            $this->description = '';
+            $this->category_id = '';
+
+
+            foreach ($this->images as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                // Store the image in the 'public' disk
+                $image->storeAs('assets/images', $imageName, 'public');
+                // Generate a storage path URL
+                $imagePath = 'assets/images/' . $imageName;
+
+                ProductImage::create([
+                    'path' => $imagePath, // Store the storage path
+                    'product_id' => $product->id,
+                ]);
+                Log::info('Image uploaded', ['path' => $imagePath, 'product_id' => $product->id]);
+            }
             if ($this->product_type == 'single') {
                 Log::info('Processing single product type');
-                $this->variantNames = [];
-                $this->values = [];
-                $this->quantities = [];
-                $this->prices = [];
 
-                $product = new Product();
-                $product->name = $this->name;
-                $product->description = $this->description;
-                $product->category_id = $this->category_id;
-                $product->type = $this->product_type;
-                $product->save();
-
-                Log::info('Product saved', ['product_id' => $product->id]);
-
-                $this->name = '';
-                $this->description = '';
-                $this->category_id = '';
-
-
-                foreach ($this->images as $image) {
-                    $imageName = time() . '_' . $image->getClientOriginalName();
-                    // Store the image in the 'public' disk
-                    $image->storeAs('assets/images', $imageName, 'public');
-                    // Generate a storage path URL
-                    $imagePath = 'assets/images/' . $imageName;
-
-                    ProductImage::create([
-                        'path' => $imagePath, // Store the storage path
-                        'product_id' => $product->id,
-                    ]);
-                    Log::info('Image uploaded', ['path' => $imagePath, 'product_id' => $product->id]);
-                }
 
                 ProductVariant::create([
                     'product_id' => $product->id,
@@ -172,11 +174,22 @@ class Addnew extends Component
                     'quantity' => $this->quantity_single,
                     'price' => $this->price_single,
                 ]);
-            } else {
-                Log::info('Non-single product type not handled', ['product_type' => $this->product_type]);
+            } else if ($this->product_type == 'variable') {
+                Log::info('Processing variable product type');
+                foreach ($this->variantAttributes as $attribute) {
+                    Log::info('option:', ['attribute' => $attribute]);
+                    $this->attribute_option = $attribute['options'];
+                    foreach($this->attribute_option as $op){
+                        Log::info('option:', ['option' => $op]);
+                        Variant::create([
+                            'name' => $op,
+                        ]);
+                    }
+                }
+                foreach ($this->variantCombinations as $com) {
+                    Log::info('com', ['com' => $com]);
+                }
             }
-            Log::info('Product added successfully: ' . $product->name);
-
             return $this->redirect('/admin/addnew');
         } catch (\Exception $e) {
             Log::error('Error adding product', ['exception' => $e->getMessage(), 'product' => $this->name]);
@@ -260,13 +273,10 @@ class Addnew extends Component
         return view('livewire.admin.addnew', $data);
     }
 
-    public function selectedCategory($level)
+    public function mount()
     {
-        if($level == 0){
-            $this->selectedCategory = [];
-            $this->parent_id = null;
-        } else {
-            $this->parent_id = $level;
-        }
+        
+            $this->category_id = 1; // Set default value to the first category's ID
+        
     }
 }
