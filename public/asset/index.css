@@ -518,6 +518,8 @@ body {
     margin: auto 0;
     font-size: 1.25rem;
     cursor: pointer;
+    transform: rotateY(180deg);
+    transition: all 0.6s ease-in-out;
 }
 
 .form-container {
@@ -993,7 +995,12 @@ body {
 }
 
 
-
+  #productDetailsPage .productImageList{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+  }
 #productDetailsPage .productImageList {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -1002,44 +1009,50 @@ body {
 
 }
 
-#productDetailsPage .linkFont {
-    font-size: 75%;
-}
+  /* #productDetailsPage .currentAddress col-12 .linkHover :hover{
+      color: rgb(199, 74, 74) !important;
+      cursor: pointer !important;
+  }
+  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
 
-#productDetailsPage .shareContainer a {
-    background-color: rgb(0, 0, 0);
+  */
+  #productDetailsPage .relativeProduct .card{
+      width: 10rem
+  }
+  #productDetailsPage .textItems{
+      padding:0;
+      margin: auto;
+  }
+/*list Product*/
+#listProductPage .card-title{
+    font-size: 15px;
 }
-
-#productDetailsPage .sizeBtn {
-    width: 40px;
+#listProductPage .listProducts{
+    margin: auto;
+ }
+ #listProductPage{
+    background-color: antiquewhite;
 }
+#listProductPage .list_Menu{
+    border: 1px solid black;
+    background-color: rgb(196, 166, 127);
 
-#productDetailsPage .wasSell {
+}
+/* #listProductPage .searchProductContainer{
+    width: 90%;
+
+} */
+#listProductPage .wasSell{
+    font-family:'Gill Sans', 'Gill Sans MT','Trebuchet MS', sans-serif;
     font-size: 12px;
 }
-
-#productDetailsPage .price {
+#listProductPage .price{
     color: red;
     font-size: 17px;
 }
-
-.mouse :hover {
-    transform: scale(1.02) !important;
-    cursor: pointer !important;
+#listProductPage .listProducts{
+    width:95%;
 }
-
-/* #productDetailsPage .currentAddress col-12 .linkHover :hover{
-      color: rgb(199, 74, 74) !important;
-      cursor: pointer !important;
-      display: inline-block !important;
-  }
-  /* Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc */
-
-  */
-#productDetailsPage .relativeProduct .card {
-    width: 10rem
-}
-
 /* Media Queries */
 @media (max-width: 768px) {
     .containerHeader {
