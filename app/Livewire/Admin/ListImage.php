@@ -31,6 +31,11 @@ class ListImage extends Component
     public $edit_image_description;
     public $edit_image_type;
 
+    public function mount()
+    {
+        $this->image_type_new = Image::all()->first()->type;
+    }
+
     public function openAddNewImagesModal()
     {
         Log::info('openAddNewImagesModal');
@@ -114,6 +119,7 @@ class ListImage extends Component
         $this->image_type_new = '';
         $this->addNewImageType = false;
         $this->addNewImagesModal = false;
+        $this->mount();
     }
 
     public function update_image()
