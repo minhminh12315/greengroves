@@ -23,7 +23,6 @@ class ListImage extends Component
     public $image_path_new;
     public $image_description_new;
     public $image_type_new;
-    public $new_image_type;
     public $distinctTypes;
     public $edit_image_id;
     public $edit_image_title;
@@ -46,6 +45,16 @@ class ListImage extends Component
     public function newtype()
     {
         $this->addNewImageType = true;
+        $this->image_type_new = '';
+        Log::info('newtype selected');
+        Log::info($this->image_type_new);
+    }
+    public function oldtype()
+    {
+        $this->addNewImageType = false;
+        $this->image_type_new = '';
+        Log::info('oldtype selected');
+        Log::info($this->image_type_new);
     }
 
     public function openEditImageModal($id)

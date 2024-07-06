@@ -172,9 +172,9 @@
     <div class="modal fade show" style="display: block;" aria-modal="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header d-flex justify-content-between">
                     <h5 class="modal-title">Add New Category</h5>
-                    <button type="button" class="close" wire:click="hideAddCategoryModal">
+                    <button type="button" class="close btn btn-danger" wire:click="hideAddCategoryModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -206,9 +206,9 @@
     <div class="modal fade show" style="display: block;" aria-modal="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header d-flex justify-content-between">
                     <h5 class="modal-title">Add New Variant Attribute</h5>
-                    <button type="button" class="close" wire:click="hideVariantAttributeModal">
+                    <button type="button" class="close btn btn-danger" wire:click="hideVariantAttributeModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

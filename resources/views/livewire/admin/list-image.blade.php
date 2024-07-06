@@ -7,30 +7,34 @@
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header d-flex justify-content-between d-flex justify-content-between">
                         <h5 class="modal-title">Add New Image</h5>
-                        <button type="button" class="close" wire:click="closeAddNewImagesModal">
+                        <button  type="button" class="close btn btn-danger" wire:click="closeAddNewImagesModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form wire:submit.prevent="store_image" enctype="multipart/form-data">
-                            <div class="form-group">
+                            <div class="form-group mt-2 mb-2">
                                 <label for="image_title_new">Image Title</label>
                                 <input type="text" class="form-control" id="image_title_new" wire:model="image_title_new">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-2 mb-2">
                                 <label for="image_description_new">Image description</label>
                                 <input type="text" class="form-control" id="image_description_new" wire:model="image_description_new">
                             </div>
-                            <div class="form-group">
-                                <div class="d-flex justify-content-between">
-                                    <label for="image_type_new">Image type</label>
-                                    <button wire:click="newtype" type="button">New Type</button>
-                                </div>
+                            <div class="form-group mt-2 mb-2">
                                 @if($addNewImageType)
-                                <input type="text" class="form-control" id="image_type_new" wire:model="image_type_new">
+                                <div class="d-flex justify-content-between mt-2 mb-2">
+                                    <label for="image_type_new">Image type</label>
+                                    <button class="btn btn-primary badge " wire:click="oldtype" type="button">Old Type</button>
+                                </div>
+                                <input type="text" class="form-control" id="image_type_new" wire:model="image_type_new" value="{{ $image_type_new }}" placeholder="please input new type">
                                 @else
+                                <div class="d-flex justify-content-between mt-2 mb-2">
+                                    <label for="image_type_new">Image type</label>
+                                    <button class="btn btn-primary badge " wire:click="newtype" type="button">New Type</button>
+                                </div>
                                 <select class="form-control" id="image_type_new" wire:model="image_type_new">
                                     @if($distinctTypes->isNotEmpty())
                                     @foreach ($distinctTypes as $type)
@@ -41,13 +45,15 @@
                                     @endif
                                 </select>
                                 @endif
-                                <!-- <input type="text" class="form-control" id="image_type_new" wire:model="image_type_new"> -->
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-2 mb-2">
                                 <label for="image_path_new">Image path</label>
                                 <input type="file" class="form-control" id="image_path_new" wire:model="image_path_new">
+                                @if ($image_path_new)
+                                <img src="{{ $image_path_new->temporaryUrl() }}" width="100" height="100" class="mt-1 mb-1" alt="image">
+                                @endif
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary mt-2 mb-2">Save</button>
                         </form>
                     </div>
                 </div>
@@ -60,9 +66,9 @@
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header d-flex justify-content-between">
                         <h5 class="modal-title">Edit Image</h5>
-                        <button type="button" class="close" wire:click="closeEditNewsModal">
+                        <button type="button" class="close btn btn-danger" wire:click="closeEditNewsModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -111,9 +117,9 @@
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header d-flex justify-content-between">
                         <h5 class="modal-title">Confirm Delete</h5>
-                        <button type="button" class="close" wire:click="closeDeleteImageModal">
+                        <button type="button" class="close btn btn-danger" wire:click="closeDeleteImageModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

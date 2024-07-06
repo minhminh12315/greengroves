@@ -69,9 +69,9 @@
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header d-flex justify-content-between">
                         <h5 class="modal-title">Edit Variant</h5>
-                        <button type="button" class="close" wire:click="hideModal">
+                        <button type="button" class="close btn btn-danger" wire:click="hideModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -101,9 +101,9 @@
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header d-flex justify-content-between">
                         <h5 class="modal-title">Confirm Delete</h5>
-                        <button type="button" class="close" wire:click="hideDeleteModal">
+                        <button type="button" class="close btn btn-danger" wire:click="hideDeleteModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
