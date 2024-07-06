@@ -4,7 +4,7 @@
 <div class="container">
     <h1>New product</h1>
     <p>Create new product</p>
-    <form wire:submit="store_product" enctype="multipart/form-data">
+    <form wire:submit.prevent="store_product" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-body">
@@ -16,13 +16,19 @@
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="form-group">
                             <label for="name">Product name: </label>
-                            <input wire:model="name" type="text" name="name" id="name" class="form-control" required>
+                            <input wire:model="name" type="text" name="name" id="name" class="form-control mt-1" >
+                            @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="form-group">
-                            <label for="category">Category: </label>
-                            <select wire:model="category_id" name="category_id" id="category" class="text-capitalize form-control" required>
+                            <div class="d-flex justify-content-between">
+                                <label for="category">Category: </label>
+                                <div>
+                                    <button type="button" class="btn btn-primary badge" wire:click="showAddCategoryModal">+ New Category</button>
+                                </div>
+                            </div>
+                            <select wire:model="category_id" name="category_id" id="category" class="text-capitalize  mt-1 form-control" >
                                 @if ($category->count() > 0)
                                 @foreach ($category as $cat)
                                 <option class="text-capitalize" value="{{$cat->id}}">{{$cat->name}}</option>
@@ -31,19 +37,38 @@
                                 <option value="">No category</option>
                                 @endif
                             </select>
-                            <p>Go bottom page to create new category!</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description: </label>
-                    <textarea wire:model="description" name="description" id="description" class="form-control" required></textarea>
+                    <textarea wire:model="description" name="description" id="description" class="form-control" ></textarea>
+                    @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                 </div>
+                
 
                 <div class="form-group">
                     <label for="images">Image: </label>
                     <input wire:model="images" type="file" name="images" id="images" class="form-control" multiple>
+                    @if ($images)
+                    <div class="mt-2">
+                        @foreach ($images as $image)
+                        <img src="{{ $image->temporaryUrl() }}" width="100" height="100" class="mr-2 mb-2">
+                        @endforeach
+                    </div>
+                    @endif
+
+                    @error('images') <span class="error text-danger">{{ $message }}</span> @enderror
+
+                    @if ($errors->has('images.*'))
+                    @foreach ($errors->get('images.*') as $key => $messages)
+                    @foreach ($messages as $message)
+                    <span class="error text-danger">{{ $message }}</span><br>
+                    @endforeach
+                    @endforeach
+                    @endif
+
                 </div>
 
                 <div>
@@ -62,11 +87,13 @@
                         <div class="form-group row">
                             <div class="col-12 col-md-6">
                                 <label for="quantity">Quantity: </label>
-                                <input wire:model="quantity_single" type="number" name="quantity" id="quantity" class="form-control" required>
+                                <input wire:model="quantity_single" type="number" name="quantity" id="quantity" class="form-control" >
+                                @error('quantity_single') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="col-12 col-md-6">
                                 <label for="price">Price: </label>
-                                <input wire:model="price_single" type="number" name="price" id="price" class="form-control" required>
+                                <input wire:model="price_single" type="number" name="price" id="price" class="form-control" >
+                                @error('price_single') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         @elseif($product_type == 'variable')
@@ -86,6 +113,7 @@
                                     @endforeach
                                     @endif
                                 </select>
+                                @error('variantAttributes.' . $index . '.variant') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="col-12 col-md-5">
@@ -96,6 +124,8 @@
                                     <input type="text" wire:model="variantAttributes.{{ $index }}.options.{{ $optionIndex }}" name="variant_options[]" id="variant_options" class="form-control" placeholder="Enter Variant Option">
                                     <button type="button" class="btn btn-danger ml-2" wire:click="deleteOption({{ $index }}, {{ $optionIndex }})">Delete</button>
                                 </div>
+                                @error('variantAttributes.' . $index . '.options.' . $optionIndex) <span class="error text-danger">{{ $message }}</span> @enderror
+                                
                                 @endforeach
 
                                 <div class="d-flex justify-content-end w-100 mt-1">
@@ -124,74 +154,80 @@
                                 <p>Variant: {{ $combination['variant'] }}</p>
                                 <p>Option: {{ $combination['option'] }}</p>
                                 <input type="number" wire:model="variantCombinations.{{ $index }}.quantity" placeholder="Enter Quantity">
+                                @error('variantCombinations.' . $index . '.quantity') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="number" wire:model="variantCombinations.{{ $index }}.price" placeholder="Enter Price">
+                                @error('variantCombinations.' . $index . '.price') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             @endforeach
                         </div>
                         @endif
-
-
-
                         @endif
-
-                        @if($VariantAttributeModal)
-                        <div class="modal fade show" style="display: block;" aria-modal="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Add New Variant Attribute</h5>
-                                        <button type="button" class="close" wire:click="hideVariantAttributeModal">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="newVariantName">Variant Name</label>
-                                                <input type="text" class="form-control" id="newVariantName" wire:model="newVariantName">
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" wire:click="hideVariantAttributeModal">Close</button>
-                                        <button type="button" class="btn btn-primary" wire:click="addNewVariantAttribute">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-backdrop fade show"></div>
-                        @endif
-
-
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Add Product</button>
             </div>
         </div>
-
     </form>
-
-    <button class="btn btn-info badge addnew_category mt-4" type="button">Add new Category</button>
-    <form wire:submit="addnew_category" id="form_addnew_category">
-        <div class="form-group">
-            <label for="category_addnew">Category: </label>
-            <input wire:model="category_addnew" type="text" name="category_addnew" id="category_addnew" class="form-control" required>
+    @if($addCategoryModal)
+    <div class="modal fade show" style="display: block;" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Category</h5>
+                    <button type="button" class="close" wire:click="hideAddCategoryModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form wire:submit.prevent="addnew_category">
+                        <div class="form-group">
+                            <label for="category_addnew">Category Name</label>
+                            <input type="text" class="form-control" id="category_addnew" wire:model="category_addnew">
+                        </div>
+                        <div class="form-group">
+                            <label for="parent_id">Parent Category</label>
+                            <select class="form-control" id="parent_id" wire:model="parent_id">
+                                <option value="">Select Parent Category</option>
+                                @foreach($categories as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <label for="parent_id" class="form-label">Parent Category</label>
-        <select name="parent_id" id="parent_id" wire:model="parent_id">
+    </div>
+    <div class="modal-backdrop fade show"></div>
+    @endif
 
-            <option value="">None</option>
-            @foreach($category as $category)
-            <option value="{{ $category->id }}" {{ old('parent_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-            @endforeach
-        </select>
-        <button type="submit" id="store_category" class="btn btn-primary mt-2">Add Category</button>
-        <button type="button" id="cancel_category" class="btn btn-danger mt-2">Cancel</button>
-        @if(session()->has('categoryDup'))
-        <div class="alert alert-danger mt-2">
-            {{ session('categoryDup') }}
+    @if($VariantAttributeModal)
+    <div class="modal fade show" style="display: block;" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Variant Attribute</h5>
+                    <button type="button" class="close" wire:click="hideVariantAttributeModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="newVariantName">Variant Name</label>
+                            <input type="text" class="form-control" id="newVariantName" wire:model="newVariantName">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" wire:click="hideVariantAttributeModal">Close</button>
+                    <button type="button" class="btn btn-primary" wire:click="addNewVariantAttribute">Save changes</button>
+                </div>
+            </div>
         </div>
-        @endif
-    </form>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+    @endif
 </div>
 @endsection

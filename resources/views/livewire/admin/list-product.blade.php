@@ -1,6 +1,124 @@
 @extends('livewire.admin.index')
 @section('content')
 <div>
-    <h1>List Product</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Product Type</th>
+                <th>Sum Quantity Stock</th>
+                <th>Price</th>
+                <th>Variant</th>
+                <th>Each Quantity Stock</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach ($products as $product)
+            @if($product->type == 'single')
+            <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->description }}</td>
+                <td>{{ $product->category->name }}</td>
+                <td>{{ $product->type }}</td>
+                @foreach ($product->productVariants as $variant)
+                <td>{{ $variant->quantity }}</td>
+                <td>{{ $variant->price }}</td>
+                <td colspan="2"></td> <!-- Cột rỗng để giữ cùng dòng với sản phẩm -->
+                <td><button class="btn btn-primary" wire:click="editVariant({{ $variant->id }})" type="button">Update</button></td>
+                <td><button class="btn btn-danger" wire:click="confirmDelete({{ $variant->id }})" type="button">Delete</button></td>
+                @endforeach
+                
+            </tr>
+            @else
+            <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->description }}</td>
+                <td>{{ $product->category->name }}</td>
+                <td>{{ $product->type }}</td>
+                <td>{{ $product->productVariants->sum('quantity') }}</td>
+
+            @foreach ($product->productVariants as $key => $variant)
+            
+                <td>{{ $variant->price }}</td>
+                <td>
+                    @foreach ($variant->subVariants as $subVariant)
+                    <div><b>{{ $subVariant->variantOption->variant->name }}</b>: {{ $subVariant->variantOption->name }}</div>
+                    @endforeach
+                </td>
+                <td>{{ $variant->quantity }}</td>
+                <td><button class="btn btn-primary" wire:click="editVariant({{ $variant->id }})" type="button">Update</button></td>
+                <td><button class="btn btn-danger" wire:click="confirmDelete({{ $variant->id }})" type="button">Delete</button></td>
+            </tr>
+            @if ($loop->last && $key === count($product->productVariants) - 1)
+            <!-- Đây là biến thể cuối cùng -->
+            @else
+            <tr>
+                <td colspan="5"></td> 
+            @endif
+            @endforeach
+            @endif
+            @endforeach
+        </tbody>
+    </table>
+    @if($editVariantModal)
+        <div class="modal fade show" style="display: block;" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Variant</h5>
+                        <button type="button" class="close" wire:click="hideModal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="quantity">Variant Quantity</label>
+                                <input wire:model="update_quantity" type="text" class="form-control" id="quantity">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Variant Price</label>
+                                <input wire:model="update_price" type="text" class="form-control" id="price">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" wire:click="hideModal">Close</button>
+                        <button type="button" class="btn btn-primary" wire:click="updateVariant">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
+    @endif
+
+    @if($deleteVariantModal)
+        <div class="modal fade show" style="display: block;" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="close" wire:click="hideDeleteModal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this variant?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" wire:click="hideDeleteModal">Close</button>
+                        <button type="button" class="btn btn-danger" wire:click="deleteVariant">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
+    @endif
+</div>
 </div>
 @endsection

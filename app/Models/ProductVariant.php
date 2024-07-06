@@ -23,6 +23,11 @@ class ProductVariant extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function subVariants()
+    {
+        return $this->hasMany(SubVariant::class, 'product_variant_id');
+    }
+
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
@@ -32,6 +37,4 @@ class ProductVariant extends Model
     {
         return $this->belongsToMany(Order::class, 'order_details');
     }
-
-
 }

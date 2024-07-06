@@ -16,13 +16,13 @@ class SubVariant extends Model
         'product_variant_id',
     ];
 
-    public function productVariants()
+    public function productVariant()
     {
-        return $this->belongsTo(ProductVariant::class);
+        return $this->belongsTo(ProductVariant::class, 'product_variant_id');
     }
 
     public function variantOption()
     {
-        return $this->belongsTo(VariantOption::class);
+        return $this->belongsTo(VariantOption::class, 'variant_option_id');
     }
 }

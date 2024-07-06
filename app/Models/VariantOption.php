@@ -21,5 +21,8 @@ class VariantOption extends Model
         return $this->belongsTo(Variant::class);
     }
 
-    
+    public function subVariants()
+    {
+        return $this->hasMany(SubVariant::class, 'variant_option_id');
+    }
 }

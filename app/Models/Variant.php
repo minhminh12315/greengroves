@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Variant extends Model
 {
     use HasFactory;
+    
     protected $table = 'variants';
 
     protected $fillable = [
-        'id',
         'name',
     ];
 
     public function variantOptions()
     {
-        return $this->hasMany(VariantOption::class);
+        return $this->hasMany(VariantOption::class, 'variant_id');
     }
 }

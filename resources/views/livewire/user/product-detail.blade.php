@@ -28,80 +28,54 @@
                 <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-12">
-                            <div id="carouselExample"
-                                class="carousel slide"
-                                data-bs-ride="carousel">
+                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="d-block slickImg "
-                                            alt="Product Image 1">
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="d-block slickImg " alt="Product Image 1">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="d-block slickImg"
-                                            alt="Product Image 2">
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="d-block slickImg" alt="Product Image 2">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="d-block slickImg"
-                                            alt="Product Image 3">
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="d-block slickImg" alt="Product Image 3">
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev"
-                                    type="button"
-                                    data-bs-target="#carouselExample"
-                                    data-bs-slide="prev">
-                                    <span
-                                        class="carousel-control-prev-icon"
-                                        aria-hidden="true"></span>
-                                    <span
-                                        class="visually-hidden">Previous</span>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next"
-                                    type="button"
-                                    data-bs-target="#carouselExample"
-                                    data-bs-slide="next">
-                                    <span
-                                        class="carousel-control-next-icon"
-                                        aria-hidden="true"></span>
-                                    <span
-                                        class="visually-hidden">Next</span>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <div
-                                class="row d-flex justify-content-center align-items-center productImageList">
+                            <div class="row d-flex justify-content-center align-items-center productImageList">
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="img-fluid" alt>
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="img-fluid" alt>
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="img-fluid" alt>
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="img-fluid" alt>
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
                                     </div>
                                 </div>
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888"
-                                            class="img-fluid" alt>
+                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
                                     </div>
                                 </div>
                             </div>
@@ -109,8 +83,7 @@
 
                         <div class="shareContainer col-12 d-flex justify-content-center">
                             <div class="row">
-                                <div
-                                    class="col-xl-4 col-4 d-flex justify-content-start justify-content-md-end align-content-center">
+                                <div class="col-xl-4 col-4 d-flex justify-content-start justify-content-md-end align-content-center">
                                     <div class="shareText">
                                         Chia sẻ:
                                     </div>
@@ -118,148 +91,105 @@
                                 <div class="col-xl-6 col-8">
                                     <div class="row">
                                         <div class="col-4">
-                                            <a href="#"
-                                                class="btn btn-primary"><i
-                                                    class="fa-brands fa-facebook linkFont"></i></a>
+                                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-facebook linkFont"></i></a>
                                         </div>
                                         <div class="col-4">
-                                            <a href="#"
-                                                class="btn btn-primary"><i
-                                                    class="fa-brands fa-twitter linkFont"></i></i></a>
+                                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-twitter linkFont"></i></i></a>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-instagram linkFont"></i></i></a>
+                                        </div>
                                     </div>
-                                    <div class="col-4">
-                                        <a href="#"
-                                            class="btn btn-primary"><i
-                                                class="fa-brands fa-instagram linkFont"></i></i></a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <div class="col-md-6 col-12 p-4">
-            <div class="container-fluid ProductDetail">
-                <div class="row">
-                    <div class="col-12">
-                        <h2>Tên sản phẩm</h2>
-                    </div>
-                    <div class="col-12">
-                        <h4><span class="text-danger">$99.99</span></h4>
-                    </div>
-                    <div class="col-12">
-                        <p>Đánh giá sao: <span
-                                class="text-warning">★★★★★</span></p>
-                        <p>Đánh giá: <span>500 đánh giá</span></p>
-                        <p>Đã bán: <span>1000 sản phẩm</span></p>
-                    </div>
-                    <div class="col-12">
-                        <div class="row align-items-center">
-                            <div
-                                class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">Size
-                                :</div>
-                            <div class="col-10 col-md-9">
-                                <div
-                                    class="row px-4 d-flex justify-content-start">
-                                    <div class="col-auto p-1">
-                                        <button type="button"
-                                            class="btn btn-secondary">XS</button>
-                                    </div>
-                                    <div class="col-auto p-1">
-                                        <button type="button"
-                                            class="btn btn-secondary">S</button>
-                                    </div>
-                                    <div class="col-auto p-1">
-                                        <button type="button"
-                                            class="btn btn-secondary">M</button>
-                                    </div>
-                                    <div class="col-auto p-1">
-                                        <button type="button"
-                                            class="btn btn-secondary">L</button>
-                                    </div>
-                                    <div
-                                        class="col-auto p-1  d-xl-block d-none">
-                                        <button type="button"
-                                            class="btn btn-secondary">XL</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <p>Mô tả sản phẩm:</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit. Nullam vehicula purus ac
-                            mauris consectetur, ut finibus metus
-                            maximus. Phasellus pretium risus et nulla
-                            finibus, vel venenatis leo feugiat.</p>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <div class="row align-items-center">
-                            <div
-                                class="col-3 col-xxl-2 d-flex align-content-center">Số
-                                lượng:</div>
-                            <div
-                                class="col-5 col-sm-3 col-md-6 col-xxl-3">
-                                <div class="input-group quantity-group">
-                                    <button
-                                        class="btn btn-outline-secondary"
-                                        type="button"
-                                        id="button-decrease">-</button>
-                                    <input type="text"
-                                        class="form-control text-center"
-                                        value="1" aria-label="Quantity"
-                                        id="quantity">
-                                    <button
-                                        class="btn btn-outline-secondary"
-                                        type="button"
-                                        id="button-increase">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-4">
+                <div class="col-md-6 col-12 p-4">
+                    <div class="container-fluid ProductDetail">
                         <div class="row">
-                            <div class="col-6">
-                                <button type="button"
-                                    class="btn btn-primary w-100">Thêm
-                                    giỏ hàng</button>
+                            <div class="col-12">
+                                <h2>{{ $product->name }}</h2>
                             </div>
-                            <div class="col-6">
-                                <button type="button"
-                                    class="btn btn-success w-100">Mua
-                                    hàng</button>
+                            <div class="col-12">
+                                @if($product->productVariants->isNotEmpty())
+                                @if ($product->productVariants->count() > 1)
+
+                                <h4><span class="text-danger">${{ $product->productVariants->min('price') }} - ${{ $product->productVariants->max('price') }}</span></h4>
+                                @else
+                                <h4><span class="text-danger">${{ $product->productVariants->min('price') }}</span></h4>
+                                @endif
+                                @endif
+                            </div>
+                            <div class="col-12">
+                                <p>Đã bán: <span>1000 sản phẩm</span></p>
+                            </div>
+                            <div class="col-12">
+                            @if ($variants->isNotEmpty())
+                                @foreach ($variants as $key => $variant)
+                                    <div class="row align-items-center">
+                                        <div class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">{{ $variant->name }}</div>
+                                        <div class="col-10 col-md-9">
+                                            <div class="row px-4 d-flex justify-content-start">
+                                                @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
+                                                    <div class="col-auto p-1">
+                                                    <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
+                                                        <input wire:model="selectedOptions.{{ $variant->id }}" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                            </div>
+                            <div class="col-12 mt-3">
+                                <div class="row align-items-center">
+                                    <div class="col-3 col-xxl-2 d-flex align-content-center">Số
+                                        lượng:</div>
+                                    <div class="col-5 col-sm-3 col-md-6 col-xxl-3">
+                                        <div class="input-group quantity-group">
+                                            <button class="btn btn-outline-secondary" type="button" id="button-decrease">-</button>
+                                            <input type="text" class="form-control text-center" value="1" aria-label="Quantity" id="quantity">
+                                            <button class="btn btn-outline-secondary" type="button" id="button-increase">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-primary w-100">Thêm
+                                            giỏ hàng</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-success w-100">Mua
+                                            hàng</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+        <div class="container-fluid relativeProductContainer p-3">
+            <div class="row">
+                <div class="col-6">
+                    <h2>Sản phẩm liên quan</h2>
+                </div>
 
-    </div>
-
-</div>
-<div class="container-fluid relativeProductContainer p-3">
-    <div class="row">
-            <div class="col-6">
-                <h2 >Sản phẩm liên quan</h2>
+                <div class="col-6 text-end">
+                    <a href="#" class="viewAllLink ">Xem tất cả <i class="fas fa-angle-right"></i></a>
+                </div>
             </div>
 
-            <div class="col-6 text-end">
-                <a href="#" class="viewAllLink ">Xem tất cả <i
-                        class="fas fa-angle-right"></i></a>
-            </div>
-    </div>
-
-        <div class="row relativeProduct flex-wrap pt-3">
-            <div class="col-4 col-md-auto m-md-2">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
+            <div class="row relativeProduct flex-wrap pt-3">
+                <div class="col-4 col-md-auto m-md-2">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
                             <div class="row">
                                 <div class="col-12 col-md-6 textItems ">
                                     <div class="price text-md-center">
@@ -273,15 +203,15 @@
                                 </div>
                             </div>
 
+                        </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="col-4 col-md-auto m-md-2">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
+                </div>
+                <div class="col-4 col-md-auto m-md-2">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
                             <div class="row">
                                 <div class="col-12 col-md-6 textItems">
                                     <div class="price text-md-center">
@@ -295,15 +225,15 @@
                                 </div>
                             </div>
 
+                        </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="col-4 col-md-auto m-md-2">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
+                </div>
+                <div class="col-4 col-md-auto m-md-2">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
                             <div class="row">
                                 <div class="col-12 col-md-6 textItems">
                                     <div class="price text-md-center">
@@ -317,89 +247,89 @@
                                 </div>
                             </div>
 
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-auto m-2 hidden">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
-                        <div class="d-flex justify-content-between align-items-center flex-container">
-                            <div class="price">
-                                <span>22.99$</span>
-                            </div>
-                            <div class="wasSell text-center">
-                                Đã bán 13,8k
-                            </div>
                         </div>
-
                     </div>
-                </div>
 
-            </div>
-            <div class="col-md-auto m-2 hidden">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
-                        <div class="d-flex justify-content-between align-items-center flex-container">
-                            <div class="price">
-                                <span>22.99$</span>
+                </div>
+                <div class="col-md-auto m-2 hidden">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
+                            <div class="d-flex justify-content-between align-items-center flex-container">
+                                <div class="price">
+                                    <span>22.99$</span>
+                                </div>
+                                <div class="wasSell text-center">
+                                    Đã bán 13,8k
+                                </div>
                             </div>
-                            <div class="wasSell">
-                                Đã bán 13,8k
-                            </div>
+
                         </div>
-
                     </div>
-                </div>
 
-            </div>
-            <div class="col-md-auto m-2 hidden">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
-                        <div class="d-flex justify-content-between align-items-center flex-container">
-                            <div class="price">
-                                <span>22.99$</span>
+                </div>
+                <div class="col-md-auto m-2 hidden">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
+                            <div class="d-flex justify-content-between align-items-center flex-container">
+                                <div class="price">
+                                    <span>22.99$</span>
+                                </div>
+                                <div class="wasSell">
+                                    Đã bán 13,8k
+                                </div>
                             </div>
-                            <div class="wasSell">
-                                Đã bán 13,8k
-                            </div>
+
                         </div>
-
                     </div>
-                </div>
 
-            </div>
-            <div class="col-md-auto m-2 hidden">
-                <div class="card mouse" >
-                    <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title p-1">Card title</h5>
-                        <div class="d-flex justify-content-between align-items-center flex-container">
-                            <div class="price">
-                                <span>22.99$</span>
+                </div>
+                <div class="col-md-auto m-2 hidden">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
+                            <div class="d-flex justify-content-between align-items-center flex-container">
+                                <div class="price">
+                                    <span>22.99$</span>
+                                </div>
+                                <div class="wasSell">
+                                    Đã bán 13,8k
+                                </div>
                             </div>
-                            <div class="wasSell">
-                                Đã bán 13,8k
-                            </div>
+
                         </div>
-
                     </div>
+
+                </div>
+                <div class="col-md-auto m-2 hidden">
+                    <div class="card mouse">
+                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title p-1">Card title</h5>
+                            <div class="d-flex justify-content-between align-items-center flex-container">
+                                <div class="price">
+                                    <span>22.99$</span>
+                                </div>
+                                <div class="wasSell">
+                                    Đã bán 13,8k
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
 
+
+
+
+
             </div>
-
-
-
-
-
         </div>
-    </div>
 
     </div>
 </section>

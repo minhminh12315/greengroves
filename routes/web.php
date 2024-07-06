@@ -2,7 +2,10 @@
 
 use App\Livewire\Admin\Addnew;
 use App\Livewire\Admin\Index as AdminIndex;
+use App\Livewire\Admin\ListCategory;
+use App\Livewire\Admin\ListImage;
 use App\Livewire\Admin\ListProduct as AdminListProduct;
+use App\Livewire\Admin\News;
 use App\Livewire\Admin\Order;
 use App\Livewire\Login;
 use App\Livewire\User\About;
@@ -23,7 +26,7 @@ Route::get('/contact', Contact::class)->name('users.contact');
 
 Route::get('/login', Login::class)->name('login');
 
-Route::get('/product-detail', ProductDetail::class)->name('user.product-detail');
+Route::get('/product-detail/{id}', ProductDetail::class)->name('user.product-detail');
 
 Route::get('/list-product', UserListProduct::class)->name('user.list-product');
 
@@ -33,8 +36,14 @@ Route::get('/checkout', Checkout::class)->name('users.checkout');
 
 Route::get('/cartShop',CartShop::class)->name('user.cartShop');
 
-Route::get('/admin', AdminIndex::class)->name('admin.index');
+Route::get('/admin', AdminListProduct::class)->name('admin.index');
 
 Route::get('/admin/addnew', Addnew::class)->name('admin.addnew');
 
 Route::get('/admin/order', Order::class)->name('admin.order');
+
+Route::get('/admin/list_category', ListCategory::class)->name('admin.list_category');
+
+Route::get('/admin/list_image', ListImage::class)->name('admin.list_image');
+
+Route::get('/admin/news', News::class)->name('admin.news');
