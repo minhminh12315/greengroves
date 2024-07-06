@@ -15,7 +15,7 @@ class ListImage extends Component
 
     public $images;
     public $addNewImagesModal = false;
-    public $addNewImageTypeModal = false;
+    public $addNewImageType = false;
     public $editImageModal = false;
     public $deleteImageModal = false;
 
@@ -43,15 +43,9 @@ class ListImage extends Component
         $this->addNewImagesModal = false;
     }
 
-    public function openAddNewImageTypeModal()
+    public function newtype()
     {
-        Log::info('openAddNewImageTypeModal');
-        $this->addNewImageTypeModal = true;
-    }
-
-    public function closeAddNewImageTypeModal()
-    {
-        $this->addNewImageTypeModal = false;
+        $this->addNewImageType = true;
     }
 
     public function openEditImageModal($id)
@@ -105,19 +99,12 @@ class ListImage extends Component
         $image->description = $this->image_description_new;
         $image->type = $this->image_type_new;
         $image->save();
-
+        $this->image_title_new = '';
+        $this->image_path_new = '';
+        $this->image_description_new = '';
+        $this->image_type_new = '';
+        $this->addNewImageType = false;
         $this->addNewImagesModal = false;
-    }
-
-    public function store_image_type()
-    {
-        $this->validate([
-            'new_image_type' => 'required|unique:images,type',
-        ]);
-
-        $this->distinctTypes[] = $this->new_image_type;
-
-        $this->addNewImageTypeModal = false;
     }
 
     public function update_image()

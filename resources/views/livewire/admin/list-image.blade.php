@@ -3,7 +3,6 @@
 <div>
     <div class="container">
         <button wire:click="openAddNewImagesModal" class="btn btn-primary mt-2" type="button">Add New Image</button>
-        <button wire:click="openAddNewImageTypeModal" class="btn btn-secondary mt-2" type="button">Add New Image Type</button>
         @if($addNewImagesModal)
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
@@ -25,7 +24,13 @@
                                 <input type="text" class="form-control" id="image_description_new" wire:model="image_description_new">
                             </div>
                             <div class="form-group">
-                                <label for="image_type_new">Image type</label>
+                                <div class="d-flex justify-content-between">
+                                    <label for="image_type_new">Image type</label>
+                                    <button wire:click="newtype" type="button">New Type</button>
+                                </div>
+                                @if($addNewImageType)
+                                <input type="text" class="form-control" id="image_type_new" wire:model="image_type_new">
+                                @else
                                 <select class="form-control" id="image_type_new" wire:model="image_type_new">
                                     @if($distinctTypes->isNotEmpty())
                                     @foreach ($distinctTypes as $type)
@@ -35,36 +40,12 @@
                                     <option value="">Have no type</option>
                                     @endif
                                 </select>
+                                @endif
                                 <!-- <input type="text" class="form-control" id="image_type_new" wire:model="image_type_new"> -->
                             </div>
                             <div class="form-group">
                                 <label for="image_path_new">Image path</label>
                                 <input type="file" class="form-control" id="image_path_new" wire:model="image_path_new">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-backdrop fade show"></div>
-        @endif
-
-        @if($addNewImageTypeModal)
-        <div class="modal fade show" style="display: block;" aria-modal="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add New Image Type</h5>
-                        <button type="button" class="close" wire:click="closeAddNewImageTypeModal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form wire:submit.prevent="store_image_type">
-                            <div class="form-group">
-                                <label for="new_image_type">New Image Type</label>
-                                <input type="text" class="form-control" id="new_image_type" wire:model="new_image_type">
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
@@ -150,7 +131,6 @@
         @endif
 
         @if($distinctTypes->isNotEmpty())
-
         @foreach ($distinctTypes as $type)
         <div class="card ps-2 pe-2 mt-2">
             <div class="card-title">

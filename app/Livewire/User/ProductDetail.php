@@ -3,6 +3,7 @@
 namespace App\Livewire\User;
 
 use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Models\Variant;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -12,8 +13,8 @@ class ProductDetail extends Component
     public $product;
     public $quantity = 1;
     public $selectedOptions = [];
-    public $variantOptions;
-    public $variants;
+    public $variantOptions = [];
+    public $variants= [];
     public $price;
 
     public function mount($id)
@@ -31,45 +32,57 @@ class ProductDetail extends Component
         foreach ($this->variants as $variant) {
             $this->selectedOptions[$variant->id] = null;
         }
-
-        // Initialize price based on selected options
-        $this->updatePrice();
     }
-    
-    public function updatePrice()
+
+    public function increment_quantity()
     {
-        // Check if all variants have been selected
-        if (count(array_filter($this->selectedOptions)) == $this->variants->count()) {
-            // Fetch the corresponding product variant based on selected options
-            $productVariant = $this->product->productVariants->first(function ($variant) {
-                // Check if the variant_option_id matches all selected option ids
-                return collect($variant->subVariants->pluck('variantOption_id'))
-                    ->every(fn ($id) => $id == $this->selectedOptions[$variant->id]);
-            });
+        $this->quantity++;
+    }
+
+    public function decrement_quantity()
+    {
+        if ($this->quantity > 1) {
+            $this->quantity--;
+        }
+    }
+
+    public function updated()
+    {
+        Log::info('selectedOptions: ' . json_encode($this->selectedOptions));
+        $this->calculatePrice();
+    }
+
+    public function calculatePrice()
+    {
+        $selectedOptions = $this->selectedOptions;
+
+        if (count($selectedOptions) === count($this->variants)) {
+            $productVariant = ProductVariant::where('product_id', $this->product->id)
+                ->whereHas('subVariants', function ($query) use ($selectedOptions) {
+                    $query->whereIn('variant_option_id', $selectedOptions);
+                }, '=', count($selectedOptions))
+                ->first();
 
             if ($productVariant) {
                 $this->price = $productVariant->price;
+            } else {
+                $this->price = 0;
             }
+        } else {
+            $this->price = 0;
         }
+        Log::info('price: ' . $this->price);
     }
-
-    public function update($propertyName)
-    {
-        // Validate changes in quantity
-        $this->validateOnly($propertyName, [
-            'quantity' => 'required|numeric|min:1',
-        ]);
-        
-        // Update price when selectedOptions change
-        if (strpos($propertyName, 'selectedOptions') !== false) {
-            $this->updatePrice();
-        }
-        
-        Log::info($this->selectedOptions);
-    }
+    
+    
     public function render()
     {
         
-        return view('livewire.user.product-detail');
+        return view('livewire.user.product-detail', [
+            'product' => $this->product,
+            'variants' => $this->variants,
+            'variantOptions' => $this->variantOptions,
+            'price' => $this->price,
+        ]);
     }
 }

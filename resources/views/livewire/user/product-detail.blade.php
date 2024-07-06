@@ -30,16 +30,13 @@
                         <div class="col-12">
                             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="d-block slickImg " alt="Product Image 1">
+                                    @foreach ($product->productImages as $key => $image)
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <img src="{{ Storage::url($image->path) }}" class="d-block slickImg" alt="Product Image {{ $key + 1 }}">
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="d-block slickImg" alt="Product Image 2">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="d-block slickImg" alt="Product Image 3">
-                                    </div>
+                                    @endforeach
                                 </div>
+
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
@@ -51,33 +48,18 @@
                             </div>
                         </div>
 
+
                         <div class="col-12">
-                            <div class="row d-flex justify-content-center align-items-center productImageList">
+                            <div class="row d-flex justify-content-evenly align-items-center productImageList">
+                                @foreach ($product->productImages as $key => $image)
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
+                                        <button class="border border-0 bg-transparent" type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}">
+                                            <img width="100" height="100" src="{{ Storage::url($image->path) }}" class="img-fluid" alt="Product Image {{ $key + 1 }}">
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="col-auto productItems ">
-                                    <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
-                                    </div>
-                                </div>
-                                <div class="col-auto productItems ">
-                                    <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
-                                    </div>
-                                </div>
-                                <div class="col-auto productItems ">
-                                    <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
-                                    </div>
-                                </div>
-                                <div class="col-auto productItems ">
-                                    <div class="productImageItems">
-                                        <img src="https://dummyimage.com/200x200/000/fff888" class="img-fluid" alt>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -85,19 +67,13 @@
                             <div class="row">
                                 <div class="col-xl-4 col-4 d-flex justify-content-start justify-content-md-end align-content-center">
                                     <div class="shareText">
-                                        Chia sẻ:
+                                        Share:
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-8">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-facebook linkFont"></i></a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-twitter linkFont"></i></i></a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-instagram linkFont"></i></i></a>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="share">
+                                            <button class="btn btn-primary" id="copyLinkButton" type="button">Copy Link</button>
                                         </div>
                                     </div>
                                 </div>
@@ -105,43 +81,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-12 p-4">
+                <div class="col-md-6 col-12 ps-4 pe-4">
                     <div class="container-fluid ProductDetail">
                         <div class="row">
                             <div class="col-12">
                                 <h2>{{ $product->name }}</h2>
                             </div>
-                            <div class="col-12">
-                                @if($product->productVariants->isNotEmpty())
-                                @if ($product->productVariants->count() > 1)
-
-                                <h4><span class="text-danger">${{ $product->productVariants->min('price') }} - ${{ $product->productVariants->max('price') }}</span></h4>
-                                @else
-                                <h4><span class="text-danger">${{ $product->productVariants->min('price') }}</span></h4>
-                                @endif
-                                @endif
+                            <div class="col-12 mt-2">
+                                {{$this->price}}
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mt-2">
                                 <p>Đã bán: <span>1000 sản phẩm</span></p>
                             </div>
-                            <div class="col-12">
-                            @if ($variants->isNotEmpty())
-                                @foreach ($variants as $key => $variant)
-                                    <div class="row align-items-center">
-                                        <div class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">{{ $variant->name }}</div>
-                                        <div class="col-10 col-md-9">
-                                            <div class="row px-4 d-flex justify-content-start">
-                                                @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
-                                                    <div class="col-auto p-1">
-                                                    <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
-                                                        <input wire:model="selectedOptions.{{ $variant->id }}" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
-                                                    </div>
-                                                @endforeach
+                            <div class="col-12 mt-2">
+                                <div class="description">{{ $product->description }}</div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                @if ($variants->isNotEmpty())
+                                @foreach ($variants as $variant)
+                                <div class="row align-items-center">
+                                    <div class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">{{ $variant->name }}</div>
+                                    <div class="col-10 col-md-9">
+                                        <div class="row px-4 d-flex justify-content-start">
+                                            @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
+                                            <div class="col-auto p-1">
+                                                <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
+                                                <input wire:model="selectedOptions.{{ $variant->id }}" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
                                             </div>
+                                            @endforeach
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
-                            @endif
+                                @endif
                             </div>
                             <div class="col-12 mt-3">
                                 <div class="row align-items-center">
@@ -149,9 +121,9 @@
                                         lượng:</div>
                                     <div class="col-5 col-sm-3 col-md-6 col-xxl-3">
                                         <div class="input-group quantity-group">
-                                            <button class="btn btn-outline-secondary" type="button" id="button-decrease">-</button>
-                                            <input type="text" class="form-control text-center" value="1" aria-label="Quantity" id="quantity">
-                                            <button class="btn btn-outline-secondary" type="button" id="button-increase">+</button>
+                                            <button wire:click="decrement_quantity" class="btn btn-outline-secondary" type="button" id="button-decrease">-</button>
+                                            <input wire:model="quantity" type="text" class="form-control text-center" value="1" aria-label="Quantity" id="quantity">
+                                            <button wire:click="increment_quantity" class="btn btn-outline-secondary" type="button" id="button-increase">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +174,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -224,7 +195,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -246,7 +216,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -264,7 +233,6 @@
                                     Đã bán 13,8k
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -318,20 +286,26 @@
                                     Đã bán 13,8k
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-
-
-
-
-
             </div>
         </div>
-
     </div>
+
+    <script>
+        document.getElementById('copyLinkButton').addEventListener('click', function() {
+            var currentUrl = window.location.href;
+            var tempInput = document.createElement('input');
+            tempInput.value = currentUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // Thông báo sao chép thành công
+            alert('Link sản phẩm đã được sao chép: ' + currentUrl);
+        });
+    </script>
 </section>
 
 @endsection
