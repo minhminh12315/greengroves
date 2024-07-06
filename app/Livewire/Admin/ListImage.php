@@ -33,7 +33,9 @@ class ListImage extends Component
 
     public function mount()
     {
-        $this->image_type_new = Image::all()->first()->type;
+        if(Image::count() > 0){
+            $this->image_type_new = Image::all()->first()->type;
+        }
     }
 
     public function openAddNewImagesModal()
