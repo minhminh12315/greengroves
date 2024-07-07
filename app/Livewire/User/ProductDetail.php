@@ -7,15 +7,18 @@ use App\Models\ProductVariant;
 use App\Models\Variant;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\Attributes\Renderless;
 
 class ProductDetail extends Component
 {   
     public $product;
     public $quantity = 1;
     public $selectedOptions = [];
+    public $selectedOption;
     public $variantOptions = [];
     public $variants= [];
     public $price;
+    
 
     public function mount($id)
     {
@@ -27,18 +30,16 @@ class ProductDetail extends Component
         ->flatMap->subVariants
         ->pluck('variantOption')
         ->unique('id');
+        Log::info('variantOptions: ' . json_encode($this->variantOptions));
         $this->variants = Variant::whereIn('id', $this->variantOptions->pluck('variant_id'))->get();
         
-        foreach ($this->variants as $variant) {
-            $this->selectedOptions[$variant->id] = null;
-        }
     }
 
+    // Quantity
     public function increment_quantity()
     {
         $this->quantity++;
     }
-
     public function decrement_quantity()
     {
         if ($this->quantity > 1) {
@@ -46,12 +47,11 @@ class ProductDetail extends Component
         }
     }
 
-    public function updated()
+    public function updateSelectedOptions()
     {
         Log::info('selectedOptions: ' . json_encode($this->selectedOptions));
         $this->calculatePrice();
     }
-
     public function calculatePrice()
     {
         $selectedOptions = $this->selectedOptions;
@@ -78,11 +78,6 @@ class ProductDetail extends Component
     public function render()
     {
         
-        return view('livewire.user.product-detail', [
-            'product' => $this->product,
-            'variants' => $this->variants,
-            'variantOptions' => $this->variantOptions,
-            'price' => $this->price,
-        ]);
+        return view('livewire.user.product-detail');
     }
 }

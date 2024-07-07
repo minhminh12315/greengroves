@@ -84,11 +84,21 @@
                 <div class="col-md-6 col-12 ps-4 pe-4">
                     <div class="container-fluid ProductDetail">
                         <div class="row">
+                            <!-- Name -->
                             <div class="col-12">
                                 <h2>{{ $product->name }}</h2>
                             </div>
+                            <!-- Price -->
                             <div class="col-12 mt-2">
-                                {{$this->price}}
+                                @if ($this->price)
+                                <div class="price">
+                                    <span>$ {{ number_format($this->price, 0, ',', '.') }}</span>
+                                </div>
+                                @else
+                                <div>$ {{ $product->productVariants->min('price') }} - {{ $product->productVariants->max('price') }}</div>
+                                @endif
+                                
+                                
                             </div>
                             <div class="col-12 mt-2">
                                 <p>Đã bán: <span>1000 sản phẩm</span></p>
@@ -106,7 +116,7 @@
                                             @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
                                             <div class="col-auto p-1">
                                                 <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
-                                                <input wire:model="selectedOptions.{{ $variant->id }}" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
+                                                <input wire:model="selectedOptions.{{ $variant->id }}" wire:click="updateSelectedOptions" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
                                             </div>
                                             @endforeach
                                         </div>
@@ -115,6 +125,7 @@
                                 @endforeach
                                 @endif
                             </div>
+                            <!-- input Quantity -->
                             <div class="col-12 mt-3">
                                 <div class="row align-items-center">
                                     <div class="col-3 col-xxl-2 d-flex align-content-center">Số
@@ -128,6 +139,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- button Add to cart  -->
                             <div class="col-12 mt-4">
                                 <div class="row">
                                     <div class="col-6">

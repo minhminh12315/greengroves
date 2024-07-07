@@ -18,7 +18,6 @@ class ListImage extends Component
     public $addNewImageType = false;
     public $editImageModal = false;
     public $deleteImageModal = false;
-
     public $image_title_new;
     public $image_path_new;
     public $image_description_new;
