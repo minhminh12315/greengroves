@@ -3,6 +3,7 @@ var R = {
         R.navbarStick();
         R.registerEvents();
         R.generateCombinations();
+        R.headerStickyMinScreen();
     },
     registerEvents: function () {
         let variantCount = 0;
@@ -84,6 +85,26 @@ var R = {
                 `);
             });
         });
+        $('.btn-toggle-menu').click(() => {
+            $('.menu-collapse-header').toggleClass('show');
+        })
+        $('.btn-close-menu').click(() => {
+            $('.menu-collapse-header').removeClass('show');
+        });
+        $('.btn-user').click(() => {
+            $('.loggedInUser').toggleClass('show');
+        });
+        $(document).on('livewire:init', function () {
+            Livewire.on('swalsuccess', (e) => {
+                const data = e;
+                Swal.fire({
+                    icon: data[0].icon,
+                    title: data[0].title,
+                    text: data[0].text,
+                    timer: 3000
+                });
+            });
+        });
     },
 
     generateCombinations: (variants) => {
@@ -137,7 +158,14 @@ var R = {
             }
         });
     },
+    // showSweetAlert: function (title, text, icon) {
+    //     Swal.fire({
+    //         title: title,
+    //         text: text,
+    //         icon: icon,
+    //         timer: 3000,
+    //         toast: true,
+    //     });
+    // }
 };
 R.init();
-
-

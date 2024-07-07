@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Admin;
 
+use App\Mail\NoticeOfPromotions;
+use App\Models\EmailNotification;
 use Livewire\Component;
 use App\Models\News as NewsModel;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Livewire\WithFileUploads;
 
 class News extends Component
@@ -30,34 +33,49 @@ class News extends Component
         $this->AddNewsModal = false;
     }
     public function store_news()
-    {
-        $this->validate([
-            'news_title' => 'required',
-            'news_description' => 'required',
-            'news_image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ], [
-            'news_title.required' => 'The News Title field is required.',
-            'news_description.required' => 'The News Description field is required.',
-            'news_image_path.required' => 'The News Image field is required.',
-            'news_image_path.image' => 'The News Image must be an image.',
-            'news_image_path.mimes' => 'The News Image must be a file of type: jpeg, png, jpg, gif, svg.',
-            'news_image_path.max' => 'The News Image must not be greater than 2048 kilobytes.',
-        ]);
+{
+    $this->validate([
+        'news_title' => 'required',
+        'news_description' => 'required',
+        'news_image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ], [
+        'news_title.required' => 'The News Title field is required.',
+        'news_description.required' => 'The News Description field is required.',
+        'news_image_path.required' => 'The News Image field is required.',
+        'news_image_path.image' => 'The News Image must be an image.',
+        'news_image_path.mimes' => 'The News Image must be a file of type: jpeg, png, jpg, gif, svg.',
+        'news_image_path.max' => 'The News Image must not be greater than 2048 kilobytes.',
+    ]);
 
-        $imageName = time() . '.' . $this->news_image_path->extension();
-        $this->news_image_path->storeAs('public/assets/images', $imageName);
-        $public_path = 'assets/images/' . $imageName;
+    $imageName = time() . '.' . $this->news_image_path->extension();
+    $this->news_image_path->storeAs('public/assets/images', $imageName);
+    $public_path = 'assets/images/' . $imageName;
 
-        $new_news = new NewsModel();
-        $new_news->title = $this->news_title;
-        $new_news->description = $this->news_description;
-        $new_news->path = $public_path;
-        $new_news->save();
+    // Log the public path
+    Log::info('Public path of the image', ['public_path' => $public_path]);
 
-        $this->closeAddNewsModal();
-        session()->flash('message', 'News Created Successfully.');
-        $this->mount();
+    $new_news = new NewsModel();
+    $new_news->title = $this->news_title;
+    $new_news->description = $this->news_description;
+    $new_news->path = $public_path;
+    $new_news->save();
+
+    $peopleToSendNotice = EmailNotification::all();
+
+    foreach ($peopleToSendNotice as $person) {
+        Log::info('Sending email to', ['email' => $person->email]);
+        Mail::to($person->email)->send(new NoticeOfPromotions([
+            'title' => $this->news_title,
+            'description' => $this->news_description,
+            'path' => $public_path // Fixed reference to $public_path
+        ]));
     }
+
+    $this->closeAddNewsModal();
+    session()->flash('message', 'News Created Successfully.');
+    $this->mount();
+}
+
 
     public function openEditNewsModal($id)
     {
