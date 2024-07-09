@@ -2,11 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Mail\FeedbackReceived;
+use App\Mail\SendOtp;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Renderless;
+use Illuminate\Support\Str;
+
 
 class Login extends Component
 {
@@ -18,6 +24,7 @@ class Login extends Component
     public $login_password;
     public $rememberMe = false;
     public $verification_code;
+    public $otp;
 
     protected function rules()
     {
@@ -41,20 +48,24 @@ class Login extends Component
     #[Renderless]
     public function register()
     {
-        // $this->validate();
+        $this->otp = Str::random(6);
 
-        $user = User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password)
-        ]);
-
+        $user = new User;
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->password = Hash::make($this->password);
+        $user->otp = $this->otp;
+        $user->save();
+        $userId = $user->id;
         Auth::login($user);
-        $this->reset(['name', 'email', 'password', 'password_confirmation']);
+
+        Mail::to($this->email)->send(new SendOtp($this->otp));
+
+        $this->reset(['name', 'email', 'password', 'password_confirmation', 'otp']);
 
         session()->flash('success', 'Register Successfully!');
 
-        return redirect()->route('verification.notice');
+        return redirect()->route('verify_mail', $userId);
     }
 
     public function login()
@@ -76,5 +87,4 @@ class Login extends Component
             $this->login_password = '';
         }
     }
-    
 }

@@ -36,7 +36,7 @@
 					{{ session('error') }}
 				</div>
 				@endif
-				<button class="btn-register" id="btn-register">Sign Up</button>
+				<button class="btn-register" id="btn-register" wire:loading.attr="false">Sign Up</button>
 			</form>
 			<div class="switcher">
 				<button>You already have an account? Sign In</button>

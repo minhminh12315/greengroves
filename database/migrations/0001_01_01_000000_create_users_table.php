@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('status')->default('inactive');
+            $table->string('otp')->nullable();
             $table->timestamps();
         });
 
