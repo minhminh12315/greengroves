@@ -98,7 +98,7 @@
             </div>
             <div class="col-6">
                 <div class="checkOutButtonContainer d-flex justify-content-end align-content-center">
-                    <button class="btn btn-secondary checkOutButton">Check Out</button>
+                    <button wire:click="checkout" class="btn btn-secondary checkOutButton">Check Out</button>
                 </div>
             </div>
         </div>

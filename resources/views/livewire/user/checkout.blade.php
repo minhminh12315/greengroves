@@ -21,11 +21,7 @@
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="col-md-6 col-sm-12 mb-4">
                         <label class="p-1" for="phone">Phone Number*</label>
-<<<<<<< Updated upstream
-                        <input type="text" class="form-control p-1" name="phone" required>
-=======
                         <input wire:model="phone" type="text" class="form-control p-1" name="phone" required>
->>>>>>> Stashed changes
                     </div>
                     <div class="col-md-6 col-sm-12 mb-4">
                         <label class="p-1" for="address">Address*</label>
@@ -56,11 +52,7 @@
             <div class="fs-6 mb-3">
                 <div class="d-flex justify-content-between">
                     <div>Product Price:</div>
-<<<<<<< Updated upstream
-                    <div class="fw-bold">99.999$</div>
-=======
                     <div class="fw-bold">{{$this->grandTotal}}$</div>
->>>>>>> Stashed changes
                 </div>
                 <div class="d-flex justify-content-between">
                     <div>Delivery:</div>

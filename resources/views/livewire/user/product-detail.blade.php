@@ -3,29 +3,8 @@
 
 <section id="productDetailsPage">
     <div class="container-fluid">
-<<<<<<< Updated upstream
-        <div class="row currentAddress p-4">
-            <div class="col-12 d-flex align-items-center ">
-                <div class="me-2 " style="cursor: pointer;">
-                    <div class=" linkHover">HOME</div>
-                </div>
-                <div class="me-2 d-flex align-items-center " style="cursor: pointer;">
-                    <i class="fa-solid fa-chevron-right"></i>
-                    <span class="ms-2 linkHover">{{ $category }}</span>
-                </div>
-                <div class="me-2 d-flex align-items-center " style="cursor: pointer;">
-                    <i class="fa-solid fa-chevron-right"></i>
-                    <span class="ms-2 linkHover">CATEGORY_CHILD</span>
-                </div>
-                <div class="d-flex align-items-center " style="cursor: pointer;">
-                    <i class="fa-solid fa-chevron-right"></i>
-                    <span class="ms-2 linkHover">PRODUCT_NAME</span>
-                </div>
-            </div>
-=======
         <div class="container">
             {{ Breadcrumbs::render('product-detail', $product) }}
->>>>>>> Stashed changes
         </div>
 
         <div class="productDetailContainer">
