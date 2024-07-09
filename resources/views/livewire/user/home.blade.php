@@ -1,32 +1,35 @@
 @extends('livewire.user.index')
 @section('content')
 <div>
+    <div class="container">
+        {{ Breadcrumbs::render('home') }}
+    </div>
     <!-- CAROUSEL -->
     <div class="container">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
-        <div class="carousel-indicators">
-            <!-- Các chỉ số slide sẽ được tạo ra dựa trên số lượng hình ảnh có type là 'slide' -->
-            @foreach($carouselImages as $index => $image)
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
+            <div class="carousel-indicators">
+                <!-- Các chỉ số slide sẽ được tạo ra dựa trên số lượng hình ảnh có type là 'slide' -->
+                @foreach($carouselImages as $index => $image)
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-            @endforeach
-        </div>
-        <div class="carousel-inner">
-            @foreach($carouselImages as $index => $image)
+                @endforeach
+            </div>
+            <div class="carousel-inner">
+                @foreach($carouselImages as $index => $image)
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                     <img src="{{ Storage::url($image->path) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}">
                 </div>
-            @endforeach
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-</div>
 
     <!-- GARDENING TOOLS -->
     <div class="container mt-5">
@@ -35,7 +38,7 @@
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 g-3">
                 @foreach($products as $product)
                 <div class="col">
-                    <div class="card user-card-product" style="height: 100%;">
+                    <div class="card user-card-product">
                         <a href="{{ route('user.product-detail', ['id' => $product->id]) }}">
                             <div class="overflow-hidden">
                                 @if($product->productImages->isNotEmpty())

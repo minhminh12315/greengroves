@@ -17,6 +17,8 @@ use App\Livewire\User\Index;
 use App\Livewire\User\ListProduct as UserListProduct;
 use App\Livewire\User\ProductDetail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', Home::class)->name('users.home');
 
@@ -27,14 +29,33 @@ Route::get('/contact', Contact::class)->name('users.contact');
 Route::get('/login', Login::class)->name('login');
 
 Route::get('/product-detail/{id}', ProductDetail::class)->name('user.product-detail');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/product-detail', ProductDetail::class)->name('user.product-detail');
 
 Route::get('/list-product', UserListProduct::class)->name('user.list-product');
+
+Route::get('/list-product/{id}', UserListProduct::class)->name('user.list-product-category');
 
 Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');
 
 Route::get('/checkout', Checkout::class)->name('users.checkout');
 
-Route::get('/cartShop',CartShop::class)->name('user.cartShop');
+Route::get('/cartShop', CartShop::class)->name('user.cartShop');
 
 Route::get('/admin', AdminListProduct::class)->name('admin.index');
 

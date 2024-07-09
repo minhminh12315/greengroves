@@ -19,15 +19,44 @@
                         </form>
                     </div>
                     <div class="login-container-user">
+                        @auth
+                        <i class="fa-regular fa-user btn-user"></i>
+                        <div class="loggedInUser">
+                            <div class="w-100 d-flex flex-column align-items-start gap-4 justify-content-center">
+                                <div class="user-info-demo">
+                                    <div class="user-img">
+                                        <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=cp0_dst-png_p40x40&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=Xy7AjkPZPq4Q7kNvgGjaJQ_&_nc_ht=scontent.fhan17-1.fna&oh=00_AYA7OIwIVuPvbsa-4EW9hzy1CsM4rHHQaw1wN59wBy3Vtw&oe=66B07778" alt="">
+                                    </div>
+                                    <div>
+                                        duc an
+                                    </div>
+                                </div>
+                                <button class="loggedInUser-item change-info ">
+                                    <div class="info-icon">
+                                        <i class="fa-solid fa-gear text-light"></i>
+                                    </div>
+                                    <span>PROFILE</span>
+                                </button>
+                                <button class="loggedInUser-item .btn-signOut">
+                                    <div class="signOutIcon">
+                                        <i class="fa-solid fa-right-from-bracket text-light"></i>
+                                    </div>
+                                    <span>SIGN OUT</span>
+                                </button>
+                            </div>
+                        </div>
+                        @endauth
                         @guest
-                        <a href="{{route('login')}}">
-                            LOGIN
-                        </a>
+                        <div class="login-user-item">
+                            <a href="{{route('login')}}">
+                                LOGIN
+                            </a>
+                        </div>
                         @endguest
                     </div>
                     <div class="cart-container">
                         <div class="position-relative">
-                            <img class="mb-2" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448770774_673202385003930_1883056276195293896_n.png?stp=dst-png_p206x206&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeG0M7Lkn1sUT6wfnmXCjKjKLe3moqlwcw8t7eaiqXBzD-uY45ONHkscJ3xceUwgjS8w-nXZopUzS-8xk6pFGgxB&_nc_ohc=nk9PxJjvkdkQ7kNvgFFY-6a&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QGVGAcFJGBKrTupVPXZqOi9RPSKd67PODE9ZF9kDuEI2g&oe=66AA403B" alt="">
+                            <img class="mb-lg-2 mb-1" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448770774_673202385003930_1883056276195293896_n.png?stp=dst-png_p206x206&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeG0M7Lkn1sUT6wfnmXCjKjKLe3moqlwcw8t7eaiqXBzD-uY45ONHkscJ3xceUwgjS8w-nXZopUzS-8xk6pFGgxB&_nc_ohc=nk9PxJjvkdkQ7kNvgFFY-6a&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QGVGAcFJGBKrTupVPXZqOi9RPSKd67PODE9ZF9kDuEI2g&oe=66AA403B" alt="">
                             <div class="cart-count-wrapper">
                                 <div class="cart-count">
                                     0
@@ -52,48 +81,79 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <ul class="navbar-nav align-items-lg-center gap-5 justify-content-lg-center align-items-sm-start justify-content-sm-center vw-100 nav-home ">
-                    <div class="menu-header d-flex flex-row gap-2 align-items-center justify-content-center" wire:mouseleave="clearMenu">
-                        MENU
-                        <i class="fa-solid menu-header-icon fa-arrow-down fa-sm"></i>
+                <ul class="navbar-nav align-items-lg-center gap-5 justify-content-lg-center align-items-sm-start justify-content-sm-center align-items-start justify-content-center w-100 nav-home ">
+                    <div class="menu-header d-flex flex-row gap-2 align-items-center justify-content-center">
+                        <button class="btn-toggle-menu">
+                            <i class="fa-solid fa-bars mb-1 ms-1"></i>
+                            MENU
+                        </button>
+                        <div class="w-100 h-100 menu-lg-screen">
+                            MENU
+                            <i class="fa-solid menu-header-icon fa-arrow-down fa-sm"></i>
+                        </div>
                         <div class="menu-collapse-header">
-                            <div class="w-100 h-100 row">
-                                <div class="category-menu-header col-2">
-                                    <ul class="d-flex flex-column gap-5">
-                                        <li>{{count($subcategories)}}</li>
-                                        @foreach ($categories as $category)
-                                        <li wire:click="selectCategory({{ $category->id }}, 0)" class="{{ isset($selectedCategories[0]) && $selectedCategories[0] == $category->id ? 'active' : '' }}">
-                                            {{ $category->name }}
-                                        </li>
-                                        @endforeach
-                                    </ul>
+                            <div class="close-seeAll-container">
+                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                    <button class="btn-close-menu">
+                                        <span class="material-symbols-outlined">
+                                            close
+                                        </span>
+                                    </button>
+                                    <div class="d-flex justify-content-center align-items-center gap-2 seeAllMenu">
+                                        <span class="material-symbols-outlined">
+                                            view_list
+                                        </span>
+                                        <a href="" class="seeAllMenu">See all products</a>
+                                    </div>
                                 </div>
-                                <div class="col-10 subcategory-menu-header">
-                                    @foreach ($subcategories as $level => $subs)
-                                    <ul class="d-flex justify-content-start align-items-center flex-wrap gap-4" >
-                                        @foreach ($subs as $subcategory)
-                                        <li wire:click="selectCategory({{ $subcategory->id }}, {{ $level + 1 }})" class="subcategory-item {{ isset($selectedCategories[$level + 1]) && $selectedCategories[$level + 1] == $subcategory->id ? 'active' : '' }}" style="cursor: pointer;">
-                                            {{ $subcategory->name }}
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                    @endforeach
+                            </div>
+                            <div class="menu-category-item-wrapper">
+                                @foreach ($categories as $cate)
+                                <div class="menu-category-item">
+                                    <div class="d-flex flex-row align-items-center justify-content-start">
+                                        <a wire:navigate href="{{route('user.list-product-category', $cate -> id)}}" class="mb-1">{{ $cate->name }}</a>
+                                        @if ($cate->children->isNotEmpty())
+                                        <span class="material-symbols-outlined arrow-right">
+                                            arrow_right
+                                        </span>
+                                        @endif
+                                    </div>
+                                    @if ($cate->children->isNotEmpty())
+                                    @livewire('user.sub-category',['parentCategoryId' => $cate->id], key($cate->id))
+                                    @endif
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-
-                    <li>
+                    <li class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="material-symbols-outlined mb-1">
+                            house
+                        </span>
+                        <a wire:navigate href="{{route('users.home')}}">
+                            HOME
+                        </a>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="material-symbols-outlined mb-1">
+                            package_2
+                        </span>
                         <a wire:navigate href="{{route('user.list-product')}}">
                             SHOP
                         </a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="material-symbols-outlined mb-1">
+                            groups
+                        </span>
                         <a wire:navigate href="{{route('users.about')}}">
                             ABOUT US
                         </a>
                     </li>
-                    <li>
+                    <li class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="material-symbols-outlined mb-1">
+                            contact_page
+                        </span>
                         <a wire:navigate href="{{route('users.contact')}}">
                             CONTACT US
                         </a>

@@ -3,7 +3,7 @@
 
 <section id="productDetailsPage">
     <div class="container-fluid">
-
+<<<<<<< Updated upstream
         <div class="row currentAddress p-4">
             <div class="col-12 d-flex align-items-center ">
                 <div class="me-2 " style="cursor: pointer;">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="me-2 d-flex align-items-center " style="cursor: pointer;">
                     <i class="fa-solid fa-chevron-right"></i>
-                    <span class="ms-2 linkHover">CATEGORY</span>
+                    <span class="ms-2 linkHover">{{ $category }}</span>
                 </div>
                 <div class="me-2 d-flex align-items-center " style="cursor: pointer;">
                     <i class="fa-solid fa-chevron-right"></i>
@@ -22,7 +22,12 @@
                     <span class="ms-2 linkHover">PRODUCT_NAME</span>
                 </div>
             </div>
+=======
+        <div class="container">
+            {{ Breadcrumbs::render('product-detail', $product) }}
+>>>>>>> Stashed changes
         </div>
+
         <div class="productDetailContainer">
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -84,11 +89,21 @@
                 <div class="col-md-6 col-12 ps-4 pe-4">
                     <div class="container-fluid ProductDetail">
                         <div class="row">
+                            <!-- Name -->
                             <div class="col-12">
                                 <h2>{{ $product->name }}</h2>
                             </div>
+                            <!-- Price -->
                             <div class="col-12 mt-2">
-                                {{$this->price}}
+                                @if ($this->price)
+                                <div class="price">
+                                    <span>$ {{ $this->price }}</span>
+                                </div>
+                                @else
+                                <div>$ {{ $product->productVariants->min('price') }} - {{ $product->productVariants->max('price') }}</div>
+                                @endif
+
+
                             </div>
                             <div class="col-12 mt-2">
                                 <p>Đã bán: <span>1000 sản phẩm</span></p>
@@ -106,7 +121,7 @@
                                             @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
                                             <div class="col-auto p-1">
                                                 <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
-                                                <input wire:model="selectedOptions.{{ $variant->id }}" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
+                                                <input wire:model="selectedOptions.{{ $variant->id }}" wire:click="updateSelectedOptions" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
                                             </div>
                                             @endforeach
                                         </div>
@@ -115,6 +130,7 @@
                                 @endforeach
                                 @endif
                             </div>
+                            <!-- input Quantity -->
                             <div class="col-12 mt-3">
                                 <div class="row align-items-center">
                                     <div class="col-3 col-xxl-2 d-flex align-content-center">Số
@@ -128,16 +144,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- button Add to cart  -->
                             <div class="col-12 mt-4">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-primary w-100">Thêm
-                                            giỏ hàng</button>
+                                        <button wire:click="addToCart" class="btn btn-primary w-100">Thêm vào giỏ hàng</button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-success w-100">Mua
-                                            hàng</button>
+                                        <button wire:click="buyNow" type="button" class="btn btn-success w-100">Mua hàng</button>
                                     </div>
+                                    @if (session()->has('success'))
+                                    <div class="alert alert-success mt-2 h-75">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -152,7 +172,7 @@
                 </div>
 
                 <div class="col-6 text-end">
-                    <a href="#" class="viewAllLink ">Xem tất cả <i class="fas fa-angle-right"></i></a>
+                    <a wire:navigate href="{{route('user.list-product-category', $product -> category_id)}}" class="viewAllLink ">Xem tất cả <i class="fas fa-angle-right"></i></a>
                 </div>
             </div>
 
