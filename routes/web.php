@@ -49,11 +49,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/news', News::class)->name('admin.news');
 });
 
-<<<<<<< Updated upstream
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/checkout', Checkout::class)->name('users.checkout');
 });
-=======
 Route::get('/admin/addnew', Addnew::class)->name('admin.addnew');
 
 Route::get('/admin/order', Order::class)->name('admin.order');
@@ -65,4 +63,3 @@ Route::get('/admin/list_image', ListImage::class)->name('admin.list_image');
 Route::get('/admin/news', News::class)->name('admin.news');
 
 Route::get('/verify-mail/{id}', VerifyEmail::class)->name('verify_mail');
->>>>>>> Stashed changes
