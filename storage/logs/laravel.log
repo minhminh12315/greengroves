@@ -7711,3 +7711,12 @@ Content-Transfer-Encoding: quoted-printable
 #56 {main}
 "} 
 >>>>>>> Stashed changes
+[2024-07-09 14:04:02] local.INFO: array (
+  0 => 'assets/images/1720285839_about1.jpg',
+  1 => 'assets/images/1720285848_about2.jpg',
+  2 => 'assets/images/1720285860_about3.jpg',
+  3 => 'assets/images/1720285879_about4.jpg',
+  4 => 'assets/images/1720285897_about5.jpg',
+  5 => 'assets/images/1720285922_about6.jpg',
+)  
+[2024-07-09 16:18:53] local.INFO: showVariantAttributeModal called  

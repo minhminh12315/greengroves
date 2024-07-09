@@ -158,14 +158,5 @@ var R = {
             }
         });
     },
-    // showSweetAlert: function (title, text, icon) {
-    //     Swal.fire({
-    //         title: title,
-    //         text: text,
-    //         icon: icon,
-    //         timer: 3000,
-    //         toast: true,
-    //     });
-    // }
 };
 R.init();

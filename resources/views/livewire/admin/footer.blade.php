@@ -1,4 +1,4 @@
-<footer class="w-100">
+<footer id="admin-footer" class="w-100 p-4 border-top">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

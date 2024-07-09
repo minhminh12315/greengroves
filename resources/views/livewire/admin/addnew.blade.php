@@ -2,34 +2,41 @@
 @section('content')
 
 <div class="container">
-    <h1>New product</h1>
-    <p>Create new product</p>
+    <div class="mb-3">
+        <h3 class="fw-bold">New product</h3>
+        <p>Create new product</p>
+    </div>
     <form wire:submit.prevent="store_product" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-body">
-                <div>
-                    <h5>Infomation</h5>
-                    <hr>
+                <div class="border-bottom pt-2 pb-3">
+                    <h4>Infomation</h4>
                 </div>
-                <div class="row">
+                <div class="row mt-2 g-md-3 g-sm-4">
                     <div class="col-lg-6 col-md-12 col-12">
-                        <div class="form-group">
+                        <div class="form-group d-flex flex-column gap-2 justify-content-between h-100 w-100">
                             <label for="name">Product name: </label>
-                            <input wire:model="name" type="text" name="name" id="name" class="form-control mt-1" >
+                            <input wire:model="name" type="text" name="name" id="name" class="form-control">
                             @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
-                        <div class="form-group">
+                        <div class="form-group d-flex flex-column gap-2 h-100 w-100 justify-content-between">
                             <div class="d-flex justify-content-between">
                                 <label for="category">Category: </label>
-                                <div>
-                                    <button type="button" class="btn btn-primary badge" wire:click="showAddCategoryModal">+ New Category</button>
+                                <div class="d-flex flex-row gap-1 align-items-center btn-addcate-addPage" wire:click="showAddCategoryModal">
+                                    <span class="material-symbols-outlined fs-6 mt-1">
+                                        add_circle
+                                    </span>
+                                    <span>
+                                        New Category
+                                    </span>
                                 </div>
                             </div>
-                            <select wire:model="category_id" name="category_id" id="category" class="text-capitalize  mt-1 form-control" >
+                            <select wire:model="category_id" name="category_id" id="category" class="text-capitalize form-select">
                                 @if ($category->count() > 0)
+                                <option selected class="d-none">--Choose Category--</option>
                                 @foreach ($category as $cat)
                                 <option class="text-capitalize" value="{{$cat->id}}">{{$cat->name}}</option>
                                 @endforeach
@@ -39,44 +46,43 @@
                             </select>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Description: </label>
-                    <textarea wire:model="description" name="description" id="description" class="form-control" ></textarea>
-                    @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
-                </div>
-                
-
-                <div class="form-group">
-                    <label for="images">Image: </label>
-                    <input wire:model="images" type="file" name="images" id="images" class="form-control" multiple>
-                    @if ($images)
-                    <div class="mt-2">
-                        @foreach ($images as $image)
-                        <img src="{{ $image->temporaryUrl() }}" width="100" height="100" class="mr-2 mb-2">
-                        @endforeach
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="description">Description: </label>
+                            <textarea wire:model="description" name="description" id="description" class="form-control"></textarea>
+                            @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
                     </div>
-                    @endif
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="images">Image: </label>
+                            <input wire:model="images" type="file" name="images" id="images" class="form-control" multiple>
+                            @if ($images)
+                            <div class="mt-2">
+                                @foreach ($images as $image)
+                                <img src="{{ $image->temporaryUrl() }}" width="100" height="100" class="mr-2 mb-2">
+                                @endforeach
+                            </div>
+                            @endif
 
-                    @error('images') <span class="error text-danger">{{ $message }}</span> @enderror
+                            @error('images') <span class="error text-danger">{{ $message }}</span> @enderror
 
-                    @if ($errors->has('images.*'))
-                    @foreach ($errors->get('images.*') as $key => $messages)
-                    @foreach ($messages as $message)
-                    <span class="error text-danger">{{ $message }}</span><br>
-                    @endforeach
-                    @endforeach
-                    @endif
+                            @if ($errors->has('images.*'))
+                            @foreach ($errors->get('images.*') as $key => $messages)
+                            @foreach ($messages as $message)
+                            <span class="error text-danger">{{ $message }}</span><br>
+                            @endforeach
+                            @endforeach
+                            @endif
 
+                        </div>
+                    </div>
                 </div>
-
                 <div>
-                    <div>
-                        <h5>Pricing & Stocks</h5>
-                        <hr>
+                    <div class="border-bottom pt-4 pb-3">
+                        <h4>Pricing & Stocks</h4>
                     </div>
-                    <div>
+                    <div class="">
                         <div class="form-group product_type">
                             <label for="product_type">Product type</label>
                             <br>
@@ -87,12 +93,12 @@
                         <div class="form-group row">
                             <div class="col-12 col-md-6">
                                 <label for="quantity">Quantity: </label>
-                                <input wire:model="quantity_single" type="number" name="quantity" id="quantity" class="form-control" >
+                                <input wire:model="quantity_single" type="number" name="quantity" id="quantity" class="form-control">
                                 @error('quantity_single') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="col-12 col-md-6">
                                 <label for="price">Price: </label>
-                                <input wire:model="price_single" step="0.01" type="number" name="price" id="price" class="form-control" >
+                                <input wire:model="price_single" step="0.01" type="number" name="price" id="price" class="form-control">
                                 @error('price_single') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -125,7 +131,7 @@
                                     <button type="button" class="btn btn-danger ml-2" wire:click="deleteOption({{ $index }}, {{ $optionIndex }})">Delete</button>
                                 </div>
                                 @error('variantAttributes.' . $index . '.options.' . $optionIndex) <span class="error text-danger">{{ $message }}</span> @enderror
-                                
+
                                 @endforeach
 
                                 <div class="d-flex justify-content-end w-100 mt-1">
@@ -230,4 +236,19 @@
     <div class="modal-backdrop fade show"></div>
     @endif
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('input , textarea').on('blur', function() {
+            var userInput = $(this).val().trim();
+
+            if (!userInput) {
+                $(this).addClass('is-invalid');
+            } else {
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+            }
+        });
+    });
+</script>
 @endsection
