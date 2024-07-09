@@ -1,7 +1,7 @@
 @extends('livewire.user.index')
 @section('content')
 <div class="container">
-    <form class="row row-cols-md-2 row-cols-sm-1">
+    <form class="row row-cols-md-2 row-cols-sm-1" method="POST" >
         <div class="col-md-8 col-sm-12">
             <h3 class="mb-4">Checkout</h3>
             <div class="form-checkout">
@@ -22,7 +22,7 @@
                     <div class="col-md-6 col-sm-12 mb-4">
                         <label class="p-1" for="phone">Phone Number*</label>
                         <input type="text" class="form-control p-1" name="phone" required>
-            </div>
+                    </div>
                     <div class="col-md-6 col-sm-12 mb-4">
                         <label class="p-1" for="address">Address*</label>
                         <input type="text" class="form-control p-1" name="address" required>
@@ -53,7 +53,7 @@
                 <div class="d-flex justify-content-between">
                     <div>Product Price:</div>
                     <div class="fw-bold">99.999$</div>
-    </div>
+                </div>
                 <div class="d-flex justify-content-between">
                     <div>Delivery:</div>
                     <div class="fw-bold">99.999$</div>
@@ -93,4 +93,4 @@
             });
         });
     </script>
-@endsection
+    @endsection
