@@ -3,23 +3,29 @@
 namespace App\Livewire\User;
 
 use App\Models\Product;
+use App\Models\Categories;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class ListProduct extends Component
 {   
-    public $product;
+    public $products;
+    public $listProductCategory = null;
+    public $category;
+    public function mount($id = null){
+        if($id){
+            $this->products = Product::with('productVariants.subVariants.variantOption.variant')->where('category_id',$id)->get();
+            $this -> listProductCategory = true; 
+            $this->category = Categories::find($id); 
+        }
+        else{
+            $this->products = Product::with('productVariants.subVariants.variantOption.variant')->get();
+            $this -> listProductCategory = false; 
+        }
+    }
     public function render()
     {   
-        $this->product = Product::with('productVariants.subVariants.variantOption.variant')->get();
-        foreach($this->product as $product){
-            Log::info($product);
-            Log::info($product->productVariants);
-        }
-
-        $data = [
-            'products' => $this->product
-        ];
-        return view('livewire.user.list-product', $data);
+        
+        return view('livewire.user.list-product');
     }
 }

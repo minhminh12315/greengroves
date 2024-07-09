@@ -3,8 +3,12 @@
 <section id="ContactPage">
     <div class="contact-title">
         <div class="">CONTACT US IF U WANNA MAKE UR DREAM HOUSE</div>
+
     </div>
     <div class="container mt-5 p-4">
+        <div>
+            {{ Breadcrumbs::render('contact') }}
+        </div>
         <div class=" row row-cols-lg-2 row-cols-md-1 feedback-container">
             <div class="col get-in-touch">
                 <div class="d-flex flex-row justify-content-center align-items-center gap-2 get-in-touch-title">

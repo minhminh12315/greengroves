@@ -111,7 +111,7 @@
                                 @foreach ($categories as $cate)
                                 <div class="menu-category-item">
                                     <div class="d-flex flex-row align-items-center justify-content-start">
-                                        <a href="" class="mb-1">{{ $cate->name }}</a>
+                                        <a wire:navigate href="{{route('user.list-product-category', $cate -> id)}}" class="mb-1">{{ $cate->name }}</a>
                                         @if ($cate->children->isNotEmpty())
                                         <span class="material-symbols-outlined arrow-right">
                                             arrow_right

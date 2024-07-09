@@ -52,6 +52,8 @@ Route::get('/product-detail', ProductDetail::class)->name('user.product-detail')
 
 Route::get('/list-product', UserListProduct::class)->name('user.list-product');
 
+Route::get('/list-product/{id}', UserListProduct::class)->name('user.list-product-category');
+
 Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');
 
 Route::get('/checkout', Checkout::class)->name('users.checkout');

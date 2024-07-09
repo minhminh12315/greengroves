@@ -318,10 +318,12 @@ body {
     opacity: 0;
     transition: 0.2s ease-in-out;
 }
-#header .login-container-user .loggedInUser.show{
+
+#header .login-container-user .loggedInUser.show {
     visibility: visible;
     opacity: 1;
 }
+
 #header .login-container-user .loggedInUser .loggedInUser-item {
     margin: 0;
     border: none;
@@ -357,7 +359,8 @@ body {
     justify-content: center;
     align-items: center;
 }
-.user-info-demo{
+
+.user-info-demo {
     background-color: #FFFFFF;
     width: 100%;
     box-shadow: 2px 2px 5px 2px #e3e1e1;
@@ -369,7 +372,8 @@ body {
     justify-content: start;
     gap: 1rem;
 }
-.btn-user{
+
+.btn-user {
     font-size: 1.6rem;
 }
 
@@ -573,6 +577,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1.5rem;
+    flex-direction: column;
     z-index: 10;
     padding: 20px;
 }
@@ -1035,6 +1041,8 @@ body {
 }
 
 .user-card-product {
+    height: 18rem;
+    width: auto;
     transition: 0.3s ease-in-out;
     overflow: hidden;
 }
@@ -1059,7 +1067,6 @@ body {
 
 .user-card-news .card-img-top {
     width: 100%;
-    aspect-ratio: 16/9;
     object-fit: cover;
     transition: 0.3s ease-in-out;
     overflow: hidden;
@@ -1150,6 +1157,7 @@ body {
 }
 
 
+<<<<<<< Updated upstream
 #productDetailsPage .productImageList {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -1229,6 +1237,8 @@ body {
 */ #productDetailsPage .relativeProduct .card {
     width: 10rem
 }
+=======
+>>>>>>> Stashed changes
 
 =======
 >>>>>>> Stashed changes
@@ -1651,18 +1661,21 @@ body {
     .offcanvas {
         overflow: auto !important;
     }
-    #header .login-container-user .loggedInUser{
+
+    #header .login-container-user .loggedInUser {
         min-width: 40vw;
     }
-    .btn-user{
+
+    .btn-user {
         font-size: 1rem;
     }
 }
 
-@media screen and (max-width:576px ){ 
-    #header .login-container-user .loggedInUser{
+@media screen and (max-width:576px) {
+    #header .login-container-user .loggedInUser {
         min-width: 60vw;
     }
+<<<<<<< Updated upstream
     
 =======
 .border-bot {
@@ -1678,3 +1691,18 @@ body {
     color: #fff;
 >>>>>>> Stashed changes
 }
+=======
+
+}
+
+
+.breadcrumb .breadcrumb-item a,
+.breadcrumb .breadcrumb-item.active {
+    font-size: 1.2rem !important;
+}
+
+.breadcrumb .breadcrumb-item a:hover,
+.breadcrumb .breadcrumb-item.active:hover {
+    color: #2a7d2e !important;
+}
+>>>>>>> Stashed changes

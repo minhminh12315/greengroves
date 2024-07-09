@@ -3,6 +3,7 @@
 
 <section id="productDetailsPage">
     <div class="container-fluid">
+<<<<<<< Updated upstream
         <div class="row currentAddress p-4">
             <div class="col-12 d-flex align-items-center ">
                 <div class="me-2 " style="cursor: pointer;">
@@ -21,7 +22,12 @@
                     <span class="ms-2 linkHover">PRODUCT_NAME</span>
                 </div>
             </div>
+=======
+        <div class="container">
+            {{ Breadcrumbs::render('product-detail', $product) }}
+>>>>>>> Stashed changes
         </div>
+
         <div class="productDetailContainer">
             <div class="row">
                 <div class="col-12 col-md-6">
@@ -166,7 +172,7 @@
                 </div>
 
                 <div class="col-6 text-end">
-                    <a href="#" class="viewAllLink ">Xem tất cả <i class="fas fa-angle-right"></i></a>
+                    <a wire:navigate href="{{route('user.list-product-category', $product -> category_id)}}" class="viewAllLink ">Xem tất cả <i class="fas fa-angle-right"></i></a>
                 </div>
             </div>
 

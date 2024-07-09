@@ -1,6 +1,9 @@
 @extends('livewire.user.index')
 @section('content')
 <div class="p-5" id="AboutPage">
+    <div class="ms-3">
+        {{ Breadcrumbs::render('about') }}
+    </div>
     <div class="aboutUsContainer ">
         <div class="row row-cols-1 g-5">
             <div class="col">
