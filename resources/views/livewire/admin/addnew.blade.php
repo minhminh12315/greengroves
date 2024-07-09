@@ -92,7 +92,7 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <label for="price">Price: </label>
-                                <input wire:model="price_single" type="number" name="price" id="price" class="form-control" >
+                                <input wire:model="price_single" step="0.01" type="number" name="price" id="price" class="form-control" >
                                 @error('price_single') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                 <p>Option: {{ $combination['option'] }}</p>
                                 <input type="number" wire:model="variantCombinations.{{ $index }}.quantity" placeholder="Enter Quantity">
                                 @error('variantCombinations.' . $index . '.quantity') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <input type="number" wire:model="variantCombinations.{{ $index }}.price" placeholder="Enter Price">
+                                <input type="number" wire:model="variantCombinations.{{ $index }}.price" step="0.01" placeholder="Enter Price">
                                 @error('variantCombinations.' . $index . '.price') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
                             @endforeach

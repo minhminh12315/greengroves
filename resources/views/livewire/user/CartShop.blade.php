@@ -12,6 +12,7 @@
                 <button class="btn btn-danger">Clear All</button>
             </div>
         </div>
+        @if (count($cart) > 0)
         <div class="row p-3">
             <div class="col-12">
                 <div class="cartShopTable table-responsive">
@@ -22,64 +23,66 @@
                                     Check box
                                 </th>
                                 <th scope="col" class="text-center">Images</th>
-                                <th scope="col" class="text-center" >Product</th>
+                                <th scope="col" class="text-center">Product</th>
+                                <th scope="col" class="text-center">Vaiant</th>
                                 <th scope="col" class="text-center">Price</th>
-                                <th scope="col" class="text-center" >Quantity</th>
+                                <th scope="col" class="text-center">Quantity</th>
                                 <th scope="col" class="text-center">Total</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($cart as $key => $item)
                             <tr>
                                 <td>
                                     <div class="wrapper-container">
                                         <div class="wrapper-item">
-                                            <input type="checkbox" class="selectItem">
+                                            <input type="checkbox" wire:model="selectedItems" value="{{ $item['variant_id'] }}">
                                         </div>
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <img src="https://dummyimage.com/600x400/000/fff2fd" alt="Product 1" class="img-thumbnail" style="width: 160px;height: 160px;">
+                                    @if (isset($item['image']))
+                                    <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['name'] }}" style="width: 50px; height: 50px;">
+                                    @else
+                                    No Image
+                                    @endif
                                 </td>
-                                <td class="text-center">Product 1</td>
-                                <td class="text-center">$19.99</td>
-                                <td>
-                                    <input type="number" class="form-control text-center" value="1" min="1">
+                                <td class="text-center">{{ $item['name'] }}</td>
+                                <td class="text-center">
+                                    <ul>
+                                        @foreach ($item['variants'] as $variant)
+                                        <li>{{ $variant['variant_name'] }}: {{ $variant['variant_option_name'] }}</li>
+                                        @endforeach
+                                    </ul>
                                 </td>
-                                <td class="text-center">$19.99</td>
+                                <td class="text-center">${{ $item['price'] }}</td>
+                                <td class="text-center d-flex">
+                                    <button wire:click="decrementQuantity({{ $key }})">-</button>
+                                    <input wire:model="quantities.{{ $key }}" type="number" class="form-control text-center" min="1">
+                                    <button wire:click="incrementQuantity({{ $key }})">+</button>
+                                </td>
+                                <td class="text-center">${{ $item['price'] }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-danger">Remove</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="wrapper-container">
-                                        <div class="wrapper-item">
-                                            <input type="checkbox" class="selectItem">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <img src="https://dummyimage.com/600x400/000/fff2fd" alt="Product 1" class="img-thumbnail" style="width: 160px;height: 150px;">
-                                </td>
-                                <td class="text-center">Product 1</td>
-                                <td class="text-center">$19.99</td>
-                                <td>
-                                    <input type="number" class="form-control text-center" value="1" min="1">
-                                </td>
-                                <td class="text-center">$19.99</td>
-                                <td class="text-center">
-                                    <button class="btn btn-danger">Remove</button>
-                                </td>
-                            </tr>
-                            <!-- Add more products as needed -->
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
 
         </div>
+        @else
+        <div class="row p-3">
+            <div class="col-12">
+                <div class="cartShopEmpty">
+                    <p>Your cart is empty.</p>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
     <div class="container">
         <div class="row">
@@ -88,18 +91,18 @@
                     <div class="wrapper-container">
                         <div class="wrapper-item">
                             <div class="d-inline textPrice">Total Price :</div>
-                            <div class="d-inline textPrice">$19.99</div>
+                            <div class="d-inline textPrice">${{ $totalPrice }}</div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        <div class="col-6">
-            <div class="checkOutButtonContainer d-flex justify-content-end align-content-center">
-                <button class="btn btn-secondary checkOutButton">Check Out</button>
+            <div class="col-6">
+                <div class="checkOutButtonContainer d-flex justify-content-end align-content-center">
+                    <button class="btn btn-secondary checkOutButton">Check Out</button>
+                </div>
             </div>
         </div>
-        </div>
-   </div>
+    </div>
+    
 </section>
 @endsection

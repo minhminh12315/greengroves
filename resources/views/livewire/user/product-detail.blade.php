@@ -3,7 +3,6 @@
 
 <section id="productDetailsPage">
     <div class="container-fluid">
-
         <div class="row currentAddress p-4">
             <div class="col-12 d-flex align-items-center ">
                 <div class="me-2 " style="cursor: pointer;">
@@ -11,7 +10,7 @@
                 </div>
                 <div class="me-2 d-flex align-items-center " style="cursor: pointer;">
                     <i class="fa-solid fa-chevron-right"></i>
-                    <span class="ms-2 linkHover">CATEGORY</span>
+                    <span class="ms-2 linkHover">{{ $category }}</span>
                 </div>
                 <div class="me-2 d-flex align-items-center " style="cursor: pointer;">
                     <i class="fa-solid fa-chevron-right"></i>
@@ -92,13 +91,13 @@
                             <div class="col-12 mt-2">
                                 @if ($this->price)
                                 <div class="price">
-                                    <span>$ {{ number_format($this->price, 0, ',', '.') }}</span>
+                                    <span>$ {{ $this->price }}</span>
                                 </div>
                                 @else
                                 <div>$ {{ $product->productVariants->min('price') }} - {{ $product->productVariants->max('price') }}</div>
                                 @endif
-                                
-                                
+
+
                             </div>
                             <div class="col-12 mt-2">
                                 <p>Đã bán: <span>1000 sản phẩm</span></p>
@@ -143,13 +142,16 @@
                             <div class="col-12 mt-4">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-primary w-100">Thêm
-                                            giỏ hàng</button>
+                                        <button wire:click="addToCart" class="btn btn-primary w-100">Thêm vào giỏ hàng</button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-success w-100">Mua
-                                            hàng</button>
+                                        <button wire:click="buyNow" type="button" class="btn btn-success w-100">Mua hàng</button>
                                     </div>
+                                    @if (session()->has('success'))
+                                    <div class="alert alert-success mt-2 h-75">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

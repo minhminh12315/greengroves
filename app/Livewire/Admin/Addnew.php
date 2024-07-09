@@ -130,7 +130,7 @@ class Addnew extends Component
                     'variant' => $attributeName,
                     'option' => $option,
                     'quantity' => null, // Thay bằng giá trị mặc định hoặc để trống
-                    'price' => null,    // Thay bằng giá trị mặc định hoặc để trống
+                    'price' => 0.0,    // Thay bằng giá trị mặc định hoặc để trống
                 ];
                 $tempCombinations[] = $combination;
             }
@@ -146,7 +146,7 @@ class Addnew extends Component
                             'variant' => $existingCombination['variant'] . ' - ' . $newCombination['variant'],
                             'option' => $existingCombination['option'] . ' - ' . $newCombination['option'],
                             'quantity' => null, // Thay bằng giá trị mặc định hoặc để trống
-                            'price' => null,    // Thay bằng giá trị mặc định hoặc để trống
+                            'price' => 0.0,    // Thay bằng giá trị mặc định hoặc để trống
                         ];
                     }
                 }
@@ -229,6 +229,7 @@ class Addnew extends Component
                     'quantity' => $this->quantity_single,
                     'price' => $this->price_single,
                 ]);
+                Log::info('Single product added', ['product_id' => $product->id, 'quantity' => $this->quantity_single, 'price' => $this->price_single]);
 
                 
             }
