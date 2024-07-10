@@ -36,7 +36,7 @@
         <div class="d-flex flex-column gap-4">
             <h1 class="text-center">-- GARDENING TOOLS --</h1>
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 g-3">
-                @foreach($products as $key => $product)
+                @foreach($gardeningtools as $key => $product)
                 <div class="col">
                     <div class="card user-card-product">
                         <a href="{{ route('user.product-detail', ['id' => $product->id]) }}">

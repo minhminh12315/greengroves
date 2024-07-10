@@ -26,9 +26,8 @@
                             <div class="w-100 d-flex flex-column align-items-start gap-4 justify-content-center">
                                 <div class="user-info-demo">
                                     <div class="user-img">
-                                        
                                         @if(Auth::user()->avatar)
-                                        <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="">
+                                        <img src="{{ Storage::url(Auth::user()->avatar) }}" class="img-fluid" alt="{{Auth::user()->name}}">
                                         @else
                                         <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=cp0_dst-png_p40x40&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=Xy7AjkPZPq4Q7kNvgGjaJQ_&_nc_ht=scontent.fhan17-1.fna&oh=00_AYA7OIwIVuPvbsa-4EW9hzy1CsM4rHHQaw1wN59wBy3Vtw&oe=66B07778" alt="">
                                         @endif
