@@ -617,10 +617,10 @@ body {
 }
 
 .changeColor:hover {
-    animation: change-color 0.5s linear forwards;
+    animation: changeColor2 0.5s linear forwards;
 }
 
-@keyframes change-color {
+@keyframes changeColor2 {
     50% {
         background-color: #2a7d2e;
     }
@@ -748,28 +748,6 @@ body {
 
     .login-container.active .sign-up {
         transform: translateX(0);
-    }
-}
-
-.loading-indicator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.spinner {
-    width: 15px;
-    height: 15px;
-    border: 4px solid rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    border-top-color: #000;
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
     }
 }
 /* End of Login */
@@ -1003,166 +981,6 @@ body {
     height: 500px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.social-icons a {
-    border: 1px solid #dee2e6;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
-
-.toggle-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 100;
-}
-
-.login-container.active .toggle-container {
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
-
-.toggle {
-    background-color: #13d420;
-    height: 100%;
-    background: linear-gradient(to right, #aaf87d, #13d420);
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.login-container.active .toggle {
-    transform: translateX(50%);
-}
-
-.toggle-panel {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
-    text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.toggle-left {
-    transform: translateX(-200%);
-}
-
-.login-container.active .toggle-left {
-    transform: translateX(0);
-}
-
-.toggle-right {
-    right: 0;
-    transform: translateX(0);
-}
-
-.login-container.active .toggle-right {
-    transform: translateX(200%);
-}
-
-@media screen and (max-width: 768px) {
-    .login-container {
-        border-radius: 20px;
-    }
-
-    .login-container form {
-        padding: 0 20px;
-    }
-
-    .login-container .userbox {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 438px) {
-    .login-container {
-        border-radius: 15px;
-    }
-
-    .toggle-container {
-        display: none;
-    }
-
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: absolute;
-        width: 100%;
-    }
-
-    .switcher {
-        text-align: center;
-        padding-bottom: 10px;
-    }
-
-    .switcher button {
-        color: #000;
-        background-color: transparent !important;
-        text-transform: none;
-    }
-
-    .form-container {
-        animation: hideLayer .3s ease-out forwards;
-    }
-
-    .form-container.active {
-        animation: showLayer .3s ease-in forwards;
-    }
-
-    @keyframes showLayer {
-        50% {
-            z-index: 1;
-        }
-
-        100% {
-            z-index: 1;
-        }
-    }
-
-    @keyframes hideLayer {
-        0% {
-            z-index: 1;
-        }
-
-        49.999% {
-            z-index: 1;
-        }
-    }
-
-    .login-container.active .sign-in {
-        transform: translateX(-100%);
-    }
-
-    .sign-up {
-        right: 0;
-        transform: translateX(100%);
-    }
-
-    .login-container.active .sign-up {
-        transform: translateX(0);
-    }
 }
 
 #confirmationDialog {
