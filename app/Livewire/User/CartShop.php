@@ -2,6 +2,7 @@
 
 namespace App\Livewire\User;
 
+use App\Models\ProductVariant;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
@@ -23,6 +24,15 @@ class CartShop extends Component
         }
         $this->calculateTotalPrice();
     }
+    public function clearAllCart()
+    {
+        session()->forget('cart');
+        $this->cart = [];
+        $this->quantities = [];
+        $this->totalPrice = 0.0;
+        $this->dispatch('cartUpdated');
+        $this->updateCart();
+    }
     public function updateCart()
     {
         $this->cart = session()->get('cart', []);
@@ -34,6 +44,8 @@ class CartShop extends Component
             unset($this->cart[$variantId]);
             session()->put('cart', $this->cart);
         }
+        $this->dispatch('cartUpdated');
+        $this->calculateTotalPrice();
     }
     public function updatedQuantities()
     {
@@ -42,15 +54,23 @@ class CartShop extends Component
                 $this->cart[$key]['quantity'] = $quantity;
             }
         }
-        session()->put('cart', $this->cart);
+        if(count($this->cart) == 0) {
+            session()->forget('cart');
+        } else {
+            session()->put('cart', $this->cart);
+        }
         $this->calculateTotalPrice();
     }
 
     public function incrementQuantity($variantId)
     {
         if (isset($this->quantities[$variantId])) {
-            $this->quantities[$variantId]++;
-            $this->updatedQuantities();
+            if(ProductVariant::find($variantId)->quantity > $this->quantities[$variantId]) {
+                $this->quantities[$variantId]++;
+                $this->updatedQuantities();
+            } else {
+                session()->flash('errorQuantity', 'Số lượng sản phẩm không đủ');
+            }
         }
     }
 

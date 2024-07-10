@@ -8,9 +8,7 @@
             <tr>
                 <th>ID</th>
                 <th>Category Name</th>
-                <th>Description</th>
                 <th>Parent Category</th>
-                <th></th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,11 +17,12 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->description }}</td>
-                <td>{{ $category->parent ? $category->parent->name : 'None' }}</td>
+                <td class="{{ $category->parent ? '' : 'text-secondary' }}">
+                    {{ $category->parent ? $category->parent->name  : 'None' }}
+                </td>
                 <td>
-                    <button class="btn btn-primary" wire:click="editCategory({{ $category->id }})" type="button">Chỉnh sửa</button>
-                    <button class="btn btn-danger" wire:click="confirmDelete({{ $category->id }})" type="button">Xóa</button>
+                    <button class="btn btn-primary me-3" wire:click="editCategory({{ $category->id }})" type="button">Update</button>
+                    <button class="btn btn-danger" wire:click="confirmDelete({{ $category->id }})" type="button">Delete</button>
                 </td>
             </tr>
             @endforeach

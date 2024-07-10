@@ -7,7 +7,9 @@ use App\Livewire\Admin\ListImage;
 use App\Livewire\Admin\ListProduct as AdminListProduct;
 use App\Livewire\Admin\News;
 use App\Livewire\Admin\Order;
+use App\Livewire\Admin\OrderShow;
 use App\Livewire\Login;
+use App\Livewire\Setting;
 use App\Livewire\User\About;
 use App\Livewire\User\Checkout;
 use App\Livewire\User\CartShop;
@@ -33,11 +35,11 @@ Route::get('/list-product', UserListProduct::class)->name('user.list-product');
 
 Route::get('/list-product/{id}', UserListProduct::class)->name('user.list-product-category');
 
-Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');
-
-Route::get('/verify-mail/{id}', VerifyEmail::class)->name('verify_mail');
-
 Route::get('/cartShop', CartShop::class)->name('user.cartShop');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/setting', Setting::class)->name('setting_user');
+});
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', AdminListProduct::class)->name('admin.index');
@@ -47,6 +49,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/list_category', ListCategory::class)->name('admin.list_category');
     Route::get('/admin/list_image', ListImage::class)->name('admin.list_image');
     Route::get('/admin/news', News::class)->name('admin.news');
+    Route::get('/admin/order-show/{id}', OrderShow::class)->name('admin.order.show');
 });
 
 Route::middleware(['auth', 'user'])->group(function () {

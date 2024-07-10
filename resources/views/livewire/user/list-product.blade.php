@@ -20,12 +20,12 @@
                     <a wire:navigate href="{{route('user.product-detail', $p->id)}}">
                         <div class="overflow-hidden">
                             <img src="https://dummyimage.com/600x400/000/fff888" class="card-img-top" alt="...">
-
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title ">Card title</h5>
-                            <p class="card-text">22.99$</p>
-                            <p class="card-text">Đã bán 13,8k</p>
+                            <h5 class="card-title ">{{$p->name}}</h5>
+                            @if($p->productVariants->isNotEmpty())
+                            <p class="card-text">{{$p->productVariants->min('price')}}</p>
+                            @endif
                         </div>
                     </a>
                 </div>

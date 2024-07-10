@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-danger">Clear All</button>
+                <button wire:click="clearAllCart" class="btn btn-danger">Clear All</button>
             </div>
         </div>
         @if (count($cart) > 0)
@@ -57,14 +57,18 @@
                                     </ul>
                                 </td>
                                 <td class="text-center">${{ $item['price'] }}</td>
-                                <td class="text-center d-flex">
-                                    <button wire:click="decrementQuantity({{ $key }})">-</button>
-                                    <input wire:model="quantities.{{ $key }}" type="number" class="form-control text-center" min="1">
-                                    <button wire:click="incrementQuantity({{ $key }})">+</button>
+                                <td class="text-center h-100 d-flex ">
+                                    <button class="btn btn-danger me-1 h-100 p-3" wire:click="decrementQuantity({{ $key }})">-</button>
+                                    <input wire:model="quantities.{{ $key }}" type="number" class="form-control text-center p-3" min="1">
+                                    <button class="btn btn-success ms-1 h-100 p-3" wire:click="incrementQuantity({{ $key }})">+</button>
                                 </td>
+                                <!-- Quantity Error -->
+                                @if(session()->has('errorQuantity'))
+                                <div class="text-danger">{{ session('errorQuantity') }}</div>
+                                @endif
                                 <td class="text-center">${{ $item['price'] }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-danger">Remove</button>
+                                    <button wire:click="removeItem({{$item['variant_id']}})" class="btn btn-danger">Remove</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -103,6 +107,6 @@
             </div>
         </div>
     </div>
-    
+
 </section>
 @endsection

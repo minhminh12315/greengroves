@@ -1,14 +1,14 @@
 @extends('livewire.user.index')
 @section('content')
 <div class="container">
-    <form class="row row-cols-md-2 row-cols-sm-1" method="POST" >
+    <form wire:submit="checkoutFinal" class="row row-cols-md-2 row-cols-sm-1"  >
         <div class="col-md-8 col-sm-12">
             <h3 class="mb-4">Checkout</h3>
             <div class="form-checkout">
                 <div class="row mb-4">
                     <div class="col-sm-12 col-md-6">
                         <label class="p-1" for="email">Email*</label>
-                        <input wire:model="email" type="text" class="form-control p-1" name="email" required>
+                        <input disabled wire:model="email" type="text" class="form-control p-1" name="email" required>
                     </div>
                 </div>
                 <h4 class="mb-4">Delivery</h4>
@@ -79,7 +79,7 @@
                 <div>Payment Method</div>
                 <div class="fw-bold fs-5">Cash On Delivery</div>
             </div>
-            <button wire:click="checkoutFinal" class="btn btn-success w-100 rounded-pill mb-4">Checkout</button>
+            <button type="submit" class="btn btn-success w-100 rounded-pill mb-4">Checkout</button>
             <button class="btn btn-outline-dark w-100 rounded-pill">Back</button>
         </div>
     </form>

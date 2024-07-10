@@ -13,6 +13,7 @@ class ProductDetail extends Component
 {
     public $product;
     public $quantity = 1;
+    public $quantityStock;
     public $selectedOptions = [];
     public $selectedOption;
     public $variantOptions = [];
@@ -20,6 +21,7 @@ class ProductDetail extends Component
     public $price;
     public $category;
     public $categoryName;
+    public $productSameCategory;
 
     public function mount($id)
     {
@@ -31,21 +33,46 @@ class ProductDetail extends Component
             ->flatMap->subVariants
             ->pluck('variantOption')
             ->unique('id');
-        // Log::info('variantOptions: ' . json_encode($this->variantOptions));
         $this->variants = Variant::whereIn('id', $this->variantOptions->pluck('variant_id'))->get();
-        Log::info('price: ' . $this->price);
-        Log::info('productVariants count: ' . $this->product->productVariants->count());
-        Log::info('productVariants: ' . json_encode($this->product->productVariants));
+        $this->productSameCategory = Product::where('category_id', $this->product->category_id)
+            ->where('id', '!=', $this->product->id)
+            ->limit(8)
+            ->get();
+
         if ($this->product->productVariants->count() == 1) {
             $this->price = $this->product->productVariants->first()->price;
         }
-        Log::info('price after fix: ' . $this->price);
-        Log::info('product name: ' . $this->product->name);
+        if ($this->product->type == 'single') {
+            $this->quantityStock = $this->product->productVariants->first()->quantity;
+        }
+        Log::info('quantity: ' . $this->quantity);
     }
     // Quantity
     public function increment_quantity()
     {
-        $this->quantity++;
+        $selectedOptions = $this->selectedOptions;
+
+        Log::info('Calculating price with selected options: ' . json_encode($selectedOptions));
+        Log::info('Total variants count: ' . count($this->variants));
+
+        if (count($selectedOptions) === count($this->variants)) {
+            $productVariant = ProductVariant::where('product_id', $this->product->id)
+                ->whereHas('subVariants', function ($query) use ($selectedOptions) {
+                    $query->whereIn('variant_option_id', $selectedOptions);
+                }, '=', count($selectedOptions))
+                ->first();
+
+            if ($productVariant) {
+                Log::info('aloalo ' . json_encode($productVariant));
+                $this->quantityStock = $productVariant->quantity;
+                Log::info('QuantityStock found: ' . $this->quantityStock);
+                if ($this->quantity < $this->quantityStock) {
+                    $this->quantity++;
+                } else {
+                    session()->flash('errorQuantity', 'The quantity must be less than the quantity in stock');
+                }
+            }
+        }
     }
     public function decrement_quantity()
     {
@@ -62,10 +89,6 @@ class ProductDetail extends Component
     public function calculatePrice()
     {
         $selectedOptions = $this->selectedOptions;
-
-        Log::info('Calculating price with selected options: ' . json_encode($selectedOptions));
-        Log::info('Total variants count: ' . count($this->variants));
-
         if (count($selectedOptions) === count($this->variants)) {
             $productVariant = ProductVariant::where('product_id', $this->product->id)
                 ->whereHas('subVariants', function ($query) use ($selectedOptions) {
@@ -74,9 +97,9 @@ class ProductDetail extends Component
                 ->first();
 
             if ($productVariant) {
-                Log::info('Matching productVariant found: ' . json_encode($productVariant));
                 $this->price = $productVariant->price;
-                Log::info('Calculated price: ' . $this->price);
+                $this->quantityStock = $productVariant->quantity;
+                Log::info('QuantityStock found: ' . $this->quantityStock);
             } else {
                 $this->price = 0;
                 Log::info('No matching productVariant found, price set to 0');
@@ -96,7 +119,18 @@ class ProductDetail extends Component
                     $query->whereIn('variant_option_id', $selectedOptions);
                 }, '=', count($selectedOptions))
                 ->first();
+
             if ($productVariant) {
+                $quantityInCart = session()->get('cart.' . $productVariant->id . '.quantity', 0);
+                if ($this->quantity > $productVariant->quantity) {
+                    session()->flash('error', 'The quantity must be less than the quantity in stock');
+                    return;
+                }
+                if ($this->quantity + session()->get('cart.' . $productVariant->id . '.quantity') > $productVariant->quantity) {
+                    session()->flash('error', 'There are ' . $quantityInCart . ' products in the cart. The quantity must be less than the quantity in stock.');
+                    return;
+                }
+                
                 // Lấy thông tin các biến thể (variant) và tên biến thể (variant option)
                 $variants = [];
                 foreach ($productVariant->subVariants as $variant) {
@@ -119,8 +153,8 @@ class ProductDetail extends Component
                         "product_id" => $this->product->id,
                         "variant_id" => $productVariant->id,
                         "quantity" => $this->quantity,
-                        "price" => $this->price,
-                        "variants" => $variants, 
+                        "price" => $this->price, // Ensure price is set correctly
+                        "variants" => $variants,
                     ];
                 }
                 Log::info('cart: ' . json_encode($cart));
@@ -133,12 +167,18 @@ class ProductDetail extends Component
                 } catch (\Exception $e) {
                     Log::error('Error dispatching cartUpdated event: ' . $e->getMessage());
                 }
-                
+
                 $this->quantity = 1;
                 $this->selectedOptions = [];
                 $this->price = 0;
                 session()->flash('success', 'Product added to cart successfully!');
+            } else {
+                Log::error('No matching productVariant found, unable to add to cart');
+                session()->flash('error', 'No matching product variant found, unable to add to cart');
             }
+        } else {
+            Log::error('Selected options do not match variant count, unable to add to cart');
+            session()->flash('error', 'Selected options do not match variant count, unable to add to cart');
         }
     }
 

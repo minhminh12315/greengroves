@@ -14,12 +14,20 @@ class Header extends Component
     public $selectedCategories = [];
     public $productSearch;
     public $search;
+    public $cartCount = 0;
+
+    protected $listeners = ['cartUpdated' => 'updateCartCount'];
 
     public function mount()
     {
         $this->categories = Categories::whereNull('parent_id')->get();
         $searchTerm = '%' . $this->search . '%';
         $this->productSearch = Product::where('name', 'like', $searchTerm)->get();
+        $this->cartCount = count(session('cart', []));
+    }
+    public function updateCartCount()
+    {
+        $this->cartCount = count(session('cart', []));
     }
     public function updateSearch()
     {
@@ -32,7 +40,10 @@ class Header extends Component
         auth()->logout();
         return redirect()->route('login');
     }
-
+    public function setting_user()
+    {
+        return redirect()->route('setting_user');
+    }
     public function render()
     {
         return view('livewire.user.header');

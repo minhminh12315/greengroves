@@ -35,6 +35,7 @@
 
                         <div class="col-12">
                             <div class="row d-flex justify-content-evenly align-items-center productImageList">
+                                @if($product->productImages)
                                 @foreach ($product->productImages as $key => $image)
                                 <div class="col-auto productItems ">
                                     <div class="productImageItems">
@@ -44,17 +45,20 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                @else
+                                <div>khong anh</div>
+                                @endif
                             </div>
                         </div>
 
-                        <div class="shareContainer col-12 d-flex justify-content-center">
+                        <div class="shareContainer col-12 d-flex justify-content-center mt-1">
                             <div class="row">
                                 <div class="col-xl-4 col-4 d-flex justify-content-start justify-content-md-end align-content-center">
                                     <div class="shareText">
                                         Share:
                                     </div>
                                 </div>
-                                <div class="col-xl-6 col-8">
+                                <div class="col-xl-8 col-8">
                                     <div class="d-flex justify-content-center">
                                         <div class="share">
                                             <button class="btn btn-primary" id="copyLinkButton" type="button">Copy Link</button>
@@ -85,7 +89,9 @@
 
                             </div>
                             <div class="col-12 mt-2">
-                                <p>Đã bán: <span>1000 sản phẩm</span></p>
+                                @if($quantityStock)
+                                <div> Quantity stock: {{ $quantityStock }}</div>
+                                @endif
                             </div>
                             <div class="col-12 mt-2">
                                 <div class="description">{{ $product->description }}</div>
@@ -111,24 +117,37 @@
                             </div>
                             <!-- input Quantity -->
                             <div class="col-12 mt-3">
-                                <div class="row align-items-center">
+                                <div class="row align-items-center d-flex">
                                     <div class="col-3 col-xxl-2 d-flex align-content-center">Số
                                         lượng:</div>
-                                    <div class="col-5 col-sm-3 col-md-6 col-xxl-3">
+                                    <div class="col-5 col-xxl-6 col-sm-3 col-md-6  d-flex">
+
                                         <div class="input-group quantity-group">
                                             <button wire:click="decrement_quantity" class="btn btn-outline-secondary" type="button" id="button-decrease">-</button>
                                             <input wire:model="quantity" type="text" class="form-control text-center" value="1" aria-label="Quantity" id="quantity">
                                             <button wire:click="increment_quantity" class="btn btn-outline-secondary" type="button" id="button-increase">+</button>
+                                            <!-- show Quantity Stock -->
+
+                                            <!-- Quantity Error -->
                                         </div>
                                     </div>
+                                    @if(session()->has('errorQuantity'))
+                                    <div class="alert alert-danger mt-2 h-100 w-75">{{ session('errorQuantity') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- button Add to cart  -->
                             <div class="col-12 mt-4">
                                 <div class="row">
+                                @if(session()->has('error'))
+                                    <div class="alert alert-danger mt-2 h-75">
+                                        {{ session('error') }}
+                                    </div>
+                                    @endif
                                     <div class="col-6">
                                         <button wire:click="addToCart" class="btn btn-primary w-100">Thêm vào giỏ hàng</button>
                                     </div>
+                                    
                                     <div class="col-6">
                                         <button wire:click="buyNow" type="button" class="btn btn-success w-100">Mua hàng</button>
                                     </div>
@@ -156,138 +175,31 @@
             </div>
 
             <div class="row relativeProduct flex-wrap pt-3">
+                @foreach ($this->productSameCategory as $psc)
                 <div class="col-4 col-md-auto m-md-2">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="row">
-                                <div class="col-12 col-md-6 textItems ">
-                                    <div class="price text-md-center">
-                                        <span>22.99$</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 textItems mt-1">
-                                    <div class="wasSell">
-                                        Đã bán 13,8k
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-4 col-md-auto m-md-2">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="row">
-                                <div class="col-12 col-md-6 textItems">
-                                    <div class="price text-md-center">
-                                        <span>22.99$</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 textItems">
-                                    <div class="wasSell">
-                                        Đã bán 13,8k
+                    <a href="{{route('user.product-detail', $psc->id)}}">
+                        <div class="card mouse">
+                            @if ($psc->productImages->isEmpty())
+                            <div>khong co anh</div>
+                            @else
+                            <img src="{{Storage::url($psc->productImages->first()->path)}}" width="100" height="100" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title p-1">{{$psc->name}}</h5>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 textItems ">
+                                        <div class="price text-md-center">
+                                            <span>{{$psc->productVariants->min('price')}}$</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
-                    </div>
-
+                    </a>
                 </div>
-                <div class="col-4 col-md-auto m-md-2">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="row">
-                                <div class="col-12 col-md-6 textItems">
-                                    <div class="price text-md-center">
-                                        <span>22.99$</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 textItems">
-                                    <div class="wasSell text-center">
-                                        Đã bán 13,8k
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                @endforeach
 
-                </div>
-                <div class="col-md-auto m-2 hidden">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="d-flex justify-content-between align-items-center flex-container">
-                                <div class="price">
-                                    <span>22.99$</span>
-                                </div>
-                                <div class="wasSell text-center">
-                                    Đã bán 13,8k
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="col-md-auto m-2 hidden">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="d-flex justify-content-between align-items-center flex-container">
-                                <div class="price">
-                                    <span>22.99$</span>
-                                </div>
-                                <div class="wasSell">
-                                    Đã bán 13,8k
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-auto m-2 hidden">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="d-flex justify-content-between align-items-center flex-container">
-                                <div class="price">
-                                    <span>22.99$</span>
-                                </div>
-                                <div class="wasSell">
-                                    Đã bán 13,8k
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-auto m-2 hidden">
-                    <div class="card mouse">
-                        <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title p-1">Card title</h5>
-                            <div class="d-flex justify-content-between align-items-center flex-container">
-                                <div class="price">
-                                    <span>22.99$</span>
-                                </div>
-                                <div class="wasSell">
-                                    Đã bán 13,8k
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

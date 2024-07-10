@@ -173,6 +173,8 @@
 
         @endforeach
 
+        @else
+        <p>No images found</p>
         @endif
     </div>
 </div>

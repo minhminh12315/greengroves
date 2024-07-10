@@ -2,15 +2,19 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Categories;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class ListProduct extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
     public $products;
     public $editVariantModal = false;
@@ -20,6 +24,11 @@ class ListProduct extends Component
     public $update_quantity;
     public $update_price;
     public $variantId;
+    public $product_name;
+    public $product_description;
+    public $product_category;
+    public $product_images;
+    public $categories;
     public function editVariant($variantId)
     {
         $this->editVariantModal = true;
@@ -27,10 +36,10 @@ class ListProduct extends Component
         $variant = ProductVariant::find($variantId);
         $this->update_quantity = $variant->quantity;
         $this->update_price = $variant->price;
-    }
-    public function hideModal()
-    {
-        $this->editVariantModal = false;
+        $this->product_name = $variant->product->name;
+        $this->product_description = $variant->product->description;
+        $this->product_category = $variant->product->category;
+        $this->categories = Categories::where('id', '!=', $this->product_category->id)->get();
     }
     public function updateVariant()
     {
@@ -39,11 +48,36 @@ class ListProduct extends Component
             'quantity' => $this->update_quantity,
             'price' => $this->update_price,
         ]);
-
         $this->editVariantModal = false;
+        $product = Product::find($variant->product_id);
+        $product->update([
+            'name' => $this->product_name,
+            'description' => $this->product_description,
+            'category' => $this->product_category,
+        ]);
+        foreach ($this->product_images as $image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $image->storeAs('public/assets/images', $imageName);
+            Log::info('Image moved', ['image' => $imagePath]);
+            $publicPath = 'assets/images/' . $imageName;
+            Log::info('Image path', ['path' => $publicPath]);
+
+            $image = new ProductImage();
+            $image->product_id = $product->id;
+            foreach ($product->productImages as $pi) {
+                $pi->delete();
+            }
+            $image->path = $publicPath;
+            $image->save();
+            
+        }
         $this->mount();
     }
-    public function confirmDelete($variantId)
+
+    public function hideModal()
+    {
+        $this->editVariantModal = false;
+    }    public function confirmDelete($variantId)
     {
         $this->variantId = $variantId;
         $this->deleteVariantModal = true;
@@ -53,7 +87,7 @@ class ListProduct extends Component
     {
         $variant = ProductVariant::find($this->variantId);
         $variant->delete();
-        if($variant->product->productVariants->count() == 0){
+        if ($variant->product->productVariants->count() == 0) {
             $variant->product->delete();
         }
         $this->deleteVariantModal = false;
@@ -71,11 +105,13 @@ class ListProduct extends Component
         ])->get();
         $variant = ProductVariant::all();
         $product = Product::all();
-        foreach($product as $p){
+        foreach ($product as $p) {
             if ($p->productVariants()->exists() === false) {
                 $p->delete();
             }
         }
+        // Check if a product category is set, if not set it to null
+
     }
 
     public function render()
@@ -83,7 +119,7 @@ class ListProduct extends Component
         $products = Product::with([
             'productVariants.subVariants.variantOption.variant'
         ]);
-    
+
         return view('livewire.admin.list-product', ['products' => $products]);
     }
 }

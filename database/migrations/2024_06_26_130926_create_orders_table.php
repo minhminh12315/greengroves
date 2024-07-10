@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->decimal('total', 10, 2);
+            $table->decimal('delivery_fee', 10, 2)->default(0);
+            $table->string('name')->nullable();
+            $table->string('note')->nullable();
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
             $table->timestamps();
         });
     }
