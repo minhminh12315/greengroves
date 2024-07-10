@@ -129,7 +129,13 @@
                                 <div class="d-flex justify-content-between align-items-center mb-1">
                                     <input type="text" wire:model="variantAttributes.{{ $index }}.options.{{ $optionIndex }}" name="variant_options[]" id="variant_options" class="form-control" placeholder="Enter Variant Option">
                                     <button type="button" class="btn btn-danger ml-2" wire:click="deleteOption({{ $index }}, {{ $optionIndex }})">Delete</button>
+                                    
                                 </div>
+                                @if(session()->has('optionDeleteError'))
+                                    <div class="alert alert-danger">
+                                        {{ session('optionDeleteError') }}
+                                    </div>
+                                    @endif
                                 @error('variantAttributes.' . $index . '.options.' . $optionIndex) <span class="error text-danger">{{ $message }}</span> @enderror
 
                                 @endforeach

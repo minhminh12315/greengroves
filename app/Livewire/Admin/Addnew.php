@@ -77,6 +77,16 @@ class Addnew extends Component
     {
         $this->category_id = 1; // Set default value to the first category's ID
     }
+    public function updatedProductType($value)
+    {
+        $this->product_type = $value;
+        if($value == 'single'){
+            $this->variantAttributes = [];
+            $this->variantCombinations = [];
+        } else {
+            $this->variantAttributes[] = ['variant' => '', 'options' => ['']];
+        }
+    }
     public function addVariantAttribute()
     {
         $this->variantAttributes[] = ['variant' => '', 'options' => ['']];
@@ -103,8 +113,11 @@ class Addnew extends Component
     public function deleteOption($attributeIndex, $optionIndex)
     {
         // Xóa tùy chọn tương ứng từ mảng $variantAttributes
+        if (count($this->variantAttributes[$attributeIndex]['options']) > 1) {
         unset($this->variantAttributes[$attributeIndex]['options'][$optionIndex]);
-
+        } else {
+            session()->flash('optionDeleteError', 'Không thể xóa tùy chọn cuối cùng');
+        }
         // Cập nhật lại kết hợp sau khi xóa
         $this->generateCombinations();
     }
