@@ -79,9 +79,18 @@ class Login extends Component
             'name' => $this->login_username,
             'password' => $this->login_password,
         ];
+        $user = User::where('name', $this->login_username)->first();
 
         if (Auth::attempt($credentials, $this->rememberMe)) {
-            return redirect()->intended('/');
+            if(Auth::user()->status == 'inactive') {
+                Auth::logout();
+                return redirect()->route('verify_mail', $user->id);
+            } else {
+                if(Auth::user()->role == 'admin') {
+                    return redirect()->route('admin.index');
+                }
+                return redirect()->intended('/');
+            }
         } else {
             $this->addError('login_failed', 'Invalid username or password. Please try again!');
             $this->login_password = '';

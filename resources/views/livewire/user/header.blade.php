@@ -38,7 +38,7 @@
                                     </div>
                                     <span>PROFILE</span>
                                 </button>
-                                <button class="loggedInUser-item .btn-signOut">
+                                <button wire:click="logout" class="loggedInUser-item .btn-signOut">
                                     <div class="signOutIcon">
                                         <i class="fa-solid fa-right-from-bracket text-light"></i>
                                     </div>

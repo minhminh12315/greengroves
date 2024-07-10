@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class VerifyEmail extends Component
@@ -22,7 +23,7 @@ class VerifyEmail extends Component
         if ($user->otp === $this->otp) {
             $user->status = 'active';
             $user->save();
-            
+            Auth::login($user);
             session()->flash('message', 'Email verified successfully!');
             return redirect()->route('users.home');
         } else {

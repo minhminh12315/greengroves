@@ -22,7 +22,7 @@ class AdminLoginMiddleWare
         if(auth()->user()->role != 'admin')
         {
             return redirect()->route('users.home');
-        }
+        } 
         return $next($request);
     }
 }

@@ -27,6 +27,11 @@ class Header extends Component
         $productSearch = Product::where('name', 'like', $searchTerm)->get();
         Log::info($productSearch);
     }
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
+    }
 
     public function render()
     {
