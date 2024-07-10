@@ -35,6 +35,12 @@ Route::get('/list-product', UserListProduct::class)->name('user.list-product');
 
 Route::get('/list-product/{id}', UserListProduct::class)->name('user.list-product-category');
 
+<<<<<<< Updated upstream
+=======
+Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');
+
+Route::get('/verify-mail/{id}', VerifyEmail::class)->name('verify_mail');
+>>>>>>> Stashed changes
 
 Route::get('/cartShop', CartShop::class)->name('user.cartShop');
 
@@ -51,5 +57,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/checkout', Checkout::class)->name('users.checkout');
 });
+<<<<<<< Updated upstream
 
 Route::get('/verify-mail/{id}', VerifyEmail::class)->name('verify_mail');
+=======
+>>>>>>> Stashed changes

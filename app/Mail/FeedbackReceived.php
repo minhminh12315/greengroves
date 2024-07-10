@@ -38,7 +38,7 @@ class FeedbackReceived extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.feedback-thanks',
+            markdown: 'mails.feedback',
         );
     }
 

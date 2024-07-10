@@ -25,6 +25,7 @@
 					<label for="password">Confirm Password</label>
 					@error('password_confirmation') <span class="error">{{ $message }}</span> @enderror
 				</div>
+
 				@if (session()->has('success'))
 				<div class="alert alert-success">
 					{{ session('success') }}
@@ -72,12 +73,12 @@
 				<div class="toggle-panel toggle-left">
 					<h1 class="text-light">Welcome Back!</h1>
 					<p class="text-light">Enter your personal details to use all of site features</p>
-					<button class="btn-login login">Sign In</button>
+					<button class="btn-login login changeColor">Sign In</button>
 				</div>
 				<div class="toggle-panel toggle-right">
 					<h1 class="text-light">Hello, Friend!</h1>
 					<p class="text-light">Register with your personal details to use all of site features</p>
-					<button class="btn-register register">Sign Up</button>
+					<button class="btn-register register changeColor">Sign Up</button>
 				</div>
 			</div>
 		</div>
