@@ -4,23 +4,23 @@
 			<form wire:submit.prevent="register">
 				<h2 class="pb-5">Create Account</h2>
 				<div class="userbox">
-					<input type="text" wire:model.defer="name" required>
+					<input type="text" wire:model.defer="name" required placeholder="Username">
 					<label for="username">Username</label>
 					@error('username') <span class="error">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input type="text" class="form-control" wire:model.defer="email" required>
+					<input type="text" class="form-control" wire:model.defer="email" required placeholder="Email">
 					<label for="email">Email</label>
 					@error('email') <span class="error">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.defer="password" required>
+					<input class="input-password" type="password" wire:model.defer="password" required placeholder="Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="password">Password</label>
 					@error('password') <span class="error">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.defer="password_confirmation" required>
+					<input class="input-password" type="password" wire:model.defer="password_confirmation" required placeholder="Confirm Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="password">Confirm Password</label>
 					@error('password_confirmation') <span class="error">{{ $message }}</span> @enderror
@@ -47,12 +47,12 @@
 			<form wire:submit.prevent="login">
 				<h2 class="pb-5">Sign In</h2>
 				<div class="userbox">
-					<input type="text" wire:model.defer="login_username" required>
+					<input type="text" wire:model.defer="login_username" required placeholder="Username">
 					<label for="login_username">Username</label>
 					@error('login_username') <span class="error">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.defer="login_password" required>
+					<input class="input-password" type="password" wire:model.defer="login_password" required placeholder="Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="login_password">Password</label>
 					@error('login_password') <span class="error">{{ $message }}</span> @enderror

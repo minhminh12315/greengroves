@@ -1,7 +1,20 @@
 @extends('livewire.admin.index')
 @section('content')
 <div class="container">
-    <button wire:click="openAddNewsModal" class="btn btn-success" type="button">+ News</button>
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="mb-3">
+            <h3 class="fw-bold">Categories List</h3>
+            <p>Manage your categories</p>
+        </div>
+        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2"  wire:click="openAddNewsModal">
+            <span class="material-symbols-outlined fs-5 text-light">
+                add_circle
+            </span>
+            <span class="text-light">
+                ADD NEW NEWS
+            </span>
+        </button>
+    </div>
     @if($AddNewsModal)
     <div class="modal fade show" style="display: block;" aria-modal="true">
         <div class="modal-dialog">

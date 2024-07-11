@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', AdminListProduct::class)->name('admin.index');
+    Route::get('/admin', AdminIndex::class)->name('admin.index');
     Route::get('/admin/addnew', Addnew::class)->name('admin.addnew');
     Route::get('/admin/order', Order::class)->name('admin.order');
     Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');

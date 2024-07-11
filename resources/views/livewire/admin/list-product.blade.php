@@ -1,6 +1,10 @@
 @extends('livewire.admin.index')
 @section('content')
 <div>
+    <div class="mb-3">
+        <h3 class="fw-bold">Product List</h3>
+        <p>Manage your products</p>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -13,8 +17,7 @@
                 <th>Price</th>
                 <th>Variant</th>
                 <th>Each Quantity Stock</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -37,8 +40,18 @@
                 <td>{{ $variant->quantity }}</td>
                 <td>{{ $variant->price }}</td>
                 <td colspan="2"></td> <!-- Cột rỗng để giữ cùng dòng với sản phẩm -->
-                <td><button class="btn btn-primary" wire:click="editVariant({{ $variant->id }})" type="button">Update</button></td>
-                <td><button class="btn btn-danger" wire:click="confirmDelete({{ $variant->id }})" type="button">Delete</button></td>
+                <td>
+                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button">
+                        <span class="material-symbols-outlined mt-1 fs-6">
+                            edit_square
+                        </span>
+                    </button>
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button">
+                        <span class="material-symbols-outlined fs-6 mt-1">
+                            delete
+                        </span>
+                    </button>
+                </td>
                 @endforeach
             </tr>
             @else
@@ -56,8 +69,8 @@
                 </td>
                 <td>{{ $product->productVariants->sum('quantity') }}</td>
 
-            @foreach ($product->productVariants as $key => $variant)
-            
+                @foreach ($product->productVariants as $key => $variant)
+
                 <td>{{ $variant->price }}</td>
                 <td>
                     @foreach ($variant->subVariants as $subVariant)
@@ -72,11 +85,11 @@
             <!-- Đây là biến thể cuối cùng -->
             @else
             <tr>
-                <td colspan="5"></td> 
-            @endif
-            @endforeach
-            @endif
-            @endforeach
+                <td colspan="5"></td>
+                @endif
+                @endforeach
+                @endif
+                @endforeach
         </tbody>
     </table>
     @if($editVariantModal)
@@ -138,30 +151,31 @@
                 </div>
             </div>
         </div>
-        <div class="modal-backdrop fade show"></div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
     @endif
 
     @if($deleteVariantModal)
-        <div class="modal fade show" style="display: block;" aria-modal="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-between">
-                        <h5 class="modal-title">Confirm Delete</h5>
-                        <button type="button" class="close btn btn-danger" wire:click="hideDeleteModal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this variant?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="hideDeleteModal">Close</button>
-                        <button type="button" class="btn btn-danger" wire:click="deleteVariant">Delete</button>
-                    </div>
+    <div class="modal fade show" style="display: block;" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <h5 class="modal-title">Confirm Delete</h5>
+                    <button type="button" class="close btn btn-danger" wire:click="hideDeleteModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this variant?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" wire:click="hideDeleteModal">Close</button>
+                    <button type="button" class="btn btn-danger" wire:click="deleteVariant">Delete</button>
                 </div>
             </div>
         </div>
-        <div class="modal-backdrop fade show"></div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
     @endif
 </div>
 </div>

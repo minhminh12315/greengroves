@@ -1,7 +1,20 @@
 @extends('livewire.admin.index')
 @section('content')
 <div>
-    <button class="btn btn-success mb-3" wire:click="showAddCategoryModal">Thêm Mới Danh Mục</button>
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="mb-3">
+            <h3 class="fw-bold">Categories List</h3>
+            <p>Manage your categories</p>
+        </div>
+        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="showAddCategoryModal">
+            <span class="material-symbols-outlined fs-5 text-light">
+                add_circle
+            </span>
+            <span class="text-light">
+                ADD NEW CATEGORY
+            </span>
+        </button>
+    </div>
 
     <table class="table">
         <thead>
@@ -21,8 +34,16 @@
                     {{ $category->parent ? $category->parent->name  : 'None' }}
                 </td>
                 <td>
-                    <button class="btn btn-primary me-3" wire:click="editCategory({{ $category->id }})" type="button">Update</button>
-                    <button class="btn btn-danger" wire:click="confirmDelete({{ $category->id }})" type="button">Delete</button>
+                    <button class="btn btn-updateOrAdd" wire:click="editCategory({{ $category->id }})" type="button">
+                        <span class="material-symbols-outlined mt-1 fs-6">
+                            edit_square
+                        </span>
+                    </button>
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $category->id }})" type="button">
+                        <span class="material-symbols-outlined fs-6 mt-1">
+                            delete
+                        </span>
+                    </button>
                 </td>
             </tr>
             @endforeach

@@ -2,14 +2,27 @@
 @section('content')
 <div>
     <div class="container">
-        <button wire:click="openAddNewImagesModal" class="btn btn-primary mt-2" type="button">Add New Image</button>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="mb-3">
+                <h3 class="fw-bold">Images List</h3>
+                <p>Manage your images</p>
+            </div>
+            <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="openAddNewImagesModal">
+                <span class="material-symbols-outlined fs-5 text-light">
+                    add_circle
+                </span>
+                <span class="text-light">
+                    ADD NEW IMAGE
+                </span>
+            </button>
+        </div>
         @if($addNewImagesModal)
         <div class="modal fade show" style="display: block;" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-between d-flex justify-content-between">
                         <h5 class="modal-title">Add New Image</h5>
-                        <button  type="button" class="close btn btn-danger" wire:click="closeAddNewImagesModal">
+                        <button type="button" class="close btn btn-danger" wire:click="closeAddNewImagesModal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -172,9 +185,23 @@
         </div>
 
         @endforeach
-
         @else
-        <p>No images found</p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Image Title</th>
+                    <th>Image Description</th>
+                    <th>Image Type</th>
+                    <th>Image Path</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td colspan="5">
+                    No image found. Please add some images to the system.
+                </td>
+            </tbody>
+        </table>
         @endif
     </div>
 </div>

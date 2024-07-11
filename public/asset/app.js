@@ -120,6 +120,16 @@ var R = {
                 });
             });
         });
+        $('.btn-collapse-haederAdmin').click(() => {
+            console.log('collapse');
+            $('#aside-collapse-admin').toggleClass('show');
+            $('.backdrops').toggleClass('active');
+        })
+        $('.backdrops').click(() => {
+            $('.aside-collapse-admin').removeClass('show');
+            // $('.backdrops').removeClass('active');
+        })
+        $()
     },
 
     generateCombinations: (variants) => {
