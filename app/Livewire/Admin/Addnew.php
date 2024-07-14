@@ -75,7 +75,7 @@ class Addnew extends Component
 
     public function mount()
     {
-        $this->category_id = 1; // Set default value to the first category's ID
+        $this->category_id = 1;
     }
     public function updatedProductType($value)
     {
@@ -210,7 +210,6 @@ class Addnew extends Component
             // Reset các thuộc tính sau khi lưu sản phẩm
             $this->name = '';
             $this->description = '';
-            $this->category_id = '';
 
             // Lưu ảnh sản phẩm
             foreach ($this->images as $image) {

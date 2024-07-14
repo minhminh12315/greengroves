@@ -17,4 +17,8 @@ class Header extends Component
     {
         return view('livewire.admin.header');
     }
+    public function setting_user()
+    {
+        return redirect()->route('setting_user');
+    }
 }
