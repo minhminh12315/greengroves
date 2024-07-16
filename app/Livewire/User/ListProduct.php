@@ -18,12 +18,12 @@ class ListProduct extends Component
 
     public function mount($id = null){
         if($id){
-            $this->products = Product::with('productVariants.subVariants.variantOption.variant')->where('category_id',$id)->paginate(12);
+            $this->products = Product::with('productVariants.subVariants.variantOption.variant')->where('category_id',$id)->get();
             $this -> listProductCategory = true; 
             $this->category = Categories::find($id); 
         }
         else{
-            $this->products = Product::with('productVariants.subVariants.variantOption.variant')->paginate(12);
+            $this->products = Product::with('productVariants.subVariants.variantOption.variant')->get();
             $this -> listProductCategory = false; 
         }
     }

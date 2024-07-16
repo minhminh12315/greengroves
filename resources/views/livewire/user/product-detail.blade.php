@@ -8,125 +8,92 @@
         </div>
 
         <div class="productDetailContainer">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div>
-                        <div id="carouselExample" class="carousel slide">
+            <div class="row g-md-0 g-4">
+                <div class="col-12 col-md-6 ">
+                    <div class="d-flex flex-md-row flex-column gap-2">
+                        <div id="carouselExample" class="carousel order-md-2 order-1 overflow-hidden w-100 h-100">
                             <div class="carousel-inner">
                                 @foreach ($product->productImages as $key => $image)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ Storage::url($image->path) }}" class="d-block slickImg" alt="Product Image {{ $key + 1 }}">
+                                    <img src="{{ Storage::url($image->path) }}" class=" slickImg" alt="Product Image {{ $key + 1 }}">
                                 </div>
                                 @endforeach
                             </div>
                         </div>
-                        <div class="row d-flex justify-content-evenly align-items-center productImageList">
+                        <div class="d-flex justify-content-start gap-4 flex-md-column flex-row order-md-1 order-2 align-items-center productImageList">
                             @if($product->productImages)
                             @foreach ($product->productImages as $key => $image)
-                            <div class="col-auto productItems ">
-                                <div class="productImageItems">
-                                    <button class="border border-0 bg-transparent" type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}">
-                                        <img width="100" height="100" src="{{ Storage::url($image->path) }}" class="img-fluid" alt="Product Image {{ $key + 1 }}">
-                                    </button>
-                                </div>
-                            </div>
+                            <button type="button" class="thumbnail-button" type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}">
+                                <img width="100" height="100" src="{{ Storage::url($image->path) }}" class="img-fluid thumbnail-button" alt="Product Image {{ $key + 1 }}">
+                            </button>
                             @endforeach
                             @endif
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-12 ps-4 pe-4">
-                    <div class="container-fluid ProductDetail">
-                        <div class="row">
-                            <!-- Name -->
-                            <div class="col-12">
-                                <h2>{{ $product->name }}</h2>
-                            </div>
-                            <!-- Price -->
-                            <div class="col-12 mt-2">
-                                @if ($this->price)
-                                <div class="price">
-                                    <span>$ {{ number_format($this->price, 2) }}</span>
-                                </div>
-                                @else
-                                <div>
-                                    $ {{ number_format($product->productVariants->min('price'), 2) }} - $ {{ number_format($product->productVariants->max('price'), 2) }}
-                                </div>
-                                @endif
+                    <div class="container-fluid d-flex flex-column align-content-start gap-4">
+                        <div class="productDetail-name">{{ $product->name }}</div>
 
-
-                            </div>
-                            <div class="col-12 mt-2">
+                        <div class="d-flex flex-row justify-content-start align-content-center gap-5">
+                            <div class="productDetail-category">Category: <span class="text-success">{{$product->category->name}}</span></div>
+                            <div class="productDetail-stock">Stock:
                                 @if($quantityStock)
-                                <div> Quantity stock: {{ number_format($quantityStock) }}</div>
+                                <span class="text-success">{{ number_format($quantityStock) }} In Stock</span>
+                                @else
+                                <span class="text-danger">Out of Stock</span>
                                 @endif
                             </div>
-                            <div class="col-12 mt-2">
-                                <div class="description">{{ $product->description }}</div>
-                            </div>
-                            <div class="col-12 mt-2">
-                                @if ($variants->isNotEmpty())
-                                @foreach ($variants as $variant)
-                                <div class="row align-items-center">
-                                    <div class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">{{ $variant->name }}</div>
-                                    <div class="col-10 col-md-9">
-                                        <div class="row px-4 d-flex justify-content-start">
-                                            @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
-                                            <div class="col-auto p-1">
-                                                <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
-                                                <input wire:model="selectedOptions.{{ $variant->id }}" wire:click="updateSelectedOptions" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                                @endif
-                            </div>
-                            <!-- input Quantity -->
-                            <div class="col-12 mt-3">
-                                <div class="row align-items-center d-flex">
-                                    <div class="col-3 col-xxl-2 d-flex align-content-center">Số
-                                        lượng:</div>
-                                    <div class="col-5 col-xxl-6 col-sm-3 col-md-6  d-flex">
+                        </div>
 
-                                        <div class="input-group quantity-group">
-                                            <button wire:click="decrement_quantity" class="btn btn-outline-secondary" type="button" id="button-decrease">-</button>
-                                            <input wire:model="quantity" type="text" class="form-control text-center" value="1" aria-label="Quantity" id="quantity">
-                                            <button wire:click="increment_quantity" class="btn btn-outline-secondary" type="button" id="button-increase">+</button>
-                                            <!-- show Quantity Stock -->
+                        <div class="productDetail-price">
+                            @if ($price)
+                            <span>$ {{ number_format($price, 2) }}</span>
+                            @else
+                            <span>
+                                $ {{ number_format($product->productVariants->min('price'), 2) }} - $ {{ number_format($product->productVariants->max('price'), 2) }}
+                            </span>
+                            @endif
+                        </div>
 
-                                            <!-- Quantity Error -->
-                                        </div>
-                                    </div>
-                                    @if(session()->has('errorQuantity'))
-                                    <div class="alert alert-danger mt-2 h-100 w-75">{{ session('errorQuantity') }}</div>
-                                    @endif
-                                </div>
-                            </div>
-                            <!-- button Add to cart  -->
-                            <div class="col-12 mt-4">
-                                <div class="row">
-                                    @if(session()->has('error'))
-                                    <div class="alert alert-danger mt-2 h-75">
-                                        {{ session('error') }}
-                                    </div>
-                                    @endif
-                                    <div class="col-6">
-                                        <button wire:click="addToCart" class="btn btn-primary w-100">Thêm vào giỏ hàng</button>
-                                    </div>
 
-                                    <div class="col-6">
-                                        <button wire:click="buyNow" type="button" class="btn btn-success w-100">Mua hàng</button>
+
+
+
+                        <div class="productDetail-description">{!! $product->description !!}</div>
+
+                        @if ($variants->isNotEmpty())
+                        @foreach ($variants as $variant)
+                        <div class="row align-items-center">
+                            <div class="col-2 col-xxl-2 col-md-3 d-flex align-content-center">{{ $variant->name }}</div>
+                            <div class="col-10 col-md-9">
+                                <div class="row px-4 d-flex justify-content-start">
+                                    @foreach ($variantOptions->where('variant_id', $variant->id) as $variantOption)
+                                    <div class="col-auto p-1">
+                                        <label for="variantOption_{{ $variantOption->id }}">{{ $variantOption->name }}</label>
+                                        <input wire:model="selectedOptions.{{ $variant->id }}" wire:click="updateSelectedOptions" type="radio" id="variantOption_{{ $variantOption->id }}" name="variantOption_{{ $variant->id }}" value="{{ $variantOption->id }}">
                                     </div>
-                                    @if (session()->has('success'))
-                                    <div class="alert alert-success mt-2 h-75">
-                                        {{ session('success') }}
-                                    </div>
-                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
+
+                        <!-- input Quantity -->
+                        <div class="align-items-center d-flex">
+                            <div class="d-flex gap-2 flex-row  w-100">
+                                <div class="quantity-container ">
+                                    <button wire:click="decrement_quantity" type="button"  id="button-decrease">-</button>
+                                    <input wire:model="quantity" type="text" class="text-center" value="1" aria-label="Quantity" id="quantity">
+                                    <button wire:click="increment_quantity" type="button"  id="button-increase">+</button>
+                                </div>
+                                <button wire:click="addToCart" class="productDetail-addToCart">ADD TO CART</button>
+                            </div>
+
+                        </div>
+
+                        <button wire:click="buyNow" type="button" class="productDetail-buynow">Mua hàng</button>
                     </div>
                 </div>
             </div>

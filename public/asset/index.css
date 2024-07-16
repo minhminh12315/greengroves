@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 
 @font-face {
@@ -957,164 +957,90 @@ body {
     border-radius: 2rem;
 }
 
+
 /*Product Details */
 #productDetailsPage .productDetailContainer {
-    padding-left: 16px;
+    padding: 0 8rem;
 }
 
 
 #productDetailsPage .slickImg {
-    width: 90%;
-    height: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#confirmationDialog {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-#confirmationDialog button {
-    margin: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-
-#user-footer {
-    background: #FFFFFF;
-}
-
-.sub-footer {
-    padding: 10px 15px;
-    border-top: 1px solid #ccc;
-}
-
-#user-footer ul li {
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
-    transition: 0.25s ease-in-out;
-    padding: 5px 0px;
-}
-
-#user-footer ul li::before {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    /* transform: translate(-50%, -50%); */
+    max-width: 100%;
     width: 100%;
-    height: 2px;
-    opacity: 0;
-    background-color: #2a7d2e;
-    border-radius: 16px;
-    transition: 0.5s ease-in-out;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    overflow: hidden;
 }
 
-#user-footer ul li:hover::before {
-    bottom: 0;
-    opacity: 1;
+.thumbnail-button {
+    border: none;
+    background-color: transparent;
 }
-
-
-#user-footer ul li:hover a {
-    color: #2a7d2e !important;
+.productDetail-name{
+    font-size: 2rem;
 }
-
-#user-footer .social-footer ul li i {
+.productDetail-category, 
+.productDetail-stock,
+.productDetail-description *
+{
+    font-size: 1.25rem;
+    color: #707070;
+}
+.productDetail-price{
+    font-size: 2.25rem;
+    font-weight: bold;
+}
+.quantity-container{
+    width: 30%;
+    border: 1px solid #dee2e6;
+    display: flex;
+    flex: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.quantity-container input{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+}
+.quantity-container button{
+    width: 30%;
+    margin: 0;
+    padding: 8px 12px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+.productDetail-addToCart{
+    flex: 1;
+    border: none;
+    background-color: #38993c;
+    color: #fffFFF;
+    font-weight: 500;
+    font-size: 1.5rem;
     transition: 0.3s ease-in-out;
 }
-
-#user-footer .social-footer ul li:hover a {
-    color: #191919 !important;
+.productDetail-addToCart:hover{
+    background-color: #248427;
 }
-
-#user-footer ul li:hover {
-    bottom: 0;
-    opacity: 1;
+.productDetail-buynow{
+    flex: 1;
+    border: 2px solid #38993c;
+    background-color: transparent;
+    color: #38993c;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: 0.3s ease-in-out;
 }
-
-#user-footer .social-footer ul li::before {
-    content: "";
-    position: static !important;
-    width: 0 !important;
-    height: 0 !important;
+.productDetail-buynow:hover{
+    border: 2px solid #165f19;
+    color: #165f19;
 }
-
-#user-footer .social-footer ul li:hover i {
-    transform: translateY(-10px);
-}
-
-
-
-/*Product Details */
-#productDetailsPage .productDetailContainer {
-    padding-left: 15px;
-}
-
-#productDetailsPage .slickImg {
-    width: 90%;
-    height: 500px;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-
-#productDetailsPage .productImageList {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-#productDetailsPage .linkFont {
-    font-size: 75%;
-}
-
-#productDetailsPage .shareContainer a {
-    background-color: rgb(0, 0, 0);
-}
-
-#productDetailsPage .sizeBtn {
-    width: 40px;
-}
-
-#productDetailsPage .wasSell {
-    font-size: 12px;
-}
-
-#productDetailsPage .price {
-    color: red;
-    font-size: 17px;
-}
-
-.mouse :hover {
-    transform: scale(1.02) !important;
-    cursor: pointer !important;
-}
-
-/* #productDetailsPage .currentAddress col-12 .linkHover :hover{
-      color: rgb(199, 74, 74) !important;
-      cursor: pointer !important;
-  }
-  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
-
-  */
-#productDetailsPage .relativeProduct .card {
-    width: 10rem
-}
-
 /* Styles for screens 768px and smaller */
 @media (max-width: 768px) {
 
@@ -1140,148 +1066,6 @@ body {
     height: auto;
 }
 
-
-#productDetailsPage .productImageList {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#productDetailsPage .productImageList {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-/* #productDetailsPage .currentAddress col-12 .linkHover :hover{
-      color: rgb(199, 74, 74) !important;
-      cursor: pointer !important;
-  }
-  Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc
-
-  */
-#productDetailsPage .relativeProduct .card {
-    width: 10rem
-}
-
-#productDetailsPage .textItems {
-    padding: 0;
-    margin: auto;
-}
-
-/*list Product*/
-#listProductPage .card-title {
-    font-size: 15px;
-}
-
-#listProductPage .listProducts {
-    margin: auto;
-}
-
-#listProductPage {
-    background-color: antiquewhite;
-}
-
-#listProductPage .list_Menu {
-    border: 1px solid black;
-    background-color: rgb(196, 166, 127);
-
-}
-
-/* #listProductPage .searchProductContainer{
-    width: 90%;
-
-} */
-#listProductPage .wasSell {
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-    font-size: 12px;
-}
-
-#listProductPage .price {
-    color: red;
-    font-size: 17px;
-}
-
-#listProductPage .listProducts {
-    width: 95%;
-}
-
-/* #productDetailsPage .currentAddress col-12 .linkHover :hover{
-      color: rgb(199, 74, 74) !important;
-      cursor: pointer !important;
-      display: inline-block !important;
-  }
-  /* Tại sao ko viết thuộc tính css vào phần tử con của Thẻ Current Address đc */
-
-*/ #productDetailsPage .relativeProduct .card {
-    width: 10rem
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .containerHeader {
-        width: 100%;
-    }
-
-    #header .logo {
-        width: 40px;
-        height: 40px;
-    }
-
-    #header .btnLogin {
-        font-size: 15px;
-    }
-
-    #header .formSearch {
-        font-size: 12px;
-        height: 30px;
-    }
-
-    #header .SearchBar {
-        display: none;
-    }
-
-    #header .SearchBar_Middle {
-        display: block;
-    }
-
-    #header .row {
-        flex-wrap: nowrap;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .containerHeader {
-        width: 80%;
-    }
-
-    /*About Page*/
-    #AboutPage .hidden {
-        display: none !important;
-    }
-
-    /*productDetails*/
-    #productDetailsPage .shareContainer {
-        padding-left: 5rem;
-        padding-right: 2rem
-    }
-
-    #productDetailsPage .relativeProduct .card {
-        width: 150px
-    }
-
-    #productDetailsPage .relativeProduct .card-title {
-        font-size: 15px;
-    }
-
-    #productDetailsPage .textItems {
-        padding: 0;
-        margin: auto;
-    }
-}
 
 /* Checkout Page */
 .form-checkout input,
@@ -2027,3 +1811,222 @@ input[type="number"]::-webkit-outer-spin-button {
     visibility: visible;
 }
 
+.home-elementor-title {
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-elementor-title a {
+    color: #707072;
+}
+
+.home-elementor-title a:hover {
+    color: #2a7d2e;
+}
+
+.join-newletter-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.join-newletter-title span {
+    color: rgb(40, 141, 40);
+}
+
+.join-newletter-container form {
+    width: 60%;
+    position: relative;
+}
+
+.join-newletter-container form .join-newletter-input {
+    border-radius: 168.71px;
+    width: 100%;
+    padding: 8px 12px;
+    transition: 0.3s ease-in-out;
+}
+
+.join-newletter-container form .btn-subcribe {
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    border: none;
+    background-color: rgb(40, 141, 40);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.join-newletter-container form .btn-subcribe i {
+    color: #F0F0F0;
+}
+
+.join-newletter-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-swiper-container {
+    padding-block: 2.5rem;
+
+    position: relative;
+}
+
+.card-swiper-content {
+    /* width: 100%; */
+    height: 80vh;
+    margin-inline: 1.75rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.card-product {
+    border: 1px solid #dee2e6;
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.btncard-addToCart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #FFFFFF;
+    color: #333;
+    padding: 8px 12px;
+    cursor: pointer;
+    width: 101%;
+    border: none;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.btncard-addToCart:hover {
+    background-color: #F0F0F0;
+    color: #191919;
+}
+
+.card-product:hover .btncard-addToCart {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card-product:hover .card__img {
+    transform: scale(1.1);
+}
+
+.card-data {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+.card-product-name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.card-product-name:hover{
+    color: #2a7d2e;
+}
+
+.card-price{
+    font-size: 1.25rem;
+}
+.cart-category,
+.card-product-type{
+    font-size: 1rem;
+    color: #707072;
+}
+.card__img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    transition: 0.3s ease-in-out;
+}
+
+.card__img.card__img-slide{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+    transition: 0.3s ease-in-out;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 50%;
+    background-color: #F0FFF0;
+    width: 3rem;
+    height: 3rem;
+    transition: 0.3s ease-in-out;
+}
+.card-swiper-container:hover .swiper-button-prev,
+.card-swiper-container:hover .swiper-button-next {
+    visibility: visible;
+    opacity: 1;
+}
+
+.swiper-button-prev {
+    position: absolute;
+    left: 6px !important;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.swiper-button-next {
+    position: absolute;
+    right: 6px !important;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    color: #191919;
+    font-size: 1.5rem;
+}
+
+.swiper-button-prev::after {
+    position: absolute;
+    left: 15px;
+    top: 11px;
+}
+.swiper-button-next::after {
+    position: absolute;
+    right: 15px;
+    top: 11px;
+}
+
+.swiper-pagination-bullet {
+    background-color: #6ae5b8;
+    
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: hsl(155, 69%, 44%);
+}
+
+/* For large devices */
+@media screen and (min-width: 1400px) {
+    .card-swiper-container {
+        max-width: 1400px;
+    }
+}

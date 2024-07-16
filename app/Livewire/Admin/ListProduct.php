@@ -69,8 +69,8 @@ class ListProduct extends Component
                 $image->save();
             }
         }
-        $this->mount();
         $this->dispatch('closeModal');
+        $this->mount();
     }
 
 

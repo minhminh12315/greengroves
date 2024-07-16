@@ -42,7 +42,7 @@
                             <div class="card-product swiper-slide">
                                 <a href="" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
                                         <button class="btncard-addToCart">ADD TO CART</button>
                                     </div>
                                     <div class="card-data">
@@ -54,7 +54,7 @@
                             <div class="card-product swiper-slide">
                                 <a href="" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
                                         <button class="btncard-addToCart">ADD TO CART</button>
                                     </div>
                                     <div class="card-data">
@@ -66,7 +66,7 @@
                             <div class="card-product swiper-slide">
                                 <a href="" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
                                         <button class="btncard-addToCart">ADD TO CART</button>
                                     </div>
                                     <div class="card-data">
@@ -78,7 +78,7 @@
                             <div class="card-product swiper-slide">
                                 <a href="" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
                                         <button class="btncard-addToCart">ADD TO CART</button>
                                     </div>
                                     <div class="card-data">
@@ -90,7 +90,7 @@
                             <div class="card-product swiper-slide">
                                 <a href="" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
                                         <button class="btncard-addToCart">ADD TO CART</button>
                                     </div>
                                     <div class="card-data">
@@ -102,9 +102,9 @@
                         </div>
                     </div>
 
-                    <!-- <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div> -->
-                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <!-- <div class="swiper-pagination"></div> -->
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@
     <!-- Join our newsletter -->
     <div class="mt-5 join-newletter-container">
         <div class="row">
-            <div class="col-md-5 col-12 d-flex flex-column justify-content-center gap-4">
+            <div class="col-md-5 col-12 d-flex flex-column justify-content-center gap-5">
                 <div class="d-flex flex-column">
                     <p class="fs-5 opacity-75">Let's create a peaceful garden in our house</p>
                     <div class="join-newletter-title">
@@ -185,39 +185,41 @@
     </div>
 </div>
 <script>
-    let swiperCards = new Swiper(".card-swiper-content", {
-        loop: true,
-        spaceBetween: 10,
-        grabCursor: true,
+    $(document).ready(function() {
+        let swiperCards = new Swiper(".card-swiper-content", {
+            loop: true,
+            spaceBetween: 10,
+            grabCursor: true,
 
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-            dynamicBullets: true,
-        },
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
 
-        breakpoints: {
-            0: {
-                slidesPerView: 2,
+            breakpoints: {
+                0: {
+                    slidesPerView: 2,
+                },
+                400: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1400: {
+                    slidesPerView: 4,
+                },
             },
-            400: {
-                slidesPerView: 2,
-            },
-            768: {
-                slidesPerView: 3,
-            },
-            1400: {
-                slidesPerView: 4,
-            },
-        },
+        });
     });
 </script>
 @endsection

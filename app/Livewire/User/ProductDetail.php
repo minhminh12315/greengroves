@@ -26,7 +26,7 @@ class ProductDetail extends Component
     public function mount($id)
     {
         $this->product = Product::with([
-            'productVariants.subVariants.variantOption.variant',
+            'productVariants.subVariants.variantOption.variant.category',
             'productImages'
         ])->find($id);
         $this->variantOptions = $this->product->productVariants
@@ -69,7 +69,7 @@ class ProductDetail extends Component
                 if ($this->quantity < $this->quantityStock) {
                     $this->quantity++;
                 } else {
-                    session()->flash('errorQuantity', 'The quantity must be less than the quantity in stock');
+                    toast()->error('errorQuantity', 'The quantity must be less than the quantity in stock');
                 }
             }
         }
@@ -123,11 +123,11 @@ class ProductDetail extends Component
             if ($productVariant) {
                 $quantityInCart = session()->get('cart.' . $productVariant->id . '.quantity', 0);
                 if ($this->quantity > $productVariant->quantity) {
-                    session()->flash('error', 'The quantity must be less than the quantity in stock');
+                    toast()->error('The quantity must be less than the quantity in stock');
                     return;
                 }
                 if ($this->quantity + session()->get('cart.' . $productVariant->id . '.quantity') > $productVariant->quantity) {
-                    session()->flash('error', 'There are ' . $quantityInCart . ' products in the cart. The quantity must be less than the quantity in stock.');
+                    toast()->error('There are ' . $quantityInCart . ' products in the cart. The quantity must be less than the quantity in stock.');
                     return;
                 }
                 
@@ -174,11 +174,11 @@ class ProductDetail extends Component
                 session()->flash('success', 'Product added to cart successfully!');
             } else {
                 Log::error('No matching productVariant found, unable to add to cart');
-                session()->flash('error', 'No matching product variant found, unable to add to cart');
+                toast()->error('No matching product variant found, unable to add to cart');
             }
         } else {
             Log::error('Selected options do not match variant count, unable to add to cart');
-            session()->flash('error', 'Selected options do not match variant count, unable to add to cart');
+            toast()->error('Selected options do not match variant count, unable to add to cart');
         }
     }
 
