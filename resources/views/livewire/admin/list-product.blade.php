@@ -5,7 +5,7 @@
         <h3 class="fw-bold">Product List</h3>
         <p>Manage your products</p>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Product Name</th>

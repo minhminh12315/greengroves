@@ -9,6 +9,7 @@ use App\Models\ProductVariant;
 use App\Models\SubVariant;
 use App\Models\Variant;
 use App\Models\VariantOption;
+use Flasher\Toastr\Laravel\Facade\Toastr;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -101,7 +102,6 @@ class Addnew extends Component
     {
         // Xóa thuộc tính biến thể và tất cả các tùy chọn của nó từ mảng $variantAttributes
         unset($this->variantAttributes[$attributeIndex]);
-
         // Cập nhật lại kết hợp sau khi xóa
         $this->generateCombinations();
     }
@@ -112,7 +112,8 @@ class Addnew extends Component
         if (count($this->variantAttributes[$attributeIndex]['options']) > 1) {
         unset($this->variantAttributes[$attributeIndex]['options'][$optionIndex]);
         } else {
-            session()->flash('optionDeleteError', 'Không thể xóa tùy chọn cuối cùng');
+            toastr()->error('Không thể xóa tùy chọn cuối cùng');
+            // session()->flash('optionDeleteError', 'Không thể xóa tùy chọn cuối cùng');
         }
         // Cập nhật lại kết hợp sau khi xóa
         $this->generateCombinations();
@@ -301,7 +302,7 @@ class Addnew extends Component
             return redirect('/admin/addnew');
         } catch (\Exception $e) {
             Log::error('Error adding product', ['exception' => $e->getMessage(), 'product' => $this->name]);
-            
+            Toastr::error('Error adding product');
         }
     }
 

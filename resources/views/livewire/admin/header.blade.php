@@ -8,11 +8,8 @@
     <a href="{{route('admin.list_product')}}" class="d-lg-none d-block">
         <img width="auto" height="30vh" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448893881_459061516980193_545509641477731501_n.png?stp=dst-png_s1080x2048&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=XH4-i-6TQPkQ7kNvgEua9Le&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QH-bwuaiULt2pcdwVngYaGJeZyAG1TCHhqCZydcanmUuA&oe=66AB9914" alt="">
     </a>
-    <div class="position-relative d-none d-lg-block">
-        <input type="search" name="" id="admin-search-header" placeholder="Search">
-        <label for="admin-search-header">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </label>
+    <div class=" d-none d-lg-block opacity-75">
+        manage your website here
     </div>
     <div class="d-flex flex-row justify-content-center align-items-center gap-1 admin-acc-collapse">
         <img src="https://scontent.fhan17-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=cp0_dst-png_p40x40&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=Xy7AjkPZPq4Q7kNvgGjaJQ_&_nc_ht=scontent.fhan17-1.fna&oh=00_AYA7OIwIVuPvbsa-4EW9hzy1CsM4rHHQaw1wN59wBy3Vtw&oe=66B07778" alt="">

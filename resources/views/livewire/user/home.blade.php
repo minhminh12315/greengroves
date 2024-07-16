@@ -1,11 +1,8 @@
 @extends('livewire.user.index')
 @section('content')
-<div>
-    <div class="container">
-        {{ Breadcrumbs::render('home') }}
-    </div>
+<div class="container">
     <!-- CAROUSEL -->
-    <div class="container">
+    <div class="mt-4">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
             <div class="carousel-indicators">
                 <!-- Các chỉ số slide sẽ được tạo ra dựa trên số lượng hình ảnh có type là 'slide' -->
@@ -16,7 +13,7 @@
             <div class="carousel-inner">
                 @foreach($carouselImages as $index => $image)
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <img src="{{ Storage::url($image->path) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}">
+                    <img src="{{ Storage::url($image->path) }}" class="d-block object-fit-cover w-100 vh-100" alt="Slide {{ $index + 1 }}">
                 </div>
                 @endforeach
             </div>
@@ -32,39 +29,120 @@
     </div>
 
     <!-- GARDENING TOOLS -->
-    <div class="container mt-5">
+    <div class=" mt-5">
         <div class="d-flex flex-column gap-4">
-            <h1 class="text-center">-- GARDENING TOOLS --</h1>
-            <div class="row row-cols-lg-4 row-cols-md-3 row-cols-1 g-3">
-                @foreach($gardeningtools as $key => $product)
-                <div class="col">
-                    <div class="card user-card-product">
-                        <a href="{{ route('user.product-detail', ['id' => $product->id]) }}">
-                            <div class="overflow-hidden">
-                                @if($product->productImages->isNotEmpty())
-                                <img src="{{ Storage::url($product->productImages[0]->path) }}" class="card-img-top" alt="Product Image">
-                                @else
-                                <img src="{{ asset('images/default-image.jpg') }}" class="card-img-top" alt="Default Image">
-                                @endif
+            <div class="home-elementor-title">
+                <div class="fw-bold fs-2">GARDENING TOOLS</div>
+                <a class="fs-4" href="">See all >></a>
+            </div>
+            <div class="d-flex justify-content-center align-item-center">
+                <div class="card-swiper-container swiper">
+                    <div class="card-swiper-content">
+                        <div class="swiper-wrapper">
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="card-body d-flex flex-column gap-2">
-                                <h4 class="card-title">{{$product->name}}</h4>
-                                @if($product->productVariants->isNotEmpty())
-                                <p class="card-text"> {{$product->productVariants->min('price')}} </p>
-                                @endif
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div> -->
+                    <div class="swiper-pagination"></div>
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
 
+    <!-- Join our newsletter -->
+    <div class="mt-5 join-newletter-container">
+        <div class="row">
+            <div class="col-md-5 col-12 d-flex flex-column justify-content-center gap-4">
+                <div class="d-flex flex-column">
+                    <p class="fs-5 opacity-75">Let's create a peaceful garden in our house</p>
+                    <div class="join-newletter-title">
+                        <div class="fw-bold fs-2">JOIN OUR NEWSLETTER</div>
+                        <span class="material-symbols-outlined">
+                            potted_plant
+                        </span>
+                    </div>
+                </div>
+                <p class="fs-5 opacity-75">Stay updated with our latest news, offers, and promotions.</p>
+                <form wire:submit="subcribe">
+                    <input wire:model="emailNotificationToSend" class="form-control join-newletter-input" type="email" placeholder="Enter your email" autocomplete="off" required>
+                    <button wire:loading.attr="disabled" type="submit" class="btn-subcribe"><i class="fa-regular fa-paper-plane"></i></button>
+                </form>
+            </div>
+            <div class="col-md-7 col-12">
+                <img src="https://i.pinimg.com/564x/33/5d/b3/335db37b87853fce392cd247746a198b.jpg" alt="">
+            </div>
+        </div>
+
+    </div>
+
     <!-- NEWS -->
-    <div class="container mt-5">
+    <div class="mt-5">
         <div class="d-flex flex-column gap-4">
-            <h1 class="text-center">-- NEWS --</h1>
+            <div class="home-elementor-title">
+                <div class="fw-bold fs-2">NEWS</div>
+                <a class="fs-4" href="">See all >></a>
+            </div>
             <div class="row row-cols-lg-3 row-cols-1  g-3">
                 <div class="col">
                     <div class="card user-card-news" style="height: 100%; width:100%;">
@@ -106,4 +184,40 @@
         </div>
     </div>
 </div>
+<script>
+    let swiperCards = new Swiper(".card-swiper-content", {
+        loop: true,
+        spaceBetween: 10,
+        grabCursor: true,
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: true,
+        },
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+            },
+            400: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            1400: {
+                slidesPerView: 4,
+            },
+        },
+    });
+</script>
 @endsection

@@ -25,7 +25,7 @@
                         <div class="form-group d-flex flex-column gap-2 h-100 w-100 justify-content-between">
                             <div class="d-flex justify-content-between">
                                 <label for="category">Category: </label>
-                                <div class="d-flex flex-row gap-1 align-items-center btn-addcate-addPage" wire:click="showAddCategoryModal">
+                                <div class="d-flex flex-row gap-1 align-items-center btn-addcate-addPage" data-bs-toggle="modal" data-bs-target="#addnew_category">
                                     <span class="material-symbols-outlined fs-6 mt-1">
                                         add_circle
                                     </span>
@@ -47,9 +47,9 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="form-group">
-                            <label for="description">Description: </label>
-                            <textarea wire:model="description" name="description" id="description" class="form-control" placeholder="Description"></textarea>
+                        <div class="form-group" wire:ignore>
+                            <label for="editor">Description: </label>
+                            <textarea wire:model="description" name="description" id="editor" class="form-control" placeholder="Description"></textarea>
                             @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -113,23 +113,23 @@
                         </div>
                         @elseif($product_type == 'variable')
                         <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row gap-1 align-items-center add-variant-attr" wire:click="addVariantAttribute">
+                            <button type="button" class="border-none d-flex flex-row gap-1 align-items-center add-variant-attr" wire:click="addVariantAttribute">
                                 <span class="material-symbols-outlined fs-6">
                                     forms_add_on
                                 </span>
                                 <span>
                                     Add Variant Attribute
                                 </span>
-                            </div>
+                            </button>
 
-                            <div class="d-flex flex-row gap-1 align-items-center new-variant-attr" wire:click="showVariantAttributeModal">
+                            <button type="button" class="d-flex flex-row gap-1 align-items-center new-variant-attr" data-bs-toggle="modal" data-bs-target="#addnew_variant_attr">
                                 <span class="material-symbols-outlined fs-6 ">
                                     add_circle
                                 </span>
                                 <span>
                                     New Variant Attribute
                                 </span>
-                            </div>
+                            </button>
                         </div>
                         <div class="form-group row g-5">
                             {{-- Lặp qua từng thuộc tính biến thể --}}
@@ -229,18 +229,16 @@
             Add Product
         </button>
     </form>
-    @if($addCategoryModal)
-    <div class="modal fade show" style="display: block;" aria-modal="true">
-        <div class="modal-dialog">
+
+    <div class="modal fade " id="addnew_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header d-flex justify-content-between">
+                <div class="modal-header ">
                     <h5 class="modal-title">Add New Category</h5>
-                    <button type="button" class="close btn btn-danger" wire:click="hideAddCategoryModal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form wire:submit.prevent="addnew_category">
+                    <form class="d-flex flex-column gap-4" wire:submit.prevent="addnew_category">
                         <div class="form-group">
                             <label for="category_addnew">Category Name</label>
                             <input type="text" class="form-control" id="category_addnew" wire:model="category_addnew">
@@ -254,42 +252,31 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-success">Save</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal-backdrop fade show"></div>
-    @endif
-
-    @if($VariantAttributeModal)
-    <div class="modal fade show" style="display: block;" aria-modal="true">
-        <div class="modal-dialog">
+    <div class="modal fade" tabindex="-1" aria-hidden="true" id="addnew_variant_attr">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
                     <h5 class="modal-title">Add New Variant Attribute</h5>
-                    <button type="button" class="close btn btn-danger" wire:click="hideVariantAttributeModal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form class="d-flex flex-column gap-4">
                         <div class="form-group">
                             <label for="newVariantName">Variant Name</label>
                             <input type="text" class="form-control" id="newVariantName" wire:model="newVariantName">
                         </div>
+                        <button type="button" class="btn btn-success" wire:click="addNewVariantAttribute">Save changes</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" wire:click="hideVariantAttributeModal">Close</button>
-                    <button type="button" class="btn btn-primary" wire:click="addNewVariantAttribute">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal-backdrop fade show"></div>
-    @endif
 </div>
 
 <script>
@@ -306,4 +293,6 @@
         });
     });
 </script>
+
+
 @endsection

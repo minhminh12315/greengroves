@@ -36,14 +36,20 @@
                 </ul>
             </div>
         </div>
-        <div class="col subcribe-footer">
+        <div class="col">
             <div class="d-flex flex-column align-items-lg-start align-items-center gap-2 p-2">
-                <h5>SUBCRIBE TO OUR LATEST INSIGHTS</h5>
-                <form wire:submit="subcribe" class="position-relative">
-                    <input wire:model="emailNotificationToSend" type="email" placeholder="Enter your email" autocomplete="off" required>
-                    <button wire:loading.attr="disabled" type="submit" class="btn btn-submit-footer rounded-circle border d-flex justify-content-center align-items-center"><i class="fa-regular fa-paper-plane"></i></button>
-                </form>
+                <h5>HEADQUARTER</h5>
+                <ul class="d-flex flex-column align-items-start">
+                    <li>Tel: 0911 111 111</li>
+                    <li>Email: info@gethemani.com</li>
+                    <li>Address: 123 Street, City, Country</li>
+                    <li>Mon-Fri: 8am-8pm</li>
+                </ul>
             </div>
+
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
     <div class="d-flex justify-content-md-start justify-content-sm-center align-items-center ps-5">
