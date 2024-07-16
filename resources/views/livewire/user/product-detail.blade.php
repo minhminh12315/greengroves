@@ -80,17 +80,19 @@
                             <div class="col-12 mt-2">
                                 @if ($this->price)
                                 <div class="price">
-                                    <span>$ {{ $this->price }}</span>
+                                    <span>$ {{ number_format($this->price, 2) }}</span>
                                 </div>
                                 @else
-                                <div>$ {{ $product->productVariants->min('price') }} - {{ $product->productVariants->max('price') }}</div>
+                                <div>
+                                    $ {{ number_format($product->productVariants->min('price'), 2) }} - $ {{ number_format($product->productVariants->max('price'), 2) }}
+                                </div>
                                 @endif
 
 
                             </div>
                             <div class="col-12 mt-2">
                                 @if($quantityStock)
-                                <div> Quantity stock: {{ $quantityStock }}</div>
+                                <div> Quantity stock: {{ number_format($quantityStock) }}</div>
                                 @endif
                             </div>
                             <div class="col-12 mt-2">
@@ -139,7 +141,7 @@
                             <!-- button Add to cart  -->
                             <div class="col-12 mt-4">
                                 <div class="row">
-                                @if(session()->has('error'))
+                                    @if(session()->has('error'))
                                     <div class="alert alert-danger mt-2 h-75">
                                         {{ session('error') }}
                                     </div>
@@ -147,7 +149,7 @@
                                     <div class="col-6">
                                         <button wire:click="addToCart" class="btn btn-primary w-100">Thêm vào giỏ hàng</button>
                                     </div>
-                                    
+
                                     <div class="col-6">
                                         <button wire:click="buyNow" type="button" class="btn btn-success w-100">Mua hàng</button>
                                     </div>

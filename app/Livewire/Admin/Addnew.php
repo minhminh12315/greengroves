@@ -73,10 +73,6 @@ class Addnew extends Component
         return view('livewire.admin.addnew', $data);
     }
 
-    public function mount()
-    {
-        $this->category_id = 1;
-    }
     public function updatedProductType($value)
     {
         $this->product_type = $value;
@@ -172,7 +168,6 @@ class Addnew extends Component
     {
         $this->validate([
             'name' => 'required|min:6|max:20',
-            'description' => 'required',
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
             'quantity_single' => 'required_if:product_type,single',
@@ -185,7 +180,6 @@ class Addnew extends Component
             'name.required' => 'Tên là bắt buộc.',
             'name.min' => 'Tên phải có ít nhất 6 ký tự.',
             'name.max' => 'Tên không được vượt quá 20 ký tự.',
-            'description.required' => 'Mô tả là bắt buộc.',
             'images.required' => 'Bạn chưa chọn hình ảnh.',
             'images.*.image' => 'Tệp bạn chọn không phải là hình ảnh.',
             'images.*.mimes' => 'Hình ảnh phải thuộc định dạng: jpeg, png, jpg, gif, svg, webp.',
@@ -205,11 +199,7 @@ class Addnew extends Component
             $product->category_id = $this->category_id;
             $product->type = $this->product_type;
             $product->save();
-
-
-            // Reset các thuộc tính sau khi lưu sản phẩm
-            $this->name = '';
-            $this->description = '';
+            
 
             // Lưu ảnh sản phẩm
             foreach ($this->images as $image) {
@@ -306,6 +296,8 @@ class Addnew extends Component
                     Log::error('variantCombinations is not an array', ['variantCombinations' => $this->variantCombinations]);
                 }
             }
+            $this->name = '';
+            $this->description = '';
             return redirect('/admin/addnew');
         } catch (\Exception $e) {
             Log::error('Error adding product', ['exception' => $e->getMessage(), 'product' => $this->name]);

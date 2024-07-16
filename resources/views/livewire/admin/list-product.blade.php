@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Product Name</th>
-                <th>Description</th>
                 <th>Category</th>
                 <th>Product Type</th>
                 <th>Product Image</th>
@@ -26,7 +25,6 @@
             @if($product->type == 'single')
             <tr>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->description }}</td>
                 <td>{{ $product->category->name }}</td>
                 <td>{{ $product->type }}</td>
                 <td>
@@ -57,7 +55,6 @@
             @else
             <tr>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->description }}</td>
                 <td>{{ $product->category->name }}</td>
                 <td>{{ $product->type }}</td>
                 <td>
@@ -68,9 +65,7 @@
                     @endif
                 </td>
                 <td>{{ $product->productVariants->sum('quantity') }}</td>
-
                 @foreach ($product->productVariants as $key => $variant)
-
                 <td>{{ $variant->price }}</td>
                 <td>
                     @foreach ($variant->subVariants as $subVariant)
@@ -78,8 +73,18 @@
                     @endforeach
                 </td>
                 <td>{{ $variant->quantity }}</td>
-                <td><button class="btn btn-primary" wire:click="editVariant({{ $variant->id }})" type="button">Update</button></td>
-                <td><button class="btn btn-danger" wire:click="confirmDelete({{ $variant->id }})" type="button">Delete</button></td>
+                <td>
+                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button">
+                        <span class="material-symbols-outlined mt-1 fs-6">
+                            edit_square
+                        </span>
+                    </button>
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button">
+                        <span class="material-symbols-outlined fs-6 mt-1">
+                            delete
+                        </span>
+                    </button>
+                </td>
             </tr>
             @if ($loop->last && $key === count($product->productVariants) - 1)
             <!-- Đây là biến thể cuối cùng -->
@@ -127,8 +132,8 @@
                                 @endforeach
                                 @else
                                 @if($product->productImages)
-                                @foreach ($product->productImages as $image)
                                 <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
+                                @foreach ($product->productImages as $image)
                                 <img src="{{ Storage::url($image->path) }}" alt="image" width="100">
                                 @endforeach
                                 @endif
