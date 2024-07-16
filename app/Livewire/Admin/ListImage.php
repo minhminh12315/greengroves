@@ -32,21 +32,14 @@ class ListImage extends Component
 
     public function mount()
     {
-        if(Image::count() > 0){
+        $this->images = Image::all();
+        $this->distinctTypes = Image::distinct()->pluck('type');
+
+        if (Image::count() > 0) {
             $this->image_type_new = Image::all()->first()->type;
         }
     }
 
-    public function openAddNewImagesModal()
-    {
-        Log::info('openAddNewImagesModal');
-        $this->addNewImagesModal = true;
-    }
-
-    public function closeAddNewImagesModal()
-    {
-        $this->addNewImagesModal = false;
-    }
 
     public function newtype()
     {
@@ -74,22 +67,13 @@ class ListImage extends Component
         $this->editImageModal = true;
     }
 
-    public function closeEditImageModal()
-    {
-        $this->editImageModal = false;
-    }
+
 
     public function openDeleteImageModal($id)
     {
         $this->edit_image_id = $id;
-        $this->deleteImageModal = true;
-
     }
 
-    public function closeDeleteImageModal()
-    {
-        $this->deleteImageModal = false;
-    }
 
     public function store_image()
     {
@@ -121,6 +105,7 @@ class ListImage extends Component
         $this->addNewImageType = false;
         $this->addNewImagesModal = false;
         $this->mount();
+        $this->dispatch('closeModal');
     }
 
     public function update_image()
@@ -152,8 +137,8 @@ class ListImage extends Component
 
         $image->save();
         $this->edit_image_path = null;
-
         $this->editImageModal = false;
+        $this->dispatch('closeModal');
     }
     public function delete_image()
     {
@@ -166,12 +151,8 @@ class ListImage extends Component
 
     public function render()
     {
-        $this->images = Image::all();
-        $this->distinctTypes = Image::distinct()->pluck('type');
 
-        return view('livewire.admin.list-image', [
-            'images' => $this->images,
-            'distinctTypes' => $this->distinctTypes,
-        ]);
+
+        return view('livewire.admin.list-image');
     }
 }

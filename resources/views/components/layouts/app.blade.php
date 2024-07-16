@@ -56,6 +56,13 @@
             })
             .then(editor => {
                 window.editor = editor;
+                const livewireComponent = Livewire.find(
+                    document.querySelector('#editor').closest('[wire\\:id]').getAttribute('wire:id')
+                );
+                editor.model.document.on('change:data', () => {
+                    let desc = $('#editor').data('desc');
+                    eval(desc).set('description', editor.getData());
+                });
             })
             .catch(error => {
                 console.error(error);

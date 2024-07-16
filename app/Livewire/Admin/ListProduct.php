@@ -17,9 +17,6 @@ class ListProduct extends Component
     use WithFileUploads;
 
     public $products;
-    public $editVariantModal = false;
-
-    public $deleteVariantModal = false;
     public $product;
     public $update_quantity;
     public $update_price;
@@ -29,9 +26,10 @@ class ListProduct extends Component
     public $product_category;
     public $product_images;
     public $categories;
+
     public function editVariant($variantId)
     {
-        $this->editVariantModal = true;
+
         $this->variantId = $variantId;
         $variant = ProductVariant::find($variantId);
         $this->update_quantity = $variant->quantity;
@@ -39,7 +37,7 @@ class ListProduct extends Component
         $this->product_name = $variant->product->name;
         $this->product_description = $variant->product->description;
         $this->product_category = $variant->product->category;
-        $this->categories = Categories::where('id', '!=', $this->product_category->id)->get();
+        // dd($this->product_category, $this->categories);
     }
     public function updateVariant()
     {
@@ -48,39 +46,37 @@ class ListProduct extends Component
             'quantity' => $this->update_quantity,
             'price' => $this->update_price,
         ]);
-        $this->editVariantModal = false;
         $product = Product::find($variant->product_id);
         $product->update([
             'name' => $this->product_name,
             'description' => $this->product_description,
             'category' => $this->product_category,
         ]);
-        foreach ($this->product_images as $image) {
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $imagePath = $image->storeAs('public/assets/images', $imageName);
-            Log::info('Image moved', ['image' => $imagePath]);
-            $publicPath = 'assets/images/' . $imageName;
-            Log::info('Image path', ['path' => $publicPath]);
-
-            $image = new ProductImage();
-            $image->product_id = $product->id;
-            foreach ($product->productImages as $pi) {
-                $pi->delete();
+        if($this->product_images){
+            foreach ($this->product_images as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $imagePath = $image->storeAs('public/assets/images', $imageName);
+                Log::info('Image moved', ['image' => $imagePath]);
+                $publicPath = 'assets/images/' . $imageName;
+                Log::info('Image path', ['path' => $publicPath]);
+    
+                $image = new ProductImage();
+                $image->product_id = $product->id;
+                foreach ($product->productImages as $pi) {
+                    $pi->delete();
+                }
+                $image->path = $publicPath;
+                $image->save();
             }
-            $image->path = $publicPath;
-            $image->save();
-            
         }
         $this->mount();
+        $this->dispatch('closeModal');
     }
 
-    public function hideModal()
-    {
-        $this->editVariantModal = false;
-    }    public function confirmDelete($variantId)
+
+    public function confirmDelete($variantId)
     {
         $this->variantId = $variantId;
-        $this->deleteVariantModal = true;
     }
 
     public function deleteVariant()
@@ -90,16 +86,13 @@ class ListProduct extends Component
         if ($variant->product->productVariants->count() == 0) {
             $variant->product->delete();
         }
-        $this->deleteVariantModal = false;
+        $this->dispatch('closeModal');
         $this->mount();
     }
 
-    public function hideDeleteModal()
-    {
-        $this->deleteVariantModal = false;
-    }
     public function mount()
     {
+        $this->categories = Categories::all();
         $this->products = Product::with([
             'productVariants.subVariants.variantOption.variant'
         ])->get();

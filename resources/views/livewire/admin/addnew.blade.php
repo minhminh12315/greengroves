@@ -17,8 +17,8 @@
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="form-group d-flex flex-column gap-2 justify-content-between h-100 w-100">
                             <label for="name">Product name: </label>
-                            <input wire:model="name" type="text" name="name" id="name" class="form-control" placeholder="Name">
                             @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                            <input wire:model="name" type="text" name="name" id="name" class="form-control" placeholder="Name">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
@@ -49,7 +49,7 @@
                     <div class="col-12">
                         <div class="form-group" wire:ignore>
                             <label for="editor">Description: </label>
-                            <textarea wire:model="description" name="description" id="editor" class="form-control" placeholder="Description"></textarea>
+                            <textarea type="text" data-desc="@this" wire:model.defer="description" name="description" id="editor" class="form-control" placeholder="Description"></textarea>
                             @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -252,7 +252,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success" wire:loading.attr="disable">Save</button>
                     </form>
                 </div>
             </div>
@@ -266,12 +266,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="d-flex flex-column gap-4">
+                    <form class="d-flex flex-column gap-4" wire:submit.prevent="addNewVariantAttribute">
                         <div class="form-group">
                             <label for="newVariantName">Variant Name</label>
                             <input type="text" class="form-control" id="newVariantName" wire:model="newVariantName">
                         </div>
-                        <button type="button" class="btn btn-success" wire:click="addNewVariantAttribute">Save changes</button>
+                        <button type="submit" class="btn btn-success" wire:loading.attr="disable">Save changes</button>
                     </form>
                 </div>
             </div>
@@ -292,7 +292,7 @@
             }
         });
     });
+    
 </script>
-
 
 @endsection

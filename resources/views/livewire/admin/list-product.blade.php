@@ -39,12 +39,12 @@
                 <td>{{ $variant->price }}</td>
                 <td colspan="2"></td> <!-- Cột rỗng để giữ cùng dòng với sản phẩm -->
                 <td>
-                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button">
+                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-edit-product">
                         <span class="material-symbols-outlined mt-1 fs-6">
                             edit_square
                         </span>
                     </button>
-                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button">
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-delete-product">
                         <span class="material-symbols-outlined fs-6 mt-1">
                             delete
                         </span>
@@ -74,12 +74,12 @@
                 </td>
                 <td>{{ $variant->quantity }}</td>
                 <td>
-                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button">
+                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-edit-product">
                         <span class="material-symbols-outlined mt-1 fs-6">
                             edit_square
                         </span>
                     </button>
-                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button">
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-delete-product">
                         <span class="material-symbols-outlined fs-6 mt-1">
                             delete
                         </span>
@@ -97,91 +97,75 @@
                 @endforeach
         </tbody>
     </table>
-    @if($editVariantModal)
-        <div class="modal fade show" style="display: block;" aria-modal="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-between">
-                        <h5 class="modal-title">Edit Variant</h5>
-                        <button type="button" class="close btn btn-danger" wire:click="hideModal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-
-                            <div class="form-group">
-                                <label for="name">Product name</label>
-                                <input wire:model="product_name" type="text" class="form-control" id="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Product category</label>
-                                <select wire:model="product_category" class="form-control" name="category" id="category">
-                                    <option value="{{ $product_category->id }}">{{ $product_category->name }}</option>
-                                    @foreach ($this->categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="image">Product Image</label>
-                                @if($this->product_images)
-                                <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
-                                @foreach ($this->product_images as $image)
-                                <img src="{{ $image->temporaryUrl() }}" alt="image" width="100">
+    <div class="modal fade " id="listproduct-edit-product" wire:ignore>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <h5 class="modal-title">Edit Variant</h5>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="d-flex flex-column gap-4" wire:submit.prevent="updateVariant">
+                        <div class="form-group">
+                            <label for="name">Product name</label>
+                            <input wire:model="product_name" type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Product category</label>
+                            <select wire:model="product_category" class="form-control" name="category" id="category">
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
-                                @else
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Product Image</label>
+                            @if($product_images)
+                                <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
+                                @if ($product_images)
+                                    @foreach ($product_images as $image)
+                                        <img src="{{ $image->temporaryUrl() }}" alt="image" width="100">
+                                    @endforeach        
+                                @endif
+                            @else
                                 @if($product->productImages)
-                                <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
-                                @foreach ($product->productImages as $image)
-                                <img src="{{ Storage::url($image->path) }}" alt="image" width="100">
-                                @endforeach
+                                    <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
+                                    @foreach ($product->productImages as $image)
+                                    <img src="{{ Storage::url($image->path) }}" alt="image" width="100">
+                                    @endforeach
                                 @endif
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="quantity">Product Quantity</label>
-                                <input wire:model="update_quantity" type="text" class="form-control" id="quantity">
-                            </div>
-                            <div class="form-group">
-                                <label for="price">Variant Price</label>
-                                <input wire:model="update_price" type="text" class="form-control" id="price">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="hideModal">Close</button>
-                        <button type="button" class="btn btn-primary" wire:click="updateVariant">Save changes</button>
-                    </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Product Quantity</label>
+                            <input wire:model="update_quantity" type="text" class="form-control" id="quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Variant Price</label>
+                            <input wire:model="update_price" type="text" class="form-control" id="price">
+                        </div>
+                        <button type="submit" class="btn btn-success" wire:loading.attr="disable">Save changes</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal-backdrop fade show"></div>
-    @endif
-
-    @if($deleteVariantModal)
-    <div class="modal fade show" style="display: block;" aria-modal="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="listproduct-delete-product" aria-modal="true" wire:ignore>
+        <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
                     <h5 class="modal-title">Confirm Delete</h5>
-                    <button type="button" class="close btn btn-danger" wire:click="hideDeleteModal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <p>Are you sure you want to delete this variant?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" wire:click="hideDeleteModal">Close</button>
-                    <button type="button" class="btn btn-danger" wire:click="deleteVariant">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" wire:click="deleteVariant" wire:loading.attr="disable">Delete</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal-backdrop fade show"></div>
-    @endif
-</div>
 </div>
 @endsection

@@ -32,9 +32,6 @@ class Addnew extends Component
     public $combinations = [];
     public $product_type = 'single';
     public $variant_addnew;
-    public $VariantAttributeModal = false;
-    public $VariantOptionModal = false;
-    public $addCategoryModal = false;
     public $newVariantName;
     public $quantity_single;
     public $price_single;
@@ -46,6 +43,8 @@ class Addnew extends Component
     public $numberOfVariants = 1;
     public $newVariantOption;
     public $attribute_option = [];
+
+    
 
     public function updated($propertyName)
     {
@@ -306,17 +305,8 @@ class Addnew extends Component
         }
     }
 
-    public function showAddCategoryModal()
-    {
-        $this->addCategoryModal = true;
-    }
-
     // Ẩn modal thêm danh mục
-    public function hideAddCategoryModal()
-    {
-        $this->addCategoryModal = false;
-    }
-
+   
     public function addnew_category()
     {
         $this->validate([
@@ -338,8 +328,7 @@ class Addnew extends Component
 
                 Log::info("Category added successfully: {$category->name}");
                 $this->category_addnew = '';
-                $this->hideAddCategoryModal(); // Ẩn modal sau khi thêm danh mục
-                return $this->redirect('/admin/addnew');
+                $this->dispatch('closeModal');
             } catch (\Exception $e) {
                 Log::error('Error adding category' . ['category' => $this->category_addnew]);
                 dd($e);
@@ -348,17 +337,6 @@ class Addnew extends Component
             session()->flash('categoryDup', 'Category already exists');
             $this->category_addnew = '';
         }
-    }
-
-    public function showVariantAttributeModal()
-    {
-        Log::info('showVariantAttributeModal called');
-        $this->VariantAttributeModal = true;
-    }
-
-    public function hideVariantAttributeModal()
-    {
-        $this->VariantAttributeModal = false;
     }
 
     public function addNewVariantAttribute()
@@ -371,10 +349,10 @@ class Addnew extends Component
         $variant_addnew->name = $this->newVariantName;
         $variant_addnew->save();
 
-
+ 
         $this->variantNames[] = $this->newVariantName;
         $this->newVariantName = '';
-        $this->VariantAttributeModal = false;
+        $this->dispatch('closeModal');
     }
 
     public function removeVariantOption()

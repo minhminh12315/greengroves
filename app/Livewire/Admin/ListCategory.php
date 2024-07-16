@@ -31,22 +31,17 @@ class ListCategory extends Component
         $this->editCategoryModal = true;
     }
 
-    public function hideEditModal()
-    {
-        $this->editCategoryModal = false;
-    }
 
     public function updateCategory()
     {
         $category = Categories::find($this->categoryId);
         $category->update([
             'name' => $this->name,
-            'description' => $this->description,
             'parent_id' => $this->parent_id,
         ]);
-
-        $this->editCategoryModal = false;
+        $this->reset(['name', 'parent_id']);
         $this->mount(); // Refresh the category list
+        $this->dispatch('closeModal');
     }
 
     public function confirmDelete($categoryId)
@@ -59,35 +54,20 @@ class ListCategory extends Component
     {
         $category = Categories::find($this->categoryId);
         $category->delete();
-        $this->deleteCategoryModal = false;
+        $this->dispatch('closeModal');
         $this->mount(); // Refresh the category list
     }
 
-    public function hideDeleteModal()
-    {
-        $this->deleteCategoryModal = false;
-    }
 
-    public function showAddCategoryModal()
-    {
-        $this->reset(['name', 'description', 'parent_id']);
-        $this->addCategoryModal = true;
-    }
-
-    public function hideAddCategoryModal()
-    {
-        $this->addCategoryModal = false;
-    }
 
     public function addCategory()
     {
         Categories::create([
             'name' => $this->name,
-            'description' => $this->description,
             'parent_id' => $this->parent_id,
         ]);
-
-        $this->addCategoryModal = false;
+        $this->reset(['name', 'parent_id']);
+        $this->dispatch('closeModal');
         $this->mount(); // Refresh the category list
     }
 
