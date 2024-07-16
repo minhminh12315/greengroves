@@ -74,24 +74,19 @@ class News extends Component
     $this->closeAddNewsModal();
     session()->flash('message', 'News Created Successfully.');
     $this->mount();
+    $this->dispatch('closeModal');
 }
 
 
     public function openEditNewsModal($id)
     {
-        $this->EditNewsModal = true;
         $news = NewsModel::find($id);
         $this->news_id = $news->id;
-        $this->news_title = $news->news_title;
-        $this->news_description = $news->news_description;
-        $this->news_old_image_path = $news->news_image_path;
-        $this->news_image_path = $news->news_image_path;
+        $this->news_title = $news->title;
+        $this->news_description = $news->description;
+        $this->news_old_image_path = $news->path;
     }
 
-    public function closeEditNewsModal()
-    {
-        $this->EditNewsModal = false;
-    }
 
     public function update_news()
     {
@@ -102,7 +97,7 @@ class News extends Component
         ], [
             'news_title.required' => 'The News Title field is required.',
             'news_description.required' => 'The News Description field is required.',
-            'news_image_path.required' => 'The News Image field is required.',
+            'path.required' => 'The News Image field is required.',
             'news_image_path.image' => 'The News Image must be an image.',
             'news_image_path.mimes' => 'The News Image must be a file of type: jpeg, png, jpg, gif, svg.',
             'news_image_path.max' => 'The News Image must not be greater than 2048 kilobytes.',
@@ -113,18 +108,17 @@ class News extends Component
         $public_path = 'assets/images/' . $imageName;
 
         $news = NewsModel::find($this->news_id);
-        $news->news_title = $this->news_title;
-        $news->news_description = $this->news_description;
-        $news->news_image_path = $public_path;
+        $news->title = $this->news_title;
+        $news->description = $this->news_description;
+        $news->path = $public_path;
         $news->save();
 
-        $this->closeEditNewsModal();
         session()->flash('message', 'News Updated Successfully.');
         $this->mount();
+        $this->dispatch('closeModal');
     }
     public function openDeleteNewsModal($id)
     {
-        $this->DeleteNewsModal = true;
         $this->news_id = $id;
         Log::info('News ID', ['id' => $this->news_id]);
     }
@@ -132,13 +126,9 @@ class News extends Component
     {
         $news = NewsModel::find($this->news_id);
         $news->delete();
-        $this->closeDeleteNewsModal();
         session()->flash('message', 'News Deleted Successfully.');
         $this->mount();
-    }
-    public function closeDeleteNewsModal()
-    {
-        $this->DeleteNewsModal = false;
+        $this->dispatch('closeModal');
     }
     public function mount()
     {
@@ -147,6 +137,6 @@ class News extends Component
 
     public function render()
     {
-        return view('livewire.admin.news', ['news' => $this->news]);
+        return view('livewire.admin.news');
     }
 }
