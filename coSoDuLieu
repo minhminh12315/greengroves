@@ -1,0 +1,670 @@
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+--
+-- Host: localhost    Database: greengroves
+-- ------------------------------------------------------
+-- Server version	8.0.30
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cache`
+--
+
+DROP TABLE IF EXISTS `cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache`
+--
+
+LOCK TABLES `cache` WRITE;
+/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cache_locks`
+--
+
+DROP TABLE IF EXISTS `cache_locks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cache_locks`
+--
+
+LOCK TABLES `cache_locks` WRITE;
+/*!40000 ALTER TABLE `cache_locks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cache_locks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_id` bigint unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categories_parent_id_foreign` (`parent_id`),
+  CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Pots and Containers',NULL,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(2,'Books',NULL,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(3,'Gardening Tools',NULL,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(4,'Pots',1,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(5,'Containers',1,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(6,'Digging Tools',3,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(7,'Pruning Tools',3,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(8,'Watering Tools',3,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(9,'Pesticide Spraying Tools',3,'2024-07-12 15:03:36','2024-07-12 15:03:36'),(10,'Cleaning and Maintenance Tools',3,'2024-07-12 15:03:36','2024-07-12 15:03:36');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `email_notifications`
+--
+
+DROP TABLE IF EXISTS `email_notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `email_notifications` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `email_notifications`
+--
+
+LOCK TABLES `email_notifications` WRITE;
+/*!40000 ALTER TABLE `email_notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `email_notifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `images` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `images`
+--
+
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_batches`
+--
+
+DROP TABLE IF EXISTS `job_batches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_batches`
+--
+
+LOCK TABLES `job_batches` WRITE;
+/*!40000 ALTER TABLE `job_batches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `job_batches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint unsigned NOT NULL,
+  `reserved_at` int unsigned DEFAULT NULL,
+  `available_at` int unsigned NOT NULL,
+  `created_at` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_index` (`queue`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(4,'2024_06_26_130555_create_categories_table',1),(5,'2024_06_26_130556_create_products_table',1),(6,'2024_06_26_130709_create_product_variants_table',1),(7,'2024_06_26_130855_create_product_images_table',1),(8,'2024_06_26_130902_create_variants_table',1),(9,'2024_06_26_130910_create_variant_options_table',1),(10,'2024_06_26_130917_create_sub_variants_table',1),(11,'2024_06_26_130926_create_orders_table',1),(12,'2024_06_26_130929_create_order_details_table',1),(13,'2024_06_26_130946_create_images_table',1),(14,'2024_06_26_130950_create_videos_table',1),(15,'2024_06_26_130956_create_news_table',1),(16,'2024_07_05_132829_create_email_notifications_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `news`
+--
+
+DROP TABLE IF EXISTS `news`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `news` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `news`
+--
+
+LOCK TABLES `news` WRITE;
+/*!40000 ALTER TABLE `news` DISABLE KEYS */;
+/*!40000 ALTER TABLE `news` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_details`
+--
+
+DROP TABLE IF EXISTS `order_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_details` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint unsigned NOT NULL,
+  `product_variant_id` bigint unsigned NOT NULL,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_details_order_id_foreign` (`order_id`),
+  KEY `order_details_product_variant_id_foreign` (`product_variant_id`),
+  CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `order_details_product_variant_id_foreign` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_details`
+--
+
+LOCK TABLES `order_details` WRITE;
+/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `delivery_fee` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orders_user_id_foreign` (`user_id`),
+  CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+DROP TABLE IF EXISTS `password_reset_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+LOCK TABLES `password_reset_tokens` WRITE;
+/*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_images`
+--
+
+DROP TABLE IF EXISTS `product_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_images` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_images_product_id_foreign` (`product_id`),
+  CONSTRAINT `product_images_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_images`
+--
+
+LOCK TABLES `product_images` WRITE;
+/*!40000 ALTER TABLE `product_images` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product_images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_variants`
+--
+
+DROP TABLE IF EXISTS `product_variants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_variants` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `quantity` int NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_variants_product_id_foreign` (`product_id`),
+  CONSTRAINT `product_variants_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_variants`
+--
+
+LOCK TABLES `product_variants` WRITE;
+/*!40000 ALTER TABLE `product_variants` DISABLE KEYS */;
+INSERT INTO `product_variants` VALUES (1,100,5.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(2,100,5.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(3,100,5.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(4,100,5.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(5,100,5.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(6,100,6.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(7,100,6.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(8,100,6.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(9,100,6.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(10,100,6.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(11,100,7.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(12,100,7.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(13,100,7.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(14,100,7.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(15,100,7.99,1,'2024-07-14 17:22:58','2024-07-14 17:22:58'),(16,100,5.99,2,'2024-07-14 17:38:58','2024-07-14 17:38:58'),(17,100,6.99,2,'2024-07-14 17:38:58','2024-07-14 17:38:58'),(18,100,7.99,2,'2024-07-14 17:38:58','2024-07-14 17:38:58'),(19,100,7.99,3,'2024-07-14 17:48:09','2024-07-14 17:48:09'),(20,100,8.99,3,'2024-07-14 17:48:09','2024-07-14 17:48:09'),(21,100,9.99,3,'2024-07-14 17:48:09','2024-07-14 17:48:09'),(22,100,4.99,4,'2024-07-14 17:49:50','2024-07-14 17:49:50'),(23,100,5.99,4,'2024-07-14 17:49:50','2024-07-14 17:49:50'),(24,100,6.99,4,'2024-07-14 17:49:50','2024-07-14 17:49:50'),(25,100,6.99,5,'2024-07-14 17:51:36','2024-07-14 17:51:36'),(26,100,7.99,5,'2024-07-14 17:51:36','2024-07-14 17:51:36'),(27,100,8.99,5,'2024-07-14 17:51:36','2024-07-14 17:51:36'),(28,100,7.99,6,'2024-07-14 17:54:25','2024-07-14 17:54:25'),(29,100,8.99,6,'2024-07-14 17:54:25','2024-07-14 17:54:25'),(30,100,9.99,6,'2024-07-14 17:54:25','2024-07-14 17:54:25'),(31,10,12.99,7,'2024-07-14 17:56:28','2024-07-14 17:56:28'),(32,10,24.99,7,'2024-07-14 17:56:28','2024-07-14 17:56:28'),(33,10,0.99,7,'2024-07-14 17:56:28','2024-07-14 17:56:28'),(34,10,12.99,8,'2024-07-14 17:58:51','2024-07-14 17:58:51'),(35,10,24.99,8,'2024-07-14 17:58:51','2024-07-14 17:58:51'),(36,10,0.99,8,'2024-07-14 17:58:51','2024-07-14 17:58:51'),(37,10,12.99,9,'2024-07-14 17:59:27','2024-07-14 17:59:27'),(38,10,24.99,9,'2024-07-14 17:59:27','2024-07-14 17:59:27'),(39,10,0.99,9,'2024-07-14 17:59:27','2024-07-14 17:59:27'),(40,10,12.99,10,'2024-07-14 17:59:55','2024-07-14 17:59:55'),(41,10,24.99,10,'2024-07-14 17:59:55','2024-07-14 17:59:55'),(42,10,0.99,10,'2024-07-14 17:59:55','2024-07-14 17:59:55'),(43,10,12.99,11,'2024-07-14 18:00:26','2024-07-14 18:00:26'),(44,10,24.99,11,'2024-07-14 18:00:26','2024-07-14 18:00:26'),(45,10,0.99,11,'2024-07-14 18:00:26','2024-07-14 18:00:26'),(46,10,12.99,12,'2024-07-14 18:00:48','2024-07-14 18:00:48'),(47,10,24.99,12,'2024-07-14 18:00:48','2024-07-14 18:00:48'),(48,10,0.99,12,'2024-07-14 18:00:48','2024-07-14 18:00:48'),(49,10,12.99,13,'2024-07-14 18:01:09','2024-07-14 18:01:09'),(50,10,24.99,13,'2024-07-14 18:01:09','2024-07-14 18:01:09'),(51,10,0.99,13,'2024-07-14 18:01:09','2024-07-14 18:01:09'),(52,10,12.99,14,'2024-07-14 18:01:28','2024-07-14 18:01:28'),(53,10,24.99,14,'2024-07-14 18:01:28','2024-07-14 18:01:28'),(54,10,0.99,14,'2024-07-14 18:01:28','2024-07-14 18:01:28'),(55,10,12.99,15,'2024-07-14 18:01:44','2024-07-14 18:01:44'),(56,10,24.99,15,'2024-07-14 18:01:44','2024-07-14 18:01:44'),(57,10,0.99,15,'2024-07-14 18:01:44','2024-07-14 18:01:44'),(58,10,12.99,16,'2024-07-14 18:02:04','2024-07-14 18:02:04'),(59,10,24.99,16,'2024-07-14 18:02:04','2024-07-14 18:02:04'),(60,10,0.99,16,'2024-07-14 18:02:04','2024-07-14 18:02:04'),(61,100,19.99,17,'2024-07-15 16:53:06','2024-07-15 16:53:06'),(62,100,24.99,17,'2024-07-15 16:53:06','2024-07-15 16:53:06'),(63,100,29.99,17,'2024-07-15 16:53:06','2024-07-15 16:53:06'),(64,100,15.99,17,'2024-07-15 16:54:02','2024-07-15 16:54:02'),(65,100,17.99,17,'2024-07-15 16:54:02','2024-07-15 16:54:02'),(66,100,19.99,17,'2024-07-15 16:54:02','2024-07-15 16:54:02'),(67,100,6.99,18,'2024-07-15 16:59:14','2024-07-15 16:59:14'),(68,100,7.99,18,'2024-07-15 16:59:14','2024-07-15 16:59:14'),(69,100,8.99,18,'2024-07-15 16:59:14','2024-07-15 16:59:14'),(70,100,8.99,18,'2024-07-15 17:01:42','2024-07-15 17:01:42'),(71,100,10.99,18,'2024-07-15 17:01:42','2024-07-15 17:01:42'),(72,100,12.99,18,'2024-07-15 17:01:42','2024-07-15 17:01:42'),(73,100,12.99,19,'2024-07-15 17:06:03','2024-07-15 17:06:03'),(74,100,15.99,19,'2024-07-15 17:06:03','2024-07-15 17:06:03'),(75,100,18.99,19,'2024-07-15 17:06:03','2024-07-15 17:06:03'),(76,100,13.99,19,'2024-07-15 17:17:21','2024-07-15 17:17:21'),(77,100,16.99,19,'2024-07-15 17:17:21','2024-07-15 17:17:21'),(78,100,19.99,19,'2024-07-15 17:17:21','2024-07-15 17:17:21'),(79,100,9.99,20,'2024-07-15 17:17:56','2024-07-15 17:17:56'),(80,100,11.99,20,'2024-07-15 17:17:56','2024-07-15 17:17:56'),(81,100,13.99,20,'2024-07-15 17:17:56','2024-07-15 17:17:56'),(82,100,10.99,20,'2024-07-15 17:17:56','2024-07-15 17:17:56'),(83,100,12.99,20,'2024-07-15 17:17:56','2024-07-15 17:17:56'),(84,100,14.99,20,'2024-07-15 17:17:56','2024-07-15 17:17:56'),(85,100,14.99,21,'2024-07-15 17:24:48','2024-07-15 17:24:48'),(86,100,16.99,21,'2024-07-15 17:24:48','2024-07-15 17:24:48'),(87,100,18.99,21,'2024-07-15 17:24:48','2024-07-15 17:24:48'),(88,100,15.99,21,'2024-07-15 17:24:48','2024-07-15 17:24:48'),(89,100,17.99,21,'2024-07-15 17:24:48','2024-07-15 17:24:48'),(90,100,19.99,21,'2024-07-15 17:24:48','2024-07-15 17:24:48'),(91,100,11.99,22,'2024-07-15 17:25:41','2024-07-15 17:25:41'),(92,100,13.99,22,'2024-07-15 17:25:41','2024-07-15 17:25:41'),(93,100,15.99,22,'2024-07-15 17:25:41','2024-07-15 17:25:41'),(94,100,12.99,22,'2024-07-15 17:25:41','2024-07-15 17:25:41'),(95,100,14.99,22,'2024-07-15 17:25:41','2024-07-15 17:25:41'),(96,100,16.99,22,'2024-07-15 17:25:41','2024-07-15 17:25:41'),(97,100,19.99,23,'2024-07-15 17:27:53','2024-07-15 17:27:53'),(98,100,21.99,23,'2024-07-15 17:27:53','2024-07-15 17:27:53'),(99,100,23.99,23,'2024-07-15 17:27:53','2024-07-15 17:27:53'),(100,100,20.99,23,'2024-07-15 17:27:53','2024-07-15 17:27:53'),(101,100,22.99,23,'2024-07-15 17:27:53','2024-07-15 17:27:53'),(102,100,24.99,23,'2024-07-15 17:27:53','2024-07-15 17:27:53'),(103,100,54.99,24,'2024-07-15 17:40:33','2024-07-15 17:40:34'),(104,100,30.99,25,'2024-07-15 17:42:21','2024-07-15 17:42:22'),(105,100,25.99,26,'2024-07-15 17:45:22','2024-07-15 17:45:22'),(106,100,27.99,26,'2024-07-15 17:45:22','2024-07-15 17:45:22'),(107,100,29.99,26,'2024-07-15 17:45:22','2024-07-15 17:45:22'),(108,100,26.99,26,'2024-07-15 17:45:22','2024-07-15 17:45:22'),(109,100,28.99,26,'2024-07-15 17:45:22','2024-07-15 17:45:22'),(110,100,30.99,26,'2024-07-15 17:45:22','2024-07-15 17:45:22'),(111,100,59.99,27,'2024-07-15 17:50:48','2024-07-15 17:50:48'),(112,100,9.99,28,'2024-07-15 17:56:54','2024-07-15 17:56:54'),(113,100,9.99,28,'2024-07-15 17:56:54','2024-07-15 17:56:54'),(114,100,9.99,28,'2024-07-15 17:56:54','2024-07-15 17:56:54'),(115,100,9.99,28,'2024-07-15 17:56:54','2024-07-15 17:56:54'),(116,100,9.99,28,'2024-07-15 17:56:54','2024-07-15 17:56:54'),(117,50,19.99,29,'2024-07-15 18:01:12','2024-07-15 18:01:12'),(118,50,28.99,30,'2024-07-15 18:05:31','2024-07-15 18:05:31'),(119,50,15.99,31,'2024-07-15 18:07:14','2024-07-15 18:07:14'),(120,50,12.99,32,'2024-07-15 18:08:42','2024-07-15 18:08:42'),(121,50,12.99,32,'2024-07-15 18:08:42','2024-07-15 18:08:42'),(122,50,12.99,32,'2024-07-15 18:08:42','2024-07-15 18:08:42'),(123,50,12.99,32,'2024-07-15 18:08:42','2024-07-15 18:08:42'),(124,50,12.99,32,'2024-07-15 18:08:42','2024-07-15 18:08:42'),(125,20,89.99,33,'2024-07-15 18:09:43','2024-07-15 18:09:43'),(126,50,27.99,34,'2024-07-15 18:11:06','2024-07-15 18:11:06'),(127,30,69.99,35,'2024-07-15 18:12:29','2024-07-15 18:12:29'),(128,30,69.99,35,'2024-07-15 18:12:29','2024-07-15 18:12:29'),(129,100,3.99,36,'2024-07-15 18:13:57','2024-07-15 18:13:57'),(130,100,3.99,36,'2024-07-15 18:13:57','2024-07-15 18:13:57'),(131,100,3.99,36,'2024-07-15 18:13:57','2024-07-15 18:13:57'),(132,100,3.99,36,'2024-07-15 18:13:57','2024-07-15 18:13:57'),(133,100,3.99,36,'2024-07-15 18:13:57','2024-07-15 18:13:57'),(134,50,12.99,37,'2024-07-15 18:16:46','2024-07-15 18:16:46'),(135,50,17.99,37,'2024-07-15 18:16:46','2024-07-15 18:16:46'),(136,50,22.99,37,'2024-07-15 18:16:46','2024-07-15 18:16:46'),(137,20,79.99,38,'2024-07-15 18:18:41','2024-07-15 18:18:41'),(138,100,12.99,39,'2024-07-15 18:20:36','2024-07-15 18:20:36'),(139,100,12.99,39,'2024-07-15 18:20:36','2024-07-15 18:20:36'),(140,100,12.99,39,'2024-07-15 18:20:36','2024-07-15 18:20:36'),(141,100,8.99,40,'2024-07-15 18:22:19','2024-07-15 18:22:19'),(142,100,9.99,40,'2024-07-15 18:22:19','2024-07-15 18:22:19'),(143,100,10.99,40,'2024-07-15 18:22:19','2024-07-15 18:22:19'),(144,30,79.99,41,'2024-07-15 18:23:17','2024-07-15 18:23:17');
+/*!40000 ALTER TABLE `product_variants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `products` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_category_id_foreign` (`category_id`),
+  CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Plastic Pot','Made of durable plastic material, suitable for indoor and outdoor use.','variable',4,'2024-07-12 15:31:51','2024-07-12 15:31:51'),(2,'Clay Pot','Crafted from natural clay, provides good breathability for plant roots.','variable',4,'2024-07-12 15:31:51','2024-07-12 15:31:51'),(3,'Ceramic Pot','Elegant ceramic design, ideal for decorative purposes indoors.','variable',4,'2024-07-12 15:31:51','2024-07-12 15:31:51'),(4,'Plastic Container','Sturdy plastic container suitable for planting various types of plants.','variable',5,'2024-07-12 15:33:23','2024-07-12 15:33:23'),(5,'Wooden Planter','Handcrafted wooden planter for a natural look in your garden.','variable',5,'2024-07-12 15:33:23','2024-07-12 15:33:23'),(6,'Metal Planter','Durable metal pot with drainage holes for optimal plant health.','variable',5,'2024-07-12 15:33:23','2024-07-12 15:33:23'),(7,'The Garden Against Time: In Search of a Common Paradise','Inspired by the restoration of her own garden, \"imaginative and empathetic critic\" (NPR) Olivia Laing embarks on an exhilarating investigation of paradise.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(8,'The Old Farmer`s Almanac Vegetable Gardener`s Handbook (Old Farmer`s Almanac (Paperback))','The Old Farmer`s Almanac, founded in 1792, has a strong presence in the gardening information field that includes such products as the annual Garden Guide (available in both print and digital formats), the Garden Planner (an interactive online resource for planning and recording garden activities), the Gardening calendar (a perennial favorite of gardeners and nature lovers for more than 45 years that has been the #1 best-seller in garden calendars on Amazon), and the Gardening Club (a membership opportunity that offers people a selection of Old Farmer’s','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(9,'The Complete Gardener: A Practical, Imaginative Guide to Every Aspect of Gardening','The most comprehensive, practical, and highly illustrated book Monty has ever written, it covers what he believes are the most important aspects of gardening. Organic techniques have always been at the core of his practice, but this new edition picks up on another key principle: the need to provide habitats in your garden for local wildlife.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(10,'Seed to Table: A Seasonal Guide to Organically Growing, Cooking, and Preserving Food at Home (Kitchen Garden, Urban Gardening)','Gardening, cooking, and eating done right! Seed to Table focuses on how to feed your family with nutritious foods from your own outdoor, home and/or kitchen garden. Whether you live in a city or in the country, this book gives you tools on effective growing techniques, seed starting methods, and garden maintenance.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(11,'Floret Farm`s Cut Flower Garden: Grow, Harvest, and Arrange Stunning Seasonal Blooms (Floret Farms x Chronicle Books)','\"Among a sea of new florists and floral books, Floret Flowers stands out. Erin Benzakein`s integrity, openness and passion for flowers is unmistakable. In her debut book she not only introduces us to the basics of growing our own flowers, she shares her deep love and understanding of gardening in a way that will leave even the most doubtful grower feeling inspired to get their hands in the dirt.\"—Grace Bonney, founder of Design*Sponge and author of In the Company of Women','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(12,'The Complete Gardener`s Guide: The One-Stop Guide to Plan, Sow, Plant, and Grow Your Garden','Dreaming of having the perfect garden? Does it have a vegetable patch? Classic borders or flowers to attract wildlife? A picturesque garden for all to marvel at is achievable with this gardening guide, which gives you vital tools to achieve whatever you desire for your dream garden. ','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(13,'Raised-Bed Gardening for Beginners: Everything You Need to Know to Start and Sustain a Thriving Garden','Are you interested in creating a bountiful garden but worried that you don`t have enough space? Raised-Bed Gardening for Beginners shows you how simple it can be to plan, build, and grow your own raised-bed garden in whatever space is available. Learn to build your bed, select the right plants, grow your own vegetables, and much more. This book makes it easy for even inexperienced gardeners to serve up freshly picked vegetables and herbs in no time.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(14,'All New Square Foot Gardening, 3rd Edition, Fully Updated: MORE Projects - NEW Solutions - GROW Vegetables Anywhere','Since Square Foot Gardening was first introduced by Mel Bartholomew in 1981, this revolutionary way to grow vegetables has helped millions of home gardeners enjoy their own organic, fresh produce in less space and with less work than traditional row gardens.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(15,'The Ultimate Raised Bed & Container Gardening Guide For Beginners: Grow Your Own Vegetables, Herbs, Fruits, and Cut Flowers with this Amazing Handbook ... Family, Fertility, and Maternal Wellness','Welcome to the lush and vibrant world of raised bed and container gardening! Whether you`re a city dweller with limited outdoor space, a suburbanite looking to maximize your backyard, or just someone who enjoys the convenience of portable plots, \"The Ultimate Raised Bed & Container Gardening Guide For Beginners\" is your key to unlocking the joy and benefits of homegrown produce and blooms.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(16,'The Drunken Botanist: The Plants that Create the World’s Great Drinks: 10th Anniversary Edition','The New York Times-bestselling guide to botany and booze celebrates its 10th anniversary with an updated edition—now including a guide to planting your very own cocktail garden to go with more than fifty drink recipes. This fascinating, go-to text about the plants that make our drinks is the ideal gift book for every cocktail aficionado, the perfect drinks book for every plant-lover.','variable',2,'2024-07-14 17:00:02','2024-07-14 17:00:02'),(17,'Garden Shovel','Heavy-duty garden shovel for all your digging needs.','variable',6,'2024-07-14 17:07:11','2024-07-14 17:07:11'),(18,'Hand Trowel','Perfect for small digging tasks in the garden.','variable',6,'2024-07-14 17:07:11','2024-07-14 17:07:11'),(19,'Garden Hoe','Versatile garden hoe for digging and weeding.','variable',6,'2024-07-14 17:07:11','2024-07-14 17:07:11'),(20,'Bulb Planter','Specialized tool for planting bulbs with ease.','variable',6,'2024-07-14 17:07:11','2024-07-14 17:07:11'),(21,'Spading Fork','Sturdy spading fork for turning and aerating soil.','variable',6,'2024-07-14 17:07:11','2024-07-14 17:07:11'),(22,'Pruning Shears','Sharp pruning shears for precise cutting.','variable',7,'2024-07-14 17:07:20','2024-07-14 17:07:20'),(23,'Lopping Shears','Ideal for cutting thicker branches.','variable',7,'2024-07-14 17:07:20','2024-07-14 17:07:20'),(24,'Hedge Trimmer','Electric hedge trimmer for easy maintenance.','single',7,'2024-07-14 17:07:20','2024-07-14 17:07:20'),(25,'Pruning Saw','Compact pruning saw for cutting larger branches.','single',7,'2024-07-14 17:07:20','2024-07-14 17:07:20'),(26,'Flower Scissors','Perfect for trimming flowers and small plants.','variable',7,'2024-07-14 17:07:20','2024-07-14 17:07:20'),(27,'Garden Hose','Flexible garden hose for all your watering needs.','single',8,'2024-07-14 17:07:30','2024-07-14 17:07:30'),(28,'Watering Can','Classic watering can for precise watering.','variable',8,'2024-07-14 17:07:30','2024-07-14 17:07:30'),(29,'Sprinkler','Automatic sprinkler system for even watering.','single',8,'2024-07-14 17:07:30','2024-07-14 17:07:30'),(30,'Soaker Hose','Efficient soaker hose for deep root watering.','single',8,'2024-07-14 17:07:30','2024-07-14 17:07:30'),(31,'Watering Wand','Extendable watering wand for hard-to-reach plants.','single',8,'2024-07-14 17:07:30','2024-07-14 17:07:30'),(32,'Handheld Sprayer','Easy-to-use handheld sprayer for pesticides.','variable',9,'2024-07-14 17:07:35','2024-07-14 17:07:35'),(33,'Backpack Sprayer','High-capacity backpack sprayer for larger areas.','single',9,'2024-07-14 17:07:35','2024-07-14 17:07:35'),(34,'Pump Sprayer','Efficient pump sprayer for garden use.','single',9,'2024-07-14 17:07:35','2024-07-14 17:07:35'),(35,'Electric Sprayer','Battery-powered sprayer for effortless application.','single',9,'2024-07-14 17:07:35','2024-07-14 17:07:35'),(36,'Spray Bottle','Simple spray bottle for small-scale pesticide application.','variable',9,'2024-07-14 17:07:35','2024-07-14 17:07:35'),(37,'Garden Rake','Durable garden rake for clearing debris.','variable',10,'2024-07-14 17:10:15','2024-07-14 17:10:15'),(38,'Leaf Blower','Powerful leaf blower for easy cleanup.','single',10,'2024-07-14 17:10:15','2024-07-14 17:10:15'),(39,'Garden Broom','Sturdy garden broom for sweeping paths and patios.','variable',10,'2024-07-14 17:10:15','2024-07-14 17:10:15'),(40,'Cleaning Brush','Tough cleaning brush for garden tools.','variable',10,'2024-07-14 17:10:15','2024-07-14 17:10:15'),(41,'Wheelbarrow','Heavy-duty wheelbarrow for transporting garden waste.','single',10,'2024-07-14 17:10:15','2024-07-14 17:10:15');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sessions`
+--
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+INSERT INTO `sessions` VALUES ('Z8oP8OyiMoVSt0BylROHa6T3hd1nRy3s9DbRrlwh',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiczR5Vjg5WkpYMUVxYkl3aEQ5WmM2dVlQWFlGcFFMTnQ4Z09aVWJKVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9saXN0X3Byb2R1Y3QiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1721068203);
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_variants`
+--
+
+DROP TABLE IF EXISTS `sub_variants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sub_variants` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `product_variant_id` bigint unsigned NOT NULL,
+  `variant_option_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sub_variants_product_variant_id_foreign` (`product_variant_id`),
+  KEY `sub_variants_variant_option_id_foreign` (`variant_option_id`),
+  CONSTRAINT `sub_variants_product_variant_id_foreign` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `sub_variants_variant_option_id_foreign` FOREIGN KEY (`variant_option_id`) REFERENCES `variant_options` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_variants`
+--
+
+LOCK TABLES `sub_variants` WRITE;
+/*!40000 ALTER TABLE `sub_variants` DISABLE KEYS */;
+INSERT INTO `sub_variants` VALUES (64,1,1,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(65,1,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(66,1,9,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(67,2,1,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(68,2,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(69,2,10,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(70,3,1,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(71,3,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(72,3,11,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(73,4,1,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(74,4,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(75,4,12,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(76,5,1,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(77,5,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(78,5,13,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(79,6,2,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(80,6,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(81,6,9,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(82,7,2,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(83,7,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(84,7,10,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(85,8,2,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(86,8,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(87,8,11,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(88,9,2,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(89,9,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(90,9,12,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(91,10,2,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(92,10,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(93,10,13,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(94,11,3,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(95,11,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(96,11,9,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(97,12,3,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(98,12,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(99,12,10,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(100,13,3,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(101,13,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(102,13,11,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(103,14,3,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(104,14,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(105,14,12,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(106,15,3,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(107,15,4,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(108,15,13,'2024-07-14 17:34:57','2024-07-14 17:34:57'),(109,16,1,'2024-07-14 17:46:34','2024-07-14 17:46:34'),(110,16,32,'2024-07-14 17:46:34','2024-07-14 17:46:34'),(111,17,2,'2024-07-14 17:46:34','2024-07-14 17:46:34'),(112,17,32,'2024-07-14 17:46:34','2024-07-14 17:46:34'),(113,18,3,'2024-07-14 17:46:34','2024-07-14 17:46:34'),(114,18,32,'2024-07-14 17:46:34','2024-07-14 17:46:34'),(115,19,1,'2024-07-14 17:49:00','2024-07-14 17:49:00'),(116,19,5,'2024-07-14 17:49:00','2024-07-14 17:49:00'),(117,20,2,'2024-07-14 17:49:00','2024-07-14 17:49:00'),(118,20,5,'2024-07-14 17:49:00','2024-07-14 17:49:00'),(119,21,3,'2024-07-14 17:49:00','2024-07-14 17:49:00'),(120,21,5,'2024-07-14 17:49:00','2024-07-14 17:49:00'),(121,22,1,'2024-07-14 17:50:54','2024-07-14 17:50:54'),(122,22,4,'2024-07-14 17:50:54','2024-07-14 17:50:54'),(123,23,2,'2024-07-14 17:50:54','2024-07-14 17:50:54'),(124,23,4,'2024-07-14 17:50:54','2024-07-14 17:50:54'),(125,24,3,'2024-07-14 17:50:54','2024-07-14 17:50:54'),(126,24,4,'2024-07-14 17:50:54','2024-07-14 17:50:54'),(127,25,1,'2024-07-14 17:52:37','2024-07-14 17:52:37'),(128,25,7,'2024-07-14 17:52:37','2024-07-14 17:52:37'),(129,26,2,'2024-07-14 17:52:37','2024-07-14 17:52:37'),(130,26,7,'2024-07-14 17:52:37','2024-07-14 17:52:37'),(131,27,3,'2024-07-14 17:52:37','2024-07-14 17:52:37'),(132,27,7,'2024-07-14 17:52:37','2024-07-14 17:52:37'),(133,28,1,'2024-07-14 17:55:04','2024-07-14 17:55:04'),(134,28,6,'2024-07-14 17:55:04','2024-07-14 17:55:04'),(135,29,2,'2024-07-14 17:55:04','2024-07-14 17:55:04'),(136,29,6,'2024-07-14 17:55:04','2024-07-14 17:55:04'),(137,30,3,'2024-07-14 17:55:04','2024-07-14 17:55:04'),(138,30,6,'2024-07-14 17:55:04','2024-07-14 17:55:04'),(139,31,14,'2024-07-14 17:58:21','2024-07-14 17:58:21'),(140,32,15,'2024-07-14 17:58:21','2024-07-14 17:58:21'),(141,33,16,'2024-07-14 17:58:21','2024-07-14 17:58:21'),(142,34,14,'2024-07-14 17:58:54','2024-07-14 17:58:54'),(143,35,15,'2024-07-14 17:58:54','2024-07-14 17:58:54'),(144,36,16,'2024-07-14 17:58:54','2024-07-14 17:58:54'),(145,37,14,'2024-07-14 17:59:29','2024-07-14 17:59:29'),(146,38,15,'2024-07-14 17:59:29','2024-07-14 17:59:29'),(147,39,16,'2024-07-14 17:59:29','2024-07-14 17:59:29'),(148,40,14,'2024-07-14 17:59:57','2024-07-14 17:59:57'),(149,41,15,'2024-07-14 17:59:57','2024-07-14 17:59:57'),(150,42,16,'2024-07-14 17:59:57','2024-07-14 17:59:57'),(151,43,14,'2024-07-14 18:00:29','2024-07-14 18:00:29'),(152,44,15,'2024-07-14 18:00:29','2024-07-14 18:00:29'),(153,45,16,'2024-07-14 18:00:29','2024-07-14 18:00:29'),(154,46,14,'2024-07-14 18:00:51','2024-07-14 18:00:51'),(155,47,15,'2024-07-14 18:00:51','2024-07-14 18:00:51'),(156,48,16,'2024-07-14 18:00:51','2024-07-14 18:00:51'),(157,49,14,'2024-07-14 18:01:12','2024-07-14 18:01:12'),(158,50,15,'2024-07-14 18:01:12','2024-07-14 18:01:12'),(159,51,16,'2024-07-14 18:01:12','2024-07-14 18:01:12'),(160,52,14,'2024-07-14 18:01:31','2024-07-14 18:01:31'),(161,53,15,'2024-07-14 18:01:31','2024-07-14 18:01:31'),(162,54,16,'2024-07-14 18:01:31','2024-07-14 18:01:31'),(163,55,14,'2024-07-14 18:01:48','2024-07-14 18:01:48'),(164,56,15,'2024-07-14 18:01:48','2024-07-14 18:01:48'),(165,57,16,'2024-07-14 18:01:48','2024-07-14 18:01:48'),(166,58,14,'2024-07-14 18:02:07','2024-07-14 18:02:07'),(167,59,15,'2024-07-14 18:02:07','2024-07-14 18:02:07'),(168,60,16,'2024-07-14 18:02:07','2024-07-14 18:02:07'),(169,61,1,'2024-07-15 16:53:17','2024-07-15 16:53:17'),(170,61,6,'2024-07-15 16:53:17','2024-07-15 16:53:17'),(171,62,2,'2024-07-15 16:53:17','2024-07-15 16:53:17'),(172,62,6,'2024-07-15 16:53:17','2024-07-15 16:53:17'),(173,63,3,'2024-07-15 16:53:17','2024-07-15 16:53:17'),(174,63,6,'2024-07-15 16:53:17','2024-07-15 16:53:17'),(175,64,1,'2024-07-15 16:54:49','2024-07-15 16:54:49'),(176,64,8,'2024-07-15 16:54:49','2024-07-15 16:54:49'),(177,65,2,'2024-07-15 16:54:49','2024-07-15 16:54:49'),(178,65,8,'2024-07-15 16:54:49','2024-07-15 16:54:49'),(179,66,3,'2024-07-15 16:54:49','2024-07-15 16:54:49'),(180,66,8,'2024-07-15 16:54:49','2024-07-15 16:54:49'),(181,67,1,'2024-07-15 17:00:04','2024-07-15 17:00:04'),(182,67,4,'2024-07-15 17:00:04','2024-07-15 17:00:04'),(183,68,2,'2024-07-15 17:00:04','2024-07-15 17:00:04'),(184,68,4,'2024-07-15 17:00:04','2024-07-15 17:00:04'),(185,69,3,'2024-07-15 17:00:04','2024-07-15 17:00:04'),(186,69,4,'2024-07-15 17:00:04','2024-07-15 17:00:04'),(187,70,1,'2024-07-15 17:02:17','2024-07-15 17:02:17'),(188,70,6,'2024-07-15 17:02:17','2024-07-15 17:02:17'),(189,71,2,'2024-07-15 17:02:17','2024-07-15 17:02:17'),(190,71,6,'2024-07-15 17:02:17','2024-07-15 17:02:17'),(191,72,3,'2024-07-15 17:02:17','2024-07-15 17:02:17'),(192,72,6,'2024-07-15 17:02:17','2024-07-15 17:02:17'),(193,73,1,'2024-07-15 17:06:59','2024-07-15 17:06:59'),(194,73,6,'2024-07-15 17:06:59','2024-07-15 17:06:59'),(195,74,2,'2024-07-15 17:06:59','2024-07-15 17:06:59'),(196,74,6,'2024-07-15 17:06:59','2024-07-15 17:06:59'),(197,75,3,'2024-07-15 17:06:59','2024-07-15 17:06:59'),(198,75,6,'2024-07-15 17:06:59','2024-07-15 17:06:59'),(199,76,1,'2024-07-15 17:17:45','2024-07-15 17:17:45'),(200,76,8,'2024-07-15 17:17:45','2024-07-15 17:17:45'),(201,77,2,'2024-07-15 17:17:45','2024-07-15 17:17:45'),(202,77,8,'2024-07-15 17:17:45','2024-07-15 17:17:45'),(203,78,3,'2024-07-15 17:17:45','2024-07-15 17:17:45'),(204,78,8,'2024-07-15 17:17:45','2024-07-15 17:17:45'),(229,79,1,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(230,79,8,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(231,80,2,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(232,80,8,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(233,81,3,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(234,81,8,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(235,82,1,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(236,82,6,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(237,83,2,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(238,83,6,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(239,84,3,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(240,84,6,'2024-07-15 17:23:04','2024-07-15 17:23:04'),(241,85,1,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(242,85,8,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(243,86,2,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(244,86,8,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(245,87,3,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(246,87,8,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(247,88,1,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(248,88,6,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(249,89,2,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(250,89,6,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(251,90,3,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(252,90,6,'2024-07-15 17:25:02','2024-07-15 17:25:02'),(253,91,1,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(254,91,8,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(255,92,2,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(256,92,8,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(257,93,3,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(258,93,8,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(259,94,1,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(260,94,6,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(261,95,2,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(262,95,6,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(263,96,3,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(264,96,6,'2024-07-15 17:25:57','2024-07-15 17:25:57'),(265,97,1,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(266,97,8,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(267,98,2,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(268,98,8,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(269,99,3,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(270,99,8,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(271,100,1,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(272,100,6,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(273,101,2,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(274,101,6,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(275,102,3,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(276,102,6,'2024-07-15 17:27:58','2024-07-15 17:27:58'),(313,103,6,'2024-07-15 17:54:39','2024-07-15 17:54:39'),(314,104,6,'2024-07-15 17:54:52','2024-07-15 17:54:52'),(315,105,1,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(316,105,8,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(317,106,2,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(318,106,8,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(319,107,3,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(320,107,8,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(321,108,1,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(322,108,6,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(323,109,2,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(324,109,6,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(325,110,3,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(326,110,6,'2024-07-15 17:55:32','2024-07-15 17:55:32'),(327,112,9,'2024-07-15 17:58:55','2024-07-15 17:58:55'),(328,113,10,'2024-07-15 17:58:55','2024-07-15 17:58:55'),(329,114,11,'2024-07-15 17:58:55','2024-07-15 17:58:55'),(330,115,12,'2024-07-15 17:58:55','2024-07-15 17:58:55'),(331,116,13,'2024-07-15 17:58:55','2024-07-15 17:58:55'),(332,117,6,'2024-07-15 18:02:46','2024-07-15 18:02:46'),(333,118,4,'2024-07-15 18:05:47','2024-07-15 18:05:47'),(334,119,6,'2024-07-15 18:07:23','2024-07-15 18:07:23'),(335,120,9,'2024-07-15 18:09:12','2024-07-15 18:09:12'),(336,121,10,'2024-07-15 18:09:12','2024-07-15 18:09:12'),(337,122,11,'2024-07-15 18:09:12','2024-07-15 18:09:12'),(338,123,12,'2024-07-15 18:09:12','2024-07-15 18:09:12'),(339,124,13,'2024-07-15 18:09:12','2024-07-15 18:09:12'),(340,125,4,'2024-07-15 18:10:14','2024-07-15 18:10:14'),(341,126,4,'2024-07-15 18:11:13','2024-07-15 18:11:13'),(342,127,4,'2024-07-15 18:12:40','2024-07-15 18:12:40'),(343,128,4,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(344,128,9,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(345,129,4,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(346,129,10,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(347,130,4,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(348,130,11,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(349,131,4,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(350,131,12,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(351,132,4,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(352,132,13,'2024-07-15 18:15:28','2024-07-15 18:15:28'),(353,133,1,'2024-07-15 18:17:51','2024-07-15 18:17:51'),(354,134,2,'2024-07-15 18:17:51','2024-07-15 18:17:51'),(355,135,3,'2024-07-15 18:17:51','2024-07-15 18:17:51'),(356,136,6,'2024-07-15 18:19:15','2024-07-15 18:19:15'),(357,137,9,'2024-07-15 18:21:04','2024-07-15 18:21:04'),(358,138,11,'2024-07-15 18:21:04','2024-07-15 18:21:04'),(359,139,12,'2024-07-15 18:21:04','2024-07-15 18:21:04'),(360,140,1,'2024-07-15 18:22:24','2024-07-15 18:22:24'),(361,141,2,'2024-07-15 18:22:24','2024-07-15 18:22:24'),(362,142,3,'2024-07-15 18:22:24','2024-07-15 18:22:24'),(363,143,6,'2024-07-15 18:23:30','2024-07-15 18:23:30');
+/*!40000 ALTER TABLE `sub_variants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'customer',
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
+  `otp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'quan',NULL,'qunnguyn956@gmail.com',NULL,NULL,'admin',NULL,NULL,NULL,NULL,'$2y$12$MhU/Vi1lRm2EtiTmX7VWu.Tvf4jXna0CJ3mVUA5NJTeXjudU1SH5m',NULL,'active','yF9099','2024-07-15 11:25:00','2024-07-15 11:25:30');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `variant_options`
+--
+
+DROP TABLE IF EXISTS `variant_options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `variant_options` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `variant_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `variant_options_variant_id_foreign` (`variant_id`),
+  CONSTRAINT `variant_options_variant_id_foreign` FOREIGN KEY (`variant_id`) REFERENCES `variants` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `variant_options`
+--
+
+LOCK TABLES `variant_options` WRITE;
+/*!40000 ALTER TABLE `variant_options` DISABLE KEYS */;
+INSERT INTO `variant_options` VALUES (1,'Small',1,'2024-07-12 15:27:16','2024-07-12 15:27:16'),(2,'Medium',1,'2024-07-12 15:27:16','2024-07-12 15:27:16'),(3,'Large',1,'2024-07-12 15:27:16','2024-07-12 15:27:16'),(4,'Plastic',2,'2024-07-12 15:27:22','2024-07-12 15:27:22'),(5,'Ceramic',2,'2024-07-12 15:27:22','2024-07-12 15:27:22'),(6,'Steel',2,'2024-07-12 15:27:22','2024-07-12 15:27:22'),(7,'Wood',2,'2024-07-12 15:27:22','2024-07-12 15:27:22'),(8,'Aluminum',2,'2024-07-12 15:27:22','2024-07-12 15:27:22'),(9,'Red',3,'2024-07-12 15:27:26','2024-07-12 15:27:26'),(10,'Blue',3,'2024-07-12 15:27:26','2024-07-12 15:27:26'),(11,'Green',3,'2024-07-12 15:27:26','2024-07-12 15:27:26'),(12,'White',3,'2024-07-12 15:27:26','2024-07-12 15:27:26'),(13,'Black',3,'2024-07-12 15:27:26','2024-07-12 15:27:26'),(14,'Paperback',4,'2024-07-12 15:27:29','2024-07-12 15:27:29'),(15,'Hardcover',4,'2024-07-12 15:27:29','2024-07-12 15:27:29'),(16,'eBook',4,'2024-07-12 15:27:29','2024-07-12 15:27:29'),(17,'1kg',5,'2024-07-12 15:27:31','2024-07-12 15:27:31'),(18,'5kg',5,'2024-07-12 15:27:31','2024-07-12 15:27:31'),(19,'10kg',5,'2024-07-12 15:27:31','2024-07-12 15:27:31'),(20,'For Vegetables',6,'2024-07-12 15:27:35','2024-07-12 15:27:35'),(21,'For Flowers',6,'2024-07-12 15:27:35','2024-07-12 15:27:35'),(22,'For Trees',6,'2024-07-12 15:27:35','2024-07-12 15:27:35'),(23,'100ml',7,'2024-07-12 15:27:38','2024-07-12 15:27:38'),(24,'500ml',7,'2024-07-12 15:27:38','2024-07-12 15:27:38'),(25,'1L',7,'2024-07-12 15:27:38','2024-07-12 15:27:38'),(26,'Insects',8,'2024-07-12 15:27:41','2024-07-12 15:27:41'),(27,'Fungi',8,'2024-07-12 15:27:41','2024-07-12 15:27:41'),(28,'Weeds',8,'2024-07-12 15:27:41','2024-07-12 15:27:41'),(29,'10 seeds',9,'2024-07-12 15:27:44','2024-07-12 15:27:44'),(30,'50 seeds',9,'2024-07-12 15:27:44','2024-07-12 15:27:44'),(31,'100 seeds',9,'2024-07-12 15:27:44','2024-07-12 15:27:44'),(32,'Clay',2,'2024-07-14 17:45:47','2024-07-14 17:45:47');
+/*!40000 ALTER TABLE `variant_options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `variants`
+--
+
+DROP TABLE IF EXISTS `variants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `variants` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `variants`
+--
+
+LOCK TABLES `variants` WRITE;
+/*!40000 ALTER TABLE `variants` DISABLE KEYS */;
+INSERT INTO `variants` VALUES (1,'Size','2024-07-11 15:18:05','2024-07-11 15:18:05'),(2,'Material','2024-07-11 15:18:05','2024-07-11 15:18:05'),(3,'Color','2024-07-11 15:18:05','2024-07-11 15:18:05'),(4,'Format','2024-07-11 15:18:05','2024-07-11 15:18:05'),(5,'Weight','2024-07-11 15:18:05','2024-07-11 15:18:05'),(6,'Usage','2024-07-11 15:18:05','2024-07-11 15:18:05'),(7,'Volume','2024-07-11 15:18:05','2024-07-11 15:18:05'),(8,'Target Pest','2024-07-11 15:18:05','2024-07-11 15:18:05'),(9,'Quantity','2024-07-11 15:18:05','2024-07-11 15:18:05');
+/*!40000 ALTER TABLE `variants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `videos`
+--
+
+DROP TABLE IF EXISTS `videos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `videos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `videos`
+--
+
+LOCK TABLES `videos` WRITE;
+/*!40000 ALTER TABLE `videos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `videos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'greengroves'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-07-16 10:18:46
