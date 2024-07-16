@@ -959,12 +959,9 @@ body {
 
 /*Product Details */
 #productDetailsPage .productDetailContainer {
-    padding-left: 15px;
+    padding-left: 16px;
 }
 
-#productDetailsPage .textAddress {
-    font-size: 13px;
-}
 
 #productDetailsPage .slickImg {
     width: 90%;

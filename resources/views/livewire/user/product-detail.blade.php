@@ -10,62 +10,28 @@
         <div class="productDetailContainer">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach ($product->productImages as $key => $image)
-                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                        <img src="{{ Storage::url($image->path) }}" class="d-block slickImg" alt="Product Image {{ $key + 1 }}">
-                                    </div>
-                                    @endforeach
-                                </div>
-
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-
-
-                        <div class="col-12">
-                            <div class="row d-flex justify-content-evenly align-items-center productImageList">
-                                @if($product->productImages)
+                    <div>
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
                                 @foreach ($product->productImages as $key => $image)
-                                <div class="col-auto productItems ">
-                                    <div class="productImageItems">
-                                        <button class="border border-0 bg-transparent" type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}">
-                                            <img width="100" height="100" src="{{ Storage::url($image->path) }}" class="img-fluid" alt="Product Image {{ $key + 1 }}">
-                                        </button>
-                                    </div>
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ Storage::url($image->path) }}" class="d-block slickImg" alt="Product Image {{ $key + 1 }}">
                                 </div>
                                 @endforeach
-                                @else
-                                <div>khong anh</div>
-                                @endif
                             </div>
                         </div>
-
-                        <div class="shareContainer col-12 d-flex justify-content-center mt-1">
-                            <div class="row">
-                                <div class="col-xl-4 col-4 d-flex justify-content-start justify-content-md-end align-content-center">
-                                    <div class="shareText">
-                                        Share:
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-8">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="share">
-                                            <button class="btn btn-primary" id="copyLinkButton" type="button">Copy Link</button>
-                                        </div>
-                                    </div>
+                        <div class="row d-flex justify-content-evenly align-items-center productImageList">
+                            @if($product->productImages)
+                            @foreach ($product->productImages as $key => $image)
+                            <div class="col-auto productItems ">
+                                <div class="productImageItems">
+                                    <button class="border border-0 bg-transparent" type="button" data-bs-target="#carouselExample" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}">
+                                        <img width="100" height="100" src="{{ Storage::url($image->path) }}" class="img-fluid" alt="Product Image {{ $key + 1 }}">
+                                    </button>
                                 </div>
                             </div>
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
