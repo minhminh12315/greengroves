@@ -26,8 +26,9 @@ class ProductDetail extends Component
     public function mount($id)
     {
         $this->product = Product::with([
-            'productVariants.subVariants.variantOption.variant.category',
-            'productImages'
+            'productVariants.subVariants.variantOption.variant',
+            'productImages',
+            'category'
         ])->find($id);
         $this->variantOptions = $this->product->productVariants
             ->flatMap->subVariants

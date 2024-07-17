@@ -40,8 +40,10 @@
                             <div class="productDetail-stock">Stock:
                                 @if($quantityStock)
                                 <span class="text-success">{{ number_format($quantityStock) }} In Stock</span>
-                                @else
+                                @elseif($quantityStock === 0)
                                 <span class="text-danger">Out of Stock</span>
+                                @else
+                                <span class="text-success"> {{ $this->product->productVariants->sum('quantity') }} In Stock</span>
                                 @endif
                             </div>
                         </div>
