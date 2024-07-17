@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Categories;
+use Livewire\Attributes\Renderless;
 use Livewire\Component;
 
 class ListCategory extends Component
@@ -21,6 +22,7 @@ class ListCategory extends Component
         $this->categories = Categories::with('parent', 'children')->get();
     }
 
+    #[Renderless]
     public function editCategory($categoryId)
     {
         $category = Categories::find($categoryId);
@@ -40,7 +42,7 @@ class ListCategory extends Component
             'parent_id' => $this->parent_id,
         ]);
         $this->reset(['name', 'parent_id']);
-        $this->mount(); // Refresh the category list
+        $this->mount(); 
         $this->dispatch('closeModal');
     }
 
@@ -50,12 +52,18 @@ class ListCategory extends Component
         $this->deleteCategoryModal = true;
     }
 
+    #[Renderless]
     public function deleteCategory()
     {
         $category = Categories::find($this->categoryId);
         $category->delete();
+        $this->dispatch('swalsuccess', [
+            'title' => 'Congratulation!',
+            'text' => 'Deleted successfully!',
+            'icon' =>'success',
+        ]);
         $this->dispatch('closeModal');
-        $this->mount(); // Refresh the category list
+        $this->mount(); 
     }
 
 
@@ -68,7 +76,7 @@ class ListCategory extends Component
         ]);
         $this->reset(['name', 'parent_id']);
         $this->dispatch('closeModal');
-        $this->mount(); // Refresh the category list
+        $this->mount(); 
     }
 
     public function render()

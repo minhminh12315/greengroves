@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductVariant;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\Renderless;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -95,7 +96,7 @@ class ListProduct extends Component
         $this->mount();
     }
 
-
+    #[Renderless]
     public function confirmDelete($variantId)
     {
         $this->variantId = $variantId;

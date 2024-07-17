@@ -50,7 +50,7 @@
         </tbody>
     </table>
 
-    <div class="modal fade " id="listcategory-edit-category" wire:ignore>
+    <div class="modal fade " id="listcategory-edit-category">
         <div class="modal-dialog modal-dialog-centered">
             <div class=" modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="listcategory-delete-category" aria-modal="true" wire:ignore>
+    <div class="modal fade" id="listcategory-delete-category" aria-modal="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div class="modal fade" wire:ignore id="listcategory-addnew-category">
+    <div class="modal fade"  id="listcategory-addnew-category">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">

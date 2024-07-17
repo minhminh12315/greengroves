@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\News as NewsModel;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\Renderless;
 use Livewire\WithFileUploads;
 
 class News extends Component
@@ -23,15 +24,6 @@ class News extends Component
     public $news_id;
     public $news_old_image_path;
 
-    public function openAddNewsModal()
-    {
-        $this->AddNewsModal = true;
-    }
-
-    public function closeAddNewsModal()
-    {
-        $this->AddNewsModal = false;
-    }
     public function store_news()
 {
     $this->validate([
@@ -71,13 +63,13 @@ class News extends Component
         ]));
     }
 
-    $this->closeAddNewsModal();
     session()->flash('message', 'News Created Successfully.');
-    $this->mount();
     $this->dispatch('closeModal');
+    $this->mount();
+    $this->reset('news_title','news_description','news_image_path');
 }
 
-
+    #[Renderless]
     public function openEditNewsModal($id)
     {
         $news = NewsModel::find($id);
@@ -114,9 +106,11 @@ class News extends Component
         $news->save();
 
         session()->flash('message', 'News Updated Successfully.');
-        $this->mount();
         $this->dispatch('closeModal');
+        $this->mount();
     }
+
+    #[Renderless]
     public function openDeleteNewsModal($id)
     {
         $this->news_id = $id;
@@ -127,8 +121,8 @@ class News extends Component
         $news = NewsModel::find($this->news_id);
         $news->delete();
         session()->flash('message', 'News Deleted Successfully.');
-        $this->mount();
         $this->dispatch('closeModal');
+        $this->mount();
     }
     public function mount()
     {

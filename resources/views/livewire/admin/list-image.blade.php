@@ -81,7 +81,7 @@
         @endif
     </div>
 
-    <div class="modal fade" wire:ignore id="listimage-delete-img">
+    <div class="modal fade"  id="listimage-delete-img">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -92,14 +92,14 @@
                     <p>Are you sure you want to delete this image?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-danger" wire:click="delete_image">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" wire:ignore.self id="listimage-addnew-img">
+    <div class="modal fade" id="listimage-addnew-img" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between d-flex justify-content-between">
@@ -116,7 +116,7 @@
                             <label for="image_description_new">Image description</label>
                             <input type="text" class="form-control" id="image_description_new" wire:model="image_description_new">
                         </div>
-                        <div class="form-group mt-2 mb-2">
+                        <div class="form-group mt-2 mb-2" >
                             @if($addNewImageType)
                             <div class="d-flex justify-content-between mt-2 mb-2">
                                 <label for="image_type_new">Image type</label>
@@ -149,7 +149,7 @@
         </div>
     </div>
 
-    <div class="modal fade" wire:ignore.self id="listimage-edit-img">
+    <div class="modal fade" id="listimage-edit-img">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header d-flex justify-content-between">
@@ -175,7 +175,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" wire:ignore>
                             <label for="edit_image_path">Image Path</label>
                             @if($edit_image_path)
                             <input type="file" class="form-control" id="edit_image_path" wire:model="edit_image_path">

@@ -154,10 +154,7 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-
-    <div class="modal fade" id="listproduct-delete-product" aria-modal="true" wire:ignore>
+    <div class="modal fade" id="listproduct-delete-product" aria-modal="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">

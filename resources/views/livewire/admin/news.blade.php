@@ -145,7 +145,7 @@
     </div>
 
 
-    <div class="modal fade" wire:ignore id="news-delete">
+    <div class="modal fade"  id="news-delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">

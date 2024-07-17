@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Renderless;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -40,7 +41,6 @@ class ListImage extends Component
         }
     }
 
-
     public function newtype()
     {
         $this->addNewImageType = true;
@@ -48,6 +48,7 @@ class ListImage extends Component
         Log::info('newtype selected');
         Log::info($this->image_type_new);
     }
+
     public function oldtype()
     {
         $this->addNewImageType = false;
@@ -56,6 +57,7 @@ class ListImage extends Component
         Log::info($this->image_type_new);
     }
 
+    #[Renderless]
     public function openEditImageModal($id)
     {
         $image = Image::find($id);
@@ -68,7 +70,7 @@ class ListImage extends Component
     }
 
 
-
+    #[Renderless]
     public function openDeleteImageModal($id)
     {
         $this->edit_image_id = $id;
@@ -104,8 +106,9 @@ class ListImage extends Component
         $this->image_type_new = '';
         $this->addNewImageType = false;
         $this->addNewImagesModal = false;
-        $this->mount();
         $this->dispatch('closeModal');
+        $this->mount();
+
     }
 
     public function update_image()
@@ -139,6 +142,7 @@ class ListImage extends Component
         $this->edit_image_path = null;
         $this->editImageModal = false;
         $this->dispatch('closeModal');
+        $this->mount();
     }
     public function delete_image()
     {
@@ -147,6 +151,8 @@ class ListImage extends Component
         $image->delete();
 
         $this->deleteImageModal = false;
+        $this->dispatch('closeModal');
+        $this->mount();
     }
 
     public function render()
