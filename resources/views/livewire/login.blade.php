@@ -6,7 +6,7 @@
 				<div class="userbox">
 					<input type="text" wire:model.defer="name" required placeholder="Username">
 					<label for="username">Username</label>
-					@error('username') <span class="error">{{ $message }}</span> @enderror
+					@error('name') <span class="error">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
 					<input type="text" class="form-control" wire:model.defer="email" required placeholder="Email">

@@ -24,6 +24,14 @@ class CartShop extends Component
         }
         $this->calculateTotalPrice();
     }
+    public function select_all()
+    {
+        if(count($this->cart) == count($this->selectedItems)) {
+            $this->selectedItems = [];
+        } else {
+            $this->selectedItems = array_keys($this->cart);
+        }
+    }
     public function clearAllCart()
     {
         session()->forget('cart');

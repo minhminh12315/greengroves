@@ -4,7 +4,9 @@ namespace App\Livewire\User;
 
 use App\Models\EmailNotification;
 use App\Models\Image;
+use App\Models\OrderDetail;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -16,7 +18,16 @@ class Home extends Component
 
     #[Validate('required|min:5|email')]
     public $emailNotificationToSend;
+    protected $listeners = ['notify' => 'notify'];
 
+    public function notify($message)
+    {
+        $this->dispatch('swal', [
+            'title' => 'Success!',
+            'text' => $message,
+            'icon' => 'success',
+        ]);
+    }
     public function subcribe()
     {
         $this->validate();
@@ -33,6 +44,12 @@ class Home extends Component
     }
     public function mount()
     {
+        $topProducts = OrderDetail::select('product_variant_id', DB::raw('SUM(quantity) as total_quantity'))
+        ->groupBy('product_variant_id')
+        ->orderByDesc('total_quantity')
+        ->limit(10)
+        ->get();
+        Log::info('top product: '. $topProducts);
         $this->products = Product::with([
             'productVariants.subVariants.variantOption.variant',
             'productImages'

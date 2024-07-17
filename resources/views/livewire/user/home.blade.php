@@ -28,6 +28,87 @@
         </div>
     </div>
 
+    <!-- Hot Items -->
+    <div class=" mt-5">
+        <div class="d-flex flex-column gap-4">
+            <div class="home-elementor-title">
+                <div class="fw-bold fs-2">Hot Items</div>
+                <a class="fs-4" href="">See all >></a>
+            </div>
+            <div class="d-flex justify-content-center align-item-center">
+                <div class="card-swiper-container swiper">
+                    <div class="card-swiper-content">
+                        <div class="swiper-wrapper">
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-product swiper-slide">
+                                <a href="" class="overflow-hidden">
+                                    <div class="card-img-wrapper">
+                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div class="card-data">
+                                        <div class="card-product-name">Weed</div>
+                                        <div class="card-price">$99.0</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <!-- <div class="swiper-pagination"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- GARDENING TOOLS -->
     <div class=" mt-5">
         <div class="d-flex flex-column gap-4">

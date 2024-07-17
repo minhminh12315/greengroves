@@ -11,6 +11,7 @@ use App\Livewire\Admin\Order;
 use App\Livewire\Admin\OrderShow;
 use App\Livewire\ListOrder;
 use App\Livewire\Login;
+use App\Livewire\OrderDetail;
 use App\Livewire\ResetPassword;
 use App\Livewire\Setting;
 use App\Livewire\User\About;
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting', Setting::class)->name('setting_user');
     Route::get('/list-order', ListOrder::class)->name('list_order');
     Route::get('/reset-password', ResetPassword::class)->name('reset_password');
+    Route::get('/order-detail/{id}', OrderDetail::class)->name('order.detail');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

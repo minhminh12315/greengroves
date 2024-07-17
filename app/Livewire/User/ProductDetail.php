@@ -35,10 +35,19 @@ class ProductDetail extends Component
             ->pluck('variantOption')
             ->unique('id');
         $this->variants = Variant::whereIn('id', $this->variantOptions->pluck('variant_id'))->get();
-        $this->productSameCategory = Product::where('category_id', $this->product->category_id)
-            ->where('id', '!=', $this->product->id)
-            ->limit(8)
-            ->get();
+        $this->productSameCategory = Product::with([
+            'productVariants.subVariants.variantOption.variant',
+            'productImages',
+            'category'
+        ])->where('category_id', $this->product->category_id)
+          ->where('id', '!=', $this->product->id)
+          ->limit(8)
+          ->get();
+          foreach($this->productSameCategory as $product){
+            foreach ($product->productImages as $image) {
+                Log::info('Product Image', ['product_id' => $product->id, 'image_path' => $image->path]);
+            }
+        }
 
         if ($this->product->productVariants->count() == 1) {
             $this->price = $this->product->productVariants->first()->price;

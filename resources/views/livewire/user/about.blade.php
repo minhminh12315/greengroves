@@ -14,6 +14,9 @@
             </div>
             <div class="col">
                 <div class="d-flex flex-row gap-1 flex-nowrap align-items-center justify-content-center w-100 flex-shrink">
+                    @foreach ($section_1 as $item)
+                    <img src="{{ Storage::url($item) }}" class="we-are-img-169" alt="...">
+                    @endforeach
                 </div>
             </div>
             <div class="col">
@@ -21,9 +24,9 @@
             </div>
             <div class="col">
                 <div class="d-flex flex-row gap-1 flex-nowrap align-items-center justify-content-center w-100 flex-shrink">
-                    <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-169" alt="">
-                    <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-169" alt="">
-                    <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-169" alt="">
+                    @foreach ($section_2 as $item)
+                    <img src="{{ Storage::url($item) }}" class="we-are-img-169" alt="...">
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -32,7 +35,7 @@
         <h1 class="text-center p-2">GETHSEMANI - WHO ARE WE?</h1>
         <div class="row row-cols-lg-2 row-cols-md-1 row-cols-1 g-3 p-3">
             <div class="col">
-                <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-43" alt="...">
+                <img src="{{ Storage::url($section_3[0]) }}" class="we-are-img-43" alt="...">
             </div>
             <div class="col">
                 <p class="lh-lg"><b>Established in 2024</b>, GETHSEMANI is a brand dedicated to gardening enthusiasts, providing high-quality green plants and gardening tools. We not only sell products but also share gardening knowledge to help you create and maintain small-scale gardens effectively. With GETHSEMANI, you will find peace in gardening and satisfaction from meticulously selected products. We offer detailed guides and gardening tips, from choosing the right plants and planting techniques to caring for green plants, helping you create a lush and vibrant green space. Let GETHSEMANI be your trusted partner in turning your dream of a verdant garden into reality.</p>
@@ -46,7 +49,7 @@
                 <p class="lh-lg">GETHSEMANI is born out of a passionate love for gardening and a deep affection for nature. We are committed to delivering quality products, from a diverse range of green plants to advanced gardening tools, making it easier for you to nurture and grow your garden. What sets GETHSEMANI apart is that we do more than just sell products; we share gardening knowledge and expertise through detailed articles and video guides. We believe that understanding and loving plants will help you create a lush, vibrant living space. It is our dedication and responsibility towards our customers that have forged the GETHSEMANI brand, making us your trusted partner on your gardening journey.</p>
             </div>
             <div class="col">
-                <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-43" alt="...">
+                <img src="{{ Storage::url($section_3[1]) }}" class="we-are-img-43" alt="...">
             </div>
 
         </div>
@@ -57,7 +60,7 @@
         <div class="row row-cols-md-3 row-cols-sm-1 row-cols-1 g-3">
             <div class="col">
                 <div class="d-flex flex-column gap-3 align-items-center justify-content-start">
-                    <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-43" alt="...">
+                    <img src="{{ Storage::url($section_4[0]) }}" class="we-are-img-43" alt="...">
                     <div class="d-flex flex-column gap-2">
                         <div class="d-flex flex-column gap-3">
                             <p class="lh-base">
@@ -78,7 +81,7 @@
             </div>
             <div class="col">
                 <div class="d-flex flex-column gap-3 align-items-center justify-content-start">
-                    <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-43" alt="...">
+                    <img src="{{ Storage::url($section_4[1]) }}" class="we-are-img-43" alt="...">
                     <div class="d-flex flex-column gap-2">
                         <div class="d-flex flex-column gap-3">
                             <p class="lh-base">
@@ -95,14 +98,13 @@
             </div>
             <div class="col">
                 <div class="d-flex flex-column gap-3 align-items-center justify-content-start">
-                    <img src="https://dummyimage.com/600x400/000/fff888" class="we-are-img-43" alt="...">
+                    <img src="{{ Storage::url($section_4[2]) }}" class="we-are-img-43" alt="...">
                     <div class="d-flex flex-column gap-2">
                         <div class="d-flex flex-column gap-3">
                             <p class="lh-base">
                                 <b>Proud of Skills</b>
                                 With a team of professional artisans, GETHSEMANI confidently brings the most quality and unique products. Each item is not just a piece of furniture but also an artistic masterpiece created from passion and love for the craft.
                             </p>
-
                         </div>
                     </div>
                 </div>

@@ -13,25 +13,26 @@
         @endif
 
         <!-- cai cua Minh -->
+        @if($products)
         <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 g-3">
-            @foreach ($products as $p)
+            @foreach ($products as $product)
             <div class="col">
                 <div class="card-product">
-                    <a wire:navigate href="{{route('user.product-detail', $p->id)}}">
+                    <a wire:navigate href="{{ route('user.product-detail', $product->id) }}">
                         <div class="card-img-wrapper">
-                            <img src="https://dummyimage.com/600x400/000/fff888" class="card__img" alt="...">
-                            @if($p->type === 'single')
+                            <img src="{{ Storage::url($product->productImages->first()->path) }}" class="card__img" alt="...">
+                            @if($product->type === 'single')
                             <button class="btncard-addToCart">ADD TO CART</button>
                             @else
                             <button class="btncard-selectOption">SELECT OPTION</button>
                             @endif
                         </div>
                         <div class="card-data">
-                            <h5 class="card-product-name">{{$p->name}}</h5>
-                            <div class="card-category">{{$p->category->name}}</div>
-                            <div class="card-product-type">{{$p->type}}</div>
-                            @if($p->productVariants->isNotEmpty())
-                            <div class="card-price">${{ number_format($p->productVariants->min('price'), 2) }}</div>
+                            <h5 class="card-product-name">{{ $product->name }}</h5>
+                            <div class="card-category">{{ $product->category->name }}</div>
+                            <div class="card-product-type">{{ $product->type }}</div>
+                            @if($product->productVariants->isNotEmpty())
+                            <div class="card-price">${{ number_format($product->productVariants->min('price'), 2) }}</div>
                             @endif
                         </div>
                     </a>
@@ -39,6 +40,9 @@
             </div>
             @endforeach
         </div>
+        @else
+        <p>No products found.</p>
+        @endif
     </div>
 </section>
 @endsection

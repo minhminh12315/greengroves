@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Renderless;
 use Illuminate\Support\Str;
-
+use Illuminate\Validation\ValidationException;
 
 class Login extends Component
 {
@@ -26,20 +26,6 @@ class Login extends Component
     public $verification_code;
     public $otp;
 
-    protected function rules()
-    {
-        return [
-            'name' => 'required|min:3|unique:users',
-            'email' => 'required|email|regex:/(.*)@(gmail|protonmail)\.com/i|unique:users',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password',
-        ];
-    }
-
-    protected $validationAttributes = [
-        'login_username' => 'name',
-        'login_password' => 'password',
-    ];
 
     public function render()
     {
@@ -48,25 +34,61 @@ class Login extends Component
     #[Renderless]
     public function register()
     {
-        $this->otp = Str::random(6);
-
-        $user = new User;
-        $user->name = $this->name;
-        $user->email = $this->email;
-        $user->password = Hash::make($this->password);
-        $user->otp = $this->otp;
-        $user->save();
-        $userId = $user->id;
-        Auth::login($user);
-
-        Mail::to($this->email)->send(new SendOtp($this->otp));
-
-        $this->reset(['name', 'email', 'password', 'password_confirmation', 'otp']);
-
-        session()->flash('success', 'Register Successfully!');
-
-        return redirect()->route('verify_mail', $userId);
+        try {
+            $this->otp = Str::random(6);
+    
+            $this->validate([
+                'name' => 'required|unique:users',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6',
+                'password_confirmation' => 'required|min:6|same:password',
+            ], [
+                'name.required' => 'Username is required!',
+                'name.unique' => 'Username already exists!',
+                'email.required' => 'Email is required!',
+                'email.unique' => 'Email already exists!',
+                'email.email' => 'Email is invalid!',
+                'password.required' => 'Password is required!',
+                'password.min' => 'Password must be at least 6 characters!',
+                'password_confirmation.required' => 'Confirm Password is required!',
+                'password_confirmation.min' => 'Confirm Password must be at least 6 characters!',
+                'password_confirmation.same' => 'Password does not match!',
+            ]);
+    
+            $user = new User;
+            $user->name = $this->name;
+            $user->email = $this->email;
+            $user->password = Hash::make($this->password);
+            $user->otp = $this->otp;
+            $user->save();
+            $userId = $user->id;
+    
+            Auth::login($user);
+    
+            Mail::to($this->email)->send(new SendOtp($this->otp));
+    
+            $this->reset(['name', 'email', 'password', 'password_confirmation', 'otp']);
+    
+            session()->flash('success', 'Register Successfully!');
+    
+            return redirect()->route('verify_mail', $userId);
+        } catch (\Exception $e) {
+            session()->flash('error', 'Registration failed. Please try again later.');
+    
+            // Log the exception for debugging purposes
+            Log::error('Registration failed: ' . $e->getMessage());
+    
+            // Optionally, you can handle different types of exceptions separately
+            if ($e instanceof ValidationException) {
+                // Handle validation exception
+                return back()->withErrors($e->errors());
+            }
+    
+            // Handle other types of exceptions or errors
+            return back();
+        }
     }
+
 
     public function login()
     {
@@ -82,11 +104,11 @@ class Login extends Component
         $user = User::where('name', $this->login_username)->first();
 
         if (Auth::attempt($credentials, $this->rememberMe)) {
-            if(Auth::user()->status == 'inactive') {
+            if (Auth::user()->status == 'inactive') {
                 Auth::logout();
                 return redirect()->route('verify_mail', $user->id);
             } else {
-                if(Auth::user()->role == 'admin') {
+                if (Auth::user()->role == 'admin') {
                     return redirect()->route('admin.index');
                 }
                 return redirect()->intended('/');

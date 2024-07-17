@@ -24,7 +24,7 @@ class VerifyEmail extends Component
             $user->status = 'active';
             $user->save();
             Auth::login($user);
-            session()->flash('message', 'Email verified successfully!');
+            $this->dispatch('notify', 'Email verified successfully!');
             return redirect()->route('users.home');
         } else {
             $this->addError('otp', 'Invalid OTP. Please try again.');

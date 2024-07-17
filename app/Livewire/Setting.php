@@ -73,10 +73,10 @@ class Setting extends Component
         $this->address = $user->address;
         $this->street = $user->street;
         $this->city = $user->city;
-        if ($user->avatar) {
+        if ($user->avatar != null) {
             $this->avatar = $user->avatar;
         }
-        Log::info($this->avatar);
+        Log::info('alooo');
     }
     public function render()
     {

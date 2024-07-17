@@ -13,7 +13,7 @@ class Header extends Component
     public $subcategories = [];
     public $selectedCategories = [];
     public $productSearch;
-    public $search;
+    public $search = "";
     public $cartCount = 0;
 
     protected $listeners = ['cartUpdated' => 'updateCartCount'];
@@ -25,6 +25,7 @@ class Header extends Component
         $this->productSearch = Product::where('name', 'like', $searchTerm)->get();
         $this->cartCount = count(session('cart', []));
     }
+
     public function updateCartCount()
     {
         $this->cartCount = count(session('cart', []));
@@ -32,8 +33,8 @@ class Header extends Component
     public function updateSearch()
     {
         $searchTerm = '%' . $this->search . '%';
-        $productSearch = Product::where('name', 'like', $searchTerm)->get();
-        Log::info($productSearch);
+        $this->productSearch = Product::where('name', 'like', $searchTerm)->get();
+        Log::info($this->productSearch);
     }
     public function logout()
     {
@@ -46,6 +47,14 @@ class Header extends Component
     }
     public function render()
     {
-        return view('livewire.user.header');
+        $results = [];
+        if(strlen($this->search) >= 1)
+        {
+            $results = Product::where('name', 'like', '%' . $this->search . '%')->limit(8)->get();
+
+        }
+        return view('livewire.user.header', [
+            'results' => $results
+        ]);
     }
 }

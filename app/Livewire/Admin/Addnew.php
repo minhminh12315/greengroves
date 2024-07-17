@@ -44,7 +44,7 @@ class Addnew extends Component
     public $newVariantOption;
     public $attribute_option = [];
 
-    
+
 
     public function updated($propertyName)
     {
@@ -53,12 +53,12 @@ class Addnew extends Component
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp',
         ], [
-            'name.required' => 'Tên là bắt buộc.',
-            'name.min' => 'Tên phải có ít nhất 6 ký tự.',
-            'name.max' => 'Tên không được vượt quá 20 ký tự.',
-            'images.required' => 'Bạn chưa chọn hình ảnh.',
-            'images.*.image' => 'Tệp bạn chọn không phải là hình ảnh.',
-            'images.*.mimes' => 'Hình ảnh phải thuộc định dạng: jpeg, png, jpg, gif, svg, webp.',
+            'name.required' => 'Name is required.',
+            'name.min' => 'Name must be at least 6 characters.',
+            'name.max' => 'Name must not exceed 20 characters.',
+            'images.required' => 'You have not selected any images.',
+            'images.*.image' => 'The file selected is not an image.',
+            'images.*.mimes' => 'Images must be in one of the following formats: jpeg, png, jpg, gif, svg, webp.',
         ]);
     }
 
@@ -76,7 +76,7 @@ class Addnew extends Component
     public function updatedProductType($value)
     {
         $this->product_type = $value;
-        if($value == 'single'){
+        if ($value == 'single') {
             $this->variantAttributes = [];
             $this->variantCombinations = [];
         } else {
@@ -99,22 +99,18 @@ class Addnew extends Component
 
     public function deleteAttribute($attributeIndex)
     {
-        // Xóa thuộc tính biến thể và tất cả các tùy chọn của nó từ mảng $variantAttributes
         unset($this->variantAttributes[$attributeIndex]);
-        // Cập nhật lại kết hợp sau khi xóa
         $this->generateCombinations();
     }
 
     public function deleteOption($attributeIndex, $optionIndex)
     {
-        // Xóa tùy chọn tương ứng từ mảng $variantAttributes
         if (count($this->variantAttributes[$attributeIndex]['options']) > 1) {
-        unset($this->variantAttributes[$attributeIndex]['options'][$optionIndex]);
+            unset($this->variantAttributes[$attributeIndex]['options'][$optionIndex]);
         } else {
-            toastr()->error('Không thể xóa tùy chọn cuối cùng');
-            // session()->flash('optionDeleteError', 'Không thể xóa tùy chọn cuối cùng');
+            toast()->error('Cannot delete the last option.');
         }
-        // Cập nhật lại kết hợp sau khi xóa
+
         $this->generateCombinations();
     }
 
@@ -177,53 +173,49 @@ class Addnew extends Component
             'variantCombinations.*.quantity' => 'required_if:product_type,variable',
             'variantCombinations.*.price' => 'required_if:product_type,variable',
         ], [
-            'name.required' => 'Tên là bắt buộc.',
-            'name.min' => 'Tên phải có ít nhất 6 ký tự.',
-            'name.max' => 'Tên không được vượt quá 20 ký tự.',
-            'images.required' => 'Bạn chưa chọn hình ảnh.',
-            'images.*.image' => 'Tệp bạn chọn không phải là hình ảnh.',
-            'images.*.mimes' => 'Hình ảnh phải thuộc định dạng: jpeg, png, jpg, gif, svg, webp.',
+            'name.required' => 'Name is required.',
+            'name.min' => 'Name must be at least 6 characters.',
+            'name.max' => 'Name must not exceed 20 characters.',
+            'images.required' => 'You have not selected any images.',
+            'images.*.image' => 'The file selected is not an image.',
+            'images.*.mimes' => 'Images must be in one of the following formats: jpeg, png, jpg, gif, svg, webp.',
         ]);
         try {
-            
+
             $this->variantNames = [];
             $this->values = [];
             $this->quantities = [];
             $this->prices = [];
 
 
-            // Tạo mới một sản phẩm
+            // Create a new product
             $product = new Product();
             $product->name = $this->name;
             $product->description = $this->description;
             $product->category_id = $this->category_id;
             $product->type = $this->product_type;
             $product->save();
-            
 
-            // Lưu ảnh sản phẩm
+
+            // Save product images
             foreach ($this->images as $image) {
-                // Tạo tên file duy nhất bằng cách sử dụng thời gian hiện tại và tên gốc của file
+                // Generate a unique file name using current time and the original file name
                 $imageName = time() . '_' . $image->getClientOriginalName();
-                Log::info('Processing image', ['image' => $imageName]);
-                
-                // Lưu ảnh vào thư mục public/images
+
+                // Store the image in the public/images directory
                 $imagePath = $image->storeAs('public/assets/images', $imageName);
-                Log::info('Image moved', ['image' => $imagePath]);
-            
-                // Tạo đường dẫn công khai cho ảnh
+
+                // Create a public path for the image
                 $publicPath = 'assets/images/' . $imageName;
-                Log::info('Image path', ['path' => $publicPath]);
-            
-                // Lưu thông tin ảnh vào cơ sở dữ liệu
+
+                // Save image information to the database
                 ProductImage::create([
                     'path' => $publicPath,
                     'product_id' => $product->id,
                 ]);
-                Log::info('Image uploaded', ['path' => $publicPath, 'product_id' => $product->id]);
             }
 
-            // Xử lý sản phẩm loại 'single'
+            // Handle 'single' type product
             if ($this->product_type == 'single') {
 
                 ProductVariant::create([
@@ -232,8 +224,6 @@ class Addnew extends Component
                     'price' => $this->price_single,
                 ]);
                 Log::info('Single product added', ['product_id' => $product->id, 'quantity' => $this->quantity_single, 'price' => $this->price_single]);
-
-                
             }
             // Xử lý sản phẩm loại 'variable'
             else if ($this->product_type == 'variable') {
@@ -301,12 +291,12 @@ class Addnew extends Component
             return redirect('/admin/addnew');
         } catch (\Exception $e) {
             Log::error('Error adding product', ['exception' => $e->getMessage(), 'product' => $this->name]);
-            Toastr::error('Error adding product');
+            toast()->error('Error adding product');
         }
     }
 
     // Ẩn modal thêm danh mục
-   
+
     public function addnew_category()
     {
         $this->validate([
@@ -350,7 +340,7 @@ class Addnew extends Component
         $variant_addnew->name = $this->newVariantName;
         $variant_addnew->save();
 
- 
+
         $this->variantNames[] = $this->newVariantName;
         $this->newVariantName = '';
         $this->dispatch('closeModal');
@@ -360,5 +350,4 @@ class Addnew extends Component
     {
         $this->numberOfVariantOptions--;
     }
-
 }

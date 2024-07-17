@@ -116,7 +116,7 @@
                             <div class="card-product swiper-slide">
                                 <a href="{{route('user.product-detail', $psc->id)}}" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <img src="{{ Storage::url($psc->productImages->first()->path) }}" alt="image" class="card__img card__img-slide">
                                         @if($psc->type === 'single')
                                         <button class="btncard-addToCart" wire:click="addToCart">ADD TO CART</button>
                                         @else
@@ -144,7 +144,7 @@
                         <div class="card-product">
                             <a href="{{route('user.product-detail', $psc->id)}}" class="overflow-hidden">
                                 <div class="card-img-wrapper">
-                                    <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                    <img src="{{ Storage::url($psc->productImages->first()->path) }}" alt="image" class="card__img card__img-slide">
                                     @if($psc->type === 'single')
                                     <button class="btncard-addToCart" wire:click="addToCart">ADD TO CART</button>
                                     @else

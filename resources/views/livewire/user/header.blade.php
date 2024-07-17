@@ -11,13 +11,25 @@
                     <a class="navbar-brand" href="{{ route('users.home') }}"><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448893881_459061516980193_545509641477731501_n.png?stp=dst-png_s1080x2048&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=XH4-i-6TQPkQ7kNvgEua9Le&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QH-bwuaiULt2pcdwVngYaGJeZyAG1TCHhqCZydcanmUuA&oe=66AB9914" width="auto" height="40vh" alt="GreenGroves"></a>
                     <div class="d-flex flex-row justify-content-center align-items-center gap-3 flex-grow-0">
                         <div class="inp-search-container">
-                            <form action="" class="d-flex justify-content-center">
+                            <form role="search" class="d-flex justify-content-center">
                                 @csrf
                                 <span class="material-symbols-outlined search-icon">
                                     search
                                 </span>
-                                <input wire:model="search" type="text" name="search" placeholder="Search for products...">
+                                <input wire:model.live.debounce.250ms="search" type="text" name="search" placeholder="Search for products...">
                             </form>
+                            @if($search)
+                            @foreach($results as $item)
+                            <a href="{{ route('user.product-detail', $item -> id) }}">
+                            <div>
+                                {{ $item->name }}
+                            </div>
+                            <div>
+                            <b>${{ $item->productVariants->min('price') }}</b>
+                            </div>
+                            </a>
+                            @endforeach
+                            @endif
                         </div>
                         
                         <div class="login-container-user">

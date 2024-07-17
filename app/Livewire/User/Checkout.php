@@ -56,19 +56,39 @@ class Checkout extends Component
     }
     public function checkoutFinal()
     {
+        $this->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+        ], [
+            'name.required' => 'Name is required',
+            'phone.required' => 'Phone is required',
+            'address.required' => 'Address is required',
+            'street.required' => 'Street is required',
+            'city.required' => 'City is required',
+        ]);
         $userId = Auth::id();
+        Log::info($this->name);
+        Log::info($this->street);
+        Log::info($this->city);
+        Log::info($this->note);
 
         try {
-            $order = Order::create([
-                'user_id' => $userId,
-                'phone' => $this->phone,
-                'address' => $this->address,
-                'total' => $this->totalPrice,
-                'name' => $this->name,
-                'street' => $this->street,
-                'city' => $this->city,
-                'note' => $this->note,
-            ]);
+            $order = new Order();
+            $order->user_id = $userId;
+            $order->phone = $this->phone;
+            $order->address = $this->address;
+            $order->name = $this->name;
+            $order->street = $this->street;
+            $order->city = $this->city;
+            if ($this->note) {
+                $order->note = $this->note;
+            }
+            $order->total = $this->totalPrice;
+            $order->save();
+            Log::info('order: ' . json_encode($order));
             $user = Auth::user();
             $user->fullname ??= $this->name;
             $user->phone ??= $this->phone;

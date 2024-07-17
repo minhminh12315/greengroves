@@ -20,7 +20,6 @@ class About extends Component
                                       ->pluck('path')
                                       ->toArray();
 
-        // dd($this->section_1);
         $this->section_2 = Image::where('type', 'About')
                                       ->where('description', 'About_section_2')
                                       ->pluck('path')
@@ -33,10 +32,6 @@ class About extends Component
 
         $this->section_4 = Image::where('type', 'About')
                                       ->where('description', 'About_section_4')
-                                      ->pluck('path')
-                                      ->toArray();
-        $this->section_5 = Image::where('type', 'About')
-                                      ->where('description', 'About_section_5')
                                       ->pluck('path')
                                       ->toArray();
 
