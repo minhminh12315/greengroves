@@ -94,32 +94,6 @@ var R = {
         $('.btn-user').click(() => {
             $('.loggedInUser').toggleClass('show');
         });
-        $(document).on('livewire:init', function () {
-            Livewire.on('swalsuccess', (e) => {
-                const data = e;
-                Swal.fire({
-                    icon: data[0].icon,
-                    title: data[0].title,
-                    text: data[0].text,
-                    showConfirmButton: true
-                });
-            });
-        });
-        $(document).on('livewire:init', function () {
-            Livewire.on('checkoutsuccess', (e) => {
-                const data = e;
-                Swal.fire({
-                    icon: data[0].icon,
-                    title: data[0].title,
-                    text: data[0].text,
-                    showConfirmButton: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '/'; // Chuyển hướng về route users.home
-                    }
-                });
-            });
-        });
         $('.btn-collapse-haederAdmin').click(() => {
             console.log('collapse');
             $('#aside-collapse-admin').toggleClass('show');

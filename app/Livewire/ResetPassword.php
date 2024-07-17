@@ -47,10 +47,15 @@ class ResetPassword extends Component
             ]);
     
             // Success message
+            $this->dispatch('swalsuccess', [
+                'title' => 'Congartulation!',
+                'text' => 'Reset Password Successfully !',
+                'icon' => 'success',
+            ]);
             session()->flash('message', 'Password has been successfully updated.');
     
             // Reset form fields
-            $this->reset(['current_password', 'password', 'password_confirmation']);
+            $this->reset(['current_password', 'password', 'password_confirmation','email']);
     }
     public function render()
     {

@@ -25,7 +25,7 @@
     @include('sweetalert::alert')
     {{ $slot }}
 
-    <div class="backdrop-filter"></div>
+    <div class="backdrops"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="{{ asset('asset/app.js') }}"></script>
     <script type="importmap">
@@ -77,8 +77,6 @@
         document.addEventListener('closeModal', () => {
             $('.modal').modal("hide")
         });
-    </script>
-    <script>
         $(document).ready(function() {
             let swiperCards = new Swiper(".card-swiper-content", {
                 loop: true,
@@ -113,6 +111,44 @@
                         slidesPerView: 4,
                     },
                 },
+            });
+            $(document).on('livewire:init', function() {
+                Livewire.on('swalsuccess', (e) => {
+                    const data = e;
+                    Swal.fire({
+                        icon: data[0].icon,
+                        title: data[0].title,
+                        text: data[0].text,
+                        showConfirmButton: true
+                    });
+                });
+            });
+            $(document).on('livewire:init', function() {
+                Livewire.on('checkoutsuccess', (e) => {
+                    const data = e;
+                    Swal.fire({
+                        icon: data[0].icon,
+                        title: data[0].title,
+                        text: data[0].text,
+                        showConfirmButton: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/'; // Chuyển hướng về route users.home
+                        }
+                    });
+                });
+            });
+            $('.btn-showAsideSetting').click(() => {
+                $('#aside_setting_container').toggleClass('show');
+                $('.backdrops').toggleClass('active');
+            })
+            $('.btn-close-asideSetting').click(() => {
+                $('#aside_setting_container').toggleClass('show');
+                $('.backdrops').toggleClass('active');
+            })
+            $('.backdrops').click(() => {
+                $('#aside_setting_container').removeClass('show');
+                $('.backdrops').removeClass('active');
             });
         });
     </script>

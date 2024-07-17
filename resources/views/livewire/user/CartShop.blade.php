@@ -17,7 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">
-                        <input type="checkbox" class="form-check-input">
+                        <input wire:click="select_all" type="checkbox" class="form-check-input">
                     </th>
                     <th scope="col" class="text-secondary">Product</th>
                     <th scope="col" class="text-secondary">Price</th>
@@ -82,7 +82,9 @@
     </div>
     @else
     <div class="cartEmpty">
-        <p>Your cart is empty.</p>
+        <img src="https://scontent.fhan18-1.fna.fbcdn.net/v/t1.15752-9/450456150_1072673534533711_8782095852012449840_n.png?stp=dst-png_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeEHebh2MRmXeINlzpruVgnnIbqyF2fJY9EhurIXZ8lj0dfqdwcYkGX5ckmXxqkcVKDpqCKIxar1giv1G6cgIEkD&_nc_ohc=XypmDleeHUYQ7kNvgHS_VUH&_nc_ht=scontent.fhan18-1.fna&oh=03_Q7cD1QFSiT_PBavmBNgoA4UVowQtMqyKRru7avB8NeA-pnRd8Q&oe=66BF7E44" alt="">
+        <p class="fs-4 fw-bold">Your cart is empty.</p>
+        <p class="text-secondary text-center">Looks like you have not added anything to your cart. Go ahead & explore top categories</p>
     </div>
     @endif
 

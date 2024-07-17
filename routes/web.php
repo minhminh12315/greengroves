@@ -24,6 +24,7 @@ use App\Livewire\User\ListProduct as UserListProduct;
 use App\Livewire\User\ProductDetail;
 use App\Livewire\VerifyEmail;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Index as SettingIndex;
 
 Route::get('/', Home::class)->name('users.home');
 
