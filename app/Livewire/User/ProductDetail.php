@@ -172,7 +172,7 @@ class ProductDetail extends Component
                 $this->quantity = 1;
                 $this->selectedOptions = [];
                 $this->price = 0;
-                session()->flash('success', 'Product added to cart successfully!');
+                toast()->success('Product added to cart successfully!');
             } else {
                 Log::error('No matching productVariant found, unable to add to cart');
                 toast()->error('No matching product variant found, unable to add to cart');

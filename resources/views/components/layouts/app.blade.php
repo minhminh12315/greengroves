@@ -78,6 +78,44 @@
             $('.modal').modal("hide")
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            let swiperCards = new Swiper(".card-swiper-content", {
+                loop: true,
+                spaceBetween: 10,
+                grabCursor: true,
+
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2,
+                    },
+                    400: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+                    1400: {
+                        slidesPerView: 4,
+                    },
+                },
+            });
+        });
+    </script>
     @livewireScripts
 </body>
 

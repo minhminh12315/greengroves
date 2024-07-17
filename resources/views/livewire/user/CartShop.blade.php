@@ -1,8 +1,9 @@
 @extends('livewire.user.index')
 @section('content')
 <section id="CartShop">
-    <div class="containerCartShop m-5">
-        <div class="row p-3">
+    @if (count($cart) > 0)
+    <div class="container mt-5 mb-5">
+        <div class="row">
             <div class="col-6">
                 <div class="cartShopTitle">
                     <h2>Cart Page</h2>
@@ -12,101 +13,78 @@
                 <button wire:click="clearAllCart" class="btn btn-danger">Clear All</button>
             </div>
         </div>
-        @if (count($cart) > 0)
-        <div class="row p-3">
-            <div class="col-12">
-                <div class="cartShopTable table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="text-center">
-                                    Check box
-                                </th>
-                                <th scope="col" class="text-center">Images</th>
-                                <th scope="col" class="text-center">Product</th>
-                                <th scope="col" class="text-center">Vaiant</th>
-                                <th scope="col" class="text-center">Price</th>
-                                <th scope="col" class="text-center">Quantity</th>
-                                <th scope="col" class="text-center">Total</th>
-                                <th scope="col" class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cart as $key => $item)
-                            <tr>
-                                <td>
-                                    <div class="wrapper-container">
-                                        <div class="wrapper-item">
-                                            <input type="checkbox" wire:model="selectedItems" value="{{ $item['variant_id'] }}">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    @if (isset($item['image']))
-                                    <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['name'] }}" style="width: 50px; height: 50px;">
-                                    @else
-                                    No Image
-                                    @endif
-                                </td>
-                                <td class="text-center">{{ $item['name'] }}</td>
-                                <td class="text-center">
-                                    <ul>
-                                        @foreach ($item['variants'] as $variant)
-                                        <li>{{ $variant['variant_name'] }}: {{ $variant['variant_option_name'] }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                                <td class="text-center">${{ $item['price'] }}</td>
-                                <td class="text-center h-100 d-flex ">
-                                    <button class="btn btn-danger me-1 h-100 p-3" wire:click="decrementQuantity({{ $key }})">-</button>
-                                    <input wire:model="quantities.{{ $key }}" type="number" class="form-control text-center p-3" min="1">
-                                    <button class="btn btn-success ms-1 h-100 p-3" wire:click="incrementQuantity({{ $key }})">+</button>
-                                </td>
-                                <!-- Quantity Error -->
-                                @if(session()->has('errorQuantity'))
-                                <div class="text-danger">{{ session('errorQuantity') }}</div>
-                                @endif
-                                <td class="text-center">${{ $item['price'] }}</td>
-                                <td class="text-center">
-                                    <button wire:click="removeItem({{$item['variant_id']}})" class="btn btn-danger">Remove</button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-        @else
-        <div class="row p-3">
-            <div class="col-12">
-                <div class="cartShopEmpty">
-                    <p>Your cart is empty.</p>
-                </div>
-            </div>
-        </div>
-        @endif
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-6 text-start">
-                <div class="totalPrice">
-                    <div class="wrapper-container">
-                        <div class="wrapper-item">
-                            <div class="d-inline textPrice">Total Price :</div>
-                            <div class="d-inline textPrice">${{ $totalPrice }}</div>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <input type="checkbox" class="form-check-input">
+                    </th>
+                    <th scope="col" class="text-secondary">Product</th>
+                    <th scope="col" class="text-secondary">Price</th>
+                    <th scope="col" class="text-secondary">Quantity</th>
+                    <th scope="col" class="text-secondary">Total</th>
+                    <th scope="col" class="text-secondary">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cart as $key => $item)
+                <tr>
+                    <td>
+                        <input type="checkbox" class="form-check-input " wire:model="selectedItems" value="{{ $item['variant_id'] }}">
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-start align-items-start gap-3">
+                            @if (isset($item['image']))
+                            <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['name'] }}" width="80" height="80">
+                            @else
+                            No Image
+                            @endif
+                            {{ $item['name'] }}
+                            <ul>
+                                @foreach ($item['variants'] as $variant)
+                                <li>{{ucfirst($variant['variant_name'])}}: {{ $variant['variant_option_name'] }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="checkOutButtonContainer d-flex justify-content-end align-content-center">
-                    <button wire:click="checkout" class="btn btn-secondary checkOutButton">Check Out</button>
-                </div>
-            </div>
+                    </td>
+                    <td>
+                        ${{ number_format($item['price']) }}
+                    </td>
+                    <td>
+                        <div class="quantity-container w-50 h-100">
+                            <button wire:click="decrementQuantity({{ $key }})" type="button">-</button>
+                            <input wire:model="quantities.{{ $key }}" class="text-center" type="text" class="text-center">
+                            <button wire:click="incrementQuantity({{ $key }})" type="button">+</button>
+                        </div>
+                    </td>
+                    <!-- Quantity Error -->
+                    @if(session()->has('errorQuantity'))
+                    <div class="text-danger">{{ session('errorQuantity') }}</div>
+                    @endif
+                    <td class="">${{ number_format($item['price'] )}}</td>
+                    <td class="">
+                        <button wire:click="removeItem({{$item['variant_id']}})" class="btn-delete">
+                            <span class="material-symbols-outlined fs-5 mt-1">
+                                delete
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="container-fluid sticky-bottom p-4 cart-sub-table">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <div class="fs-3">Total Price : <span class="fs-4 text-success">${{ number_format($totalPrice) }}</span></div>
+            <button wire:click="checkout" class="checkOutButton">CHECK OUT</button>
         </div>
     </div>
+    @else
+    <div class="cartEmpty">
+        <p>Your cart is empty.</p>
+    </div>
+    @endif
 
 </section>
 @endsection
