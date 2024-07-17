@@ -35,8 +35,8 @@
                     @endif
                 </td>
                 @foreach ($product->productVariants as $variant)
-                <td>{{ $variant->quantity }}</td>
-                <td>{{ $variant->price }}</td>
+                <td>{{ number_format($variant->quantity) }}</td>
+                <td>{{ number_format($variant->price, 2) }}</td>
                 <td colspan="2"></td> <!-- Cột rỗng để giữ cùng dòng với sản phẩm -->
                 <td>
                     <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-edit-product">
@@ -66,13 +66,13 @@
                 </td>
                 <td>{{ $product->productVariants->sum('quantity') }}</td>
                 @foreach ($product->productVariants as $key => $variant)
-                <td>{{ $variant->price }}</td>
+                <td>{{ number_format($variant->price, 2) }}</td>
                 <td>
                     @foreach ($variant->subVariants as $subVariant)
                     <div><b>{{ $subVariant->variantOption->variant->name }}</b>: {{ $subVariant->variantOption->name }}</div>
                     @endforeach
                 </td>
-                <td>{{ $variant->quantity }}</td>
+                <td>{{ number_format($variant->quantity) }}</td>
                 <td>
                     <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-edit-product">
                         <span class="material-symbols-outlined mt-1 fs-6">
@@ -97,59 +97,66 @@
                 @endforeach
         </tbody>
     </table>
-    <div class="modal fade " id="listproduct-edit-product" wire:ignore>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header d-flex justify-content-between">
-                    <h5 class="modal-title">Edit Variant</h5>
-                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="d-flex flex-column gap-4" wire:submit.prevent="updateVariant">
-                        <div class="form-group">
-                            <label for="name">Product name</label>
-                            <input wire:model="product_name" type="text" class="form-control" id="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="category">Product category</label>
-                            <select wire:model="product_category" class="form-control" name="category" id="category">
-                                @foreach ($categories as $category)
+    <div class="modal fade" id="listproduct-edit-product" wire:ignore.self>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between">
+                <h5 class="modal-title">Edit Variant</h5>
+                <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form class="d-flex flex-column gap-4" wire:submit.prevent="updateVariant" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Product name</label>
+                        <input wire:model="product_name" type="text" class="form-control" id="name">
+                        @error('product_name') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Product category</label>
+                        <select wire:model="product_category" class="form-control" name="category" id="category">
+                            @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Product Image</label>
-                            @if($product_images)
-                                <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
-                                @if ($product_images)
-                                    @foreach ($product_images as $image)
-                                        <img src="{{ $image->temporaryUrl() }}" alt="image" width="100">
-                                    @endforeach        
-                                @endif
-                            @else
-                                @if($product->productImages)
-                                    <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
-                                    @foreach ($product->productImages as $image)
-                                    <img src="{{ Storage::url($image->path) }}" alt="image" width="100">
-                                    @endforeach
-                                @endif
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">Product Quantity</label>
-                            <input wire:model="update_quantity" type="text" class="form-control" id="quantity">
-                        </div>
-                        <div class="form-group">
-                            <label for="price">Variant Price</label>
-                            <input wire:model="update_price" type="text" class="form-control" id="price">
-                        </div>
-                        <button type="submit" class="btn btn-success" wire:loading.attr="disable">Save changes</button>
-                    </form>
-                </div>
+                            @endforeach
+                        </select>
+                        @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Product Image</label>
+                        <input wire:model="product_images" type="file" class="form-control" id="image" multiple>
+                        @if($product_images)
+                            <div>New Images:</div>
+                            @foreach ($product_images as $image)
+                                <img src="{{ $image->temporaryUrl() }}" height="100" class="mt-1 mb-1" alt="image" width="100">
+                            @endforeach
+                        @elseif($product_old_images && count($product_old_images) > 0)
+                            <div>Old Images:</div>
+                            @foreach ($product_old_images as $image)
+                                <img src="{{ Storage::url($image) }}" height="100" class="mt-1 mb-1" alt="image" width="100">
+                            @endforeach
+                        @else
+                            <div>No images chosen</div>
+                        @endif
+                        @error('product_images') <span class="text-danger">{{ $message }}</span> @enderror
+                        @error('product_images.*') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Product Quantity</label>
+                        <input wire:model="update_quantity" type="text" class="form-control" id="quantity">
+                        @error('update_quantity') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Variant Price</label>
+                        <input wire:model="update_price" type="text" class="form-control" id="price">
+                        @error('update_price') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <button type="submit" class="btn btn-success" wire:loading.attr="disable">Save changes</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+</div>
+
     <div class="modal fade" id="listproduct-delete-product" aria-modal="true" wire:ignore>
         <div class="modal-dialog ">
             <div class="modal-content">

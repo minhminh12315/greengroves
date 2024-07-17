@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\Addnew;
+use App\Livewire\Admin\FeedBack;
 use App\Livewire\Admin\Index as AdminIndex;
 use App\Livewire\Admin\ListCategory;
 use App\Livewire\Admin\ListImage;
@@ -42,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', AdminIndex::class)->name('admin.index');
+    Route::get('/admin', AdminListProduct::class)->name('admin.index');
     Route::get('/admin/addnew', Addnew::class)->name('admin.addnew');
     Route::get('/admin/order', Order::class)->name('admin.order');
     Route::get('/admin/list_product', AdminListProduct::class)->name('admin.list_product');
@@ -50,6 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/list_image', ListImage::class)->name('admin.list_image');
     Route::get('/admin/news', News::class)->name('admin.news');
     Route::get('/admin/order-show/{id}', OrderShow::class)->name('admin.order.show');
+    Route::get('/admin/list_feedback', FeedBack::class)->name('admin.list_feedback');
 });
 
 Route::middleware(['auth', 'user'])->group(function () {

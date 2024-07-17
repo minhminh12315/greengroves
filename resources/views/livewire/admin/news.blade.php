@@ -125,10 +125,12 @@
                         </div>
                         <div class="form-group">
                             <label for="news_image_path">News Image</label>
-                            <input type="file" class="form-control" id="news_image_path" wire:model="news_image_path">
+                            <input wire:model="news_image_path" type="file" class="form-control" id="news_image_path">
                             @if ($news_image_path)
+                            <div>New Images:</div>
                             <img src="{{ $news_image_path->temporaryUrl() }}" width="100" height="100" class="mt-1 mb-1" alt="image">
                             @elseif($news_old_image_path)
+                            <div>Old Images:</div>
                             <img src="{{ Storage::url($news_old_image_path) }}" width="100" height="100" class="mt-1 mb-1" alt="image">
                             @else
                             <p class="text-danger">No file chosen</p>
@@ -160,6 +162,6 @@
             </div>
         </div>
     </div>
-
+    
 </div>
 @endsection

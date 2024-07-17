@@ -26,10 +26,10 @@ class ListProduct extends Component
     public $product_category;
     public $product_images;
     public $categories;
+    public $product_old_images = [];
 
     public function editVariant($variantId)
     {
-
         $this->variantId = $variantId;
         $variant = ProductVariant::find($variantId);
         $this->update_quantity = $variant->quantity;
@@ -37,10 +37,31 @@ class ListProduct extends Component
         $this->product_name = $variant->product->name;
         $this->product_description = $variant->product->description;
         $this->product_category = $variant->product->category;
-        // dd($this->product_category, $this->categories);
+        $this->product_old_images = $variant->product->productImages()->pluck('path')->toArray();
+        Log::info('Product old images', ['images' => $this->product_old_images]);
     }
     public function updateVariant()
     {
+        $this->validate([
+            'update_quantity' => 'required|numeric',
+            'update_price' => 'required|numeric',
+            'product_name' => 'required',
+            'product_description' => 'required',
+            'product_category' => 'required',
+            'product_images' => 'nullable',
+            'product_images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'update_quantity.required' => 'The Quantity field is required.',
+            'update_quantity.numeric' => 'The Quantity field must be a number.',
+            'update_price.required' => 'The Price field is required.',
+            'update_price.numeric' => 'The Price field must be a number.',
+            'product_name.required' => 'The Product Name field is required.',
+            'product_description.required' => 'The Product Description field is required.',
+            'product_category.required' => 'The Product Category field is required.',
+            'product_images.image' => 'The Product Image must be an image.',
+            'product_images.mimes' => 'The Product Image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'product_images.max' => 'The Product Image must not be greater than 2048 kilobytes.',
+        ]);
         $variant = ProductVariant::find($this->variantId);
         $variant->update([
             'quantity' => $this->update_quantity,
@@ -52,14 +73,14 @@ class ListProduct extends Component
             'description' => $this->product_description,
             'category' => $this->product_category,
         ]);
-        if($this->product_images){
+        if ($this->product_images) {
             foreach ($this->product_images as $image) {
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $imagePath = $image->storeAs('public/assets/images', $imageName);
                 Log::info('Image moved', ['image' => $imagePath]);
                 $publicPath = 'assets/images/' . $imageName;
                 Log::info('Image path', ['path' => $publicPath]);
-    
+
                 $image = new ProductImage();
                 $image->product_id = $product->id;
                 foreach ($product->productImages as $pi) {
@@ -98,13 +119,6 @@ class ListProduct extends Component
         ])->get();
         $variant = ProductVariant::all();
         $product = Product::all();
-        foreach ($product as $p) {
-            if ($p->productVariants()->exists() === false) {
-                $p->delete();
-            }
-        }
-        // Check if a product category is set, if not set it to null
-
     }
 
     public function render()
