@@ -24,32 +24,30 @@ class Setting extends Component
     public $new_avatar;
     public function update_information()
     {
-        $this->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ], [
-            'name.required' => 'Name cannot be empty',
-            'email.required' => 'Email cannot be empty',
-            'email.email' => 'Email must be a valid email',
-            'password.required' => 'Password cannot be empty',
-            'avatar.required' => 'Avatar cannot be empty',
-            'avatar.image' => 'Avatar must be an image',
-            'avatar.mimes' => 'Avatar must be a file of type: jpeg, png, jpg, gif, svg',
-            'avatar.max' => 'Avatar size must be less than 2MB',
-        ]);
+        Log::info('update_information');
 
         $user = User::find(auth()->user()->id);
         $hashedPassword = $user->password; // Lấy hash mật khẩu hiện tại từ cơ sở dữ liệu
 
         if (Hash::check($this->password, $hashedPassword)) { // Kiểm tra mật khẩu
-            $user->name = $this->name;
-            $user->fullname = $this->fullname;
-            $user->phone = $this->phone;
-            $user->address = $this->address;
-            $user->street = $this->street;
-            $user->city = $this->city;
+            if ($this->name) {
+                $user->name = $this->name;
+            }
+            if ($this->fullname) {
+                $user->fullname = $this->fullname;
+            }
+            if ($this->phone) {
+                $user->phone = $this->phone;
+            }
+            if ($this->address) {
+                $user->address = $this->address;
+            }
+            if ($this->street) {
+                $user->street = $this->street;
+            }
+            if ($this->city) {
+                $user->city = $this->city;
+            }
 
             // Chỉ cập nhật avatar nếu có upload mới
             if ($this->new_avatar) {
@@ -64,10 +62,6 @@ class Setting extends Component
         } else {
             session()->flash('errorPass', 'Password is incorrect');
         }
-    }
-    public function update()
-    {
-        Log::info('update');
     }
     public function mount()
     {

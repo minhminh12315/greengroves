@@ -1,4 +1,6 @@
-<div>
+@extends('livewire.index')
+@section('content')
+<div class="container">
     <h1>Setting Information</h1>
     <form wire:submit="update_information">
         <div class="form-group">
@@ -44,19 +46,16 @@
             <input wire:model="password" type="password" class="form-control" id="password" placeholder="Enter your password">
         </div>
         @if(session()->has('errorPass'))
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger mt-2" role="alert">
             {{ session('errorPass') }}
         </div>
         @endif
         @if(session()->has('success'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success mt-2" role="alert">
             {{ session('success') }}
         </div>
         @endif
-        @if($this->hasChange = true)
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        @else
-        <button type="submit" class="btn btn-primary" disabled>Save changes</button>
-        @endif
+        <button type="submit" class="btn btn-primary mt-2">Save changes</button>
     </form>
 </div>
+@endsection

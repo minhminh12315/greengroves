@@ -90,6 +90,7 @@ class ListProduct extends Component
                 $image->save();
             }
         }
+        $this->product_images = null;
         $this->dispatch('closeModal');
         $this->mount();
     }

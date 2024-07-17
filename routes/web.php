@@ -9,7 +9,9 @@ use App\Livewire\Admin\ListProduct as AdminListProduct;
 use App\Livewire\Admin\News;
 use App\Livewire\Admin\Order;
 use App\Livewire\Admin\OrderShow;
+use App\Livewire\ListOrder;
 use App\Livewire\Login;
+use App\Livewire\ResetPassword;
 use App\Livewire\Setting;
 use App\Livewire\User\About;
 use App\Livewire\User\Checkout;
@@ -40,6 +42,8 @@ Route::get('/cartShop', CartShop::class)->name('user.cartShop');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/setting', Setting::class)->name('setting_user');
+    Route::get('/list-order', ListOrder::class)->name('list_order');
+    Route::get('/reset-password', ResetPassword::class)->name('reset_password');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

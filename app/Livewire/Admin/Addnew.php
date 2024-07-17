@@ -328,6 +328,7 @@ class Addnew extends Component
 
                 Log::info("Category added successfully: {$category->name}");
                 $this->category_addnew = '';
+                $this->parent_id = '';
                 $this->dispatch('closeModal');
             } catch (\Exception $e) {
                 Log::error('Error adding category' . ['category' => $this->category_addnew]);
