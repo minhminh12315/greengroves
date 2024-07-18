@@ -9,30 +9,31 @@
             </span>
         </div>
     </div>
-    <div class="row">
-        <div class="ordered-item col-12">
-            <!-- order-detail-item -->
-            <div class="d-flex flex-row justify-content-between align-items-center mb-4 w-100">
-                <div class="d-flex flex-row justify-content-start align-items-center gap-4">
-                    <img class="ordered-img" width="100" height="100" src="https://dummyimage.com/600x400/000/fff" alt="">
-                    <div class="d-flex flex-column gap-2">
-                        <h4>Product Name</h4>
-                        <div>Category</div>
-                        <div>x1</div>
-                    </div>
-                </div>
-                <p class="text-success fs-4">$59</p>
-            </div>
-            <!-- order-detail-item -->
-
-            <div class="d-flex justify-content-center align-items-end flex-column border-top w-100 p-4">
-                <div class="d-flex flex-row align-items-center justify-content-center gap-1">
-                    <p>Total price:</p>
-                    <div class="text-success fs-3">$59</div>
-                </div>
-                <button class="btn_success">Repurchase</button>
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Order Date</th>
+                    <th>Order Address</th>
+                    <th>Order Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($orders as $order)
+                <tr>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->name }}</td>
+                    <td>{{ $order->created_at }}</td>
+                    <td>{{ $order->address }} - {{ $order->street }} - {{ $order->city }}</td>
+                    <td>{{ $order->total }}</td>
+                    <td>
+                        <a href="{{ route('order.detail', $order->id) }}" class="btn btn-primary">Detail</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 </div>
 @endsection

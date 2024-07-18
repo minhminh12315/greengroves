@@ -19,9 +19,6 @@ class UserLoginMiddleWare
         {
             return redirect()->route('login');
         } 
-        if(auth()->user()->role == 'admin') {
-            return redirect()->route('admin.list_product');
-        }
         return $next($request);
     }
 }

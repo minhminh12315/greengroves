@@ -25,7 +25,6 @@
         </thead>
         <tbody>
             @foreach($this->order->orderDetails as $orderDetail)
-            {{$orderDetail}}
             <tr>
                 <td>{{ $orderDetail->productVariant->product->name }}</td>
                 <td>{{ $orderDetail->quantity }}</td>
