@@ -12,45 +12,42 @@ class ListProduct extends Component
 {
     use WithPagination;
 
-    public $products;
     public $listProductCategory = false;
     public $category;
-    public $test_paginate;
+
+    protected $paginationTheme = 'bootstrap'; // Hoặc 'tailwind' nếu bạn sử dụng Tailwind CSS
 
     public function mount($id = null)
     {
         if ($id) {
-            $this->products = Product::with('productVariants.subVariants.variantOption.variant', 'productImages')
-                ->where('category_id', $id)
-                ->get();
+            $this->category = Categories::with('children.children')->find($id);
             $this->listProductCategory = true;
-            $this->category = Categories::find($id);
-            foreach ($this->category->children as $child) {
-                $this->products = $this->products->merge(Product::with('productVariants.subVariants.variantOption.variant', 'productImages')
-                    ->where('category_id', $child->id)
-                    ->get());
-                    if($child->children){
-                        foreach ($child->children as $child2) {
-                            $this->products = $this->products->merge(Product::with('productVariants.subVariants.variantOption.variant', 'productImages')
-                                ->where('category_id', $child2->id)
-                                ->get());
-                        }
-                    }
-            }
-        } else {
-            $this->products = Product::with('productVariants.subVariants.variantOption.variant', 'productImages')
-                ->get();
-            $this->listProductCategory = false;
-        }
-        foreach ($this->products as $product) {
-            foreach ($product->productImages as $image) {
-                Log::info('Product Image', ['product_id' => $product->id, 'image_path' => $image->path]);
-            }
         }
     }
 
     public function render()
     {
-        return view('livewire.user.list-product');
+        $query = Product::with('productVariants.subVariants.variantOption.variant', 'productImages');
+
+        if ($this->listProductCategory && $this->category) {
+            $categoryIds = collect([$this->category->id]);
+            foreach ($this->category->children as $child) {
+                $categoryIds->push($child->id);
+                foreach ($child->children as $child2) {
+                    $categoryIds->push($child2->id);
+                }
+            }
+            $query->whereIn('category_id', $categoryIds);
+        }
+
+        $products = $query->paginate(12);
+
+        foreach ($products as $product) {
+            foreach ($product->productImages as $image) {
+                Log::info('Product Image', ['product_id' => $product->id, 'image_path' => $image->path]);
+            }
+        }
+
+        return view('livewire.user.list-product', ['products' => $products]);
     }
 }

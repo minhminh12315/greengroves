@@ -1,29 +1,29 @@
-<div class="loginRegister">
-	<div class="login-container" id="container">
+<div class="loginRegister" >
+	<div class="login-container" wire:ignore.self id="container">
 		<div class="form-container sign-up">
-			<form wire:submit.prevent="register">
+			<form wire:submit.prevent="register" >
 				<h2 class="pb-5">Create Account</h2>
 				<div class="userbox">
-					<input type="text" wire:model.defer="name" required placeholder="Username">
+					<input type="text" wire:model.live="name" placeholder="Username">
 					<label for="username">Username</label>
-					@error('name') <span class="error">{{ $message }}</span> @enderror
+					@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input type="text" class="form-control" wire:model.defer="email" required placeholder="Email">
+					<input type="text" class="form-control" wire:model.live="email" placeholder="Email">
 					<label for="email">Email</label>
-					@error('email') <span class="error">{{ $message }}</span> @enderror
+					@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.defer="password" required placeholder="Password">
+					<input class="input-password" type="password" wire:model.live="password" placeholder="Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="password">Password</label>
-					@error('password') <span class="error">{{ $message }}</span> @enderror
+					@error('password') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.defer="password_confirmation" required placeholder="Confirm Password">
+					<input class="input-password" type="password" wire:model.live="password_confirmation"  placeholder="Confirm Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="password">Confirm Password</label>
-					@error('password_confirmation') <span class="error">{{ $message }}</span> @enderror
+					@error('password_confirmation') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
 
 				@if (session()->has('success'))
@@ -43,25 +43,24 @@
 				<button>You already have an account? Sign In</button>
 			</div>
 		</div>
-		<div class="form-container sign-in">
+		<div class="form-container sign-in" wire:ignore.self>
 			<form wire:submit.prevent="login">
 				<h2 class="pb-5">Sign In</h2>
 				<div class="userbox">
-					<input type="text" wire:model.defer="login_username" required placeholder="Username">
+					<input type="text" wire:model.live="login_username" required placeholder="Username">
 					<label for="login_username">Username</label>
-					@error('login_username') <span class="error">{{ $message }}</span> @enderror
+					@error('login_username') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.defer="login_password" required placeholder="Password">
+					<input class="input-password" type="password" wire:model.live="login_password" required placeholder="Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="login_password">Password</label>
-					@error('login_password') <span class="error">{{ $message }}</span> @enderror
+					@error('login_password') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
-				@error('login_failed') <span class="error">{{ $message }}</span> @enderror
+				@error('login_failed') <span class="error text-danger">{{ $message }}</span> @enderror
 				<div class="d-flex flex-row gap-2 align-items-center justify-content-start w-75 small">
 					<input wire:model.defer="rememberMe" type="checkbox">Remember Me
 				</div>
-				<a href="#">Forget Your Password?</a>
 				<button class="btn-login" id="btn-login">Sign In</button>
 			</form>
 			<div class="switcher">

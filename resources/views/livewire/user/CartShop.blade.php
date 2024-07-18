@@ -30,7 +30,7 @@
                 @foreach ($cart as $key => $item)
                 <tr>
                     <td>
-                        <input type="checkbox" class="form-check-input " wire:model="selectedItems" value="{{ $item['variant_id'] }}">
+                        <input type="checkbox" class="form-check-input " wire:model.live="selectedItems" value="{{ $item['variant_id'] }}">
                     </td>
                     <td>
                         <div class="d-flex justify-content-start align-items-start gap-3">
@@ -77,7 +77,15 @@
     <div class="container-fluid sticky-bottom p-4 cart-sub-table">
         <div class="d-flex flex-row justify-content-between align-items-center">
             <div class="fs-3">Total Price : <span class="fs-4 text-success">${{ number_format($totalPrice) }}</span></div>
+            @if(auth()->user())
+            @if($selectedItems)
             <button wire:click="checkout" class="checkOutButton">CHECK OUT</button>
+            @else
+            <button class="checkOutButton cursor-not-allowed" disabled>CHECK OUT</button>
+            @endif
+            @else
+            <a href="{{ route('login') }}" class="checkOutButton">Login to Checkout</a>
+            @endif
         </div>
     </div>
     @else

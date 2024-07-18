@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductVariant;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Renderless;
 use Livewire\Component;
@@ -16,8 +17,6 @@ class ListProduct extends Component
 {
     use WithPagination;
     use WithFileUploads;
-
-    public $products;
     public $product;
     public $update_quantity;
     public $update_price;
@@ -28,6 +27,8 @@ class ListProduct extends Component
     public $product_images;
     public $categories;
     public $product_old_images = [];
+    public $type = 'all';
+    protected $paginationTheme = 'bootstrap';
 
     public function editVariant($variantId)
     {
@@ -92,10 +93,10 @@ class ListProduct extends Component
             }
         }
         $this->product_images = null;
-        $this->dispatch('closeModal');
-        $this->mount();
-    }
+        $this->variantId = null;
 
+        $this->dispatch('closeModal');
+    }
     #[Renderless]
     public function confirmDelete($variantId)
     {
@@ -105,30 +106,34 @@ class ListProduct extends Component
     public function deleteVariant()
     {
         $variant = ProductVariant::find($this->variantId);
-        $variant->delete();
-        if ($variant->product->productVariants->count() == 0) {
-            $variant->product->delete();
-        }
-        $this->dispatch('closeModal');
-        $this->mount();
-    }
 
+        if ($variant) {
+            $product = $variant->product;
+            $variant->delete();
+
+            if ($product->productVariants->count() == 0) {
+                $product->delete();
+            }
+
+            $this->dispatch('closeModal');
+            $this->dispatchBrowserEvent('refreshComponent');
+        } else {
+            // Handle case where variant is not found
+            session()->flash('error', 'Variant not found.');
+        }
+
+        return redirect()->back();
+    }
     public function mount()
     {
         $this->categories = Categories::all();
-        $this->products = Product::with([
-            'productVariants.subVariants.variantOption.variant'
-        ])->get();
-        $variant = ProductVariant::all();
-        $product = Product::all();
     }
 
     public function render()
     {
-        $products = Product::with([
-            'productVariants.subVariants.variantOption.variant'
+        $products = Product::with('productVariants.subVariants.variantOption.variant', 'productImages', 'category')->get();
+        return view('livewire.admin.list-product', [
+            'products' => $products,
         ]);
-
-        return view('livewire.admin.list-product', ['products' => $products]);
     }
 }

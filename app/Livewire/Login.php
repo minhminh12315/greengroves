@@ -25,15 +25,38 @@ class Login extends Component
     public $rememberMe = false;
     public $verification_code;
     public $otp;
+    protected $rules = [
+        'name' => 'required|unique:users',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6',
+        'password_confirmation' => 'required|min:6|same:password',
+        'login_username' => 'required',
+        'login_password' => 'required',
+    ];
+
+    protected $messages = [
+        'name.required' => 'Username is required!',
+        'name.unique' => 'Username already exists!',
+        'email.required' => 'Email is required!',
+        'email.unique' => 'Email already exists!',
+        'email.email' => 'Email is invalid!',
+        'password.required' => 'Password is required!',
+        'password.min' => 'Password must be at least 6 characters!',
+        'password_confirmation.required' => 'Confirm Password is required!',
+        'password_confirmation.min' => 'Confirm Password must be at least 6 characters!',
+        'password_confirmation.same' => 'Password does not match!',
+        'login_username.required' => 'Username is required!',
+        'login_password.required' => 'Password is required!',
+    ];
 
 
     public function render()
     {
         return view('livewire.login');
     }
-    public function updated()
+    public function updated($propertyName)
     {
-        $this->validate([
+        $this->validateOnly($propertyName, [
             'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
@@ -55,26 +78,16 @@ class Login extends Component
             'login_password.required' => 'Password is required!',
         ]);
     }
-    #[Renderless]
+
     public function register()
     {
         $this->validate([
-            'name' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|min:6|same:password',
-        ], [
-            'name.required' => 'Username is required!',
-            'name.unique' => 'Username already exists!',
-            'email.required' => 'Email is required!',
-            'email.unique' => 'Email already exists!',
-            'email.email' => 'Email is invalid!',
-            'password.required' => 'Password is required!',
-            'password.min' => 'Password must be at least 6 characters!',
-            'password_confirmation.required' => 'Confirm Password is required!',
-            'password_confirmation.min' => 'Confirm Password must be at least 6 characters!',
-            'password_confirmation.same' => 'Password does not match!',
-        ]);
+            'name' => $this->rules['name'],
+            'email' => $this->rules['email'],
+            'password' => $this->rules['password'],
+            'password_confirmation' => $this->rules['password_confirmation'],
+        ], $this->messages);
+    
         try {
             $this->otp = Str::random(6);
             $user = new User;

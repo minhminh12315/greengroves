@@ -13,7 +13,7 @@ class ProductDetail extends Component
 {
     public $product;
     public $quantity = 1;
-    public $quantityStock;
+    public $quantityStock = null;
     public $selectedOptions = [];
     public $selectedOption;
     public $variantOptions = [];
@@ -22,6 +22,7 @@ class ProductDetail extends Component
     public $category;
     public $categoryName;
     public $productSameCategory;
+    public $selectedVariant = false;
 
     public function mount($id)
     {
@@ -56,6 +57,7 @@ class ProductDetail extends Component
             $this->quantityStock = $this->product->productVariants->first()->quantity;
         }
         Log::info('quantity: ' . $this->quantity);
+        Log::info('quantityStock: ' . $this->quantityStock);
     }
     // Quantity
     public function increment_quantity()
@@ -89,6 +91,11 @@ class ProductDetail extends Component
     public function updateSelectedOptions()
     {
         $this->calculatePrice();
+        if(count($this->selectedOptions) === count($this->variants)){
+            $this->selectedVariant = true;
+        } else {
+            $this->selectedVariant = false;
+        }
     }
     public function calculatePrice()
     {
@@ -103,7 +110,6 @@ class ProductDetail extends Component
             if ($productVariant) {
                 $this->price = $productVariant->price;
                 $this->quantityStock = $productVariant->quantity;
-                Log::info('QuantityStock found: ' . $this->quantityStock);
             } else {
                 $this->price = 0;
             }
@@ -155,31 +161,32 @@ class ProductDetail extends Component
                         "product_id" => $this->product->id,
                         "variant_id" => $productVariant->id,
                         "quantity" => $this->quantity,
-                        "price" => $this->price, // Ensure price is set correctly
+                        "price" => $this->price,
                         "variants" => $variants,
                     ];
                 }
                 Log::info('cart: ' . json_encode($cart));
 
                 session()->put('cart', $cart);
-
-                try {
-                    $this->dispatch('cartUpdated');
-                    Log::info('cartUpdated event dispatched');
-                } catch (\Exception $e) {
-                    Log::error('Error dispatching cartUpdated event: ' . $e->getMessage());
-                }
+                toast()->error('Product added to cart successfully!');
+                alert()->success('SuccessAlert', 'Product added to cart successfully!');
+                $this->dispatch('cartUpdated');
+                $this->dispatch('swalsuccess', [
+                    'title' => 'Thanks!',
+                    'text' => 'Thank you to feedback us !',
+                    'icon' => 'success',
+                ]);
+                session()->flash('success', 'Product added to cart successfully!');
 
                 $this->quantity = 1;
                 $this->selectedOptions = [];
+                $this->quantityStock = null;
                 $this->price = 0;
-                toast()->success('Product added to cart successfully!');
+
             } else {
-                Log::error('No matching productVariant found, unable to add to cart');
                 toast()->error('No matching product variant found, unable to add to cart');
             }
         } else {
-            Log::error('Selected options do not match variant count, unable to add to cart');
             toast()->error('Selected options do not match variant count, unable to add to cart');
         }
     }

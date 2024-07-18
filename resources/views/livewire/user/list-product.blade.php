@@ -43,6 +43,7 @@
         @else
         <p>No products found.</p>
         @endif
+        {{ $products->links('vendor.pagination.default') }}
     </div>
 </section>
 @endsection

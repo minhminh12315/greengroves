@@ -41,8 +41,10 @@
                             <span class="text-success">{{ number_format($quantityStock) }} In Stock</span>
                             @elseif($quantityStock === 0)
                             <span class="text-danger">Out of Stock</span>
-                            @else
+                            @elseif($this->product->productVariants->sum('quantity') > 0)
                             <span class="text-success"> {{ $this->product->productVariants->sum('quantity') }} In Stock</span>
+                            @else
+                            <span class="text-danger">Out of Stock</span>
                             @endif
                         </div>
                     </div>
@@ -86,12 +88,40 @@
                                 <input wire:model="quantity" type="text" class="text-center" value="1" aria-label="Quantity" id="quantity">
                                 <button wire:click="increment_quantity" type="button" id="button-increase">+</button>
                             </div>
-                            <button wire:click="addToCart" class="productDetail-addToCart">ADD TO CART</button>
+                            @if($quantityStock)
+                            @if($quantityStock > 0)
+                            <button wire:click="addToCart" id="liveToastBtn" class="productDetail-addToCart">
+                                ADD TO CART
+                            </button>
+                            @else
+                            <button class="productDetail-addToCart cursor-not-allowed" id="liveToastBtn" disabled>
+                                ADD TO CART
+                            </button>
+                            @endif
+                            @else
+                            <button class="productDetail-addToCart cursor-not-allowed" id="liveToastBtn" disabled>
+                                ADD TO CART
+                            </button>
+                            @endif
+
                         </div>
-
                     </div>
+                    @if($quantityStock)
+                    @if($quantityStock > 0)
+                    <button wire:click="buyNow" type="button" class="productDetail-buynow ">
+                        BUY NOW
+                    </button>
+                    @else
+                    <button wire:click="buyNow" type="button" class="productDetail-buynow cursor-not-allowed" disabled>
+                        BUY NOW
+                    </button>
+                    @endif
+                    @else
+                    <button wire:click="buyNow" type="button" class="productDetail-buynow cursor-not-allowed" disabled>
+                        BUY NOW
+                    </button>
+                    @endif
 
-                    <button wire:click="buyNow" type="button" class="productDetail-buynow">BUY NOW</button>
                 </div>
             </div>
         </div>
@@ -102,7 +132,7 @@
         </div>
 
         @if (count($productSameCategory) > 0)
-        <div class="d-flex flex-column gap-2 mt-5">
+        <div class="d-flex flex-column gap-2 mt-5" wire:ignore>
             <div class="d-flex flex-row justify-content-between align-content-center relatedProductWrapper">
                 <div class="fs-2 fw-bold">RELATED PRODUCTS</div>
                 <a wire:navigate href="{{route('user.list-product-category', $product -> category_id)}}" class="d-flex flex-row justify-content-center align-items-center gap-1"><span>See All</span> <i class="fas fa-angle-right mt-1"></i></a>
@@ -135,7 +165,6 @@
 
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
-                    <!-- <div class="swiper-pagination"></div> -->
                 </div>
                 @else
                 @foreach ($productSameCategory as $psc)
@@ -165,26 +194,36 @@
             </div>
         </div>
         @endif
-
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" wire:ignore>
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto text-success">Gethsemani ♥ you</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-light bg-success">
+                Thank you! Your product has been added to cart.
+            </div>
+        </div>
     </div>
 
-    <script>
-        document.getElementById('copyLinkButton').addEventListener('click', function() {
-            var currentUrl = window.location.href;
-            var tempInput = document.createElement('input');
-            tempInput.value = currentUrl;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            // Thông báo sao chép thành công
-            alert('Link sản phẩm đã được sao chép: ' + currentUrl);
-        });
-        // $('.productDetails-variantoption').click(function() {
-        //     var variantId = $(this).data('variantid');
-        //     $('input[name=variantOption_' + variantId + ']').prop('checked', true);
-        // });
-    </script>
 </section>
+<script>
+    $(document).ready(function() {
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
 
+        if (toastTrigger) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+            toastTrigger.addEventListener('click', () => {
+                toastBootstrap.show()
+            })
+        }
+        var myToast = new bootstrap.Toast(myToastEl, {
+            animation: true, 
+            autohide: true, 
+            delay: 2000 
+        });
+    });
+</script>
 @endsection
