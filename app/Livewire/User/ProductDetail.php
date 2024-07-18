@@ -62,9 +62,6 @@ class ProductDetail extends Component
     {
         $selectedOptions = $this->selectedOptions;
 
-        Log::info('Calculating price with selected options: ' . json_encode($selectedOptions));
-        Log::info('Total variants count: ' . count($this->variants));
-
         if (count($selectedOptions) === count($this->variants)) {
             $productVariant = ProductVariant::where('product_id', $this->product->id)
                 ->whereHas('subVariants', function ($query) use ($selectedOptions) {
@@ -73,9 +70,7 @@ class ProductDetail extends Component
                 ->first();
 
             if ($productVariant) {
-                Log::info('aloalo ' . json_encode($productVariant));
                 $this->quantityStock = $productVariant->quantity;
-                Log::info('QuantityStock found: ' . $this->quantityStock);
                 if ($this->quantity < $this->quantityStock) {
                     $this->quantity++;
                 } else {
@@ -93,7 +88,6 @@ class ProductDetail extends Component
 
     public function updateSelectedOptions()
     {
-        Log::info('selectedOptions: ' . json_encode($this->selectedOptions));
         $this->calculatePrice();
     }
     public function calculatePrice()
@@ -112,11 +106,9 @@ class ProductDetail extends Component
                 Log::info('QuantityStock found: ' . $this->quantityStock);
             } else {
                 $this->price = 0;
-                Log::info('No matching productVariant found, price set to 0');
             }
         } else {
             $this->price = 0;
-            Log::info('Selected options do not match variant count, price set to 0');
         }
     }
     public function addToCart()

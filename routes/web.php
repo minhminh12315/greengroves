@@ -27,11 +27,8 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Index as SettingIndex;
 
 Route::get('/', Home::class)->name('users.home');
-
 Route::get('/about', About::class)->name('users.about');
-
 Route::get('/contact', Contact::class)->name('users.contact');
-
 Route::get('/login', Login::class)->name('login');
 
 Route::get('/product-detail/{id}', ProductDetail::class)->name('user.product-detail');
@@ -60,9 +57,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/order-show/{id}', OrderShow::class)->name('admin.order.show');
     Route::get('/admin/list_feedback', FeedBack::class)->name('admin.list_feedback');
 });
-
+Route::get('/checkout', Checkout::class)->name('users.checkout');
 Route::middleware(['auth', 'user'])->group(function () {
-    Route::get('/checkout', Checkout::class)->name('users.checkout');
+    // Route::get('/', Home::class)->name('users.home');
+    Route::get('/about', About::class)->name('users.about');
+    Route::get('/contact', Contact::class)->name('users.contact');
+    
 });
 
 Route::get('/verify-mail/{id}', VerifyEmail::class)->name('verify_mail');

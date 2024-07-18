@@ -112,16 +112,19 @@
                             <label for="image_title_new">Image Title</label>
                             <input type="text" class="form-control" id="image_title_new" wire:model="image_title_new">
                         </div>
+                        @error('image_title_new') <span class="text-danger">{{ $message }}</span> @enderror
                         <div class="form-group mt-2 mb-2">
                             <label for="image_description_new">Image description</label>
                             <input type="text" class="form-control" id="image_description_new" wire:model="image_description_new">
                         </div>
+                        @error('image_description_new') <span class="text-danger">{{ $message }}</span> @enderror
                         <div class="form-group mt-2 mb-2" >
                             @if($addNewImageType)
                             <div class="d-flex justify-content-between mt-2 mb-2">
                                 <label for="image_type_new">Image type</label>
                                 <button class="btn btn-primary badge " wire:click="oldtype" type="button">Old Type</button>
                             </div>
+
                             <input type="text" class="form-control" id="image_type_new" wire:model="image_type_new" value="{{ $image_type_new }}" placeholder="please input new type">
                             @else
                             <div class="d-flex justify-content-between mt-2 mb-2">
@@ -142,6 +145,7 @@
                             <img src="{{ $image_path_new->temporaryUrl() }}" width="100" height="100" class="mt-1 mb-1" alt="image">
                             @endif
                         </div>
+                        @error('image_path_new') <span class="text-danger">{{ $message }}</span> @enderror
                         <button type="submit" class="btn btn-success mt-2 mb-2">Add New</button>
                     </form>
                 </div>

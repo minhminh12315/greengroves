@@ -45,16 +45,12 @@ class ListImage extends Component
     {
         $this->addNewImageType = true;
         $this->image_type_new = '';
-        Log::info('newtype selected');
-        Log::info($this->image_type_new);
     }
 
     public function oldtype()
     {
         $this->addNewImageType = false;
         $this->image_type_new = '';
-        Log::info('oldtype selected');
-        Log::info($this->image_type_new);
     }
 
     #[Renderless]
@@ -81,9 +77,15 @@ class ListImage extends Component
     {
         $this->validate([
             'image_title_new' => 'required',
-            'image_path_new' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_path_new' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'image_description_new' => 'required',
             'image_type_new' => 'required',
+        ], [
+            'image_title_new.required' => 'Title is required!',
+            'image_description_new.required' => 'Description is required!',
+            'image_path_new.required' => 'Image is required!',
+            'image_path_new.image' => 'File must be an image!',
+            'image_path_new.mimes' => 'File must be a jpeg, png, jpg, gif, or svg!',
         ]);
 
         $imageName = time() . '_' . $this->image_path_new->getClientOriginalName();

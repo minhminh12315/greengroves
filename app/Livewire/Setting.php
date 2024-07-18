@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -33,16 +34,25 @@ class Setting extends Component
 
     public $showMain=false;
 
+    public function updated()
+    {
+        try {
+            $this->validate([
+                'new_avatar' => 'image|mimes:jpg,jpeg,png,gif',
+            ], [
+                'new_avatar.image' => 'The file must be an image (jpg, jpeg, png, gif)',
+                'new_avatar.mimes' => 'The file must be a file of type: jpg, jpeg, png, gif',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $this->reset('new_avatar');
+            throw $e;
+        }
+    }
     public function update_information()
     {
-        Log::info('update_information');
-
+        try{
+            
         $user = User::find(auth()->user()->id);
-        // $hashedPassword = $user->password; // Lấy hash mật khẩu hiện tại từ cơ sở dữ liệu
-
-        if ($this->name) {
-            $user->name = $this->name;
-        }
         if ($this->fullname) {
             $user->fullname = $this->fullname;
         }
@@ -61,8 +71,8 @@ class Setting extends Component
 
         // Chỉ cập nhật avatar nếu có upload mới
         if ($this->new_avatar) {
-            $imageName = time() . '_' . $this->avatar->getClientOriginalName();
-            $imagePath = $this->avatar->storeAs('public/assets/images', $imageName);
+            $imageName = time() . '_' . $this->new_avatar->getClientOriginalName();
+            $imagePath = $this->new_avatar->storeAs('public/assets/images', $imageName);
             $publicPath = 'assets/images/' . $imageName;
             $user->avatar = $publicPath;
         }
@@ -72,11 +82,9 @@ class Setting extends Component
             'text' => 'You have successfully changed your information !',
             'icon' => 'success',
         ]);
-        // if (Hash::check($this->password, $hashedPassword)) { // Kiểm tra mật khẩu
-        //     session()->flash('success', 'Information updated successfully');
-        // } else {
-        //     toast()->errorPass('Password is incorrect');
-        // }
+        } catch (Exception $e) {
+            toast()->error('Something went wrong!');
+        }
     }
     public function mount()
     {

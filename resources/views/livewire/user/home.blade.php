@@ -39,66 +39,20 @@
                 <div class="card-swiper-container swiper">
                     <div class="card-swiper-content">
                         <div class="swiper-wrapper">
+                            @foreach ($topProducts as $product)
                             <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
+                                <a href="{{ route('user.product-detail', $product->productVariant->product->id) }}" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
+                                        <img src="{{Storage::url($product->productVariant->product->productImages->first()->path)}}" alt="image" class="card__img card__img-slide">
+
                                     </div>
                                     <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
+                                        <div class="card-product-name">{{$product->productVariant->product->name}}</div>
+                                        <div class="card-price">${{$product->productVariant->min('price')}}</div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -120,66 +74,20 @@
                 <div class="card-swiper-container swiper">
                     <div class="card-swiper-content">
                         <div class="swiper-wrapper">
+                            @foreach ($gardeningtools as $item)
                             <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
+                                <a href="{{ route('user.product-detail', $item->id) }}" class="overflow-hidden">
                                     <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
+                                        <img src="{{Storage::url($item->productImages->first()->path)}}" alt="image" class="card__img card__img-slide">
                                         <button class="btncard-addToCart">ADD TO CART</button>
                                     </div>
                                     <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
+                                        <div class="card-product-name">{{ $item->productVariants->category->name }}</div>
+                                        <div class="card-price">${{ $item->productVariants->min('price') }}</div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-product swiper-slide">
-                                <a href="" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="https://dummyimage.com/600x400/000/fff" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">Weed</div>
-                                        <div class="card-price">$99.0</div>
-                                    </div>
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 

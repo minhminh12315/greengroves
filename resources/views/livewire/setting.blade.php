@@ -19,11 +19,13 @@
             @else
             <img class="avatar_setting" src="https://scontent.fhan17-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=cp0_dst-png_p40x40&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=Xy7AjkPZPq4Q7kNvgGjaJQ_&_nc_ht=scontent.fhan17-1.fna&oh=00_AYA7OIwIVuPvbsa-4EW9hzy1CsM4rHHQaw1wN59wBy3Vtw&oe=66B07778" alt="Avatar">
             @endif
-
             @endif
 
             <input wire:model="new_avatar" type="file" class="form-control" id="avatar">
         </div>
+        @error('new_avatar')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
 
         <div class="form_setting_except_avatar row g-4">
@@ -35,7 +37,7 @@
             </div>
             <div class=" col-lg-6 col-12">
                 <label for="name">Username*</label>
-                <input autocomplete="off" wire:model.live.debounce.250s="name" type="text" class="" id="name" placeholder="Enter your name">
+                <input disabled autocomplete="off" wire:model.live.debounce.250s="name" type="text" class="" id="name" placeholder="Enter your name">
             </div>
 
             <div class=" col-lg-6 col-12">

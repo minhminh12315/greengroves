@@ -1,172 +1,22 @@
-[2024-07-17 17:19:39] local.INFO:   
-[2024-07-17 17:19:40] local.INFO:   
-[2024-07-17 17:19:42] local.INFO:   
-[2024-07-17 17:19:43] local.INFO:   
-[2024-07-17 17:19:43] local.INFO:   
-[2024-07-17 17:22:04] local.INFO:   
-[2024-07-17 17:22:07] local.INFO:   
-[2024-07-17 17:22:07] local.INFO:   
-[2024-07-17 17:22:07] local.INFO:   
-[2024-07-17 17:22:08] local.INFO:   
-[2024-07-17 17:22:09] local.INFO:   
-[2024-07-17 17:22:09] local.INFO: Sidebar  
-[2024-07-17 17:22:09] local.INFO: Sidebar  
-[2024-07-17 17:22:09] local.INFO:   
-[2024-07-17 17:22:12] local.INFO:   
-[2024-07-17 17:22:12] local.INFO:   
-[2024-07-17 17:22:13] local.INFO: Sidebar  
-[2024-07-17 17:22:13] local.INFO: Sidebar  
-[2024-07-17 17:22:13] local.INFO:   
-[2024-07-17 17:22:31] local.INFO:   
-[2024-07-17 17:22:31] local.INFO:   
-[2024-07-17 17:22:32] local.INFO:   
-[2024-07-17 17:22:32] local.INFO:   
-[2024-07-17 17:22:32] local.INFO:   
-[2024-07-17 17:22:33] local.INFO:   
-[2024-07-17 17:22:33] local.INFO: Sidebar  
-[2024-07-17 17:22:33] local.INFO: Sidebar  
-[2024-07-17 17:22:34] local.INFO:   
-[2024-07-17 17:23:12] local.INFO:   
-[2024-07-17 17:23:12] local.INFO:   
-[2024-07-17 17:23:12] local.INFO:   
-[2024-07-17 17:23:13] local.INFO:   
-[2024-07-17 17:23:13] local.INFO:   
-[2024-07-17 17:23:13] local.INFO: Sidebar  
-[2024-07-17 17:23:18] local.INFO:   
-[2024-07-17 17:23:18] local.INFO:   
-[2024-07-17 17:23:19] local.INFO: Sidebar  
-[2024-07-17 17:23:19] local.INFO: Sidebar  
-[2024-07-17 17:23:19] local.INFO:   
-[2024-07-17 17:23:24] local.INFO:   
-[2024-07-17 17:23:25] local.INFO:   
-[2024-07-17 17:23:25] local.INFO: Sidebar  
-[2024-07-17 17:23:25] local.INFO: Sidebar  
-[2024-07-17 17:23:25] local.INFO:   
-[2024-07-17 17:23:30] local.INFO:   
-[2024-07-17 17:23:31] local.INFO:   
-[2024-07-17 17:23:31] local.INFO: Sidebar  
-[2024-07-17 17:23:31] local.INFO: Sidebar  
-[2024-07-17 17:23:31] local.INFO:   
-[2024-07-17 17:25:36] local.INFO:   
-[2024-07-17 17:25:36] local.INFO:   
-[2024-07-17 17:25:36] local.INFO:   
-[2024-07-17 17:25:36] local.INFO:   
-[2024-07-17 17:26:21] local.INFO:   
-[2024-07-17 17:26:21] local.INFO:   
-[2024-07-17 17:26:21] local.INFO:   
-[2024-07-17 17:28:22] local.INFO:   
-[2024-07-17 17:28:23] local.INFO:   
-[2024-07-17 17:28:23] local.INFO:   
-[2024-07-17 17:28:46] local.INFO:   
-[2024-07-17 17:28:46] local.INFO:   
-[2024-07-17 17:28:46] local.INFO:   
-[2024-07-17 17:28:55] local.INFO:   
-[2024-07-17 17:28:55] local.INFO:   
-[2024-07-17 17:28:55] local.INFO:   
-[2024-07-17 17:28:55] local.INFO:   
-[2024-07-17 17:28:55] local.INFO:   
-[2024-07-17 17:29:11] local.INFO:   
-[2024-07-17 17:29:11] local.INFO:   
-[2024-07-17 17:29:11] local.INFO:   
-[2024-07-17 17:29:29] local.INFO:   
-[2024-07-17 17:29:29] local.INFO:   
-[2024-07-17 17:29:29] local.INFO:   
-[2024-07-17 17:29:41] local.INFO:   
-[2024-07-17 17:29:41] local.INFO:   
-[2024-07-17 17:30:21] local.INFO:   
-[2024-07-17 17:30:21] local.INFO:   
-[2024-07-17 17:31:33] local.INFO:   
-[2024-07-17 17:31:33] local.INFO:   
-[2024-07-17 17:31:33] local.INFO:   
-[2024-07-17 17:33:41] local.INFO:   
-[2024-07-17 17:33:41] local.INFO:   
-[2024-07-17 17:33:41] local.INFO:   
-[2024-07-17 17:33:42] local.INFO:   
-[2024-07-17 17:33:42] local.INFO:   
-[2024-07-17 17:36:02] local.INFO:   
-[2024-07-17 17:36:02] local.INFO:   
-[2024-07-17 17:36:02] local.INFO:   
-[2024-07-17 17:36:15] local.INFO:   
-[2024-07-17 17:36:16] local.INFO:   
-[2024-07-17 17:36:16] local.INFO:   
-[2024-07-17 17:36:16] local.INFO:   
-[2024-07-17 17:36:16] local.INFO:   
-[2024-07-17 17:37:02] local.INFO:   
-[2024-07-17 17:37:02] local.INFO:   
-[2024-07-17 17:37:02] local.INFO:   
-[2024-07-17 17:37:35] local.INFO:   
-[2024-07-17 17:37:36] local.INFO:   
-[2024-07-17 17:37:36] local.INFO:   
-[2024-07-17 17:38:43] local.INFO:   
-[2024-07-17 17:38:43] local.INFO:   
-[2024-07-17 17:38:43] local.INFO:   
-[2024-07-17 17:39:02] local.INFO:   
-[2024-07-17 17:39:02] local.INFO:   
-[2024-07-17 17:39:02] local.INFO:   
-[2024-07-17 17:39:09] local.INFO:   
-[2024-07-17 17:39:09] local.INFO:   
-[2024-07-17 17:39:09] local.INFO:   
-[2024-07-17 17:39:09] local.INFO:   
-[2024-07-17 17:39:09] local.INFO:   
-[2024-07-17 17:39:09] local.INFO:   
-[2024-07-17 17:39:28] local.INFO:   
-[2024-07-17 17:39:28] local.INFO:   
-[2024-07-17 17:39:28] local.INFO:   
-[2024-07-17 17:39:28] local.INFO:   
-[2024-07-17 17:39:29] local.INFO:   
-[2024-07-17 17:39:58] local.INFO:   
-[2024-07-17 17:39:58] local.INFO:   
-[2024-07-17 17:39:59] local.INFO:   
-[2024-07-17 17:40:21] local.INFO:   
-[2024-07-17 17:40:25] local.INFO:   
-[2024-07-17 17:40:25] local.INFO:   
-[2024-07-17 17:40:32] local.INFO:   
-[2024-07-17 17:40:32] local.INFO:   
-[2024-07-17 17:40:38] local.INFO:   
-[2024-07-17 17:40:38] local.INFO:   
-[2024-07-17 17:40:39] local.INFO:   
-[2024-07-17 17:41:25] local.INFO:   
-[2024-07-17 17:41:26] local.INFO:   
-[2024-07-17 17:41:26] local.INFO:   
-[2024-07-17 17:41:49] local.INFO:   
-[2024-07-17 17:41:49] local.INFO:   
-[2024-07-17 17:41:49] local.INFO:   
-[2024-07-17 17:41:59] local.INFO:   
-[2024-07-17 17:41:59] local.INFO:   
-[2024-07-17 17:41:59] local.INFO:   
-[2024-07-17 17:42:05] local.INFO:   
-[2024-07-17 17:42:05] local.INFO:   
-[2024-07-17 17:42:05] local.INFO:   
-[2024-07-17 17:42:10] local.INFO:   
-[2024-07-17 17:42:10] local.INFO:   
-[2024-07-17 17:42:14] local.INFO:   
-[2024-07-17 17:49:01] local.INFO:   
-[2024-07-17 17:51:03] local.INFO:   
-[2024-07-17 17:53:24] local.INFO:   
-[2024-07-17 17:54:46] local.INFO:   
-[2024-07-17 17:55:09] local.INFO:   
-[2024-07-17 17:56:15] local.INFO:   
-[2024-07-17 17:56:16] local.INFO:   
-[2024-07-17 17:56:16] local.INFO:   
-[2024-07-17 17:56:32] local.INFO:   
-[2024-07-17 17:56:33] local.INFO:   
-[2024-07-17 17:56:39] local.INFO:   
-[2024-07-17 17:56:45] local.INFO:   
-[2024-07-17 17:56:50] local.INFO:   
-[2024-07-17 17:56:50] local.INFO:   
-[2024-07-17 17:57:33] local.INFO:   
-[2024-07-17 17:57:33] local.INFO:   
-[2024-07-17 17:57:33] local.INFO:   
-[2024-07-17 17:57:49] local.INFO:   
-[2024-07-17 17:57:50] local.INFO:   
-[2024-07-17 17:57:50] local.INFO:   
-[2024-07-17 17:58:02] local.INFO:   
-[2024-07-17 17:58:02] local.INFO:   
-[2024-07-17 17:58:02] local.INFO:   
-[2024-07-17 17:58:11] local.INFO:   
-[2024-07-17 17:58:15] local.INFO:   
-[2024-07-17 17:58:20] local.INFO:   
-[2024-07-17 17:58:28] local.INFO:   
-[2024-07-17 17:58:31] local.INFO:   
-[2024-07-17 17:58:31] local.INFO:   
-[2024-07-17 17:58:45] local.INFO:   
+[2024-07-18 01:35:13] local.INFO: topProducts: [{"product_variant_id":16,"total_quantity":"1","product_variant":{"id":16,"quantity":99,"price":"5.99","product_id":2,"created_at":"2024-07-14T17:38:58.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":2,"name":"Clay Pot","description":"Crafted from natural clay, provides good breathability for plant roots.","type":"variable","category_id":4,"created_at":"2024-07-12T15:31:51.000000Z","updated_at":"2024-07-12T15:31:51.000000Z","product_images":[{"id":25,"path":"assets\/images\/1721188409_pots_clay_2_1.jpg","product_id":2,"created_at":"2024-07-17T03:53:29.000000Z","updated_at":"2024-07-17T03:53:29.000000Z"},{"id":26,"path":"assets\/images\/1721188409_pots_clay_2_2.jpg","product_id":2,"created_at":"2024-07-17T03:53:29.000000Z","updated_at":"2024-07-17T03:53:29.000000Z"},{"id":27,"path":"assets\/images\/1721188409_pots_clay_2_3.jpg","product_id":2,"created_at":"2024-07-17T03:53:29.000000Z","updated_at":"2024-07-17T03:53:29.000000Z"}]}}},{"product_variant_id":20,"total_quantity":"1","product_variant":{"id":20,"quantity":99,"price":"8.99","product_id":3,"created_at":"2024-07-14T17:48:09.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":3,"name":"Ceramic Pot","description":"Elegant ceramic design, ideal for decorative purposes indoors.","type":"variable","category_id":4,"created_at":"2024-07-12T15:31:51.000000Z","updated_at":"2024-07-12T15:31:51.000000Z","product_images":[{"id":28,"path":"assets\/images\/1721188458_pots_ceramic_1_3.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":29,"path":"assets\/images\/1721188458_pots_ceramic_1_2.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":30,"path":"assets\/images\/1721188458_pots_ceramic_1_1.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"}]}}},{"product_variant_id":21,"total_quantity":"1","product_variant":{"id":21,"quantity":99,"price":"9.99","product_id":3,"created_at":"2024-07-14T17:48:09.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":3,"name":"Ceramic Pot","description":"Elegant ceramic design, ideal for decorative purposes indoors.","type":"variable","category_id":4,"created_at":"2024-07-12T15:31:51.000000Z","updated_at":"2024-07-12T15:31:51.000000Z","product_images":[{"id":28,"path":"assets\/images\/1721188458_pots_ceramic_1_3.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":29,"path":"assets\/images\/1721188458_pots_ceramic_1_2.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":30,"path":"assets\/images\/1721188458_pots_ceramic_1_1.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"}]}}},{"product_variant_id":24,"total_quantity":"1","product_variant":{"id":24,"quantity":99,"price":"6.99","product_id":4,"created_at":"2024-07-14T17:49:50.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":4,"name":"Plastic Container","description":"Sturdy plastic container suitable for planting various types of plants.","type":"variable","category_id":5,"created_at":"2024-07-12T15:33:23.000000Z","updated_at":"2024-07-12T15:33:23.000000Z","product_images":[{"id":31,"path":"assets\/images\/1721188492_containers_plastic_1_3.jpg","product_id":4,"created_at":"2024-07-17T03:54:52.000000Z","updated_at":"2024-07-17T03:54:52.000000Z"},{"id":32,"path":"assets\/images\/1721188492_containers_plastic_1_2.jpg","product_id":4,"created_at":"2024-07-17T03:54:52.000000Z","updated_at":"2024-07-17T03:54:52.000000Z"},{"id":33,"path":"assets\/images\/1721188492_containers_plastic_1_1.jpg","product_id":4,"created_at":"2024-07-17T03:54:52.000000Z","updated_at":"2024-07-17T03:54:52.000000Z"}]}}},{"product_variant_id":25,"total_quantity":"1","product_variant":{"id":25,"quantity":99,"price":"6.99","product_id":5,"created_at":"2024-07-14T17:51:36.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":5,"name":"Wooden Planter","description":"Handcrafted wooden planter for a natural look in your garden.","type":"variable","category_id":5,"created_at":"2024-07-12T15:33:23.000000Z","updated_at":"2024-07-12T15:33:23.000000Z","product_images":[{"id":34,"path":"assets\/images\/1721188516_containers_wood_1_3.jpg","product_id":5,"created_at":"2024-07-17T03:55:16.000000Z","updated_at":"2024-07-17T03:55:16.000000Z"},{"id":35,"path":"assets\/images\/1721188516_containers_wood_1_2.jpg","product_id":5,"created_at":"2024-07-17T03:55:16.000000Z","updated_at":"2024-07-17T03:55:16.000000Z"},{"id":36,"path":"assets\/images\/1721188516_containers_wood_1_1.jpg","product_id":5,"created_at":"2024-07-17T03:55:16.000000Z","updated_at":"2024-07-17T03:55:16.000000Z"}]}}},{"product_variant_id":32,"total_quantity":"1","product_variant":{"id":32,"quantity":9,"price":"24.99","product_id":7,"created_at":"2024-07-14T17:56:28.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":7,"name":"The Garden Against Time: In Search of a Common Paradise","description":"Inspired by the restoration of her own garden, \"imaginative and empathetic critic\" (NPR) Olivia Laing embarks on an exhilarating investigation of paradise.","type":"variable","category_id":2,"created_at":"2024-07-14T17:00:02.000000Z","updated_at":"2024-07-14T17:00:02.000000Z","product_images":[{"id":40,"path":"assets\/images\/1721188597_book_1_1.jpg","product_id":7,"created_at":"2024-07-17T03:56:37.000000Z","updated_at":"2024-07-17T03:56:37.000000Z"},{"id":41,"path":"assets\/images\/1721188597_book_1_2.jpg","product_id":7,"created_at":"2024-07-17T03:56:37.000000Z","updated_at":"2024-07-17T03:56:37.000000Z"},{"id":42,"path":"assets\/images\/1721188597_book_1_3.jpg","product_id":7,"created_at":"2024-07-17T03:56:37.000000Z","updated_at":"2024-07-17T03:56:37.000000Z"}]}}},{"product_variant_id":125,"total_quantity":"1","product_variant":{"id":125,"quantity":19,"price":"89.99","product_id":33,"created_at":"2024-07-15T18:09:43.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":33,"name":"Backpack Sprayer","description":"High-capacity backpack sprayer for larger areas.","type":"single","category_id":9,"created_at":"2024-07-14T17:07:35.000000Z","updated_at":"2024-07-14T17:07:35.000000Z","product_images":[{"id":99,"path":"assets\/images\/1721190417_backSprayer_1_1.jpg","product_id":33,"created_at":"2024-07-17T04:26:57.000000Z","updated_at":"2024-07-17T04:26:57.000000Z"},{"id":100,"path":"assets\/images\/1721190417_backSprayer_1_2.jpg","product_id":33,"created_at":"2024-07-17T04:26:57.000000Z","updated_at":"2024-07-17T04:26:57.000000Z"},{"id":101,"path":"assets\/images\/1721190417_backSprayer_1_3.jpg","product_id":33,"created_at":"2024-07-17T04:26:57.000000Z","updated_at":"2024-07-17T04:26:57.000000Z"}]}}},{"product_variant_id":351,"total_quantity":"1","product_variant":{"id":351,"quantity":99,"price":"10.99","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":114,"name":"Neem Oil Spray","description":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(57,56,69);\">An oil extracted from the seeds of the neem tree is a powerful natural pesticide, capable of disrupting the life cycle of insects at all stages (adult, larvae, and egg), making it a great resource for the organic gardener.<\/span><\/p>","type":"variable","category_id":22,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z","product_images":[{"id":228,"path":"assets\/images\/1721206283_natural_3.webp","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z"}]}}},{"product_variant_id":352,"total_quantity":"1","product_variant":{"id":352,"quantity":99,"price":"18.99","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":114,"name":"Neem Oil Spray","description":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(57,56,69);\">An oil extracted from the seeds of the neem tree is a powerful natural pesticide, capable of disrupting the life cycle of insects at all stages (adult, larvae, and egg), making it a great resource for the organic gardener.<\/span><\/p>","type":"variable","category_id":22,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z","product_images":[{"id":228,"path":"assets\/images\/1721206283_natural_3.webp","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z"}]}}},{"product_variant_id":369,"total_quantity":"1","product_variant":{"id":369,"quantity":99,"price":"14.99","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":121,"name":"Mini Red Dragon Playing with Butterfly Statue","description":"<p>Mini Red Dragon Playing with Butterfly<\/p>","type":"single","category_id":24,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:26:07.000000Z","product_images":[{"id":237,"path":"assets\/images\/1721207402_toy_2_3.jpg","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:10:02.000000Z"},{"id":238,"path":"assets\/images\/1721207402_toy_2_2.jpg","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:10:02.000000Z"},{"id":239,"path":"assets\/images\/1721207402_toy_2_1.jpg","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:10:02.000000Z"}]}}}]  
+[2024-07-18 01:35:13] local.INFO: gardeningtools: []  
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_3.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_2.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_1.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":2,"image_path":"assets/images/1721188409_pots_clay_2_1.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":2,"image_path":"assets/images/1721188409_pots_clay_2_2.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":2,"image_path":"assets/images/1721188409_pots_clay_2_3.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_3.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_2.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_1.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_1_7.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_3_6.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_1_5.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":43,"image_path":"assets/images/1721186878_silver_1.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":44,"image_path":"assets/images/1721187181_Concrete_1.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":45,"image_path":"assets/images/1721187349_resin_1.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_3.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_2.jpg"} 
+[2024-07-18 01:35:56] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_1.jpg"} 
+[2024-07-18 01:39:02] local.INFO: topProducts: [{"product_variant_id":16,"total_quantity":"1","product_variant":{"id":16,"quantity":99,"price":"5.99","product_id":2,"created_at":"2024-07-14T17:38:58.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":2,"name":"Clay Pot","description":"Crafted from natural clay, provides good breathability for plant roots.","type":"variable","category_id":4,"created_at":"2024-07-12T15:31:51.000000Z","updated_at":"2024-07-12T15:31:51.000000Z","product_images":[{"id":25,"path":"assets\/images\/1721188409_pots_clay_2_1.jpg","product_id":2,"created_at":"2024-07-17T03:53:29.000000Z","updated_at":"2024-07-17T03:53:29.000000Z"},{"id":26,"path":"assets\/images\/1721188409_pots_clay_2_2.jpg","product_id":2,"created_at":"2024-07-17T03:53:29.000000Z","updated_at":"2024-07-17T03:53:29.000000Z"},{"id":27,"path":"assets\/images\/1721188409_pots_clay_2_3.jpg","product_id":2,"created_at":"2024-07-17T03:53:29.000000Z","updated_at":"2024-07-17T03:53:29.000000Z"}]}}},{"product_variant_id":20,"total_quantity":"1","product_variant":{"id":20,"quantity":99,"price":"8.99","product_id":3,"created_at":"2024-07-14T17:48:09.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":3,"name":"Ceramic Pot","description":"Elegant ceramic design, ideal for decorative purposes indoors.","type":"variable","category_id":4,"created_at":"2024-07-12T15:31:51.000000Z","updated_at":"2024-07-12T15:31:51.000000Z","product_images":[{"id":28,"path":"assets\/images\/1721188458_pots_ceramic_1_3.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":29,"path":"assets\/images\/1721188458_pots_ceramic_1_2.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":30,"path":"assets\/images\/1721188458_pots_ceramic_1_1.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"}]}}},{"product_variant_id":21,"total_quantity":"1","product_variant":{"id":21,"quantity":99,"price":"9.99","product_id":3,"created_at":"2024-07-14T17:48:09.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":3,"name":"Ceramic Pot","description":"Elegant ceramic design, ideal for decorative purposes indoors.","type":"variable","category_id":4,"created_at":"2024-07-12T15:31:51.000000Z","updated_at":"2024-07-12T15:31:51.000000Z","product_images":[{"id":28,"path":"assets\/images\/1721188458_pots_ceramic_1_3.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":29,"path":"assets\/images\/1721188458_pots_ceramic_1_2.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"},{"id":30,"path":"assets\/images\/1721188458_pots_ceramic_1_1.jpg","product_id":3,"created_at":"2024-07-17T03:54:18.000000Z","updated_at":"2024-07-17T03:54:18.000000Z"}]}}},{"product_variant_id":24,"total_quantity":"1","product_variant":{"id":24,"quantity":99,"price":"6.99","product_id":4,"created_at":"2024-07-14T17:49:50.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":4,"name":"Plastic Container","description":"Sturdy plastic container suitable for planting various types of plants.","type":"variable","category_id":5,"created_at":"2024-07-12T15:33:23.000000Z","updated_at":"2024-07-12T15:33:23.000000Z","product_images":[{"id":31,"path":"assets\/images\/1721188492_containers_plastic_1_3.jpg","product_id":4,"created_at":"2024-07-17T03:54:52.000000Z","updated_at":"2024-07-17T03:54:52.000000Z"},{"id":32,"path":"assets\/images\/1721188492_containers_plastic_1_2.jpg","product_id":4,"created_at":"2024-07-17T03:54:52.000000Z","updated_at":"2024-07-17T03:54:52.000000Z"},{"id":33,"path":"assets\/images\/1721188492_containers_plastic_1_1.jpg","product_id":4,"created_at":"2024-07-17T03:54:52.000000Z","updated_at":"2024-07-17T03:54:52.000000Z"}]}}},{"product_variant_id":25,"total_quantity":"1","product_variant":{"id":25,"quantity":99,"price":"6.99","product_id":5,"created_at":"2024-07-14T17:51:36.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":5,"name":"Wooden Planter","description":"Handcrafted wooden planter for a natural look in your garden.","type":"variable","category_id":5,"created_at":"2024-07-12T15:33:23.000000Z","updated_at":"2024-07-12T15:33:23.000000Z","product_images":[{"id":34,"path":"assets\/images\/1721188516_containers_wood_1_3.jpg","product_id":5,"created_at":"2024-07-17T03:55:16.000000Z","updated_at":"2024-07-17T03:55:16.000000Z"},{"id":35,"path":"assets\/images\/1721188516_containers_wood_1_2.jpg","product_id":5,"created_at":"2024-07-17T03:55:16.000000Z","updated_at":"2024-07-17T03:55:16.000000Z"},{"id":36,"path":"assets\/images\/1721188516_containers_wood_1_1.jpg","product_id":5,"created_at":"2024-07-17T03:55:16.000000Z","updated_at":"2024-07-17T03:55:16.000000Z"}]}}},{"product_variant_id":32,"total_quantity":"1","product_variant":{"id":32,"quantity":9,"price":"24.99","product_id":7,"created_at":"2024-07-14T17:56:28.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":7,"name":"The Garden Against Time: In Search of a Common Paradise","description":"Inspired by the restoration of her own garden, \"imaginative and empathetic critic\" (NPR) Olivia Laing embarks on an exhilarating investigation of paradise.","type":"variable","category_id":2,"created_at":"2024-07-14T17:00:02.000000Z","updated_at":"2024-07-14T17:00:02.000000Z","product_images":[{"id":40,"path":"assets\/images\/1721188597_book_1_1.jpg","product_id":7,"created_at":"2024-07-17T03:56:37.000000Z","updated_at":"2024-07-17T03:56:37.000000Z"},{"id":41,"path":"assets\/images\/1721188597_book_1_2.jpg","product_id":7,"created_at":"2024-07-17T03:56:37.000000Z","updated_at":"2024-07-17T03:56:37.000000Z"},{"id":42,"path":"assets\/images\/1721188597_book_1_3.jpg","product_id":7,"created_at":"2024-07-17T03:56:37.000000Z","updated_at":"2024-07-17T03:56:37.000000Z"}]}}},{"product_variant_id":125,"total_quantity":"1","product_variant":{"id":125,"quantity":19,"price":"89.99","product_id":33,"created_at":"2024-07-15T18:09:43.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":33,"name":"Backpack Sprayer","description":"High-capacity backpack sprayer for larger areas.","type":"single","category_id":9,"created_at":"2024-07-14T17:07:35.000000Z","updated_at":"2024-07-14T17:07:35.000000Z","product_images":[{"id":99,"path":"assets\/images\/1721190417_backSprayer_1_1.jpg","product_id":33,"created_at":"2024-07-17T04:26:57.000000Z","updated_at":"2024-07-17T04:26:57.000000Z"},{"id":100,"path":"assets\/images\/1721190417_backSprayer_1_2.jpg","product_id":33,"created_at":"2024-07-17T04:26:57.000000Z","updated_at":"2024-07-17T04:26:57.000000Z"},{"id":101,"path":"assets\/images\/1721190417_backSprayer_1_3.jpg","product_id":33,"created_at":"2024-07-17T04:26:57.000000Z","updated_at":"2024-07-17T04:26:57.000000Z"}]}}},{"product_variant_id":351,"total_quantity":"1","product_variant":{"id":351,"quantity":99,"price":"10.99","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":114,"name":"Neem Oil Spray","description":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(57,56,69);\">An oil extracted from the seeds of the neem tree is a powerful natural pesticide, capable of disrupting the life cycle of insects at all stages (adult, larvae, and egg), making it a great resource for the organic gardener.<\/span><\/p>","type":"variable","category_id":22,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z","product_images":[{"id":228,"path":"assets\/images\/1721206283_natural_3.webp","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z"}]}}},{"product_variant_id":352,"total_quantity":"1","product_variant":{"id":352,"quantity":99,"price":"18.99","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":114,"name":"Neem Oil Spray","description":"<p><span style=\"background-color:rgb(255,255,255);color:rgb(57,56,69);\">An oil extracted from the seeds of the neem tree is a powerful natural pesticide, capable of disrupting the life cycle of insects at all stages (adult, larvae, and egg), making it a great resource for the organic gardener.<\/span><\/p>","type":"variable","category_id":22,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z","product_images":[{"id":228,"path":"assets\/images\/1721206283_natural_3.webp","product_id":114,"created_at":"2024-07-17T08:51:23.000000Z","updated_at":"2024-07-17T08:51:23.000000Z"}]}}},{"product_variant_id":369,"total_quantity":"1","product_variant":{"id":369,"quantity":99,"price":"14.99","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T19:06:34.000000Z","product":{"id":121,"name":"Mini Red Dragon Playing with Butterfly Statue","description":"<p>Mini Red Dragon Playing with Butterfly<\/p>","type":"single","category_id":24,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:26:07.000000Z","product_images":[{"id":237,"path":"assets\/images\/1721207402_toy_2_3.jpg","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:10:02.000000Z"},{"id":238,"path":"assets\/images\/1721207402_toy_2_2.jpg","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:10:02.000000Z"},{"id":239,"path":"assets\/images\/1721207402_toy_2_1.jpg","product_id":121,"created_at":"2024-07-17T09:10:02.000000Z","updated_at":"2024-07-17T09:10:02.000000Z"}]}}}]  
+[2024-07-18 01:39:02] local.INFO: gardeningtools: []  

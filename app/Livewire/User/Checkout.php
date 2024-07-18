@@ -137,15 +137,14 @@ class Checkout extends Component
                     }
                 }
             }
-
+            $this->totalPrice = 0.0;
+            $this->grandTotal = 0.0;
+            $this->note = '';
             session()->put('cart', $this->cart);
             session()->forget('checkout');
             $this->dispatch('cartUpdated');
-            $this->dispatch('checkoutsuccess', [
-                'title' => 'Thanks!',
-                'text' => 'Thank you the order !',
-                'icon' => 'success',
-            ]);
+            toast()->success('Order placed successfully');
+            return redirect()->route('users.home');
         } catch (\Exception $e) {
             Log::error('Error during checkout', [
                 'user_id' => $userId,
