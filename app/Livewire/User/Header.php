@@ -13,7 +13,7 @@ class Header extends Component
     public $subcategories = [];
     public $selectedCategories = [];
     public $productSearch;
-    public $search = "";
+    public $search;
     public $cartCount = 0;
 
     protected $listeners = ['cartUpdated' => 'updateCartCount'];
@@ -35,6 +35,9 @@ class Header extends Component
         $searchTerm = '%' . $this->search . '%';
         $this->productSearch = Product::where('name', 'like', $searchTerm)->get();
         Log::info($this->productSearch);
+    }
+    public function resetSearchInput() {
+        $this->reset('search');
     }
     public function logout()
     {

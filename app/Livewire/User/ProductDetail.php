@@ -169,14 +169,12 @@ class ProductDetail extends Component
 
                 session()->put('cart', $cart);
                 toast()->error('Product added to cart successfully!');
-                alert()->success('SuccessAlert', 'Product added to cart successfully!');
                 $this->dispatch('cartUpdated');
                 $this->dispatch('swalsuccess', [
                     'title' => 'Thanks!',
                     'text' => 'Thank you to feedback us !',
                     'icon' => 'success',
                 ]);
-                session()->flash('success', 'Product added to cart successfully!');
 
                 $this->quantity = 1;
                 $this->selectedOptions = [];

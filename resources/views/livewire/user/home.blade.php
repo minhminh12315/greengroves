@@ -67,33 +67,27 @@
     <div class=" mt-5">
         <div class="d-flex flex-column gap-4">
             <div class="home-elementor-title">
-                <div class="fw-bold fs-2">GARDENING TOOLS</div>
-                <a class="fs-4" href="">See all >></a>
+                <div class="fw-bold fs-2">Pots</div>
+                <a class="fs-4" href="{{ route('user.list-product-category', 4) }}">See all >></a>
             </div>
             <div class="d-flex justify-content-center align-item-center">
-                <div class="card-swiper-container swiper">
-                    <div class="card-swiper-content">
-                        <div class="swiper-wrapper">
-                            @foreach ($gardeningtools as $item)
-                            <div class="card-product swiper-slide">
-                                <a href="{{ route('user.product-detail', $item->id) }}" class="overflow-hidden">
-                                    <div class="card-img-wrapper">
-                                        <img src="{{Storage::url($item->productImages->first()->path)}}" alt="image" class="card__img card__img-slide">
-                                        <button class="btncard-addToCart">ADD TO CART</button>
-                                    </div>
-                                    <div class="card-data">
-                                        <div class="card-product-name">{{ $item->productVariants->category->name }}</div>
-                                        <div class="card-price">${{ $item->productVariants->min('price') }}</div>
-                                    </div>
-                                </a>
-                            </div>
-                            @endforeach
+                <div class="row row-cols-lg-6 row-cols-md-3 row-cols-2 g-2">
+                    @foreach ($pots as $item)
+                    <div class="col">
+                        <div class="card-product">
+                            <a href="{{ route('user.product-detail', $item->id) }}" class="overflow-hidden">
+                                <div class="card-img-wrapper">
+                                    <img src="{{Storage::url($item->productImages->first()->path)}}" alt="image" class="card__img card__img-slide">
+                                    <button class="btncard-addToCart">ADD TO CART</button>
+                                </div>
+                                <div class="card-data">
+                                    <div class="card-product-name">{{ $item->name }}</div>
+                                    <div class="card-price">${{ $item->productVariants->min('price') }}</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <!-- <div class="swiper-pagination"></div> -->
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -130,45 +124,21 @@
         <div class="d-flex flex-column gap-4">
             <div class="home-elementor-title">
                 <div class="fw-bold fs-2">NEWS</div>
-                <a class="fs-4" href="">See all >></a>
             </div>
-            <div class="row row-cols-lg-3 row-cols-1  g-3">
-                <div class="col">
-                    <div class="card user-card-news" style="height: 100%; width:100%;">
-                        <a href="">
-                            <div class="overflow-hidden">
-                                <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body d-flex flex-column gap-2">
-                                <h4 class="card-title">Card title</h4>
-                            </div>
-                        </a>
+            <div class="row g-2">
+                @foreach ($news as $new )
+                <div class="col-12 news-item-home">
+                    <div class="card-news">
+                        <div class="card-news-img-wrapper">
+                            <img src="{{Storage::url($new->path) }}" class="card_img_news" alt="...">
+                        </div>
+                        <div class="card-new-body">
+                            <h4 class="card-news-title">{{$new->title}}</h4>
+                            <p class="card-news-description">{{$new->description}}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card user-card-news" style="height: 100%; width:100%;">
-                        <a href="">
-                            <div class="overflow-hidden">
-                                <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body d-flex flex-column gap-2">
-                                <h4 class="card-title">Card title</h4>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card user-card-news" style="height: 100%; width:100%;">
-                        <a href="">
-                            <div class="overflow-hidden">
-                                <img src="https://dummyimage.com/200x200/000/fff888" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body d-flex flex-column gap-2">
-                                <h4 class="card-title">Card title</h4>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

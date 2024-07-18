@@ -15,9 +15,6 @@ class News extends Component
 {
     use WithFileUploads;
     public $news;
-    public $AddNewsModal = false;
-    public $EditNewsModal = false;
-    public $DeleteNewsModal = false;
     public $news_title;
     public $news_description;
     public $news_image_path;
@@ -62,7 +59,9 @@ class News extends Component
             'path' => $public_path // Fixed reference to $public_path
         ]));
     }
-
+    $this->news_title = '';
+    $this->news_description = '';
+    $this->news_image_path = '';
     session()->flash('message', 'News Created Successfully.');
     $this->dispatch('closeModal');
     $this->mount();
@@ -107,6 +106,7 @@ class News extends Component
 
         session()->flash('message', 'News Updated Successfully.');
         $this->dispatch('closeModal');
+        $this->news_image_path = null;
         $this->mount();
     }
 
@@ -123,6 +123,14 @@ class News extends Component
         session()->flash('message', 'News Deleted Successfully.');
         $this->dispatch('closeModal');
         $this->mount();
+    }
+    public function resetAll() {
+        $this->news_title = '';
+        $this->news_description = '';
+        $this->news_image_path = null;
+        $this->news_id = null;
+        $this->news_old_image_path = null;
+        $this->mount(); // Ensure this is a collection
     }
     public function mount()
     {

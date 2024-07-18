@@ -6,7 +6,7 @@
             <h3 class="fw-bold">Categories List</h3>
             <p>Manage your categories</p>
         </div>
-        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="openAddNewsModal" data-bs-toggle="modal" data-bs-target="#news-addnew">
+        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="resetAll" data-bs-toggle="modal" data-bs-target="#news-addnew">
             <span class="material-symbols-outlined fs-5 text-light">
                 add_circle
             </span>
@@ -90,7 +90,7 @@
                             <label for="news_image_path">News Image</label>
                             <input type="file" class="form-control" id="news_image_path" wire:model="news_image_path">
                             @error('news_image_path') <span class="error">{{ $message }}</span> @enderror
-                            
+
                         </div>
                         <button type="submit" class="btn btn-success">Save</button>
                     </form>
@@ -145,7 +145,7 @@
     </div>
 
 
-    <div class="modal fade"  id="news-delete">
+    <div class="modal fade" id="news-delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -162,6 +162,6 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 @endsection

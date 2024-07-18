@@ -70,6 +70,7 @@
                 console.error(error);
             });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.1/cdn.js" integrity="sha512-bQOI1eWRadC7HPMMU7NUi5Ha3tAgxZi32t/6u2OfKyUpSWyITCxxia5GA2xsXtGcd6tiSWqMYvr8sJhU46D9Ag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         window.onload = function() {
             if (window.location.protocol === "file:") {

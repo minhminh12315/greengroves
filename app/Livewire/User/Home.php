@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\EmailNotification;
 use App\Models\Image;
+use App\Models\News;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ use Livewire\Component;
 class Home extends Component
 {
     public $products;
-    public $gardeningtools;
+    public $pots;
     public $topProducts;
 
     #[Validate('required|min:5|email')]
@@ -57,18 +58,19 @@ class Home extends Component
             'productVariants.subVariants.variantOption.variant',
             'productImages'
         ])->limit(10)->get();
-        $this->gardeningtools = Product::with([
+        $this->pots = Product::with([
             'productVariants',
             'productImages',
             'category'
         ])
-        ->where('category_id', 3)
+        ->where('category_id', 4)
         ->orderBy('created_at', 'desc')
-        ->limit(8)
+        ->limit(6)
         ->get();
+        Log::info('pots: ' . json_encode($this->pots));
 
-        Log::info('gardeningtools: ' . json_encode($this->gardeningtools));
-        }
+        $this->news = News::take(3)->get();
+    }
     public function render()
     {
         $carouselImages = Image::where('type', 'slide')->get();

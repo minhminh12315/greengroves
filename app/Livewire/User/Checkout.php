@@ -144,6 +144,11 @@ class Checkout extends Component
             session()->forget('checkout');
             $this->dispatch('cartUpdated');
             toast()->success('Order placed successfully');
+            $this->dispatch('swalsuccess', [
+                'title' => 'Thanks!',
+                'text' => 'Thank you to feedback us !',
+                'icon' => 'success',
+            ]);
             return redirect()->route('users.home');
         } catch (\Exception $e) {
             Log::error('Error during checkout', [

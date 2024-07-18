@@ -34,10 +34,10 @@ class Setting extends Component
 
     public $showMain=false;
 
-    public function updated()
+    public function updated($propertyName)
     {
         try {
-            $this->validate([
+            $this->validateOnly($propertyName,[
                 'new_avatar' => 'image|mimes:jpg,jpeg,png,gif',
             ], [
                 'new_avatar.image' => 'The file must be an image (jpg, jpeg, png, gif)',

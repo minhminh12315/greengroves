@@ -103,7 +103,20 @@ var R = {
             $('.aside-collapse-admin').removeClass('show');
             // $('.backdrops').removeClass('active');
         })
-        $()
+        $('.btn_search_mobile').click(() => {
+            $('.backdrop-search').addClass('active');
+            $('.search_toggle_mobile').addClass('show');
+        });
+        $('.backdrop-search').click(() => {
+            $('.search_toggle_mobile').removeClass('show');
+            $('.backdrop-search').removeClass('active');
+        })
+        $('.btn-closeSearchMobile').click(() => {
+            $('.search_toggle_mobile').removeClass('show');
+            $('.backdrop-search').removeClass('active');
+        });
+        
+
     },
 
     generateCombinations: (variants) => {
@@ -160,3 +173,4 @@ var R = {
 
 };
 R.init();
+

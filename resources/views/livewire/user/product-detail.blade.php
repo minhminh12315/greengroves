@@ -2,13 +2,13 @@
 @section('content')
 
 <section id="productDetailsPage">
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-lg-5 mt-3">
         <div class="container">
             {{ Breadcrumbs::render('product-detail', $product) }}
         </div>
 
         <div class="row g-md-0 g-4">
-            <div class="col-12 col-md-6 ">
+            <div class="col-12 col-sm-6 ">
                 <div class="d-flex flex-md-row flex-column gap-2">
                     <div id="carouselExample" class="carousel order-md-2 order-1 overflow-hidden w-100 h-100">
                         <div class="carousel-inner">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12 ps-4 pe-4">
+            <div class="col-sm-6 col-12 ps-4 pe-4">
                 <div class="container-fluid d-flex flex-column align-content-start gap-4">
                     <div class="productDetail-name">{{ $product->name }}</div>
 
