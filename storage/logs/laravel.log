@@ -2588,3 +2588,37 @@
 [2024-07-18 03:29:00] local.INFO: Product Image {"product_id":137,"image_path":"assets/images/1721211658_pebbles_10_3.jpg"} 
 [2024-07-18 03:29:00] local.INFO: Product Image {"product_id":137,"image_path":"assets/images/1721211658_pebbles_10_2.jpg"} 
 [2024-07-18 03:29:00] local.INFO: Product Image {"product_id":137,"image_path":"assets/images/1721211658_pebbles_10_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_3.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_2.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_3.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_2.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_1_7.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_3_6.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_1_5.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":43,"image_path":"assets/images/1721186878_silver_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":44,"image_path":"assets/images/1721187181_Concrete_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":45,"image_path":"assets/images/1721187349_resin_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_3.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_2.jpg"} 
+[2024-07-18 04:01:34] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_1.jpg"} 
+[2024-07-18 04:01:34] local.INFO: quantity: 1  
+[2024-07-18 04:01:38] local.ERROR: Selected options do not match variant count, unable to add to cart  
+[2024-07-18 04:01:42] local.INFO: QuantityStock found: 99  
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_3.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_2.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":1,"image_path":"assets/images/1721188298_pots_plastic_1_1.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_3.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_2.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":3,"image_path":"assets/images/1721188458_pots_ceramic_1_1.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_1_7.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_3_6.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":42,"image_path":"assets/images/1721186545_containers_metal_1_5.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":43,"image_path":"assets/images/1721186878_silver_1.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":44,"image_path":"assets/images/1721187181_Concrete_1.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":45,"image_path":"assets/images/1721187349_resin_1.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_3.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_2.jpg"} 
+[2024-07-18 04:01:48] local.INFO: Product Image {"product_id":46,"image_path":"assets/images/1721187554_NaturalSeaweed_1.jpg"} 
+[2024-07-18 04:01:48] local.INFO: quantity: 1  

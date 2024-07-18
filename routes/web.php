@@ -60,8 +60,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/checkout', Checkout::class)->name('users.checkout');
-    Route::get('/about', About::class)->name('users.about');
-    Route::get('/contact', Contact::class)->name('users.contact');
 });
 
 Route::get('/verify-mail/{id}', VerifyEmail::class)->name('verify_mail');
