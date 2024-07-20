@@ -122,7 +122,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="cart-container">
+                    <div class="cart-container d-none d-sm-block">
                         <div class="position-relative">
                             <a href="{{ route('user.cartShop')}}">
                                 <img class="mb-lg-2 mb-1" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448770774_673202385003930_1883056276195293896_n.png?stp=dst-png_p206x206&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeG0M7Lkn1sUT6wfnmXCjKjKLe3moqlwcw8t7eaiqXBzD-uY45ONHkscJ3xceUwgjS8w-nXZopUzS-8xk6pFGgxB&_nc_ohc=nk9PxJjvkdkQ7kNvgFFY-6a&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QGVGAcFJGBKrTupVPXZqOi9RPSKd67PODE9ZF9kDuEI2g&oe=66AA403B" alt="">
