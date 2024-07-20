@@ -42,6 +42,9 @@ class Header extends Component
     public function logout()
     {
         auth()->logout();
+        if(session()->has('cart')){
+            session()->forget('cart');
+        }
         return redirect()->route('login');
     }
     public function setting_user()

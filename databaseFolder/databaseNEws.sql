@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: projectdemo2
+-- Host: 127.0.0.1    Database: greengroves
 -- ------------------------------------------------------
 -- Server version	8.0.36
 
@@ -632,34 +632,8 @@ INSERT INTO `variants` VALUES (1,'Size','2024-07-14 03:36:41','2024-07-14 03:36:
 /*!40000 ALTER TABLE `variants` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `videos`
---
 
-DROP TABLE IF EXISTS `videos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `videos` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `videos`
---
-
-LOCK TABLES `videos` WRITE;
-/*!40000 ALTER TABLE `videos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `videos` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

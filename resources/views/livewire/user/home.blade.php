@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <!-- Miniature Fairy Garden -->
+    <!-- POTS -->
     <div class=" mt-5">
         <div class="d-flex flex-column gap-4">
             <div class="home-elementor-title">
@@ -96,7 +96,7 @@
     <!-- Join our newsletter -->
     <div class="mt-5 join-newletter-container">
         <div class="row">
-            <div class="col-md-5 col-12 d-flex flex-column justify-content-center gap-5">
+            <div class="col-md-5 col-12 d-flex flex-column justify-content-center p-5 gap-5">
                 <div class="d-flex flex-column">
                     <p class="fs-5 opacity-75">Let's create a peaceful garden in our house</p>
                     <div class="join-newletter-title">
@@ -125,7 +125,7 @@
             <div class="home-elementor-title">
                 <div class="fw-bold fs-2">NEWS</div>
             </div>
-            <div class="row g-2">
+            <div class="row g-3">
                 @foreach ($news as $new )
                 <div class="col-12 news-item-home">
                     <div class="card-news">

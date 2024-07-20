@@ -58,7 +58,7 @@
                     <span class="material-symbols-outlined">
                         Feedback
                     </span>
-                    Feedback
+                    FEEDBACKS
                 </a>
             </li>
         </ul>

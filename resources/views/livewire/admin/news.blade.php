@@ -3,8 +3,8 @@
 <div class="container">
     <div class="d-flex align-items-center justify-content-between">
         <div class="mb-3">
-            <h3 class="fw-bold">Categories List</h3>
-            <p>Manage your categories</p>
+            <h3 class="fw-bold">News</h3>
+            <p>Manage your news</p>
         </div>
         <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="resetAll" data-bs-toggle="modal" data-bs-target="#news-addnew">
             <span class="material-symbols-outlined fs-5 text-light">

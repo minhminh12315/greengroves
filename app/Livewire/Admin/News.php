@@ -68,7 +68,6 @@ class News extends Component
     $this->reset('news_title','news_description','news_image_path');
 }
 
-    #[Renderless]
     public function openEditNewsModal($id)
     {
         $news = NewsModel::find($id);
@@ -77,7 +76,6 @@ class News extends Component
         $this->news_description = $news->description;
         $this->news_old_image_path = $news->path;
     }
-
 
     public function update_news()
     {
@@ -108,6 +106,7 @@ class News extends Component
         $this->dispatch('closeModal');
         $this->news_image_path = null;
         $this->mount();
+
     }
 
     #[Renderless]
