@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <!-- GARDENING TOOLS -->
+    <!-- Miniature Fairy Garden -->
     <div class=" mt-5">
         <div class="d-flex flex-column gap-4">
             <div class="home-elementor-title">
