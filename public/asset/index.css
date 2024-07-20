@@ -14,7 +14,9 @@
     color: #191919;
     /* font-size: clamp(1rem, 1.2vw, 2rem); */
 }
-
+#slideCarousel{
+    height: 82vh;
+}
 body,
 html {
     padding: 0;

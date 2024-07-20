@@ -10,7 +10,7 @@
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                 @endforeach
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner" id="slideCarousel">
                 @foreach($carouselImages as $index => $image)
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                     <img src="{{ Storage::url($image->path) }}" class="d-block object-fit-cover w-100 vh-100" alt="Slide {{ $index + 1 }}">
