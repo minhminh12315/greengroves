@@ -28,7 +28,9 @@ ul {
     padding: 0;
     margin: 0;
 }
-
+#slideCarousel{
+    hei
+}
 h1,
 h2,
 h3,
@@ -2466,10 +2468,10 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius:inherit ;
 }
 .card_img_news{
-    width: 100%;
+    width: 550px;
     height: 100%;
     aspect-ratio: 16/9;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: inherit;
     overflow: hidden;
 }

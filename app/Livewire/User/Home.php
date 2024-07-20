@@ -63,7 +63,7 @@ class Home extends Component
             'productImages',
             'category'
         ])
-        ->where('category_id', 4)
+        ->where('category_id', 8)
         ->orderBy('created_at', 'desc')
         ->limit(6)
         ->get();
@@ -73,7 +73,7 @@ class Home extends Component
     }
     public function render()
     {
-        $carouselImages = Image::where('type', 'slide')->get();
+        $carouselImages = Image::where('type', 'Home_Slide')->get();
 
         return view('livewire.user.home', ['products' => $this->products, 'carouselImages' => $carouselImages]);
     }
