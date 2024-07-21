@@ -36,8 +36,8 @@
                     <div class="d-flex flex-column gap-2 contact-item-title">
                         <h3>Phone Number</h3>
                         <div>
-                            <p>+0911 111 111</p>
-                            <p> +0822 222 222</p>
+                            <p> +84 924 600 804</p>
+                            <p> +84 328 824 552</p>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="d-flex flex-column gap-2 flex-wrap contact-item-title">
                         <h3>Email Us</h3>
-                        <p class="">greengroves@gmaill.com</p>
+                        <p class="">gethsenami2024@gmail.com</p>
                     </div>
                 </div>
             </div>

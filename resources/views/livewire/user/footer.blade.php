@@ -40,19 +40,18 @@
             <div class="d-flex flex-column align-items-lg-start align-items-center gap-2 p-2">
                 <h5>HEADQUARTER</h5>
                 <ul class="d-flex flex-column align-items-start">
-                    <li>Tel: 0911 111 111</li>
-                    <li>Email: info@gethemani.com</li>
-                    <li>Address: 123 Street, City, Country</li>
+                    <li>Tel: +84 924 600 804</li>
+                    <li>Email: gethsemani2024@gmail.com</li>
+                    <li>Address: 285 Doi Can, Ba Dinh, Ha Noi, Viet Nam</li>
                     <li>Mon-Fri: 8am-8pm</li>
                 </ul>
             </div>
-
             <div></div>
             <div></div>
             <div></div>
         </div>
     </div>
     <div class="d-flex justify-content-md-start justify-content-sm-center align-items-center ps-5">
-        <p>�� 2021 Gethemani. All rights reserved.</p>
+        <p>@Copyright by Gethemani.</p>
     </div>
 </footer>

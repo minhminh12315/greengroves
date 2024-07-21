@@ -41,14 +41,9 @@ class ProductDetail extends Component
             'productImages',
             'category'
         ])->where('category_id', $this->product->category_id)
-          ->where('id', '!=', $this->product->id)
-          ->limit(8)
-          ->get();
-          foreach($this->productSameCategory as $product){
-            foreach ($product->productImages as $image) {
-                Log::info('Product Image', ['product_id' => $product->id, 'image_path' => $image->path]);
-            }
-        }
+            ->where('id', '!=', $this->product->id)
+            ->limit(8)
+            ->get();
 
         if ($this->product->productVariants->count() == 1) {
             $this->price = $this->product->productVariants->first()->price;
@@ -56,8 +51,6 @@ class ProductDetail extends Component
         if ($this->product->type == 'single') {
             $this->quantityStock = $this->product->productVariants->first()->quantity;
         }
-        Log::info('quantity: ' . $this->quantity);
-        Log::info('quantityStock: ' . $this->quantityStock);
     }
     // Quantity
     public function increment_quantity()
@@ -91,7 +84,7 @@ class ProductDetail extends Component
     public function updateSelectedOptions()
     {
         $this->calculatePrice();
-        if(count($this->selectedOptions) === count($this->variants)){
+        if (count($this->selectedOptions) === count($this->variants)) {
             $this->selectedVariant = true;
         } else {
             $this->selectedVariant = false;
@@ -138,7 +131,7 @@ class ProductDetail extends Component
                     toast()->error('There are ' . $quantityInCart . ' products in the cart. The quantity must be less than the quantity in stock.');
                     return;
                 }
-                
+
                 // Lấy thông tin các biến thể (variant) và tên biến thể (variant option)
                 $variants = [];
                 foreach ($productVariant->subVariants as $variant) {
@@ -168,7 +161,7 @@ class ProductDetail extends Component
                 Log::info('cart: ' . json_encode($cart));
 
                 session()->put('cart', $cart);
-                toast()->error('Product added to cart successfully!');
+                toast()->success('Product added to cart successfully!');
                 $this->dispatch('cartUpdated');
                 $this->dispatch('swalsuccess', [
                     'title' => 'Thanks!',
@@ -180,7 +173,6 @@ class ProductDetail extends Component
                 $this->selectedOptions = [];
                 $this->quantityStock = null;
                 $this->price = 0;
-
             } else {
                 toast()->error('No matching product variant found, unable to add to cart');
             }

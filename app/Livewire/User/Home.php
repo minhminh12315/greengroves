@@ -67,9 +67,8 @@ class Home extends Component
         ->orderBy('created_at', 'desc')
         ->limit(6)
         ->get();
-        Log::info('pots: ' . json_encode($this->pots));
 
-        $this->news = News::take(3)->get();
+        $this->news = News::orderBy('created_at', 'desc')->take(3)->get();
     }
     public function render()
     {

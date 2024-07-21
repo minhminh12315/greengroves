@@ -164,6 +164,16 @@
                     });
                 });
             });
+            $('#myTable').DataTable({
+                debug: true,
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
         });
     </script>
     

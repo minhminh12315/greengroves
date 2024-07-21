@@ -5,7 +5,7 @@
         <h3 class="fw-bold">Product List</h3>
         <p>Manage your products</p>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="myTable">
         <thead>
             <tr>
                 <th>Product Name</th>
@@ -16,18 +16,17 @@
                 <th>Price</th>
                 <th>Variant</th>
                 <th>Each Quantity Stock</th>
-                <th>Actions</th>
+                <th style="width: 5rem;">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($products as $product)
             @foreach ($product->productVariants as $key => $variant)
             <tr>
-                @if ($key === 0)
-                <td style="width: 17rem;" rowspan="{{ $product->productVariants->count() }}">{{ $product->name }}</td>
-                <td style="width: 10rem;" rowspan="{{ $product->productVariants->count() }}">{{ $product->category->name }}</td>
-                <td rowspan="{{ $product->productVariants->count() }}">{{ $product->type }}</td>
-                <td rowspan="{{ $product->productVariants->count() }}">
+                <td style="width: 17rem;">{{ $product->name }}</td>
+                <td style="width: 10rem;">{{ $product->category->name }}</td>
+                <td>{{ $product->type }}</td>
+                <td>
                     @if ($product->productImages->isNotEmpty())
                     @foreach ($product->productImages as $image)
                     <img src="{{ Storage::url($image->path) }}" alt="image" width="100">
@@ -36,8 +35,7 @@
                     No Image Available
                     @endif
                 </td>
-                @endif
-                <td>{{ number_format($variant->quantity) }}</td>
+                <td >{{ number_format($variant->sum('quantity')) }}</td>
                 <td>${{ number_format($variant->price, 2) }}</td>
                 <td>
                     @foreach ($variant->subVariants as $subVariant)

@@ -49,6 +49,20 @@ class Login extends Component
         'login_password.required' => 'Password is required!',
     ];
 
+    public function mount()
+    {
+        $user = auth()->user();
+        if ($user) {
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->route('admin.list_product');
+                case 'customer':
+                    return redirect()->route('users.home');
+            }
+        } else {
+            
+        }
+    }
 
     public function render()
     {
@@ -97,8 +111,6 @@ class Login extends Component
             $user->otp = $this->otp;
             $user->save();
             $userId = $user->id;
-
-            Auth::login($user);
 
             Mail::to($this->email)->send(new SendOtp($this->otp));
 

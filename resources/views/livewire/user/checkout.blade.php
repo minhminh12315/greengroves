@@ -109,7 +109,7 @@
                 <div class="fw-bold fs-5">Cash On Delivery</div>
             </div>
             
-            <button type="submit" class="btn btn-success w-100 rounded-pill mb-4">Checkout</button>
+            <button type="submit" class="btn btn-success w-100 rounded-pill mb-4">Order</button>
             <button class="btn btn-outline-dark w-100 rounded-pill">Back</button>
         </div>
     </form>

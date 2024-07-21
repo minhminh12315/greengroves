@@ -56,11 +56,9 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    /**
-     * Get the user's full name.
-     *
-     * @return string
-     */
-
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
 }
