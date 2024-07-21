@@ -59,9 +59,13 @@
                             <input wire:model.live="images" type="file" name="images" id="images" class="form-control" multiple>
                             @if ($images)
                             <div class="mt-2">
+                                <div class="row">
                                 @foreach ($images as $image)
-                                <img src="{{ $image->temporaryUrl() }}" width="100" height="100" class="mr-2 mb-2">
-                                @endforeach
+                                    <div class="col">
+                                        <img src="{{ $image->temporaryUrl() }}" class="mr-2 mb-2 img-fluid">
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                             @endif
 

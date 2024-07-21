@@ -24,7 +24,9 @@
                 </thead>
                 <tbody>
                     @if ($feed_backs->isNotEmpty())
+
                     @foreach ($feed_backs as $feedBack)
+                    @if($feedBack->message !== null)
                     <tr>
                         <td>{{ $feedBack->name }}</td>
                         <td>{{ $feedBack->email }}</td>
@@ -32,6 +34,7 @@
                         <td>{{ $feedBack->message }}</td>
                         <td>{{ $feedBack->created_at }}</td>
                     </tr>
+                    @endif
                     @endforeach
                     @else
                     <tr>

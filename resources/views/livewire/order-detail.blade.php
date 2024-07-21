@@ -15,28 +15,28 @@
         </div>
     </div>
     <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($this->order->orderDetails as $orderDetail)
-            <tr>
-                <td>{{ $orderDetail->productVariant->product->name }}</td>
-                <td>{{ $orderDetail->quantity }}</td>
-                <td>{{ $orderDetail->price }}</td>
-                <td>{{ $orderDetail->total }}</td>
-            </tr>
-            @endforeach
-            <tr>
-                <td colspan="3" class="text-right">Total</td>
-                <td>{{ $this->order->total }}</td>
-            </tr>
-        </tbody>
-    </table>    
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($this->order->orderDetails as $orderDetail)
+        <tr>
+            <td>{{ $orderDetail->productVariant->product->name }}</td>
+            <td>{{ $orderDetail->quantity }}</td>
+            <td>{{ number_format($orderDetail->price, 2) }}</td>
+            <td>{{ number_format($orderDetail->total, 2) }}</td>
+        </tr>
+        @endforeach
+        <tr>
+            <td colspan="3" class="text-right font-weight-bold">Total</td>
+            <td>{{ number_format($this->order->total, 2) }}</td>
+        </tr>
+    </tbody>
+</table>
 </div>
 @endsection

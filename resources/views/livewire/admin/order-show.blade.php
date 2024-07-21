@@ -23,11 +23,17 @@
                 </thead>
                 <tbody>
                     @foreach ($this->orderDetails as $orderDetail)
+                    <tr>
                         <td>{{ $orderDetail->id}}</td>
                         <td>{{ $orderDetail->productVariant->product->name }}</td>
                         <td>{{ $orderDetail->productVariant->price }}</td>
                         <td>{{ $orderDetail->quantity }}</td>
+                    </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="3" class="text-right font-weight-bold">Total</td>
+                        <td>{{ $this->order->total }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

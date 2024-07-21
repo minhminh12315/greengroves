@@ -18,7 +18,7 @@
             @foreach ($products as $product)
             <div class="col">
                 <div class="card-product">
-                    <a wire:navigate href="{{ route('user.product-detail', $product->id) }}">
+                    <a href="{{ route('user.product-detail', $product->id) }}">
                         <div class="card-img-wrapper">
                             <img src="{{ Storage::url($product->productImages->first()->path) }}" class="card__img" alt="...">
                             @if($product->type === 'single')

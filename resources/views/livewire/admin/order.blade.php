@@ -3,7 +3,7 @@
 <div>
     <h1>Order</h1>
     @if($this->orders)
-        <table class="table">
+        <table class="table" id="myTable">
             <thead>
                 <tr>
                     <th>Order ID</th>
@@ -11,7 +11,6 @@
                     <th>Customer Email</th>
                     <th>Order total</th>
                     <th>Order Date</th>
-                    <th>Order Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -19,13 +18,12 @@
                 @foreach($this->orders as $order)
                     <tr>
                         <td>{{ $order->id }}</td>
-                        <td>{{ $order->user_id }}</td>
+                        <td>{{ $order->user->name }}</td>
                         <td>{{ $order->user->email }}</td>
                         <td>{{ $order->total }}</td>
                         <td>{{ $order->created_at }}</td>
-                        <td>{{ $order->status }}</td>
                         <td>
-                            <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary">View</a>
+                            <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary text-center">View</a>
                         </td>
                     </tr>
                 @endforeach

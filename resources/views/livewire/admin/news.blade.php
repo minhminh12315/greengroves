@@ -22,7 +22,7 @@
             <h3 class="card-title text-center">News</h3>
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="myTable">
                 <thead>
                     <tr>
                         <th>#</th>

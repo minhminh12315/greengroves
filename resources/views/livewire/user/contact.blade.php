@@ -47,7 +47,7 @@
                     </div>
                     <div class="d-flex flex-column gap-2 flex-wrap contact-item-title">
                         <h3>Email Us</h3>
-                        <p class="">gethsenami2024@gmail.com</p>
+                        <p class="">gethsemani2024@gmail.com</p>
                     </div>
                 </div>
             </div>
