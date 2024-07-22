@@ -108,8 +108,9 @@
                 </div>
                 <p class="fs-5 opacity-75">Stay updated with our latest news, offers, and promotions.</p>
                 <form wire:submit="subcribe">
-                    <input wire:model="emailNotificationToSend" class="form-control join-newletter-input" type="email" placeholder="Enter your email" autocomplete="off" required>
-                    <button wire:loading.attr="disabled" type="submit" class="btn-subcribe"><i class="fa-regular fa-paper-plane"></i></button>
+                    <input wire:model.live.debounce.200ms="emailNotificationToSend" class="form-control join-newletter-input" type="email" placeholder="Enter your email" autocomplete="off" required>
+                    @error('emailNotificationToSend') <span class="text-danger">{{ $message }}</span> @enderror
+                    <button wire:loading.attr="disabled" type="submit" class="btn-subcribe {{ empty($emailNotificationToSend)||$hasError ? 'cursor-not-allowed' : '' }}" {{empty($emailNotificationToSend)||$hasError ? 'disabled' : '' }}><i class="fa-regular fa-paper-plane"></i></button>
                 </form>
             </div>
             <div class="col-md-7 col-12">
