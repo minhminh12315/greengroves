@@ -151,7 +151,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="listimage-edit-img">
+    <div class="modal fade" id="listimage-edit-img" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header d-flex justify-content-between">
@@ -177,13 +177,12 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group" wire:ignore>
+                        <div class="form-group" >
                             <label for="edit_image_path">Image Path</label>
+                            <input type="file" class="form-control" id="edit_image_path" wire:model="edit_image_path">
                             @if($edit_image_path)
-                            <input type="file" class="form-control" id="edit_image_path" wire:model="edit_image_path">
                             <img src="{{ $edit_image_path->temporaryUrl() }}" alt="Current Image" class="pt-1 pb-1" style="width: 100px; height: 100px;">
-                            @elseif($edit_old_image_path)
-                            <input type="file" class="form-control" id="edit_image_path" wire:model="edit_image_path">
+                            @elseif($this->edit_old_image_path)
                             <img src="{{ Storage::url($edit_old_image_path) }}" alt="Current Image" class="pt-1 pb-1" style="width: 100px; height: 100px;">
                             @else
                             <input type="file" class="form-control" id="edit_image_path" wire:model="edit_image_path">

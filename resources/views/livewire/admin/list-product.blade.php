@@ -101,12 +101,15 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Product category</label>
-                            <select wire:model="product_category" class="form-control" name="category" id="category">
+                            <select wire:model="new_category" class="form-control" name="category" id="category">
+                                @if($product_category)
+                                <option value="{{ $product_category->id }}" selected>{{ $product_category->name }}</option>
+                                @endif
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                            @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror
+                            @error('new_category') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="form-group">
                             <label for="image">Product Image</label>
@@ -145,7 +148,7 @@
     </div>
     {{ $products->links('vendor.pagination.default') }}
 
-    
+
 
 
     @endsection

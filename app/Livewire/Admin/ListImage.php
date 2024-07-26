@@ -61,6 +61,7 @@ class ListImage extends Component
         $this->edit_image_description = $image->description;
         $this->edit_image_type = $image->type;
         $this->edit_old_image_path = $image->path;
+        Log::info('Old image path', ['path' => $this->edit_old_image_path]);
         $this->dispatch('toggleModalEdit');
     }
 

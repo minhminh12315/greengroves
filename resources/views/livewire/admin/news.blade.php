@@ -6,7 +6,7 @@
             <h3 class="fw-bold">News</h3>
             <p>Manage your news</p>
         </div>
-        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="$dispatch('toggleModalAdd')" >
+        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="$dispatch('toggleModalAdd')">
             <span class="material-symbols-outlined fs-5 text-light">
                 add_circle
             </span>

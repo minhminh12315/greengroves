@@ -80,36 +80,48 @@ class News extends Component
     }
 
     public function update_news()
-    {
+{
+    // Basic validation for title and description
+    $this->validate([
+        'news_title' => 'required',
+        'news_description' => 'required',
+    ], [
+        'news_title.required' => 'The News Title field is required.',
+        'news_description.required' => 'The News Description field is required.',
+    ]);
+
+    // Additional validation for image if it is present
+    if ($this->news_image_path) {
         $this->validate([
-            'news_title' => 'required',
-            'news_description' => 'required',
-            'news_image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'news_image_path' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
-            'news_title.required' => 'The News Title field is required.',
-            'news_description.required' => 'The News Description field is required.',
-            'path.required' => 'The News Image field is required.',
             'news_image_path.image' => 'The News Image must be an image.',
             'news_image_path.mimes' => 'The News Image must be a file of type: jpeg, png, jpg, gif, svg.',
             'news_image_path.max' => 'The News Image must not be greater than 2048 kilobytes.',
         ]);
 
+        // Process and store the new image
         $imageName = time() . '.' . $this->news_image_path->extension();
         $this->news_image_path->storeAs('public/assets/images', $imageName);
         $public_path = 'assets/images/' . $imageName;
-
-        $news = NewsModel::find($this->news_id);
-        $news->title = $this->news_title;
-        $news->description = $this->news_description;
-        $news->path = $public_path;
-        $news->save();
-
-        session()->flash('message', 'News Updated Successfully.');
-        $this->news_image_path = null;
-        $this->dispatch('closeModal');
-        $this->dispatch('reload');
-
     }
+
+    // Update the news item
+    $news = NewsModel::find($this->news_id);
+    $news->title = $this->news_title;
+    $news->description = $this->news_description;
+
+    if ($this->news_image_path) {
+        $news->path = $public_path;
+    }
+
+    $news->save();
+
+    session()->flash('message', 'News Updated Successfully.');
+    $this->news_image_path = null;
+    $this->dispatch('closeModal');
+    $this->dispatch('reload');
+}
 
     public function openDeleteNewsModal($id)
     {
