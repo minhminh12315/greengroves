@@ -53,7 +53,6 @@ class ListImage extends Component
         $this->image_type_new = '';
     }
 
-    #[Renderless]
     public function openEditImageModal($id)
     {
         $image = Image::find($id);
@@ -62,14 +61,14 @@ class ListImage extends Component
         $this->edit_image_description = $image->description;
         $this->edit_image_type = $image->type;
         $this->edit_old_image_path = $image->path;
-        $this->editImageModal = true;
+        $this->dispatch('toggleModalEdit');
     }
 
 
-    #[Renderless]
     public function openDeleteImageModal($id)
     {
         $this->edit_image_id = $id;
+        $this->dispatch('toggleModalDelete');
     }
 
 
@@ -109,7 +108,7 @@ class ListImage extends Component
         $this->addNewImageType = false;
         $this->addNewImagesModal = false;
         $this->dispatch('closeModal');
-        $this->mount();
+        $this->dispatch('reload');
 
     }
 
@@ -144,7 +143,7 @@ class ListImage extends Component
         $this->edit_image_path = null;
         $this->editImageModal = false;
         $this->dispatch('closeModal');
-        $this->mount();
+        $this->dispatch('reload');
     }
     public function delete_image()
     {
@@ -154,7 +153,7 @@ class ListImage extends Component
 
         $this->deleteImageModal = false;
         $this->dispatch('closeModal');
-        $this->mount();
+        $this->dispatch('reload');
     }
 
     public function render()

@@ -1,9 +1,9 @@
 <div id="web-user-container">
     <livewire:user.header />
 
-    <div id="user-content">
+    <main id="user-content">
         @yield('content')
-    </div>
+    </main>
 
     <livewire:user.footer />
 </div>

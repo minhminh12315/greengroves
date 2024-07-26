@@ -6,7 +6,7 @@
             <h3 class="fw-bold">News</h3>
             <p>Manage your news</p>
         </div>
-        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="resetAll" data-bs-toggle="modal" data-bs-target="#news-addnew">
+        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="$dispatch('toggleModalAdd')" >
             <span class="material-symbols-outlined fs-5 text-light">
                 add_circle
             </span>
@@ -16,57 +16,52 @@
         </button>
     </div>
 
-
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title text-center">News</h3>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered" id="myTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>News Title</th>
-                        <th>News Description</th>
-                        <th>News Image</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($news->isNotEmpty())
-                    @foreach ($news as $newsItem)
-                    <tr>
-                        <td>{{ $newsItem->id }}</td>
-                        <td>{{ $newsItem->title }}</td>
-                        <td>{{ $newsItem->description }}</td>
-                        <td><img src="{{ Storage::url($newsItem->path) }}" alt="{{ $newsItem->title }}" width="100" height="100"></td>
-                        <td>{{ $newsItem->created_at }}</td>
-                        <td>{{ $newsItem->updated_at }}</td>
-                        <td>
-                            <button class="btn btn-updateOrAdd" wire:click="openEditNewsModal({{ $newsItem->id }})" type="button" data-bs-toggle="modal" data-bs-target="#news-edit">
-                                <span class="material-symbols-outlined mt-1 fs-6">
-                                    edit_square
-                                </span>
-                            </button>
-                            <button class="btn btn-delete" wire:click="openDeleteNewsModal({{ $newsItem->id }})" type="button" data-bs-toggle="modal" data-bs-target="#news-delete">
-                                <span class="material-symbols-outlined fs-6 mt-1">
-                                    delete
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                        <td colspan="6">No News Found</td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="myTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>News Title</th>
+                    <th>News Description</th>
+                    <th>News Image</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if ($news->isNotEmpty())
+                @foreach ($news as $newsItem)
+                <tr>
+                    <td>{{ $newsItem->id }}</td>
+                    <td>{{ $newsItem->title }}</td>
+                    <td>{{ $newsItem->description }}</td>
+                    <td><img src="{{ Storage::url($newsItem->path) }}" alt="{{ $newsItem->title }}" width="100" height="100"></td>
+                    <td>{{ $newsItem->created_at }}</td>
+                    <td>{{ $newsItem->updated_at }}</td>
+                    <td>
+                        <button class="btn btn-updateOrAdd" wire:click="openEditNewsModal({{ $newsItem->id }})" type="button">
+                            <span class="material-symbols-outlined mt-1 fs-6">
+                                edit_square
+                            </span>
+                        </button>
+                        <button class="btn btn-delete" wire:click="openDeleteNewsModal({{ $newsItem->id }})" type="button">
+                            <span class="material-symbols-outlined fs-6 mt-1">
+                                delete
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+                @else
+                <tr>
+                    <td colspan="6">No News Found</td>
+                </tr>
+                @endif
+            </tbody>
+        </table>
     </div>
+
     <div class="modal fade" id="news-addnew" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -165,3 +160,26 @@
 
 </div>
 @endsection
+
+@script
+<script>
+    $(document).ready(() => {
+        $wire.on('toggleModalAdd', () => {
+            $('#news-addnew').modal('show');
+        });
+        $wire.on('toggleModalEdit', () => {
+            $('#news-edit').modal('show');
+        });
+
+        $wire.on('toggleModalDelete', () => {
+            $('#news-delete').modal('show');
+        });
+        $wire.on('closeModal', () => {
+            $('.modal').modal('hide');
+        });
+        $wire.on('reload', () => {
+            location.reload();
+        })
+    });
+</script>
+@endscript

@@ -8,7 +8,6 @@ use App\Models\ProductImage;
 use App\Models\ProductVariant;
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Livewire\Attributes\Renderless;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -32,6 +31,7 @@ class ListProduct extends Component
 
     public function editVariant($variantId)
     {
+        // $this->editVariantModal = true;
         $this->variantId = $variantId;
         $variant = ProductVariant::find($variantId);
         $this->update_quantity = $variant->quantity;
@@ -41,6 +41,7 @@ class ListProduct extends Component
         $this->product_category = $variant->product->category;
         $this->product_old_images = $variant->product->productImages()->pluck('path')->toArray();
         Log::info('Product old images', ['images' => $this->product_old_images]);
+        $this->dispatch('toggleModalEdit')->self();
     }
     public function updateVariant()
     {
@@ -94,13 +95,19 @@ class ListProduct extends Component
         }
         $this->product_images = null;
         $this->variantId = null;
-
-        $this->dispatch('closeModal');
+        $this->update_quantity = null;
+        $this->update_price = null;
+        $this->product_name = null;
+        $this->product_description = null;
+        $this->product_category = null;
+        $this->product_old_images = [];
+        $this->dispatch('closModal')->self();
+        $this->dispatch('reload')->self();
     }
-    #[Renderless]
     public function confirmDelete($variantId)
     {
         $this->variantId = $variantId;
+        $this->dispatch('toggleModalDelete')->self();
     }
 
     public function deleteVariant()
@@ -114,15 +121,12 @@ class ListProduct extends Component
             if ($product->productVariants->count() == 0) {
                 $product->delete();
             }
-
-            $this->dispatch('closeModal');
-            $this->dispatchBrowserEvent('refreshComponent');
         } else {
             // Handle case where variant is not found
             session()->flash('error', 'Variant not found.');
         }
-
-        return redirect()->back();
+        $this->dispatch('closModal')->self();
+        $this->dispatch('reload')->self();
     }
     public function mount()
     {
@@ -131,7 +135,7 @@ class ListProduct extends Component
 
     public function render()
     {
-        $products = Product::with('productVariants.subVariants.variantOption.variant', 'productImages', 'category')->get();
+        $products = Product::with('productVariants.subVariants.variantOption.variant', 'productImages', 'category')->paginate(5);
         return view('livewire.admin.list-product', [
             'products' => $products,
         ]);

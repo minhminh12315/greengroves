@@ -3,7 +3,7 @@
 <section id="CartShop">
     @if (count($cart) > 0)
     <div class="container mt-5 mb-5">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-6">
                 <div class="cartShopTitle">
                     <h2>Cart Page</h2>
@@ -74,7 +74,7 @@
             </tbody>
         </table>
     </div>
-    <div class="container-fluid sticky-bottom p-4 cart-sub-table">
+    <div class="container sticky-bottom p-4 cart-sub-table">
         <div class="d-flex flex-row justify-content-between align-items-center">
             <div class="fs-3">Total Price : <span class="fs-4 text-success">${{ number_format($totalPrice) }}</span></div>
             @if(auth()->user())
@@ -84,7 +84,7 @@
             <button class="checkOutButton cursor-not-allowed" disabled>CHECK OUT</button>
             @endif
             @else
-            <a href="{{ route('login') }}" class="checkOutButton">Login to Checkout</a>
+            <a href="{{ route('login') }}" wire:click="$dispatch('loginToCheckOut')" class="checkOutButton">Login to Checkout</a>
             @endif
         </div>
     </div>

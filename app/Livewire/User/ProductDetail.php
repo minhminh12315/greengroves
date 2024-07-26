@@ -161,7 +161,7 @@ class ProductDetail extends Component
                 Log::info('cart: ' . json_encode($cart));
 
                 session()->put('cart', $cart);
-                toast()->success('Product added to cart successfully!');
+                // toast()->success('Product added to cart successfully!');
                 $this->dispatch('cartUpdated');
                 $this->dispatch('swalsuccess', [
                     'title' => 'Thanks!',

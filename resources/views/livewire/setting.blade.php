@@ -13,14 +13,11 @@
         <div class="avatar_setting_container">
             @if($new_avatar)
             <img src="{{ $new_avatar->temporaryUrl() }}" class="avatar_setting" alt="Avatar">
-            @else
-            @if ($avatar)
-            <img class="avatar_setting" src="{{ Storage::url($avatar) }}" width="100" height="100" class="img-fluid" alt="Avatar">
+            @elseif ($avatar)
+            <img class="avatar_setting" src="{{ Storage::url($avatar) }}" alt="Avatar">
             @else
             <img class="avatar_setting" src="https://scontent.fhan17-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=cp0_dst-png_p40x40&_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_ohc=Xy7AjkPZPq4Q7kNvgGjaJQ_&_nc_ht=scontent.fhan17-1.fna&oh=00_AYA7OIwIVuPvbsa-4EW9hzy1CsM4rHHQaw1wN59wBy3Vtw&oe=66B07778" alt="Avatar">
             @endif
-            @endif
-
             <input wire:model="new_avatar" type="file" class="form-control" id="avatar">
         </div>
         @error('new_avatar')
@@ -37,12 +34,12 @@
             </div>
             <div class=" col-lg-6 col-12">
                 <label for="name">Username*</label>
-                <input disabled autocomplete="off" wire:model.live.debounce.250s="name" type="text" class="" id="name" placeholder="Enter your name">
+                <input disabled autocomplete="off" wire:model.live.debounce.250s="name" type="text" class="text-secondary" id="name" placeholder="Enter your name">
             </div>
 
             <div class=" col-lg-6 col-12">
                 <label for="email">Email*</label>
-                <input disabled autocomplete="off" wire:model.live.debounce.250s="email" type="email" class="" id="email" placeholder="Enter your email">
+                <input disabled autocomplete="off" wire:model.live.debounce.250s="email" type="email" class="text-secondary" id="email" placeholder="Enter your email">
             </div>
 
 
@@ -62,24 +59,19 @@
                 <label for="city">City*</label>
                 <input autocomplete="off" wire:model.live.debounce.250s="city" type="text" class="" id="city" placeholder="Enter your city">
             </div>
-            <!-- <div class="">
-                <label for="password">Password</label>
-                <input wire:model="password" type="password" class="" id="password" placeholder="Enter your password">
-            </div> -->
 
         </div>
-        @php
-        $changesMade = $new_avatar ||
-        $fullname !== $original_fullname ||
-        $name !== $original_name ||
-        $phone !== $original_phone ||
-        $address !== $original_address ||
-        $street !== $original_street ||
-        $city !== $original_city;
-        @endphp
-        <button type="submit" class="btn_success mt-2 {{ !$changesMade ? 'cursor-not-allowed' : '' }}" @if(!$changesMade) disabled @endif>
+
+        @if($this->hasChange)
+        <button type="submit" class="btn_success mt-2 ">
             Save changes
         </button>
+        @else
+        <button type="submit" class="btn_success mt-2 cursor-not-allowed" disabled>
+            Save changes
+        </button>
+        @endif
+
     </form>
 </div>
 @endsection

@@ -1,4 +1,4 @@
-<div class="loginRegister" >
+<div class="loginRegister">
 	<div class="login-container" wire:ignore.self id="container">
 		<div class="form-container sign-up">
 			<form wire:submit.prevent="register" >
@@ -20,7 +20,7 @@
 					@error('password') <span class="error text-danger">{{ $message }}</span> @enderror
 				</div>
 				<div class="userbox">
-					<input class="input-password" type="password" wire:model.live="password_confirmation"  placeholder="Confirm Password">
+					<input class="input-password" type="password" wire:model.live="password_confirmation" placeholder="Confirm Password">
 					<i class="fa-regular fa-eye login-eye icon-eye"></i>
 					<label for="password">Confirm Password</label>
 					@error('password_confirmation') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -37,14 +37,23 @@
 					{{ session('error') }}
 				</div>
 				@endif
-				<button class="btn-register" id="btn-register" wire:loading.attr="false">Sign Up</button>
+				<button class="btn-register" id="btn-register" wire:loading.attr="false">
+					<div wire:loading.class="d-none" class="text-light">
+						Sign Up
+					</div>
+					<div wire:loading wire:target="register" class="loginRegisterLoading">
+						<span class="material-symbols-outlined">
+							potted_plant
+						</span>
+					</div>
+				</button>
 			</form>
 			<div class="switcher">
 				<button>You already have an account? Sign In</button>
 			</div>
 		</div>
 		<div class="form-container sign-in" wire:ignore.self>
-			<form wire:submit.prevent="login">
+			<form wire:submit.prevent="login" >
 				<h2 class="pb-5">Sign In</h2>
 				<div class="userbox">
 					<input type="text" wire:model.live="login_username" required placeholder="Username">
@@ -61,7 +70,16 @@
 				<div class="d-flex flex-row gap-2 align-items-center justify-content-start w-75 small">
 					<input wire:model.defer="rememberMe" type="checkbox">Remember Me
 				</div>
-				<button class="btn-login" id="btn-login">Sign In</button>
+				<button class="btn-login" id="btn-login">
+					<div wire:loading.class="d-none" class="text-light">
+						Sign In
+					</div>
+					<div wire:loading wire:target="register" class="loginRegisterLoading">
+						<span class="material-symbols-outlined">
+							potted_plant
+						</span>
+					</div>
+				</button>
 			</form>
 			<div class="switcher">
 				<button>Don't have an account? Sign Up</button>

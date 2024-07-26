@@ -28,6 +28,7 @@
     {{ $slot }}
 
     <div class="backdrops"></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="{{ asset('asset/app.js') }}"></script>
     <script type="importmap">
@@ -72,15 +73,11 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.1/cdn.js" integrity="sha512-bQOI1eWRadC7HPMMU7NUi5Ha3tAgxZi32t/6u2OfKyUpSWyITCxxia5GA2xsXtGcd6tiSWqMYvr8sJhU46D9Ag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        window.onload = function() {
+
+        $(document).ready(function() {
             if (window.location.protocol === "file:") {
                 alert("This sample requires an HTTP server. Please serve this file with a web server.");
             }
-        };
-        document.addEventListener('closeModal', () => {
-            $('.modal').modal("hide")
-        });
-        $(document).ready(function() {
             let swiperCards = new Swiper(".card-swiper-content", {
                 loop: true,
                 spaceBetween: 10,
@@ -125,8 +122,6 @@
                         showConfirmButton: true
                     });
                 });
-            });
-            $(document).on('livewire:init', function() {
                 Livewire.on('checkoutsuccess', (e) => {
                     const data = e;
                     Swal.fire({
@@ -153,30 +148,9 @@
                 $('#aside_setting_container').removeClass('show');
                 $('.backdrops').removeClass('active');
             });
-            $(document).on('livewire:init', function() {
-                Livewire.on('swalsuccess', (e) => {
-                    const data = e;
-                    Swal.fire({
-                        icon: data[0].icon,
-                        title: data[0].title,
-                        text: data[0].text,
-                        showConfirmButton: true
-                    });
-                });
-            });
-            $('#myTable').DataTable({
-                debug: true,
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
         });
     </script>
-    
+
     @livewireScripts
 </body>
 

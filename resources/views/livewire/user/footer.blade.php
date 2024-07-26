@@ -1,7 +1,7 @@
 <footer id="user-footer">
     <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-md-3 p-3 g-sm-4">
-        <div class="col border-top-md-none ">
-            <a class="logo-footer-wrapper d-flex justify-content-center align-items-center" href="{{ route('users.home') }}"><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448893881_459061516980193_545509641477731501_n.png?stp=dst-png_s1080x2048&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=XH4-i-6TQPkQ7kNvgEua9Le&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QH-bwuaiULt2pcdwVngYaGJeZyAG1TCHhqCZydcanmUuA&oe=66AB9914" alt="GreenGroves"></a>
+        <div class="col border-top-md-none">
+            <a class="logo-footer-wrapper d-flex justify-content-lg-start justify-content-center align-items-center ps-lg-4" href="{{ route('users.home') }}"><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/448893881_459061516980193_545509641477731501_n.png?stp=dst-png_s1080x2048&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=XH4-i-6TQPkQ7kNvgEua9Le&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QH-bwuaiULt2pcdwVngYaGJeZyAG1TCHhqCZydcanmUuA&oe=66AB9914" alt="GreenGroves"></a>
         </div>
         <div class="col">
             <div class="d-flex flex-column align-items-lg-start align-items-center gap-2 p-2">
@@ -51,7 +51,7 @@
             <div></div>
         </div>
     </div>
-    <div class="d-flex justify-content-md-start justify-content-sm-center align-items-center ps-5">
+    <div class="d-flex justify-content-md-start justify-content-sm-center align-items-center ps-5 py-2">
         <p>@Copyright by Gethemani.</p>
     </div>
 </footer>

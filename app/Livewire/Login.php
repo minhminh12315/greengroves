@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Renderless;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 
 class Login extends Component
 {
@@ -148,11 +149,13 @@ class Login extends Component
                 if (Auth::user()->role == 'admin') {
                     return redirect()->route('admin.index');
                 }
-                return redirect()->intended('/');
+                return redirect()->intended();
             }
         } else {
             $this->addError('login_failed', 'Invalid username or password. Please try again!');
             $this->login_password = '';
         }
     }
+
+    
 }

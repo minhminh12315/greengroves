@@ -7,7 +7,7 @@
                 <h3 class="fw-bold">Images List</h3>
                 <p>Manage your images</p>
             </div>
-            <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" data-bs-toggle="modal" data-bs-target="#listimage-addnew-img">
+            <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" @click="$dispatch('toggleModalAdd')">
                 <span class="material-symbols-outlined fs-5 text-light">
                     add_circle
                 </span>
@@ -19,10 +19,8 @@
 
         @if($distinctTypes->isNotEmpty())
         @foreach ($distinctTypes as $type)
-        <div class="card ps-2 pe-2 mt-2">
-            <div class="card-title">
-                <h2 class="ms-3 mt-2 text-capitalize">{{ $type }}</h2>
-            </div>
+        <div class="table-responsive mt-2">
+            <h2 class="mb-2 text-capitalize">{{ $type }}</h2>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -42,12 +40,12 @@
                         <td>{{ $image->type }}</td>
                         <td><img src="{{ Storage::url($image->path) }}" alt="Image" style="width: 100px; height: 100px;"></td>
                         <td>
-                            <button wire:click="openEditImageModal({{ $image->id }})" class="btn btn-updateOrAdd" type="button" data-bs-toggle="modal" data-bs-target="#listimage-edit-img">
+                            <button wire:click="openEditImageModal({{ $image->id }})" class="btn btn-updateOrAdd" type="button" >
                                 <span class="material-symbols-outlined mt-1 fs-6">
                                     edit_square
                                 </span>
                             </button>
-                            <button wire:click="openDeleteImageModal({{ $image->id }})" class="btn btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#listimage-delete-img">
+                            <button wire:click="openDeleteImageModal({{ $image->id }})" class="btn btn-delete" type="button">
                                 <span class="material-symbols-outlined fs-6 mt-1">
                                     delete
                                 </span>
@@ -81,7 +79,7 @@
         @endif
     </div>
 
-    <div class="modal fade"  id="listimage-delete-img">
+    <div class="modal fade" id="listimage-delete-img">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -99,7 +97,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="listimage-addnew-img" wire:ignore.self>
+    <div class="modal fade" id="listimage-addnew-img"  wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between d-flex justify-content-between">
@@ -118,7 +116,7 @@
                             <input type="text" class="form-control" id="image_description_new" wire:model="image_description_new">
                         </div>
                         @error('image_description_new') <span class="text-danger">{{ $message }}</span> @enderror
-                        <div class="form-group mt-2 mb-2" >
+                        <div class="form-group mt-2 mb-2">
                             @if($addNewImageType)
                             <div class="d-flex justify-content-between mt-2 mb-2">
                                 <label for="image_type_new">Image type</label>
@@ -201,3 +199,25 @@
 
 </div>
 @endsection
+@script
+<script>
+    $(document).ready(() => {
+        $wire.on('toggleModalAdd', () => {
+            $('#listimage-addnew-img').modal('show');
+        });
+        $wire.on('toggleModalEdit', () => {
+            $('#listimage-edit-img').modal('show');
+        });
+
+        $wire.on('toggleModalDelete', () => {
+            $('#listimage-delete-img').modal('show');
+        });
+        $wire.on('closeModal', () => {
+            $('.modal').modal('hide');
+        });
+        $wire.on('reload', () => {
+            location.reload();
+        })
+    });
+</script>
+@endscript

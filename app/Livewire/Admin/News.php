@@ -63,9 +63,9 @@ class News extends Component
         $this->news_description = '';
         $this->news_image_path = '';
         session()->flash('message', 'News Created Successfully.');
-        $this->dispatch('closeModal');
-        $this->mount();
         $this->reset('news_title', 'news_description', 'news_image_path');
+        $this->dispatch('closeModal');
+        $this->dispatch('reload');
     }
 
     public function openEditNewsModal($id)
@@ -76,6 +76,7 @@ class News extends Component
         $this->news_description = $news->description;
         $this->news_old_image_path = $news->path;
         Log::info($this->news_old_image_path);
+        $this->dispatch('toggleModalEdit')->self();
     }
 
     public function update_news()
@@ -104,17 +105,17 @@ class News extends Component
         $news->save();
 
         session()->flash('message', 'News Updated Successfully.');
-        $this->dispatch('closeModal');
         $this->news_image_path = null;
-        $this->mount();
+        $this->dispatch('closeModal');
+        $this->dispatch('reload');
 
     }
 
-    #[Renderless]
     public function openDeleteNewsModal($id)
     {
         $this->news_id = $id;
         Log::info('News ID', ['id' => $this->news_id]);
+        $this->dispatch('toggleModalDelete')->self();
     }
     public function delete_image()
     {
@@ -122,17 +123,9 @@ class News extends Component
         $news->delete();
         session()->flash('message', 'News Deleted Successfully.');
         $this->dispatch('closeModal');
-        $this->mount();
+        $this->dispatch('reload');
     }
-    public function resetAll()
-    {
-        $this->news_title = '';
-        $this->news_description = '';
-        $this->news_image_path = null;
-        $this->news_id = null;
-        $this->news_old_image_path = null;
-        $this->mount(); // Ensure this is a collection
-    }
+    
     public function mount()
     {
         $this->news = NewsModel::all(); // Ensure this is a collection

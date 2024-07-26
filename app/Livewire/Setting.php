@@ -21,7 +21,7 @@ class Setting extends Component
     public $city;
     public $password;
     public $avatar;
-    public $hasChange;
+    public $hasChange = false;
     public $new_avatar;
 
     public $original_fullname;
@@ -37,6 +37,10 @@ class Setting extends Component
     public function updated($propertyName)
     {
         try {
+            if($this->name !== $this->original_fullname || $this->fullname !== $this->original_fullname || $this->email !== $this->original_email || $this->phone !== $this->original_phone || $this->address !== $this->original_address || $this->street !== $this->original_street || $this->city !== $this->original_city){
+                
+                $this->hasChange = true;
+            }
             $this->validateOnly($propertyName,[
                 'new_avatar' => 'image|mimes:jpg,jpeg,png,gif',
             ], [
@@ -52,37 +56,40 @@ class Setting extends Component
     {
         try{
             
-        $user = User::find(auth()->user()->id);
-        if ($this->fullname) {
-            $user->fullname = $this->fullname;
-        }
-        if ($this->phone) {
-            $user->phone = $this->phone;
-        }
-        if ($this->address) {
-            $user->address = $this->address;
-        }
-        if ($this->street) {
-            $user->street = $this->street;
-        }
-        if ($this->city) {
-            $user->city = $this->city;
-        }
+            $user = User::find(auth()->user()->id);
+            if ($this->fullname) {
+                $user->fullname = $this->fullname;
+            }
+            if ($this->phone) {
+                $user->phone = $this->phone;
+            }
+            if ($this->address) {
+                $user->address = $this->address;
+            }
+            if ($this->street) {
+                $user->street = $this->street;
+            }
+            if ($this->city) {
+                $user->city = $this->city;
+            }
 
-        // Chỉ cập nhật avatar nếu có upload mới
-        if ($this->new_avatar) {
-            $imageName = time() . '_' . $this->new_avatar->getClientOriginalName();
-            $imagePath = $this->new_avatar->storeAs('public/assets/images', $imageName);
-            $publicPath = 'assets/images/' . $imageName;
-            $user->avatar = $publicPath;
-        }
-        $user->save();
-        $this->dispatch('swalsuccess', [
-            'title' => 'Congartulation!',
-            'text' => 'You have successfully changed your information !',
-            'icon' => 'success',
-        ]);
+            // Chỉ cập nhật avatar nếu có upload mới
+            if ($this->new_avatar) {
+                $imageName = time() . '_' . $this->new_avatar->getClientOriginalName();
+                $imagePath = $this->new_avatar->storeAs('public/assets/images', $imageName);
+                $publicPath = 'assets/images/' . $imageName;
+                $user->avatar = $publicPath;
+            }
+            $user->save();
+            $this->dispatch('swalsuccess', [
+                'title' => 'Congartulation!',
+                'text' => 'You have successfully changed your information !',
+                'icon' => 'success',
+            ]);
+            $this->hasChange = false;
+            $this->mount();
         } catch (Exception $e) {
+            Log::info($e);
             toast()->error('Something went wrong!');
         }
     }
@@ -96,11 +103,8 @@ class Setting extends Component
         $this->address = $user->address;
         $this->street = $user->street;
         $this->city = $user->city;
-        if ($user->avatar != null) {
-            $this->avatar = $user->avatar;
-        }
-        Log::info($this->avatar);
 
+        $this->avatar = $user->avatar;
         $this->original_fullname = $this->fullname;
         $this->original_name = $this->name;
         $this->original_email = $this->email;

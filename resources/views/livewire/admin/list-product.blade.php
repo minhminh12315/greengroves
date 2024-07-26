@@ -1,11 +1,11 @@
 @extends('livewire.admin.index')
 @section('content')
-<div>
+<section>
     <div class="mb-3">
         <h3 class="fw-bold">Product List</h3>
         <p>Manage your products</p>
     </div>
-    <table class="table table-bordered" id="myTable">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Product Name</th>
@@ -23,10 +23,11 @@
             @foreach ($products as $product)
             @foreach ($product->productVariants as $key => $variant)
             <tr>
-                <td style="width: 17rem;">{{ $product->name }}</td>
-                <td style="width: 10rem;">{{ $product->category->name }}</td>
-                <td>{{ $product->type }}</td>
-                <td>
+                @if($key === 0)
+                <td rowspan="{{ $product->productVariants->count() }}" style="width: 17rem;">{{ $product->name }}</td>
+                <td rowspan="{{ $product->productVariants->count() }}" style="width: 10rem;">{{ $product->category->name }}</td>
+                <td rowspan="{{ $product->productVariants->count() }}">{{ $product->type }}</td>
+                <td rowspan="{{ $product->productVariants->count() }}">
                     @if ($product->productImages->isNotEmpty())
                     @foreach ($product->productImages as $image)
                     <img src="{{ Storage::url($image->path) }}" alt="image" width="100">
@@ -35,7 +36,8 @@
                     No Image Available
                     @endif
                 </td>
-                <td >{{ number_format($variant->sum('quantity')) }}</td>
+                <td rowspan="{{ $product->productVariants->count() }}">{{ $product->productVariants->sum('quantity') }}</td>
+                @endif
                 <td>${{ number_format($variant->price, 2) }}</td>
                 <td>
                     @foreach ($variant->subVariants as $subVariant)
@@ -48,12 +50,12 @@
                 <td>{{ number_format($variant->quantity) }}</td>
                 @endif
                 <td>
-                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-edit-product">
+                    <button class="btn btn-updateOrAdd" wire:click="editVariant({{ $variant->id }})" type="button">
                         <span class="material-symbols-outlined mt-1 fs-6">
                             edit_square
                         </span>
                     </button>
-                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listproduct-delete-product">
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $variant->id }})" type="button">
                         <span class="material-symbols-outlined fs-6 mt-1">
                             delete
                         </span>
@@ -62,10 +64,28 @@
             </tr>
             @endforeach
             @endforeach
+
         </tbody>
     </table>
-
-    <div class="modal fade" id="listproduct-edit-product" wire:ignore.self>
+    <div class="modal fade" id="listproduct-delete-product">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <h5 class="modal-title">Confirm Delete</h5>
+                    <button type="button" class="close btn btn-danger">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this variant?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" wire:click="deleteVariant">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade " id="listproduct-edit-product">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -123,26 +143,28 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="listproduct-delete-product" aria-modal="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header d-flex justify-content-between">
-                    <h5 class="modal-title">Confirm Delete</h5>
-                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete this variant?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" wire:click="deleteVariant" wire:loading.attr="disable">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ $products->links('vendor.pagination.default') }}
+
+    
+
+
+    @endsection
+
+    @script
     <script>
-        Livewire.on('refreshComponent', () => {
-            Livewire.emit('refresh');
+        $(document).ready(() => {
+            $wire.on('toggleModalEdit', () => {
+                $('#listproduct-edit-product').modal('show');
+            });
+            $wire.on('toggleModalDelete', () => {
+                $('#listproduct-delete-product').modal('show');
+            });
+            $wire.on('closeModal', () => {
+                $('.modal').modal('hide');
+            });
+            $wire.on('reload', () => {
+                location.reload();
+            })
         });
     </script>
-    @endsection
+    @endscript

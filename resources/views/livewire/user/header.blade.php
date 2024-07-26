@@ -112,8 +112,8 @@
                                 </li>
                                 @endforeach
                                 @else
-                                <div class="w-100 h-100 d-flex justify-content-center align-items-center">
-
+                                <div class="w-100 h-100 flex-column gap-2 d-flex justify-content-center align-items-center">
+                                    <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/451329013_1169823434216491_788183758634930986_n.png?stp=dst-png_p206x206&_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGtM_dXVFUpuLcpIistHJbEVaqA1_v5ezxVqoDX-_l7PLH3tECvr7BU5SyZjPh6VKzKuNMRj1XaKgMm8CQU2_6x&_nc_ohc=FWSCFZUWYY8Q7kNvgFM0mOD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QGPJ00hZVpExyDGwMqzYpSLB1RROHP6eigfX28JaA3sXA&oe=66C9CFDF" alt="">
                                     <p>Product Not Found !</p>
                                 </div>
                                 @endif
@@ -164,7 +164,7 @@
                                         <span class="material-symbols-outlined">
                                             view_list
                                         </span>
-                                        <a href="" class="seeAllMenu">See all products</a>
+                                        <a href="{{route('user.list-product')}}" class="seeAllMenu">See all products</a>
                                     </div>
                                 </div>
                             </div>

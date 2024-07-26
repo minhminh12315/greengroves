@@ -5,24 +5,19 @@ namespace App\Livewire\Admin;
 use App\Models\Categories;
 use Livewire\Attributes\Renderless;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class ListCategory extends Component
 {
-    public $categories;
-    public $editCategoryModal = false;
-    public $deleteCategoryModal = false;
-    public $addCategoryModal = false;
+    use WithPagination;
+    use WithFileUploads;
     public $categoryId;
     public $name;
     public $description;
     public $parent_id;
+    protected $paginationTheme = 'bootstrap';
 
-    public function mount()
-    {
-        $this->categories = Categories::with('parent', 'children')->get();
-    }
-
-    #[Renderless]
     public function editCategory($categoryId)
     {
         $category = Categories::find($categoryId);
@@ -30,7 +25,7 @@ class ListCategory extends Component
         $this->name = $category->name;
         $this->description = $category->description;
         $this->parent_id = $category->parent_id;
-        $this->editCategoryModal = true;
+        $this->dispatch('toggleModalEdit')->self();
     }
 
 
@@ -42,17 +37,17 @@ class ListCategory extends Component
             'parent_id' => $this->parent_id,
         ]);
         $this->reset(['name', 'parent_id']);
-        $this->mount(); 
-        $this->dispatch('closeModal');
+        $this->dispatch('closModal')->self();
+        $this->dispatch('reload')->self();
     }
 
     public function confirmDelete($categoryId)
     {
         $this->categoryId = $categoryId;
-        $this->deleteCategoryModal = true;
+        $this->dispatch('toggleModalDelete')->self();
     }
 
-    #[Renderless]
+
     public function deleteCategory()
     {
         $category = Categories::find($this->categoryId);
@@ -60,13 +55,16 @@ class ListCategory extends Component
         $this->dispatch('swalsuccess', [
             'title' => 'Congratulation!',
             'text' => 'Deleted successfully!',
-            'icon' =>'success',
+            'icon' => 'success',
         ]);
-        $this->dispatch('closeModal');
-        $this->mount(); 
+        $this->dispatch('closModal')->self();
+        $this->dispatch('reload')->self();
     }
 
-
+    public function toggleModalAdd()
+    {
+        $this->dispatch('toggleModalAdd')->self();
+    }
 
     public function addCategory()
     {
@@ -75,12 +73,16 @@ class ListCategory extends Component
             'parent_id' => $this->parent_id,
         ]);
         $this->reset(['name', 'parent_id']);
-        $this->dispatch('closeModal');
-        $this->mount(); 
+        $this->dispatch('dataTable');
+        return $this->redirect('/admin/list_category', navigate: true);
     }
 
     public function render()
     {
-        return view('livewire.admin.list-category');
+        $categories = Categories::with('parent', 'children')->paginate(8);
+
+        return view('livewire.admin.list-category', [
+            'categories' => $categories,
+        ]);
     }
 }

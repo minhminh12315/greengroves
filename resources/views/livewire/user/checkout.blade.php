@@ -1,6 +1,6 @@
 @extends('livewire.user.index')
 @section('content')
-<div class="container">
+<section class="container">
     <form wire:submit="checkoutFinal" class="row row-cols-md-2 row-cols-sm-1">
         <div class="col-md-8 col-sm-12">
             <h3 class="mb-4">Checkout</h3>

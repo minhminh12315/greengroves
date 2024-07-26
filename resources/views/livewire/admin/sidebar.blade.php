@@ -6,7 +6,7 @@
         </a>
         <ul class="d-flex flex-column gap-3 aside-admin-list pt-2 mt-2 ">
             <li class="">
-                <a wire:navigate href="/admin/addnew">
+                <a href="/admin/addnew">
                     <span class="material-symbols-outlined">
                         add_box
                     </span>
@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="">
-                <a wire:navigate href="/admin/list_product">
+                <a href="/admin/list_product">
                     <span class="material-symbols-outlined">
                         deployed_code
                     </span>
@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="">
-                <a wire:navigate href="/admin/list_category">
+                <a href="/admin/list_category">
                     <span class="material-symbols-outlined">
                         category
                     </span>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="">
-                <a wire:navigate href="/admin/order">
+                <a href="/admin/order">
                     <span class="material-symbols-outlined">
                         orders
                     </span>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="">
-                <a wire:navigate href="/admin/list_image">
+                <a href="/admin/list_image">
                     <span class="material-symbols-outlined">
                         imagesmode
                     </span>
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="">
-                <a wire:navigate href="/admin/news">
+                <a href="/admin/news">
                     <span class="material-symbols-outlined">
                         news
                     </span>
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li class="">
-                <a wire:navigate href="{{ route('admin.list_feedback') }}">
+                <a href="{{ route('admin.list_feedback') }}">
                     <span class="material-symbols-outlined">
                         Feedback
                     </span>

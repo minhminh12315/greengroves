@@ -6,7 +6,7 @@
             <h3 class="fw-bold">Categories List</h3>
             <p>Manage your categories</p>
         </div>
-        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2"  data-bs-toggle="modal" data-bs-target="#listcategory-addnew-category">
+        <button class="btn btn-success mb-3 d-flex align-items-center justify-content-center gap-2" wire:click="toggleModalAdd">
             <span class="material-symbols-outlined fs-5 text-light">
                 add_circle
             </span>
@@ -16,7 +16,7 @@
         </button>
     </div>
 
-    <table class="table table-bordered table-striped" id="myTable">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -34,12 +34,12 @@
                     {{ $category->parent ? $category->parent->name  : 'None' }}
                 </td>
                 <td>
-                    <button class="btn btn-updateOrAdd" wire:click="editCategory({{ $category->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listcategory-edit-category">
+                    <button class="btn btn-updateOrAdd" wire:click="editCategory({{ $category->id }})" type="button">
                         <span class="material-symbols-outlined mt-1 fs-6">
                             edit_square
                         </span>
                     </button>
-                    <button class="btn btn-delete" wire:click="confirmDelete({{ $category->id }})" type="button" data-bs-toggle="modal" data-bs-target="#listcategory-delete-category">
+                    <button class="btn btn-delete" wire:click="confirmDelete({{ $category->id }})" type="button">
                         <span class="material-symbols-outlined fs-6 mt-1">
                             delete
                         </span>
@@ -50,7 +50,7 @@
         </tbody>
     </table>
 
-    <div class="modal fade " id="listcategory-edit-category">
+    <div class="modal fade" id="listcategory-edit-category" >
         <div class="modal-dialog modal-dialog-centered">
             <div class=" modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div class="modal fade"  id="listcategory-addnew-category">
+    <div class="modal fade" id="listcategory-addnew-category">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -118,13 +118,36 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" wire:loading.attr="disable" class="btn btn-success" >Add New</button>
+                        <button type="submit" wire:loading.attr="disable" class="btn btn-success">Add New</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+{{ $categories->links('vendor.pagination.default') }}
 
 @endsection
+
+@script
+<script>
+    $(document).ready(() => {
+        $wire.on('toggleModalAdd', () => {
+            $('#listcategory-addnew-category').modal('show');
+        });
+        $wire.on('toggleModalEdit', () => {
+            $('#listcategory-edit-category').modal('show');
+        });
+
+        $wire.on('toggleModalDelete', () => {
+            $('#listcategory-delete-category').modal('show');
+        });
+        $wire.on('closeModal', () => {
+            $('.modal').modal('hide');
+        });
+        $wire.on('reload', () => {
+            location.reload();
+        })
+    });
+</script>
+@endscript
